@@ -1,0 +1,38 @@
+server:
+  port: 8089
+
+spring:
+  profiles: # 多环境配置
+    active: local
+  mvc: # 404 异常处理
+    throw-exception-if-no-handler-found: true
+    favicon:
+      enabled: false
+  devtools: # 热部署
+    restart:
+      enabled: true
+      exclude: application.yml
+  application: 
+    name: community-auth
+  # 数据库配置
+  datasource:
+    url: jdbc:mysql://localhost:3306/community_security?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai&useSSL=false
+    username: root
+    password: root
+    dbcp2:
+      validation-query: select 1
+  security:
+    user:
+      name: root
+      password: 1234
+
+# spring boot log config
+logging:
+  level:
+    root: INFO
+    org:
+      springframework:
+        security: INFO
+        web: INFO
+    cn:
+      gyw: DEBUG

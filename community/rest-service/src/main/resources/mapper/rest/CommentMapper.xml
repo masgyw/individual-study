@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.gyw.community.rest.mapper.CommentMapper">
+
+    <resultMap id="commentMap" type="cn.gyw.community.rest.dto.CommentDto">
+        <result column="id" property="id" jdbcType="INTEGER"/>
+        <result column="content" property="content" jdbcType="VARCHAR"/>
+        <result column="like_num" property="likeNum" jdbcType="VARCHAR"/>
+        <result column="post_id" property="postId" jdbcType="INTEGER"/>
+        <result column="created_by" property="createdBy" jdbcType="VARCHAR"/>
+        <result column="created_by_id" property="createdById" jdbcType="VARCHAR"/>
+        <result column="created_time" property="createdTime" jdbcType="TIMESTAMP"/>
+        <collection property="replys" ofType="cn.gyw.community.rest.reply.entity.Reply">
+            <id column="reply_id" property="id" jdbcType="INTEGER"/>
+            <result column="comment_id" property="commentId" jdbcType="INTEGER"/>
+            <result column="to_user_id" property="toUserId" jdbcType="INTEGER"/>
+            <result column="to_user_name" property="toUserName" jdbcType="VARCHAR"/>
+            <result column="reply_content" property="content" jdbcType="VARCHAR"/>
+            <result column="reply_created_by" property="createdBy" jdbcType="VARCHAR"/>
+            <result column="reply_created_by_id" property="createdById" jdbcType="INTEGER"/>
+            <result column="reply_created_time" property="createdTime" jdbcType="TIMESTAMP"/>
+        </collection>
+    </resultMap>
+
+    <select id="queryByPostId" parameterType="String" resultMap="commentMap">
+        select t1.*, t2.id as reply_id, t2.comment_id, t2.content as reply_content, 
+            t2.to_user_id, t2.to_user_name, t2.created_by as reply_created_by, t2.created_by_id as reply_created_by_id,
+            t2.created_time as reply_created_time
+        from (
+                 select id, content, like_num, post_id, created_by, created_by_id, created_time
+                 from rest_comment
+                 where post_id = ${_parameter}
+             ) t1
+                 left join rest_reply t2 on t1.id = t2.comment_id
+    </select>
+
+</mapper>

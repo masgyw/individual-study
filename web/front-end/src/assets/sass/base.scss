@@ -1,0 +1,70 @@
+@charset "UTF-8";
+
+// 1.变量
+$blue: blue;
+$side: left;
+$var: 1000;
+
+//6.mixin 混合，可重用代码块
+@mixin left {
+	float: left;
+	margin-left: 50px;
+}
+@mixin leftWithParam($value: 10px) {
+	float: left;
+	margin-left: $value;
+}
+
+div {
+	color: $blue
+}
+// 2.插值
+.rounded {
+	border-#{$side}-radius: 5px
+}
+// 3.计算
+body {
+	margin: (14px/2);
+	top: 50px + 10px;
+	right: $var * 10%;
+}
+// 4.嵌套
+a {
+	&:hover {
+		color: $blue;
+	}
+}
+// 5.继承
+.class1 {
+	border: 1px solid #ddd;
+}
+.class2 {
+	@extend .class1;
+	font-size: 120%;
+	@include left;
+}
+.class3 {
+	@extend .class1;
+	@include leftWithParam(200px);
+}
+
+// 继承占位符
+%f1 {
+	color: black;
+}
+// 和mixin 的区别
+.class6 {
+	@include left; // 引用
+	@extend %f1; // 组合
+}
+.class7 {
+	@include left;
+	@extend %f1;
+}
+
+// 颜色函数？
+
+// 注释
+// 单行注释，只存在于源码，编译后被省略
+/* 保留到编译文件中 */
+/*! 重要注释，即使是压缩编译，也保留 */ 

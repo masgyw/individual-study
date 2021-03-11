@@ -1,0 +1,5 @@
+apply plugin: 'java'
+
+dependencies {
+    implementation spring_boot_starter_web
+}

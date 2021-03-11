@@ -1,0 +1,71 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot'
+	id 'io.spring.dependency-management'
+}
+
+dependencies {
+    // 公共模块依赖
+    implementation project(":components:common-web")
+    implementation project(":facade:rest-service-api")
+    implementation project(":facade:system-service-api")
+
+    implementation "org.springframework.boot:spring-boot-starter:${springBootVersion}"
+    implementation "org.springframework.boot:spring-boot-starter-web:${springBootVersion}"
+    implementation "org.springframework.boot:spring-boot-starter-jdbc:${springBootVersion}"
+    // 打包时使用provide
+//    providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat:2.0.4.RELEASE'
+    // 本地运行，否则异常：
+    implementation "org.springframework.boot:spring-boot-starter-tomcat:${springBootVersion}"
+    implementation "org.springframework.boot:spring-boot-devtools:${springBootVersion}"
+    // redis
+    implementation "org.springframework.boot:spring-boot-starter-data-redis:${springBootVersion}"
+
+    implementation 'org.apache.commons:commons-lang3:3.6'
+	implementation 'mysql:mysql-connector-java:5.1.47'
+    // mybatis plus
+    implementation ('com.baomidou:mybatis-plus-boot-starter:3.0.5') {
+//        transitive = false // 开启、关闭传递性依赖，传递性依赖会下载依赖的所有包，也可以用@jar
+    }
+    // 时间插件：Mybatis对Java 8 time (JSR 310)支持
+    implementation 'org.mybatis:mybatis-typehandlers-jsr310:1.0.2'
+	// lettuce pool 缓存连接池
+	implementation 'org.apache.commons:commons-pool2:2.5.0'
+	implementation 'commons-codec:commons-codec:1.11'
+//	implementation 'com.alibaba:fastjson:1.2.60'
+    // jackson
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.11.2'
+    implementation 'com.fasterxml.jackson.core:jackson-core:2.11.2'
+    implementation 'com.fasterxml.jackson.core:jackson-annotations:2.11.2'
+
+	// eurake 注册
+	implementation "org.springframework.cloud:spring-cloud-starter-netflix-eureka-client"
+    // RPC 调用 feign
+    implementation "org.springframework.cloud:spring-cloud-starter-openfeign"
+	
+    implementation 'org.freemarker:freemarker:2.3.28'
+    testImplementation("org.springframework.boot:spring-boot-starter-test:${springBootVersion}") {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+}
+
+//sourceSets {
+//    main {
+//        java {
+//            srcDirs = ['src/main/java','../(另一个子模块)/src/main/java']
+//        }
+//    }
+//}
+
+jar {
+    manifest {
+        attributes "Manifest-Version": 1.0,
+                'Main-Class': 'ccn.gyw.community.rest.RestApiApplication'
+    }
+}
+
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+	}
+}

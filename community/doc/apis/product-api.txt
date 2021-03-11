@@ -1,0 +1,20 @@
+POST http://localhost:9001/product
+{
+    "productId": 1001,
+    "productCore": "001001",
+    "productName": "iphone6",
+    "brandId": 10,
+    "descript": "这是一个神奇的iPhone",
+    "barCode": "10010101",
+    "oneCategoryId": 1,
+    "twoCategoryId": 2,
+    "threeCategoryId": 3,
+    "supplierId": 2001,
+    "price": 2000,
+    "averageCost": 1800,
+    "publishStatus": 0,
+    "auditStatus": 1,
+    "productionDate": "2020-10-01 19:39:30",
+    "shelfLife": 8
+}
+

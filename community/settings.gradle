@@ -1,0 +1,53 @@
+// 项目名称
+rootProject.name = 'community'
+
+// 公共组件
+include ':components:common-web'
+project(':components:common-web').projectDir = new File(rootDir, '../components/common-web')
+
+// RPC 接口
+include ':facade:system-service-api'
+project(':facade:system-service-api').projectDir = new File(rootDir, 'facade/system-service-api')
+include ':facade:rest-service-api'
+project(':facade:rest-service-api').projectDir = new File(rootDir, 'facade/rest-service-api')
+include ':facade:product-service-api'
+project(':facade:product-service-api').projectDir = new File(rootDir, 'facade/product-service-api')
+include ':facade:order-service-api'
+project(':facade:order-service-api').projectDir = new File(rootDir, 'facade/order-service-api')
+include ':facade:inventory-service-api'
+project(':facade:inventory-service-api').projectDir = new File(rootDir, 'facade/inventory-service-api')
+
+// 网关
+include 'gateway'
+// 服务注册中心
+include 'service-registry'
+
+// 服务
+include 'system-service' // 系统管理服务
+include 'rest-service' // 
+include 'instant-messaging' // 简单及时通信
+include 'file-service' // 文件服务
+include 'id-generator-service' // 分布式ID生成服务
+include 'elasticsearch-in-action' // 搜索服务
+include 'security-service' // 认证授权服务
+
+// 商店服务
+include 'product-service'
+include 'inventory-service'
+include 'order-service'
+
+rootProject.children.each {project ->
+	
+	if (project.name == 'components') {
+		return 
+	}
+	if (project.name == 'facade') {
+		project.children.each { subProject ->
+			subProject.buildFileName = "${subProject.name}.gradle"
+//			println "${subProject.name} -> ${subProject.buildFileName}"
+		}
+		return
+	}
+	project.buildFileName = "${project.name}.gradle"
+//	println "${project.name} -> ${project.buildFileName}"
+}

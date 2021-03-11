@@ -1,0 +1,9 @@
+rootProject.name = 'frameworks'
+
+include 'camel'
+include 'mybatis'
+include 'spring'
+include 'springboot'
+include 'lucence'
+include 'netty'
+include 'flowable'

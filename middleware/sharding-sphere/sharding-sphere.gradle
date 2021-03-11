@@ -1,0 +1,5 @@
+dependencies {
+	implementation sharding_jdbc_core
+	
+	testImplementation junit
+}

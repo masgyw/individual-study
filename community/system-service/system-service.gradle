@@ -1,0 +1,59 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot'
+	id 'io.spring.dependency-management'
+}
+
+// 文件隔离
+sourceSets {
+
+}
+
+dependencies {
+    implementation project(':facade:system-service-api')
+    // 公共模块依赖
+    implementation project(":components:common-web")
+    implementation platform_common
+
+    implementation "org.springframework.boot:spring-boot-starter:${springBootVersion}"
+    implementation "org.springframework.boot:spring-boot-starter-web:${springBootVersion}"
+    implementation "org.springframework.boot:spring-boot-starter-jdbc:${springBootVersion}"
+    // 打包时使用provide
+//    providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat:2.0.4.RELEASE'
+    // 本地运行，否则异常：
+    implementation "org.springframework.boot:spring-boot-starter-tomcat:${springBootVersion}"
+    implementation "org.springframework.boot:spring-boot-devtools:${springBootVersion}"
+    implementation spring_boot_starter_data_redis
+
+    // mybatis plus
+    implementation ('com.baomidou:mybatis-plus-boot-starter:3.0.5') {
+//        transitive = false // 开启、关闭传递性依赖，传递性依赖会下载依赖的所有包，也可以用@jar
+    }
+    // 时间插件：Mybatis对Java 8 time (JSR 310)支持
+    implementation 'org.mybatis:mybatis-typehandlers-jsr310:1.0.2'
+	// eurake 注册
+	implementation "org.springframework.cloud:spring-cloud-starter-netflix-eureka-client"
+    implementation "cn.gyw.platform:configuration:1.0.0"
+    // avoid NullPointerException
+    implementation ("org.javassist:javassist:3.27.0-GA") {
+        force = true
+    }
+
+    implementation 'mysql:mysql-connector-java:5.1.47'
+    testImplementation("org.springframework.boot:spring-boot-starter-test:${springBootVersion}") {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+}
+
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+	}
+}
+
+jar {
+    manifest {
+        attributes "Manifest-Version": 1.0,
+                'Main-Class': 'cn.gyw.community.system.SystemApiApplication'
+    }
+}

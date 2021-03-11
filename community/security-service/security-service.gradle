@@ -1,0 +1,20 @@
+apply plugin: 'java'
+
+dependencies {
+
+	implementation spring_boot_starter_web
+	implementation spring_boot_starter_security
+	implementation spring_security_oauth2
+	implementation spring_boot_starter_jdbc
+	implementation spring_boot_devtools
+
+//	implementation spring_boot_starter_data_jpa
+//	implementation spring_boot_starter_data_redis
+	implementation mysql_connector_java
+	
+	implementation junit
+	implementation 'com.google.code.gson:gson:2.8.0' // json util gson
+	implementation 'org.apache.commons:commons-lang3:3.6'
+	implementation 'com.auth0:java-jwt:3.10.3' // java json web tokens
+	
+}

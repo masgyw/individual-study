@@ -1,0 +1,139 @@
+[
+	{
+		"name": "sys_role",
+		"encoding": "utf8",
+		"engine": "innodb",
+		"columns": [
+			{
+				"name": "role_id",
+				"type": "int",
+				"isPrimary": "true",
+				"length": "1",
+				"comment": "角色编号"
+			},
+			{
+				"name": "role_name",
+				"type": "varchar",
+				"length": "50",
+				"comment": "角色名称"
+			},
+			{
+				"name": "role_status",
+				"type": "int",
+				"length": "1",
+				"comment": "角色状态 0 启用 1 禁用"
+			},
+			{
+				"name": "created_time",
+				"type": "datetime",
+				"comment": "创建时间",
+				"defaultValue": "CURRENT_TIMESTAMP"
+			},
+			{
+				"name": "modified_time",
+				"type": "datetime",
+				"comment": "修改时间",
+				"defaultValue": "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"
+			}
+		]
+	},
+	{
+		"name": "sys_user",
+		"encoding": "utf8",
+		"engine": "innodb",
+		"columns": [
+			{
+				"name": "uid",
+				"type": "int",
+				"isPrimary": "true",
+				"length": "11",
+				"idGenerator": "auto",
+				"comment": "用户编号"
+			},
+			{
+				"name": "user_name",
+				"type": "varchar",
+				"length": "20",
+				"comment": "用户名"
+			},
+			{
+				"name": "user_name_cn",
+				"type": "varchar",
+				"length": "20",
+				"comment": "用户姓名"
+			},
+			{
+				"name": "password",
+				"type": "varchar",
+				"length": "40",
+				"comment": "用户密码"
+			},
+			{
+				"name": "age",
+				"type": "int",
+				"length": "3",
+				"comment": "年龄"
+			},
+			{
+				"name": "hobby",
+				"type": "varchar",
+				"length": "100",
+				"comment": "爱好"
+			},
+			{
+				"name": "role_id",
+				"type": "int",
+				"length": "1",
+				"comment": "用户角色"
+			},
+			{
+				"name": "status",
+				"type": "int",
+				"length": "1",
+				"comment": "用户状态：0 启用；1 禁用；"
+			},
+			{
+				"name": "created_time",
+				"type": "datetime",
+				"comment": "创建时间",
+				"defaultValue": "CURRENT_TIMESTAMP"
+			},
+			{
+				"name": "modified_time",
+				"type": "datetime",
+				"comment": "修改时间",
+				"defaultValue": "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"
+			}
+		]
+	},
+	{
+		"name": "configuration",
+		"encoding": "utf8",
+		"engine": "innodb",
+		"columns": [
+			{
+				"name": "section",
+				"type": "varchar",
+				"comment": "项"
+			},
+			{
+				"name": "parameter_key",
+				"type": "varchar",
+				"length": "255",
+				"comment": "键"
+			},
+			{
+				"name": "parameter_value",
+				"type": "varchar",
+				"length": "255",
+				"comment": "值"
+			},
+			{
+				"name": "init_value",
+				"type": "varchar",
+				"length": "255",
+				"comment": "初始值"
+			}
+		]
+	}
+]

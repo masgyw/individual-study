@@ -1,0 +1,6 @@
+dubbo:
+  enable: false
+  name: product-service
+  client: curator  #zkclient
+  protocolName: dubbo
+  protocolPort: 20880

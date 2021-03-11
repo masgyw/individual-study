@@ -1,0 +1,17 @@
+ext {
+    activeMQVersion = '5.15.9'
+}
+
+dependencies {
+
+    implementation "org.apache.activemq:activemq-all:${activeMQVersion}"
+    implementation "org.apache.activemq:activemq-pool:${activeMQVersion}"
+
+    implementation "org.springframework:spring-core:${springVersion}"
+    implementation "org.springframework:spring-context:${springVersion}"
+    implementation "org.springframework:spring-context-support:${springVersion}"
+    implementation "org.springframework:spring-beans:${springVersion}"
+    implementation "org.springframework:spring-jms:${springVersion}"
+    // 解决：ClassNotFoundException: javax.jms.JMSContext
+    implementation 'javax.jms:javax.jms-api:2.0.1'
+}

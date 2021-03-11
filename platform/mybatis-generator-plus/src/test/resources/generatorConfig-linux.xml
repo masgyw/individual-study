@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+<!--  <classPathEntry location="mysql-connector-java-5.1.44.jar" />-->
+
+  <context id="MySqlTables" targetRuntime="MyBatis3">
+  
+	<!-- 代码注释设置 -->
+	<commentGenerator type="cn.gyw.platform.mbg.plus.CustomCommentGenerator">
+        <property name="suppressDate" value="true"/>
+		<!-- 抑制所有注释 -->
+        <property name="suppressAllComments" value="false" />
+		<!-- 从db remark 中获取注释 -->
+		<property name="addRemarkComments" value="true" />
+    </commentGenerator>
+	
+    <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+        connectionURL="jdbc:mysql://localhost:3306/mall_product?useSSL=false"
+        userId="root"
+        password="root">
+    </jdbcConnection>
+	
+    <javaTypeResolver >
+      <property name="forceBigDecimals" value="false" />
+    </javaTypeResolver>
+
+    <javaModelGenerator targetPackage="cn.gyw.demo.seckill.product.model" targetProject="/home/guanyw/temp/code">
+      <property name="enableSubPackages" value="true" />
+      <property name="trimStrings" value="true" />
+    </javaModelGenerator>
+
+    <sqlMapGenerator targetPackage="cn.gyw.demo.seckill.product.xml"  targetProject="/home/guanyw/temp/code">
+      <property name="enableSubPackages" value="true" />
+    </sqlMapGenerator>
+
+    <javaClientGenerator type="XMLMAPPER" targetPackage="cn.gyw.demo.seckill.product.dao"  targetProject="/home/guanyw/temp/code">
+      <property name="enableSubPackages" value="true" />
+    </javaClientGenerator>
+
+    <table schema="all" tableName="product_info" domainObjectName="ProductInfo">
+      <property name="useActualColumnNames" value="false"/>
+      <!--<generatedKey column="ID" sqlStatement="DB2" identity="true" />-->
+	  <!-- -->
+      <!--<columnOverride column="DATE_FIELD" property="startDate" />-->
+	  <!-- -->
+      <!--<ignoreColumn column="FRED" />-->
+	  <!-- -->
+      <!--<columnOverride column="LONG_VARCHAR_FIELD" jdbcType="VARCHAR" />-->
+    </table>
+
+  </context>
+</generatorConfiguration>

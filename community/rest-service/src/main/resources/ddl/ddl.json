@@ -1,0 +1,60 @@
+[
+  {
+    "name": "rest_post",
+    "encoding": "UTF-8",
+    "engine": "innodb",
+    "columns": [
+      {
+        "name": "uid",
+        "isPrimary": "true",
+        "type": "int",
+        "length": "11",
+        "idGenerator": "auto",
+        "comment": "帖子编号"
+      },
+      {
+        "name": "post_title",
+        "type": "varchar",
+        "length": "50",
+        "comment": "帖子标题"
+      },
+      {
+        "name": "post_content",
+        "type": "varchar",
+        "length": "1024",
+        "comment": "帖子内容"
+      },
+      {
+        "name": "created_by",
+        "type": "varchar",
+        "length": "50",
+        "comment": "创建人"
+      },
+      {
+        "name": "created_by_id",
+        "type": "int",
+        "length": "11",
+        "comment": "创建人编号"
+      },
+      {
+        "name": "deleted",
+        "type": "int",
+        "length": "1",
+        "defaultValue": "0",
+        "comment": "创建人编号"
+      },
+      {
+        "name": "created_time",
+        "type": "datetime",
+        "comment": "创建时间",
+        "defaultValue": "CURRENT_TIMESTAMP"
+      },
+      {
+        "name": "modified_time",
+        "type": "datetime",
+        "comment": "修改时间",
+        "defaultValue": "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"
+      }
+    ]
+  }
+]

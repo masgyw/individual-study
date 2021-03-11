@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.gyw.community.product.mapper.warehouse.WarehouseMapper">
+
+  <resultMap id="BaseResultMap" type="cn.gyw.demo.seckill.inventory.api.model.WarehouseProduct">
+    <id column="wp_id" jdbcType="INTEGER" property="wpId" />
+    <result column="product_id" jdbcType="INTEGER" property="productId" />
+    <result column="w_id" jdbcType="SMALLINT" property="wId" />
+    <result column="current_cnt" jdbcType="INTEGER" property="currentCnt" />
+    <result column="lock_cnt" jdbcType="INTEGER" property="lockCnt" />
+    <result column="in_transit_cnt" jdbcType="INTEGER" property="inTransitCnt" />
+    <result column="average_cost" jdbcType="DECIMAL" property="averageCost" />
+    <result column="modified_time" jdbcType="TIMESTAMP" property="modifiedTime" />
+  </resultMap>
+
+	<insert id="insertSelective" parameterType="cn.gyw.demo.seckill.inventory.api.model.WarehouseProduct">
+    insert into warehouse_product
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <!-- <if test="wpId != null">
+        wp_id,
+      </if> -->
+      <if test="productId != null">
+        product_id,
+      </if>
+      <if test="wId != null">
+        w_id,
+      </if>
+      <if test="currentCnt != null">
+        current_cnt,
+      </if>
+      <if test="lockCnt != null">
+        lock_cnt,
+      </if>
+      <if test="inTransitCnt != null">
+        in_transit_cnt,
+      </if>
+      <if test="averageCost != null">
+        average_cost,
+      </if>
+      <if test="modifiedTime != null">
+        modified_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <!-- <if test="wpId != null">
+        #{wpId,jdbcType=INTEGER},
+      </if> -->
+      <if test="productId != null">
+        #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="wId != null">
+        #{wId,jdbcType=SMALLINT},
+      </if>
+      <if test="currentCnt != null">
+        #{currentCnt,jdbcType=INTEGER},
+      </if>
+      <if test="lockCnt != null">
+        #{lockCnt,jdbcType=INTEGER},
+      </if>
+      <if test="inTransitCnt != null">
+        #{inTransitCnt,jdbcType=INTEGER},
+      </if>
+      <if test="averageCost != null">
+        #{averageCost,jdbcType=DECIMAL},
+      </if>
+      <if test="modifiedTime != null">
+        #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+	
+</mapper>

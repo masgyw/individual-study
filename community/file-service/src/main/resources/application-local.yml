@@ -1,0 +1,9 @@
+# 开发环境
+spring:
+  profiles: local
+  datasource:
+    url: jdbc:mysql://localhost:3306/community_system?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai&useSSL=false
+
+apiLog:
+  datasource:
+    url: jdbc:mysql://localhost:3306/community_system?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai&useSSL=false

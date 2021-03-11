@@ -1,0 +1,9 @@
+rootProject.name = 'platform'
+
+include 'annotations'
+include 'common'
+include 'configuration'
+include 'web-crawler'
+include 'mybatis-generator-plus'
+include 'spring-plugins'
+include 'auto-db'

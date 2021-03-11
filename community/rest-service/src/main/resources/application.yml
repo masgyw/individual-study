@@ -1,0 +1,71 @@
+# 全局配置
+server:
+  servlet:
+    context-path: /rest
+  port: 8082
+# spring 配置
+spring:
+  # 多环境配置
+  profiles:
+    active: local
+  # 404 异常处理
+  mvc:
+    throw-exception-if-no-handler-found: true
+  resources:
+    add-mappings: false
+  # 热部署
+  devtools:
+    restart:
+      enabled: true
+      exclude: application.yml
+  application: 
+    name: community-rest
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+
+# 日志管理
+# Spring Boot中默认配置了ERROR、WARN和INFO级别的日志输出到控制台。
+#debug: true
+# 文件输出
+logging:
+  config: classpath:log/logback.xml
+
+# 文件上传配置
+multipart:
+  maxFileSize: 50Mb # 最大支持文件大小 即单个文件大小
+  maxRequestSize: 50Mb  # 最大支持请求大小 即一次性上传的总文件大小
+mybatis-plus: # 自定义sql 必须配置mapper 文件扫描路径
+  mapper-locations: classpath*:/mapper/**/*.xml
+  type-handlers-package: org.apache.ibatis.type.*
+auto-db: # 自动建表
+  tables-json-file: ddl/ddl.json # 建表文件
+  schema: community_rest # 数据库
+  isNeedCreate: false # 是否需要建表
+rand: # 随机数,${random}来产生int值、long值或者string字符串
+  value: ${random.value}
+  number: ${random.int}
+  bignumber: ${random.long}
+custom: # 自定义属性
+  author: guanyw
+eureka: # eureka client config
+  client:
+    # 是否启用eureka客户端。默认true
+    enabled: false # 本地调试时，若不想启动eureka，可配置false
+    serviceUrl: 
+      defaultZone: http://localhost:9090/eureka/ # eureka服务的位置，如果需要注册多个服务器，可用逗号隔开
+  instance: 
+    preferIpAddress: false # 默认false, 是否以IP注册到Eureka Server上
+    instanceId: ${spring.application.name}
+    # 端点配置。若配置了context-path，actuator的监控端点会增加前缀，此时eureka也需要相应增加
+    status-page-url-path: ${server.servlet.context-path}/info
+    health-check-url-path: ${server.servlet.context-path}/health
+
+# api日志管理
+apiLog:
+  tableName: apilog
+  daysToKeep: 1
+  datasource:
+    driverClass: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/community_system?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai&useSSL=false
+    user: root
+    password: root

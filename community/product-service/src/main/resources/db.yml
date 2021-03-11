@@ -1,0 +1,16 @@
+datasource:
+  product:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://${datasource.host}/mall_product?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai&useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: root
+  warehouse:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://${datasource.host}/mall_warehouse?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai&useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: root
+mybatis:
+  product:
+    mapperLocations: classpath*:mapper/product/**/*Mapper.xml
+  warehouse:
+    mapperLocations: classpath*:mapper/warehouse/**/*Mapper.xml

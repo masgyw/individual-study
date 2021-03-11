@@ -1,0 +1,8 @@
+spring:
+  profiles: remote
+  datasource:
+    url: jdbc:mysql://192.168.1.181:3306/community_system?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai&useSSL=false
+
+apiLog:
+  datasource:
+    url: jdbc:mysql://192.168.1.181:3306/community_system?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai&useSSL=false

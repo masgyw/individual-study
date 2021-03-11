@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!-- 基于XML 的切面配置 -->
+    <!--定义AOP-->
+    <aop:config>
+        <!--定义切面，order 定义切面执行顺序，数值越小越先执行-->
+        <aop:aspect ref="aopXmlConfigAspect" order="3">
+            <!--定义切点，正则表达式-->
+            <aop:pointcut id="pointCut" expression="(execution(* cn.gyw.spring.service.*Service.*(..)))"/>
+            <!--定义增强-->
+            <aop:before method="beforeLog" pointcut-ref="pointCut"/>
+        </aop:aspect>
+    </aop:config>
+
+    <!-- 启动@aspectj的自动代理支持
+    proxy-target-class : 是否使用CGLIB代理，true：cglib；false：jdk；
+    expose-proxy ： 是否内部自调用，true：是；
+    -->
+    <aop:aspectj-autoproxy proxy-target-class="true" expose-proxy="true"/>
+</beans>

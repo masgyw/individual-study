@@ -1,0 +1,17 @@
+POST http://localhost:9003/order
+{
+    "orderSn":"{{orderId}}",
+    "customerId":"1001",
+    "shippingUser":"test",
+    "province":"上海市",
+    "city":"上海市",
+    "district":"徐汇区",
+    "address":"测试地址",
+    "paymentMethod": 4,
+    "orderMoney":"998",
+    "districtMoney":"2",
+    "shippingMoney":"6",
+    "paymentMoney":"1002",
+    "orderStatus":"1",
+    "orderPoint":"1"
+}

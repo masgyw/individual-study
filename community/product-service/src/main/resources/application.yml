@@ -1,0 +1,54 @@
+server:
+  port: 9001
+
+spring:
+  profiles: 
+    active: local
+  # 热部署
+  devtools:
+    restart:
+      enabled: true
+      exclude: application.yml
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    username: root
+    password: root
+    dbcp2:
+      validation-query: select 1
+  redis:
+    # Redis数据库索引（默认为0）
+    database: 0
+    # Redis服务器地址
+    host: 127.0.0.1
+    # Redis服务器连接端口
+    port: 6379
+    # Redis服务器连接密码（默认为空）
+    password: 123456
+    # 连接超时时间（毫秒）
+    timeout: 15000ms
+    jedis:
+      pool:
+        # 连接池最大连接数（使用负值表示没有限制）
+        max-active: 8
+        # 连接池最大阻塞等待时间（使用负值表示没有限制）
+        max-wait: -1ms
+        # 连接池中的最大空闲连接
+        max-idle: 8
+        # 连接池中的最小空闲连接
+        min-idle: 0
+
+logging:
+  config: classpath:logback.xml
+
+# 参考类：org.mybatis.spring.boot.autoconfigure.MybatisProperties
+#mybatis:
+  #check-config-location: true                             # 是否检测MyBatis运行参数配置文件
+  #config-location: classpath:mybatis-config.xml          # 指定MyBatis运行参数配置文件位置
+  #mapper-locations: classpath:/mapper/**/*.xml            # 注册XML映射器
+  #type-aliases-package: test.springboot.model             # 配置Java类型包名
+  #type-handlers-package: test.springboot.handlers         # 配置类型处理器包名
+  #executor-type: SIMPLE                                   # 指定执行器类型
+  #configuration:
+    #default-fetch-size: 20
+    #default-statement-timeout: 30
+    #mapUnderscoreToCamelCase: true

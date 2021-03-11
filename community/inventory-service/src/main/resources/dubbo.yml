@@ -1,0 +1,7 @@
+dubbo:
+  name: inventory-service
+  address: zookeeper://127.0.0.1:2181
+  client: curator  #zkclient
+  protocolName: dubbo
+  protocolPort: 20881
+  cacheFile: D:/Temp/Zookeeper/${dubbo.name}.txt

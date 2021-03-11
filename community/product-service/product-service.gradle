@@ -1,0 +1,39 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot'
+}
+
+dependencies {
+    implementation project(':components:common-web')
+    implementation project(':facade:product-service-api')
+    implementation project(':facade:order-service-api')
+    implementation project(':facade:inventory-service-api')
+
+    implementation spring_boot_starter
+    implementation spring_boot_starter_web
+    implementation spring_boot_starter_data_redis
+    implementation spring_boot_devtools
+    implementation spring_boot_starter_jta_atomikos
+
+    implementation pagehelper
+    implementation mybatis_spring_boot_starter
+
+    implementation(dubbo) {
+        exclude group: 'log4j'
+    }
+    implementation curator_framework
+    implementation curator_recipes
+
+    implementation commons_lang3
+    implementation mysql_connector_java
+
+    implementation sl4j_api
+    implementation gson
+}
+
+task buildTestPackage(type: Zip, dependsOn: bootJar) {
+    archiveFileName = project.name + '_' + new Date().format('yyyyMMddHHmm') + '.zip'
+    destinationDirectory = file("$rootDir/release")
+
+    from(bootJar.archiveFile, "$projectDir/runtime/")
+}
