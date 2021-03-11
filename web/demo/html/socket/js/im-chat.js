@@ -75,8 +75,6 @@ function bindEvents() {
 }
 
 function connectWsServer() {
-    // var sock = new SockJS("https://localhost:18443/sock-js/1001");
-    // console.log(sock)
     if ('WebSocket' in window) {
         if (!fromUserId) {
             alert("请输入用户id")
@@ -127,7 +125,7 @@ function doBroadcastMsg() {
                 "userId": "dd1dd047-09d8-11eb-a096-080027b62bb6",
                 "name": "客服01",
                 "date": "2020-12-21 16:51:29",
-                "content": "反反复复",
+                "content": "测试文本",
                 "conversationId": "20201221165108048965dda43"
             }),
             "content": content
@@ -177,6 +175,8 @@ function acceptCall() {
 function rejectCall() {
     var msg = {
         "messageType": 1010,
+        "uid": $("input[name='fromUserId']").val(),
+        "role": $("#role option:selected").val(),
         "channelId": rtmMessage.channelId,
         "content": JSON.stringify({
             "csrId": $("input[name='fromUserId']").val(),
@@ -212,6 +212,7 @@ function joinChannel() {
         "content": ""
     }
     websocket.send(JSON.stringify(msg));
+    showMessage(msg.uid + "加入，房间号：" + rtmMessage.channelId);
 }
 
 function leaveChannel() {
@@ -223,6 +224,7 @@ function leaveChannel() {
         "content": ""
     }
     websocket.send(JSON.stringify(msg));
+    showMessage(msg.uid + "离开，房间号：" + rtmMessage.channelId);
 }
 
 function heartBeat() {
@@ -232,7 +234,7 @@ function heartBeat() {
     heartBeatFn = setInterval(function () {
         websocket.send(JSON.stringify(msg));
         console.log("发送心跳包!" + new Date())
-    }, 10 * 1000);
+    }, 60 * 1000);
 }
 
 function onOpen() {
