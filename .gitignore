@@ -53,8 +53,10 @@ bin
 guide-manual/**/*.png
 
 # gradle
-**/build
-**/.gradle
-**/gradle
-**/gradlew
-**/gradlew.bat
+# 忽略任何目录下名为 build 的文件夹
+build/
+# 忽略当前目录及其所有子目录下的文件
+/**/.gradle
+/**/gradle/
+/**/gradlew
+/**/gradlew.bat
