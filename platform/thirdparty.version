@@ -33,6 +33,7 @@ mybatis_generator_core='org.mybatis.generator:mybatis-generator-core:1.4.0'
 
 // db
 mysql_connector_java='mysql:mysql-connector-java:5.1.47'
+pagehelper='com.github.pagehelper:pagehelper:5.1.11'
 
 // other
 jsoup='org.jsoup:jsoup:1.11.3'

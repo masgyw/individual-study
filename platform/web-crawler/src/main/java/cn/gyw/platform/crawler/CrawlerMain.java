@@ -16,8 +16,6 @@ public class CrawlerMain {
 
     public static void main(String[] args) {
 
-//        String pets = "http://pets.neea.edu.cn/html1/folder/1509/1782-1.htm";
-
         URL url = null;
         URLConnection urlconn = null;
         BufferedReader br = null;
