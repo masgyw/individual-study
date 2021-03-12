@@ -1,0 +1,7 @@
+apply plugin: 'java'
+
+dependencies {
+	
+	implementation commons_lang3
+	implementation ganymed_ssh2
+}

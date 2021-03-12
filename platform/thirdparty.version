@@ -3,11 +3,18 @@ def springVersion = '5.1.2.RELEASE'
 
 // common jars
 sl4j_api='org.slf4j:slf4j-api:1.7.25'
+junit='junit:junit:4.12'
+
 commons_io='commons-io:commons-io:2.7'
+commons_lang3='org.apache.commons:commons-lang3:3.6'
+
 jackson_databind='com.fasterxml.jackson.core:jackson-databind:2.11.2'
 jackson_core='com.fasterxml.jackson.core:jackson-core:2.11.2'
 jackson_annotations='com.fasterxml.jackson.core:jackson-annotations:2.11.2'
-junit='junit:junit:4.12'
+
+// ssh2 tools
+ganymed_ssh2='ch.ethz.ganymed:ganymed-ssh2:262'
+trilead_ssh2='com.trilead:trilead-ssh2:1.0.0-build222'
 
 // spring
 spring_core="org.springframework:spring-core:${springVersion}"
@@ -46,4 +53,3 @@ swingx='org.swinglabs:swingx:1.6.1'
 // JNA
 jna='net.java.dev.jna:jna:5.6.0'
 jna_platform='net.java.dev.jna:jna-platform:5.6.0'
-
