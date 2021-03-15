@@ -5,3 +5,17 @@ dependencies {
 	implementation commons_lang3
 	implementation ganymed_ssh2
 }
+
+task copyToRemoteEnv(dependsOn: jar, type: Exec) {
+	group = 'Deploy for testing'
+	description = 'Copy to test environment and restart server'
+	workingDir = jar.destinationDirectory
+	if (System.getProperty('os.name').toLowerCase(Locale.ROOT).contains('windows')) {
+		def fileName = "${jar.archiveFileName.get()}"
+		println("$fileName")
+		commandLine 'scp', "-p", "$fileName", "ubuntu@ubuntu-server:videoServer/${fileName}"
+		//commandLine 'ssh', 'ubuntu@192.2.2.135', './run-remote.sh'
+	} else {
+		commandLine 'sh', '-c', 'mycommand'
+	}
+}
