@@ -51,6 +51,7 @@ hs_err_pid*
 # other
 bin
 guide-manual/**/*.png
+output/
 
 # gradle
 # 忽略任何目录下名为 build 的文件夹

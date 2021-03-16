@@ -8,12 +8,15 @@ junit='junit:junit:4.12'
 commons_io='commons-io:commons-io:2.7'
 commons_lang3='org.apache.commons:commons-lang3:3.6'
 
+// json tools
 jackson_databind='com.fasterxml.jackson.core:jackson-databind:2.11.2'
 jackson_core='com.fasterxml.jackson.core:jackson-core:2.11.2'
 jackson_annotations='com.fasterxml.jackson.core:jackson-annotations:2.11.2'
+json_20210307='org.json:json:20210307'
+
 
 // ssh2 tools
-ganymed_ssh2='ch.ethz.ganymed:ganymed-ssh2:262'
+ganymed_ssh2='ch.ethz.ganymed:ganymed-ssh2:build210'
 trilead_ssh2='com.trilead:trilead-ssh2:1.0.0-build222'
 
 // spring
