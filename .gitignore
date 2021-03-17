@@ -50,6 +50,9 @@ hs_err_pid*
 
 # other
 bin
+
+# 图片 images
+/.*.png
 guide-manual/**/*.png
 output/
 
