@@ -8,7 +8,9 @@ public interface Common {
 	enum PropertyKey {
 		SSH_CFG_FILE("ssh.cfg.path"),
 		
-		UPLOAD_LOCAL_DIR("upload.local.dir"),
+		ARRAY_COUNT("array.count"),
+		
+		UPLOAD_LOCAL_FILES("upload.local.files"),
 		UPLOAD_REMOTE_DIR("upload.remote.dir"),
 		
 		DOWNLOAD_LOCAL_DIR("download.local.dir"),

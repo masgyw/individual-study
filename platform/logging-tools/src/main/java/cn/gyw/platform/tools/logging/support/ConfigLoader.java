@@ -88,4 +88,8 @@ public enum ConfigLoader {
 		return properties.getProperty(propertyKey.key(), "");
 	}
 	
+	public String getFromArray(Common.PropertyKey propertyKey, int index) {
+		return properties.getProperty(propertyKey.key() + "[" + index + "]", "");
+	}
+	
 }

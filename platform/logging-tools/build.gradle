@@ -5,7 +5,9 @@ dependencies {
 	implementation commons_lang3
 	implementation commons_io
 	
+	implementation snakeyaml
 	implementation ganymed_ssh2
+	
 	implementation json_20210307
 	
 	testImplementation junit
