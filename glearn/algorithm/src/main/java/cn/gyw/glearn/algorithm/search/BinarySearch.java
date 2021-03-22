@@ -9,16 +9,16 @@ public class BinarySearch implements ISearch {
 
     @Override
     public int search(int arr[], int target) {
-        int l = 0, r = arr.length - 1;
-        while (l <= r) {
+        int l = 0, r = arr.length - 1; // 边界[l...r]为target
+        while (l <= r) { // l == r 也是边界，是一个元素的边界
             int mid = l + (r - l) / 2;
             if (arr[mid] == target) {
                 return target;
             }
             if (arr[mid] < target) {
-                l = mid + 1;
+                l = mid + 1; // target 在 [mid+1...r]中
             } else {
-                r = mid - 1;
+                r = mid - 1; // target 在 [l...mid-1]中
             }
         }
         return -1;
