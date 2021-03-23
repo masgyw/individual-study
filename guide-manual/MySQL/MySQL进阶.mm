@@ -596,13 +596,275 @@
 </node>
 <node CREATED="1613637105348" ID="ID_644897842" MODIFIED="1613637111575" TEXT="&#x5982;&#x4f55;&#x6b63;&#x786e;&#x663e;&#x793a;&#x968f;&#x673a;&#x6d88;&#x606f;">
 <node CREATED="1615433259898" ID="ID_440328279" MODIFIED="1615433292112" TEXT="&#x573a;&#x666f;&#xff1a;&#x4ece;&#x5355;&#x8bcd;&#x8868;&#x91cc;&#x968f;&#x673a;&#x9009;&#x62e9; 3 &#x4e2a;&#x5355;&#x8bcd;"/>
+<node CREATED="1615814855167" ID="ID_1928391938" MODIFIED="1615814860200" TEXT="&#x65b9;&#x6848;">
+<node CREATED="1615814860224" ID="ID_449204457" MODIFIED="1615814883484" TEXT="1.&#x5185;&#x5b58;&#x4e34;&#x65f6;&#x8868;">
+<node CREATED="1615814864397" ID="ID_1887436998" MODIFIED="1615814866098" TEXT="select word from words order by rand() limit 3;"/>
+<node CREATED="1615815231138" ID="ID_1142741174" MODIFIED="1615816639933" TEXT="&#x6267;&#x884c;&#x6d41;&#x7a0b;">
+<node CREATED="1615816639941" ID="ID_1686648367" MODIFIED="1615859553995" TEXT="1. &#x521b;&#x5efa;&#x4e00;&#x4e2a;&#x4e34;&#x65f6;&#x8868;&#x3002;&#x8fd9;&#x4e2a;&#x4e34;&#x65f6;&#x8868;&#x4f7f;&#x7528;&#x7684;&#x662f; memory &#x5f15;&#x64ce;,&#x8868;&#x91cc;&#x6709;&#x4e24;&#x4e2a;&#x5b57;&#x6bb5;,&#x7b2c;&#x4e00;&#x4e2a;&#x5b57;&#x6bb5; &#x662f; double &#x7c7b;&#x578b;,&#x4e3a;&#x4e86;&#x540e;&#x9762;&#x63cf;&#x8ff0;&#x65b9;&#x4fbf;,&#x8bb0;&#x4e3a;&#x5b57;&#x6bb5; R,&#x7b2c;&#x4e8c;&#x4e2a;&#x5b57;&#x6bb5;&#x662f; varchar(64) &#x7c7b;&#x578b;&#x8bb0;&#x4e3a;&#x5b57;&#x6bb5; W&#x3002;&#x5e76;&#x4e14;,&#x8fd9;&#x4e2a;&#x8868;&#x6ca1;&#x6709;&#x5efa;&#x7d22;&#x5f15;&#x3002; "/>
+<node CREATED="1615816665329" ID="ID_387497523" MODIFIED="1615816671706" TEXT="2. &#x4ece; words &#x8868;&#x4e2d;,&#x6309;&#x4e3b;&#x952e;&#x987a;&#x5e8f;&#x53d6;&#x51fa;&#x6240;&#x6709;&#x7684; word &#x503c;&#x3002;&#x5bf9;&#x4e8e;&#x6bcf;&#x4e00;&#x4e2a; word &#x503c;,&#x8c03;&#x7528; rand() &#x51fd;&#x6570;&#x751f;&#x6210;&#x4e00;&#x4e2a;&#x5927;&#x4e8e; 0 &#x5c0f;&#x4e8e; 1 &#x7684;&#x968f;&#x673a;&#x5c0f;&#x6570;,&#x5e76;&#x628a;&#x8fd9;&#x4e2a;&#x968f;&#x673a;&#x5c0f;&#x6570;&#x548c; word &#x5206;&#x522b;&#x5b58;&#x5165;&#x4e34;&#x65f6;&#x8868;&#x7684; R &#x548c; W &#x5b57;&#x6bb5;&#x4e2d;,&#x5230;&#x6b64;,&#x626b;&#x63cf;&#x884c;&#x6570;&#x662f; 10000&#x3002; "/>
+<node CREATED="1615816671716" ID="ID_1705653482" MODIFIED="1615816863177" TEXT="3. &#x73b0;&#x5728;&#x4e34;&#x65f6;&#x8868;&#x6709; 10000 &#x884c;&#x6570;&#x636e;&#x4e86;,&#x63a5;&#x4e0b;&#x6765;&#x4f60;&#x8981;&#x5728;&#x8fd9;&#x4e2a;&#x6ca1;&#x6709;&#x7d22;&#x5f15;&#x7684;&#x5185;&#x5b58;&#x4e34;&#x65f6;&#x8868;&#x4e0a;,&#x6309;&#x7167;&#x5b57; &#x6bb5; R &#x6392;&#x5e8f;&#x3002; "/>
+<node CREATED="1615816863185" ID="ID_368280776" MODIFIED="1615816866462" TEXT="4. &#x521d;&#x59cb;&#x5316; sort_buffer&#x3002;sort_buffer &#x4e2d;&#x6709;&#x4e24;&#x4e2a;&#x5b57;&#x6bb5;,&#x4e00;&#x4e2a;&#x662f; double &#x7c7b;&#x578b;,&#x53e6;&#x4e00;&#x4e2a;&#x662f;&#x6574; &#x578b;&#x3002; "/>
+<node CREATED="1615816866468" ID="ID_1189168557" MODIFIED="1615816870469" TEXT="5. &#x4ece;&#x5185;&#x5b58;&#x4e34;&#x65f6;&#x8868;&#x4e2d;&#x4e00;&#x884c;&#x4e00;&#x884c;&#x5730;&#x53d6;&#x51fa; R &#x503c;&#x548c;&#x4f4d;&#x7f6e;&#x4fe1;&#x606f;(&#x6211;&#x540e;&#x9762;&#x4f1a;&#x548c;&#x4f60;&#x89e3;&#x91ca;&#x8fd9;&#x91cc;&#x4e3a;&#x4ec0;&#x4e48;&#x662f;&#x201c;&#x4f4d; &#x7f6e;&#x4fe1;&#x606f;&#x201d;),&#x5206;&#x522b;&#x5b58;&#x5165; sort_buffer &#x4e2d;&#x7684;&#x4e24;&#x4e2a;&#x5b57;&#x6bb5;&#x91cc;&#x3002;&#x8fd9;&#x4e2a;&#x8fc7;&#x7a0b;&#x8981;&#x5bf9;&#x5185;&#x5b58;&#x4e34;&#x65f6;&#x8868;&#x505a;&#x5168;&#x8868; &#x626b;&#x63cf;,&#x6b64;&#x65f6;&#x626b;&#x63cf;&#x884c;&#x6570;&#x589e;&#x52a0; 10000,&#x53d8;&#x6210;&#x4e86; 20000&#x3002; "/>
+<node CREATED="1615816870479" ID="ID_1935244203" MODIFIED="1615816873949" TEXT="6. &#x5728; sort_buffer &#x4e2d;&#x6839;&#x636e; R &#x7684;&#x503c;&#x8fdb;&#x884c;&#x6392;&#x5e8f;&#x3002;&#x6ce8;&#x610f;,&#x8fd9;&#x4e2a;&#x8fc7;&#x7a0b;&#x6ca1;&#x6709;&#x6d89;&#x53ca;&#x5230;&#x8868;&#x64cd;&#x4f5c;,&#x6240;&#x4ee5;&#x4e0d;&#x4f1a; &#x589e;&#x52a0;&#x626b;&#x63cf;&#x884c;&#x6570;&#x3002; "/>
+<node CREATED="1615816873955" ID="ID_1606536419" MODIFIED="1615816873957" TEXT="7. &#x6392;&#x5e8f;&#x5b8c;&#x6210;&#x540e;,&#x53d6;&#x51fa;&#x524d;&#x4e09;&#x4e2a;&#x7ed3;&#x679c;&#x7684;&#x4f4d;&#x7f6e;&#x4fe1;&#x606f;,&#x4f9d;&#x6b21;&#x5230;&#x5185;&#x5b58;&#x4e34;&#x65f6;&#x8868;&#x4e2d;&#x53d6;&#x51fa; word &#x503c;,&#x8fd4;&#x56de;&#x7ed9; &#x5ba2;&#x6237;&#x7aef;&#x3002;&#x8fd9;&#x4e2a;&#x8fc7;&#x7a0b;&#x4e2d;,&#x8bbf;&#x95ee;&#x4e86;&#x8868;&#x7684;&#x4e09;&#x884c;&#x6570;&#x636e;,&#x603b;&#x626b;&#x63cf;&#x884c;&#x6570;&#x53d8;&#x6210;&#x4e86; 20003"/>
 </node>
-<node CREATED="1613637117754" ID="ID_1752051203" MODIFIED="1613637142692" TEXT="&#x4e3a;&#x4ec0;&#x4e48;&#x8fd9;&#x4e9b;SQL&#x903b;&#x8f91;&#x76f8;&#x540c;&#xff0c;&#x6027;&#x80fd;&#x5374;&#x5dee;&#x5f02;&#x5de8;&#x5927;"/>
-<node CREATED="1613637145638" ID="ID_1893076773" MODIFIED="1613637165832" TEXT="&#x4e3a;&#x4ec0;&#x4e48;&#x53ea;&#x67e5;&#x4e00;&#x884c;&#x7684;&#x8bed;&#x53e5;&#xff0c;&#x4e5f;&#x6267;&#x884c;&#x7684;&#x8fd9;&#x4e48;&#x6162;"/>
-<node CREATED="1613637166204" ID="ID_1178434308" MODIFIED="1613637177910" TEXT="&#x5e7b;&#x8bfb;&#x662f;&#x4ec0;&#x4e48;&#xff0c;&#x5e7b;&#x8bfb;&#x6709;&#x4ec0;&#x4e48;&#x95ee;&#x9898;"/>
-<node CREATED="1613637178218" ID="ID_1009104348" MODIFIED="1613637195204" TEXT="&#x4e3a;&#x4ec0;&#x4e48;&#x53ea;&#x67e5;&#x4e00;&#x884c;&#x7684;&#x8bed;&#x53e5;&#xff0c;&#x9501;&#x8fd9;&#x4e48;&#x591a;"/>
-<node CREATED="1613637201039" ID="ID_1716766944" MODIFIED="1613637232081" TEXT="MySQL&#x6709;&#x54ea;&#x4e9b;&#x201c;&#x996e;&#x9e29;&#x6b62;&#x6e34;&#x201d;&#x63d0;&#x5347;&#x6027;&#x80fd;&#x7684;&#x65b9;&#x6cd5;"/>
-<node CREATED="1613637234290" ID="ID_1945656842" MODIFIED="1613637250834" TEXT="MySQL&#x662f;&#x5982;&#x4f55;&#x4fdd;&#x8bc1;&#x6570;&#x636e;&#x4e0d;&#x4e22;&#x5931;&#x7684;"/>
+<node CREATED="1615816918962" ID="ID_813853519" MODIFIED="1615816921869" TEXT="&#x603b;&#x7ed3;">
+<node CREATED="1615816922341" ID="ID_1791923017" MODIFIED="1615816943331" TEXT="order by rand() &#x4f7f;&#x7528;&#x4e86;&#x5185;&#x5b58;&#x4e34;&#x65f6;&#x8868;,&#x5185;&#x5b58;&#x4e34;&#x65f6;&#x8868;&#x6392;&#x5e8f;&#x7684;&#x65f6;&#x5019;&#x4f7f;&#x7528;&#x4e86; rowid &#x6392;&#x5e8f;&#x65b9;&#x6cd5;"/>
+</node>
+</node>
+<node CREATED="1615816907273" ID="ID_1229870584" MODIFIED="1615816909389" TEXT="2.&#x78c1;&#x76d8;&#x4e34;&#x65f6;&#x8868;">
+<node CREATED="1615817030421" ID="ID_393765503" MODIFIED="1615817174702" TEXT="&#x9884;&#x5907;&#x77e5;&#x8bc6;">
+<node CREATED="1615817021422" ID="ID_1186519235" MODIFIED="1615817115674" TEXT="tmp_table_size &#x8fd9;&#x4e2a;&#x914d;&#x7f6e;&#x9650;&#x5236;&#x4e86;&#x5185;&#x5b58;&#x4e34;&#x65f6;&#x8868;&#x7684;&#x5927;&#x5c0f;&#xff0c;&#x9ed8;&#x8ba4;&#x503c;&#x662f; 16M"/>
+<node CREATED="1615817100314" ID="ID_440074211" MODIFIED="1615817128559" TEXT="&#x5982;&#x679c;&#x4e34;&#x65f6;&#x8868;&#x5927;&#x5c0f;&#x8d85;&#x8fc7;&#x4e86; tmp_table_size,&#x90a3;&#x4e48;&#x5185;&#x5b58;&#x4e34;&#x65f6;&#x8868;&#x5c31;&#x4f1a;&#x8f6c;&#x6210;&#x78c1;&#x76d8;&#x4e34;&#x65f6;&#x8868;"/>
+<node CREATED="1615817177048" ID="ID_865748507" MODIFIED="1615817209097" TEXT="&#x78c1;&#x76d8;&#x4e34;&#x65f6;&#x8868;&#x4f7f;&#x7528;&#x7684;&#x5f15;&#x64ce;&#x9ed8;&#x8ba4;&#x662f; InnoDB&#xff0c;&#x662f;&#x7531;&#x53c2;&#x6570; internal_tmp_disk_storage_engine &#x63a7;&#x5236;&#x7684;"/>
+<node CREATED="1615817192886" ID="ID_932845205" MODIFIED="1615817205604" TEXT="&#x5f53;&#x4f7f;&#x7528;&#x78c1;&#x76d8;&#x4e34;&#x65f6;&#x8868;&#x7684;&#x65f6;&#x5019;&#xff0c;&#x5bf9;&#x5e94;&#x7684;&#x5c31;&#x662f;&#x4e00;&#x4e2a;&#x6ca1;&#x6709;&#x663e;&#x5f0f;&#x7d22;&#x5f15;&#x7684; InnoDB &#x8868;&#x7684;&#x6392;&#x5e8f;&#x8fc7;&#x7a0b;"/>
+</node>
+<node CREATED="1615817420042" ID="ID_1529537134" MODIFIED="1615817428352" TEXT="&#x6392;&#x5e8f;&#x7b97;&#x6cd5;">
+<node CREATED="1615817428362" ID="ID_664132459" MODIFIED="1615817434612" TEXT="&#x4f18;&#x5148;&#x961f;&#x5217;&#x6392;&#x5e8f;&#x7b97;&#x6cd5;"/>
+<node CREATED="1615817505121" ID="ID_406957896" MODIFIED="1615817516005" TEXT="1. &#x5bf9;&#x4e8e;&#x8fd9; 10000 &#x4e2a;&#x51c6;&#x5907;&#x6392;&#x5e8f;&#x7684; (R,rowid),&#x5148;&#x53d6;&#x524d;&#x4e09;&#x884c;,&#x6784;&#x9020;&#x6210;&#x4e00;&#x4e2a;&#x5806;; (&#x5bf9;&#x6570;&#x636e;&#x7ed3;&#x6784;&#x5370;&#x8c61;&#x6a21;&#x7cca;&#x7684;&#x540c;&#x5b66;,&#x53ef;&#x4ee5;&#x5148;&#x8bbe;&#x60f3;&#x6210;&#x8fd9;&#x662f;&#x4e00;&#x4e2a;&#x7531;&#x4e09;&#x4e2a;&#x5143;&#x7d20;&#x7ec4;&#x6210;&#x7684;&#x6570;&#x7ec4;) "/>
+<node CREATED="1615817516011" ID="ID_1138282788" MODIFIED="1615817529580" TEXT="2. &#x53d6;&#x4e0b;&#x4e00;&#x4e2a;&#x884c; (R&#x2019;,rowid&#x2019;),&#x8ddf;&#x5f53;&#x524d;&#x5806;&#x91cc;&#x9762;&#x6700;&#x5927;&#x7684; R &#x6bd4;&#x8f83;,&#x5982;&#x679c; R&#x2019;&#x5c0f;&#x4e8e; R,&#x628a;&#x8fd9;&#x4e2a; (R,rowid) &#x4ece;&#x5806;&#x4e2d;&#x53bb;&#x6389;,&#x6362;&#x6210; (R&#x2019;,rowid&#x2019;); "/>
+<node CREATED="1615817521464" ID="ID_1402257253" MODIFIED="1615817537127" TEXT="3. &#x91cd;&#x590d;&#x7b2c; 2 &#x6b65;,&#x76f4;&#x5230;&#x7b2c; 10000 &#x4e2a; (R&#x2019;,rowid&#x2019;) &#x5b8c;&#x6210;&#x6bd4;&#x8f83;"/>
+</node>
+</node>
+<node CREATED="1615817683223" ID="ID_1239899618" MODIFIED="1615817684994" TEXT="3.&#x968f;&#x673a;&#x6392;&#x5e8f;&#x65b9;&#x6cd5;">
+<node CREATED="1615817764153" ID="ID_1044874058" MODIFIED="1615817767489" TEXT="&#x968f;&#x673a;&#x7b97;&#x6cd5;1">
+<node CREATED="1615817779227" ID="ID_1034992735" MODIFIED="1615817794190" TEXT="&#x6d41;&#x7a0b;">
+<node CREATED="1615817768001" ID="ID_625072489" MODIFIED="1615817805635" TEXT="1. &#x53d6;&#x5f97;&#x8fd9;&#x4e2a;&#x8868;&#x7684;&#x4e3b;&#x952e; id &#x7684;&#x6700;&#x5927;&#x503c; M &#x548c;&#x6700;&#x5c0f;&#x503c; N; "/>
+<node CREATED="1615817805639" ID="ID_345152572" MODIFIED="1615817811053" TEXT="2. &#x7528;&#x968f;&#x673a;&#x51fd;&#x6570;&#x751f;&#x6210;&#x4e00;&#x4e2a;&#x6700;&#x5927;&#x503c;&#x5230;&#x6700;&#x5c0f;&#x503c;&#x4e4b;&#x95f4;&#x7684;&#x6570; X = (M-N)*rand() + N; "/>
+<node CREATED="1615817812298" ID="ID_454025951" MODIFIED="1615817814256" TEXT="3. &#x53d6;&#x4e0d;&#x5c0f;&#x4e8e; X &#x7684;&#x7b2c;&#x4e00;&#x4e2a; ID &#x7684;&#x884c;"/>
+</node>
+<node CREATED="1615817827026" ID="ID_1445504302" MODIFIED="1615817869057" TEXT="&#x9002;&#x5408;id&#x8fde;&#x7eed;&#x7684;&#x6570;&#x636e;&#xff0c;id&#x6709;&#x7a7a;&#x6d1e;&#x4e14;&#x7a7a;&#x6d1e;&#x8f83;&#x5927;&#xff0c;&#x4e0d;&#x9002;&#x7528;"/>
+</node>
+<node CREATED="1615818027203" ID="ID_835821195" MODIFIED="1615818034805" TEXT="&#x968f;&#x673a;&#x7b97;&#x6cd5;2">
+<node CREATED="1615818035051" ID="ID_1425950485" MODIFIED="1615818036899" TEXT="&#x6d41;&#x7a0b;">
+<node CREATED="1615818045409" ID="ID_1652688980" MODIFIED="1615818062906" TEXT="1. &#x53d6;&#x5f97;&#x6574;&#x4e2a;&#x8868;&#x7684;&#x884c;&#x6570;,&#x5e76;&#x8bb0;&#x4e3a; C"/>
+<node CREATED="1615818050534" ID="ID_1860674110" MODIFIED="1615818057835" TEXT="2. &#x53d6;&#x5f97; Y = floor(C * rand())&#x3002; floor &#x51fd;&#x6570;&#x5728;&#x8fd9;&#x91cc;&#x7684;&#x4f5c;&#x7528;,&#x5c31;&#x662f;&#x53d6;&#x6574;&#x6570;&#x90e8;&#x5206;"/>
+<node CREATED="1615818058279" ID="ID_406864694" MODIFIED="1615818059944" TEXT="3. &#x518d;&#x7528; limit Y,1 &#x53d6;&#x5f97;&#x4e00;&#x884c;"/>
+</node>
+</node>
+</node>
+<node CREATED="1615818090975" ID="ID_986554499" MODIFIED="1615818092848" TEXT="&#x603b;&#x7ed3;">
+<node CREATED="1615818093129" ID="ID_715944102" MODIFIED="1615818111773" TEXT="1.&#x76f4;&#x63a5;&#x4f7f;&#x7528; order by rand(),&#x8fd9;&#x4e2a;&#x8bed;&#x53e5;&#x9700;&#x8981; Using temporary &#x548c; Using filesort, &#x67e5;&#x8be2;&#x7684;&#x6267;&#x884c;&#x4ee3;&#x4ef7;&#x5f80;&#x5f80;&#x662f;&#x6bd4;&#x8f83;&#x5927;&#x7684;&#x3002;&#x6240;&#x4ee5;,&#x5728;&#x8bbe;&#x8ba1;&#x7684;&#x65f6;&#x5019;&#x4f60;&#x8981;&#x91cf;&#x907f;&#x5f00;&#x8fd9;&#x79cd;&#x5199;&#x6cd5;"/>
+</node>
+</node>
+</node>
+<node CREATED="1613637117754" ID="ID_1752051203" MODIFIED="1613637142692" TEXT="&#x4e3a;&#x4ec0;&#x4e48;&#x8fd9;&#x4e9b;SQL&#x903b;&#x8f91;&#x76f8;&#x540c;&#xff0c;&#x6027;&#x80fd;&#x5374;&#x5dee;&#x5f02;&#x5de8;&#x5927;">
+<node CREATED="1615859681027" ID="ID_517345175" MODIFIED="1615859682053" TEXT="&#x6848;&#x4f8b;&#x4e00;&#xff1a;&#x6761;&#x4ef6;&#x5b57;&#x6bb5;&#x51fd;&#x6570;&#x64cd;&#x4f5c;">
+<node CREATED="1615860423963" ID="ID_1788191735" MODIFIED="1615860424736" TEXT="&#x5bf9;&#x7d22;&#x5f15;&#x5b57;&#x6bb5;&#x505a;&#x51fd;&#x6570;&#x64cd;&#x4f5c;&#xff0c;&#x53ef;&#x80fd;&#x4f1a;&#x7834;&#x574f;&#x7d22;&#x5f15;&#x503c;&#x7684;&#x6709;&#x5e8f;&#x6027;&#xff0c;&#x56e0;&#x6b64;&#x4f18;&#x5316;&#x5668;&#x5c31;&#x51b3;&#x5b9a;&#x653e;&#x5f03; &#x8d70;&#x6811;&#x641c;&#x7d22;&#x529f;&#x80fd;">
+<node CREATED="1615860330566" ID="ID_1060849204" MODIFIED="1615860453440" TEXT="Innodb&#x7d22;&#x5f15;&#x57fa;&#x4e8e;B+&#x6811;&#xff0c;&#x540c;&#x5c42;&#x5144;&#x5f1f;&#x8282;&#x70b9;&#x6709;&#x5e8f;&#x6027;"/>
+<node CREATED="1615860508685" ID="ID_1630449362" MODIFIED="1615860540122" TEXT="&#x4e0d;&#x662f;&#x653e;&#x5f03;&#x7d22;&#x5f15;&#xff0c;&#x800c;&#x662f;&#x4e0d;&#x7528;&#x5feb;&#x901f;&#x5b9a;&#x4f4d;&#xff0c;&#x8fd8;&#x662f;&#x7528;&#x7d22;&#x5f15;&#x7684;&#xff0c;&#x4f46;&#x662f;&#x5168;&#x7d22;&#x5f15;&#x626b;&#x63cf;"/>
+</node>
+</node>
+<node CREATED="1615860582719" ID="ID_799979023" MODIFIED="1615860583964" TEXT="&#x6848;&#x4f8b;&#x4e8c;&#xff1a;&#x9690;&#x5f0f;&#x7c7b;&#x578b;&#x8f6c;&#x6362;">
+<node CREATED="1615860611665" ID="ID_1275471132" MODIFIED="1615860612733" TEXT="1. &#x6570;&#x636e;&#x7c7b;&#x578b;&#x8f6c;&#x6362;&#x7684;&#x89c4;&#x5219;&#x662f;&#x4ec0;&#x4e48;&#xff1f;">
+<node CREATED="1615860661514" ID="ID_1037938286" MODIFIED="1615860674310" TEXT="&#x5b57;&#x7b26;&#x4e32;&#x548c;&#x6570;&#x5b57;&#x6bd4;&#x8f83;&#xff0c;&#x5b57;&#x7b26;&#x4e32;&#x8f6c;&#x6210;&#x6570;&#x5b57;"/>
+</node>
+<node CREATED="1615860618680" ID="ID_1610418371" MODIFIED="1615860619325" TEXT="2. &#x4e3a;&#x4ec0;&#x4e48;&#x6709;&#x6570;&#x636e;&#x7c7b;&#x578b;&#x8f6c;&#x6362;&#xff0c;&#x5c31;&#x9700;&#x8981;&#x8d70;&#x5168;&#x7d22;&#x5f15;&#x626b;&#x63cf;&#xff1f;">
+<node CREATED="1615860704859" ID="ID_1464010093" MODIFIED="1615860744602" TEXT="&#x5982;&#x679c;&#x9690;&#x5f0f;&#x7c7b;&#x578b;&#x8f6c;&#x6362;&#x5728;&#x6761;&#x4ef6;&#x5b57;&#x6bb5;&#x4e0a;&#xff0c;&#x5c31;&#x4f1a;&#x9000;&#x5316;&#x6210;&#x6848;&#x4f8b;&#x4e00;&#xff0c;&#x5bfc;&#x81f4;&#x5168;&#x7d22;&#x5f15;&#x626b;&#x63cf;"/>
+</node>
+</node>
+<node CREATED="1615860702452" ID="ID_1806168101" MODIFIED="1615860704134" TEXT="&#x6848;&#x4f8b;&#x4e09;&#xff1a;&#x9690;&#x5f0f;&#x5b57;&#x7b26;&#x7f16;&#x7801;&#x8f6c;&#x6362;">
+<node CREATED="1615861027567" ID="ID_848575329" MODIFIED="1615861060771" TEXT="&#x4e24;&#x5f20;&#x8868;&#x5b57;&#x7b26;&#x96c6;&#x4e0d;&#x540c;&#xff0c;&#x5173;&#x8054;&#x8868;&#x67e5;&#x8be2;&#x65f6;&#xff0c;&#x65e0;&#x6cd5;&#x4f7f;&#x7528;&#x88ab;&#x9a71;&#x52a8;&#x8868;&#x7684;&#x7d22;&#x5f15;&#xff0c;&#x8d70;&#x5168;&#x8868;&#x626b;&#x63cf;"/>
+<node CREATED="1615861136737" ID="ID_1838978686" MODIFIED="1615861196757" TEXT="utf8mb4 &#x662f; utf8 &#x7684;&#x8d85;&#x96c6;&#xff0c;&#x7c7b;&#x4f3c;java&#x4e2d;&#x5f3a;&#x7c7b;&#x578b;&#x8f6c;&#x6362;&#xff0c;int-&gt;long&#xff0c;&#x6240;&#x4ee5;&#x4f1a;&#x5c06;utf8&#x8f6c;&#x4e3a;utf8mb4"/>
+<node CREATED="1615861317720" ID="ID_1922225933" MODIFIED="1615861323480" TEXT="&#x89e3;&#x51b3;&#x65b9;&#x6848;">
+<node CREATED="1615861323481" ID="ID_938927747" MODIFIED="1615861329602" TEXT="1&#x3001;&#x4fee;&#x6539;&#x8868;&#x5b57;&#x7b26;&#x96c6;"/>
+<node CREATED="1615861330077" ID="ID_376470753" MODIFIED="1615861376067" TEXT="2&#x3001;&#x624b;&#x52a8;&#x8f6c;&#x6362;&#x5b57;&#x7b26;&#x96c6;"/>
+</node>
+</node>
+</node>
+<node CREATED="1613637145638" ID="ID_1893076773" MODIFIED="1613637165832" TEXT="&#x4e3a;&#x4ec0;&#x4e48;&#x53ea;&#x67e5;&#x4e00;&#x884c;&#x7684;&#x8bed;&#x53e5;&#xff0c;&#x4e5f;&#x6267;&#x884c;&#x7684;&#x8fd9;&#x4e48;&#x6162;">
+<node CREATED="1615862062362" ID="ID_1815607062" MODIFIED="1615862063391" TEXT="&#x7b2c;&#x4e00;&#x7c7b;&#xff1a;&#x67e5;&#x8be2;&#x957f;&#x65f6;&#x95f4;&#x4e0d;&#x8fd4;&#x56de;">
+<node CREATED="1615862086249" ID="ID_1865346963" MODIFIED="1615862097805" TEXT="&#x539f;&#x56e0;&#xff1a;&#x5927;&#x6982;&#x7387;&#x662f;&#x8868;&#x88ab;&#x9501;&#x4f4f;&#x4e86;"/>
+<node CREATED="1615862107649" ID="ID_683557229" MODIFIED="1615862190087" TEXT="show processlist &#x67e5;&#x770b;&#x8bed;&#x53e5;&#x5f53;&#x524d;&#x6267;&#x884c;&#x72b6;&#x6001;">
+<node CREATED="1615862154140" ID="ID_652332588" MODIFIED="1615862167145" TEXT="&#x7b49; MDL &#x9501;&#xff1a;Waiting for table metadata lock">
+<node CREATED="1615862183131" ID="ID_1648534647" MODIFIED="1615862184471" TEXT="&#x73b0;&#x5728;&#x6709;&#x4e00;&#x4e2a;&#x7ebf;&#x7a0b;&#x6b63;&#x5728;&#x8868; t &#x4e0a;&#x8bf7;&#x6c42;&#x6216;&#x8005;&#x6301;&#x6709; MDL &#x5199;&#x9501;&#xff0c;&#x628a; select &#x8bed;&#x53e5;&#x5835;&#x4f4f;&#x4e86;"/>
+<node CREATED="1615862240303" ID="ID_464630434" MODIFIED="1615862258420" TEXT="kill &#x6389;&#x6301;&#x6709;&#x5199;&#x9501;&#x7684;&#x7ebf;&#x7a0b;">
+<node CREATED="1615862938192" ID="ID_1120832095" MODIFIED="1615862955564" TEXT="sys.schema_table_lock_waits&#x8868;&#xff0c;&#x76f4;&#x63a5;&#x627e;&#x51fa;&#x9020;&#x6210;&#x963b;&#x585e;&#x7684; process id&#xff0c;&#x628a;&#x8fd9;&#x4e2a;&#x8fde;&#x63a5;&#x7528; kill &#x547d;&#x4ee4;&#x65ad;&#x5f00;"/>
+</node>
+</node>
+<node CREATED="1615863052668" ID="ID_752795874" MODIFIED="1615863054186" TEXT="&#x7b49; flush">
+<node CREATED="1615863362032" ID="ID_333317806" MODIFIED="1615863368675" TEXT="&#x6709;&#x4e00;&#x4e2a; flush tables &#x547d;&#x4ee4;&#x88ab;&#x522b;&#x7684; &#x8bed;&#x53e5;&#x5835;&#x4f4f;&#x4e86;&#xff0c;&#x7136;&#x540e;&#x5b83;&#x53c8;&#x5835;&#x4f4f;&#x4e86;&#x6211;&#x4eec;&#x7684; select &#x8bed;&#x53e5;"/>
+</node>
+<node CREATED="1615863417872" ID="ID_1152651021" MODIFIED="1615863423574" TEXT="&#x7b49;&#x884c;&#x9501;&#xff08;&#x5f15;&#x64ce;&#xff09;">
+<node CREATED="1615863453922" ID="ID_830441586" MODIFIED="1615863471336" TEXT="update &#x5360;&#x6709;&#x5199;&#x9501;&#xff0c;select &#x4f1a;&#x88ab;&#x9501;&#x4f4f;"/>
+<node CREATED="1615863471691" ID="ID_1562730897" MODIFIED="1615863589051" TEXT="&#x65b9;&#x6848;&#xff1a;sys.innodb_lock_waits &#x8868;&#x67e5;&#x5230;&#xff0c;&#x6267;&#x884c;kill id&#xff0c;&#x65ad;&#x5f00;&#x8fde;&#x63a5;&#xff0c;&#x4e8b;&#x52a1;&#x56de;&#x6eda;&#xff0c;&#x884c;&#x9501;&#x91ca;&#x653e;"/>
+</node>
+</node>
+</node>
+<node CREATED="1615863049091" ID="ID_1756949928" MODIFIED="1615863614909" TEXT="&#x7b2c;&#x4e8c;&#x7c7b;&#xff1a;&#x67e5;&#x8be2;&#x6162;">
+<node CREATED="1616037017970" ID="ID_1296234948" MODIFIED="1616037019409" TEXT="&#x574f;&#x67e5;&#x8be2;&#x4e0d;&#x4e00;&#x5b9a;&#x662f;&#x6162;&#x67e5;&#x8be2;"/>
+<node CREATED="1616037254586" ID="ID_50629186" MODIFIED="1616037277852" TEXT="&#x67e5;&#x4e00;&#x884c;&#x5f88;&#x6162;&#x7684;&#x539f;&#x56e0;">
+<node CREATED="1616037277853" ID="ID_1389161494" MODIFIED="1616037335410" TEXT="&#x4e00;&#x81f4;&#x6027;&#x8bfb;&#xff0c;&#x5176;&#x4ed6;&#x4e8b;&#x52a1;&#x66f4;&#x65b0;10w&#x6b21;&#xff0c;&#x67e5;&#x4e00;&#x884c;&#xff0c;undo log &#x56de;&#x6eda;10w&#x6b21;&#xff0c;&#x5bfc;&#x81f4;&#x67e5;&#x8be2;&#x6162;"/>
+<node CREATED="1616037337534" ID="ID_1807027857" MODIFIED="1616037353571" TEXT="&#x91c7;&#x7528;&#x5f53;&#x524d;&#x8bfb;&#xff0c;&#x53ef;&#x4ee5;&#x67e5;&#x8be2;&#x5230;&#x7ed3;&#x679c;"/>
+</node>
+</node>
+</node>
+<node CREATED="1613637166204" ID="ID_1178434308" MODIFIED="1613637177910" TEXT="&#x5e7b;&#x8bfb;&#x662f;&#x4ec0;&#x4e48;&#xff0c;&#x5e7b;&#x8bfb;&#x6709;&#x4ec0;&#x4e48;&#x95ee;&#x9898;">
+<node CREATED="1616037926677" ID="ID_794310506" MODIFIED="1616037931761" TEXT="&#x4ec0;&#x4e48;&#x662f;&#x5e7b;&#x8bfb;">
+<node CREATED="1616037932268" ID="ID_940925370" MODIFIED="1616038077487" TEXT="&#x5e7b;&#x8bfb;&#x6307;&#x7684;&#x662f;&#x4e00;&#x4e2a;&#x4e8b;&#x52a1;&#x5728; &#x524d;&#x540e;&#x4e24;&#x6b21;&#x67e5;&#x8be2;&#x540c;&#x4e00;&#x4e2a;&#x8303;&#x56f4;&#x7684;&#x65f6;&#x5019;&#xff0c;&#x540e;&#x4e00;&#x6b21;&#x67e5;&#x8be2;&#x770b;&#x5230;&#x4e86;&#x524d;&#x4e00;&#x6b21;&#x67e5;&#x8be2;&#x6ca1;&#x6709;&#x770b;&#x5230;&#x7684;&#x884c;"/>
+</node>
+<node CREATED="1616038118027" ID="ID_1455947808" MODIFIED="1616038128152" TEXT="&#x573a;&#x666f;">
+<node CREATED="1616038128739" ID="ID_424310023" MODIFIED="1616038159233" TEXT="1.RR&#x9694;&#x79bb;&#x7ea7;&#x522b;&#x4e0b;&#xff0c;&#x666e;&#x901a;&#x7684;&#x67e5;&#x8be2;&#x662f;&#x5feb;&#x7167;&#x8bfb;&#xff0c;&#x4e0d;&#x4f1a;&#x770b;&#x5230;&#x522b;&#x7684;&#x4e8b;&#x52a1;&#x63d2;&#x5165;&#x7684;&#x6570;&#x636e;&#x7684;&#x3002;&#x5e7b;&#x8bfb;&#x5728;&#x201c;&#x5f53;&#x524d;&#x8bfb;&#x201d;&#x4e0b;&#x624d;&#x4f1a;&#x51fa;&#x73b0;"/>
+<node CREATED="1616038183365" ID="ID_818535920" MODIFIED="1616038223084" TEXT="2.&#x66f4;&#x65b0;&#x7684;&#x884c;&#xff0c;&#x4e0d;&#x5c5e;&#x4e8e;&#x5e7b;&#x8bfb;&#xff1b;&#x5e7b;&#x8bfb;&#x4ec5;&#x4e13;&#x6307;&#x201c;&#x65b0;&#x63d2;&#x5165;&#x7684;&#x884c;&#x201d;"/>
+</node>
+<node CREATED="1616044985488" ID="ID_794221585" MODIFIED="1616045014514" TEXT="&#x5e7b;&#x8bfb;&#x6709;&#x4ec0;&#x4e48;&#x95ee;&#x9898;">
+<node CREATED="1616045110492" ID="ID_337779380" MODIFIED="1616045309625" TEXT="select &#x2026;where d=5 for update&#xff1a;&#x5047;&#x8bbe;&#x53ea;&#x5728;d=5&#x4e0a;&#x52a0;&#x884c;&#x9501;"/>
+<node CREATED="1616044987234" ID="ID_437421836" MODIFIED="1616044993718" TEXT="1.&#x7834;&#x574f;&#x8bed;&#x4e49;"/>
+<node CREATED="1616044994033" ID="ID_1713358563" MODIFIED="1616045057744" TEXT="2.&#x6570;&#x636e;&#x4e00;&#x81f4;&#x6027;&#x7684;&#x95ee;&#x9898;">
+<node CREATED="1616045292507" ID="ID_306203043" MODIFIED="1616045621332" TEXT="binlog &#x5f52;&#x6863;&#x540c;&#x6b65;&#x7ed9;&#x4ece;&#x5e93;&#x65f6;&#xff0c;&#x56e0;&#x4e3a;&#x4e24;&#x9636;&#x6bb5;&#x9501;&#xff0c;&#x4f1a;&#x5bfc;&#x81f4;&#x6570;&#x636e;&#x4e0d;&#x4e00;&#x81f4;"/>
+<node CREATED="1616045330820" ID="ID_1905950210" MODIFIED="1616045339050" TEXT="sessionA">
+<node CREATED="1616045339524" ID="ID_524787513" MODIFIED="1616045367163" TEXT="select * from t where d=5 for update"/>
+<node CREATED="1616045367846" ID="ID_310990459" MODIFIED="1616045384828" TEXT="update t set d=100 where d=5"/>
+</node>
+<node CREATED="1616045386863" ID="ID_1192531778" MODIFIED="1616045390475" TEXT="sessionB">
+<node CREATED="1616045390886" ID="ID_1821317740" MODIFIED="1616045415165" TEXT="update t set d =5 where id=0"/>
+<node CREATED="1616045415760" ID="ID_588933958" MODIFIED="1616045435614" TEXT="update t set c=5 where id=0"/>
+</node>
+<node CREATED="1616045437816" ID="ID_662048907" MODIFIED="1616045440613" TEXT="sessionC">
+<node CREATED="1616045440848" ID="ID_1070289631" MODIFIED="1616045458438" TEXT="insert into t values(1,1,5)"/>
+<node CREATED="1616045466057" ID="ID_1885193993" MODIFIED="1616045473055" TEXT="update t set c=5 where id=1"/>
+</node>
+</node>
+<node CREATED="1616045555557" ID="ID_957593096" MODIFIED="1616045581386" TEXT="&#x6240;&#x6709;&#x884c;&#x52a0;&#x9501;&#xff0c;&#x53ef;&#x4ee5;&#x89e3;&#x51b3;&#x66f4;&#x65b0;&#x5bfc;&#x81f4;&#x7684;&#x6570;&#x636e;&#x4e0d;&#x4e00;&#x81f4;&#x95ee;&#x9898;">
+<node CREATED="1616045541220" ID="ID_120600383" MODIFIED="1616045542337" TEXT="&#x5373;&#x4f7f;&#x628a;&#x6240;&#x6709;&#x7684;&#x8bb0;&#x5f55;&#x90fd;&#x52a0;&#x4e0a;&#x9501;&#xff0c;&#x8fd8;&#x662f;&#x963b;&#x6b62;&#x4e0d;&#x4e86;&#x65b0;&#x63d2;&#x5165;&#x7684;&#x8bb0;&#x5f55;"/>
+</node>
+</node>
+<node CREATED="1616045653552" ID="ID_936669604" MODIFIED="1616046549202" TEXT="Innodb&#x600e;&#x4e48;&#x89e3;&#x51b3;&#x5e7b;&#x8bfb;">
+<node CREATED="1616045664145" ID="ID_1948309506" MODIFIED="1616045700247" TEXT="&#x95f4;&#x9699;&#x9501; (Gap Lock)&#xff1a;&#x8bb0;&#x5f55;&#x4e4b;&#x95f4;&#x7684;&#x95f4;&#x9699;"/>
+<node CREATED="1616045784453" ID="ID_691768551" MODIFIED="1616045798164" TEXT="&#x6267;&#x884c; select * from t where d=5 for update &#x7684;&#x65f6;&#x5019;">
+<node CREATED="1616045793750" ID="ID_777198897" MODIFIED="1616045824746" TEXT="&#x4e0d;&#x6b62;&#x662f;&#x7ed9;&#x6570;&#x636e;&#x5e93;&#x4e2d;&#x5df2; &#x6709;&#x7684; 6 &#x4e2a;&#x8bb0;&#x5f55;&#x52a0;&#x4e0a;&#x4e86;&#x884c;&#x9501;&#xff0c;&#x540c;&#x65f6;&#x52a0;&#x4e86; 7 &#x4e2a;&#x95f4;&#x9699;&#x9501;&#x3002;&#x786e;&#x4fdd;&#x4e86;&#x65e0;&#x6cd5;&#x518d;&#x63d2;&#x5165;&#x65b0;&#x7684;&#x8bb0;&#x5f55;"/>
+</node>
+<node CREATED="1616045913642" ID="ID_1534271762" MODIFIED="1616045932067" TEXT="&#x51b2;&#x7a81;&#x5173;&#x7cfb;">
+<node CREATED="1616045932068" ID="ID_1838767073" MODIFIED="1616045967696" TEXT="&#x8ddf;&#x95f4;&#x9699;&#x9501;&#x5b58;&#x5728;&#x51b2;&#x7a81;&#x5173;&#x7cfb;&#x7684;&#xff0c;&#x662f;&#x201c;&#x5f80;&#x8fd9;&#x4e2a;&#x95f4;&#x9699;&#x4e2d;&#x63d2;&#x5165;&#x4e00;&#x4e2a;&#x8bb0;&#x5f55;&#x201d;&#x8fd9;&#x4e2a;&#x64cd; &#x4f5c;"/>
+<node CREATED="1616046060174" ID="ID_626483195" MODIFIED="1616046078044" TEXT="&#x4e24;&#x4e2a;&#x95f4;&#x6b47;&#x9501;&#x4e4b;&#x95f4;&#x662f;&#x6ca1;&#x6709;&#x51b2;&#x7a81;&#x7684;"/>
+</node>
+<node CREATED="1616046103008" ID="ID_1237601132" MODIFIED="1616046105749" TEXT="&#x95f4;&#x9699;&#x9501;&#x548c;&#x884c;&#x9501;&#x5408;&#x79f0; next-key lock&#xff0c;&#x6bcf;&#x4e2a; next-key lock &#x662f;&#x524d;&#x5f00;&#x540e;&#x95ed;&#x533a;&#x95f4;"/>
+<node CREATED="1616046184491" ID="ID_1920088906" MODIFIED="1616046186152" TEXT="&#x95f4;&#x9699;&#x9501;&#x548c; next-key lock &#x7684;&#x5f15;&#x5165;&#xff0c;&#x5e2e;&#x6211;&#x4eec;&#x89e3;&#x51b3;&#x4e86;&#x5e7b;&#x8bfb;&#x7684;&#x95ee;&#x9898;&#xff0c;&#x4f46;&#x540c;&#x65f6;&#x4e5f;&#x5e26;&#x6765;&#x4e86;&#x4e00;&#x4e9b;&#x201c;&#x56f0; &#x6270;&#x201d;">
+<node CREATED="1616046326313" ID="ID_537223043" MODIFIED="1616046354254" TEXT="&#x95f4;&#x9699;&#x9501;&#x7684;&#x5f15;&#x5165;&#xff0c;&#x53ef;&#x80fd;&#x4f1a;&#x5bfc;&#x81f4;&#x540c;&#x6837;&#x7684;&#x8bed;&#x53e5;&#x9501;&#x4f4f;&#x66f4;&#x5927;&#x7684;&#x8303;&#x56f4;&#xff0c;&#x5f71;&#x54cd;&#x4e86; &#x5e76;&#x53d1;&#x5ea6;&#xff0c;&#x53ef;&#x80fd;&#x9020;&#x6210;&#x6b7b;&#x9501;"/>
+</node>
+<node CREATED="1616046415732" ID="ID_424602527" MODIFIED="1616046435129" TEXT="&#x5728;&#x53ef;&#x91cd;&#x590d;&#x8bfb;&#x9694;&#x79bb;&#x7ea7; &#x522b;&#x4e0b;&#x7684;&#xff0c;&#x95f4;&#x9699;&#x9501;&#x662f;&#x5728;&#x53ef;&#x91cd;&#x590d;&#x8bfb;&#x9694;&#x79bb;&#x7ea7;&#x522b;&#x4e0b;&#x624d;&#x4f1a;&#x751f;&#x6548;&#x7684;&#x3002;&#x6240;&#x4ee5;&#xff0c;&#x4f60;&#x5982;&#x679c;&#x628a;&#x9694;&#x79bb;&#x7ea7;&#x522b;&#x8bbe;&#x7f6e;&#x4e3a;&#x8bfb; &#x63d0;&#x4ea4;&#x7684;&#x8bdd;&#xff0c;&#x5c31;&#x6ca1;&#x6709;&#x95f4;&#x9699;&#x9501;&#x4e86;">
+<node CREATED="1616046443213" ID="ID_244649591" MODIFIED="1616046468818" TEXT="&#x4f46;&#x89e3;&#x51b3;&#x53ef;&#x80fd;&#x51fa;&#x73b0;&#x7684;&#x6570;&#x636e;&#x548c;&#x65e5;&#x5fd7;&#x4e0d;&#x4e00;&#x81f4;&#x95ee;&#x9898;&#xff0c;&#x9700;&#x8981; &#x628a; binlog &#x683c;&#x5f0f;&#x8bbe;&#x7f6e;&#x4e3a; row"/>
+</node>
+</node>
+<node CREATED="1616046551272" ID="ID_1079710048" MODIFIED="1616046553658" TEXT="&#x7ed3;&#x8bba;">
+<node CREATED="1616046553658" ID="ID_1938243170" MODIFIED="1616046581958" TEXT="1.&#x7528;&#x4ec0;&#x4e48;&#x9694;&#x79bb;&#x7ea7;&#x522b;&#xff0c;&#x5177;&#x4f53;&#x95ee;&#x9898;&#x5177;&#x4f53;&#x5206;&#x6790;"/>
+<node CREATED="1616046804213" ID="ID_563436889" MODIFIED="1616046807256" TEXT="2.&#x5373;&#x4f7f;&#x7ed9;&#x6240; &#x6709;&#x7684;&#x884c;&#x90fd;&#x52a0;&#x4e0a;&#x884c;&#x9501;&#xff0c;&#x4ecd;&#x7136;&#x65e0;&#x6cd5;&#x89e3;&#x51b3;&#x5e7b;&#x8bfb;&#x95ee;&#x9898;&#xff0c;&#x56e0;&#x6b64;&#x5f15;&#x5165;&#x4e86;&#x95f4;&#x9699;&#x9501;&#x7684;&#x6982;&#x5ff5;"/>
+</node>
+</node>
+<node CREATED="1613637178218" ID="ID_1009104348" MODIFIED="1613637195204" TEXT="&#x4e3a;&#x4ec0;&#x4e48;&#x53ea;&#x67e5;&#x4e00;&#x884c;&#x7684;&#x8bed;&#x53e5;&#xff0c;&#x9501;&#x8fd9;&#x4e48;&#x591a;">
+<node CREATED="1616400312622" ID="ID_143057386" MODIFIED="1616402283749" TEXT="&#x52a0;&#x9501;&#x89c4;&#x5219;&#xff1a;2&#x539f;&#x5219;&#x3001;2&#x4f18;&#x5316;&#x3001;1BUG">
+<node CREATED="1616400318959" ID="ID_1487686443" MODIFIED="1616402429790" TEXT="1. &#x539f;&#x5219; 1&#xff1a;&#x52a0;&#x9501;&#x7684;&#x57fa;&#x672c;&#x5355;&#x4f4d;&#x662f; next-key lock&#x3002;&#x5e0c;&#x671b;&#x4f60;&#x8fd8;&#x8bb0;&#x5f97;&#xff0c;next-key lock &#x662f;&#x524d;&#x5f00;&#x540e;&#x95ed;&#x533a;&#x95f4;"/>
+<node CREATED="1616402292137" ID="ID_1894790563" MODIFIED="1616402314853" TEXT="2. &#x539f;&#x5219; 2&#xff1a;&#x67e5;&#x627e;&#x8fc7;&#x7a0b;&#x4e2d;&#x8bbf;&#x95ee;&#x5230;&#x7684;&#x5bf9;&#x8c61;&#x624d;&#x4f1a;&#x52a0;&#x9501;"/>
+<node CREATED="1616402295721" ID="ID_351261462" MODIFIED="1616402311854" TEXT="3. &#x4f18;&#x5316; 1&#xff1a;&#x7d22;&#x5f15;&#x4e0a;&#x7684;&#x7b49;&#x503c;&#x67e5;&#x8be2;&#xff0c;&#x7ed9;&#x552f;&#x4e00;&#x7d22;&#x5f15;&#x52a0;&#x9501;&#x7684;&#x65f6;&#x5019;&#xff0c;next-key lock &#x9000;&#x5316;&#x4e3a;&#x884c;&#x9501;"/>
+<node CREATED="1616402298553" ID="ID_1140246541" MODIFIED="1616402306709" TEXT="4. &#x4f18;&#x5316; 2&#xff1a;&#x7d22;&#x5f15;&#x4e0a;&#x7684;&#x7b49;&#x503c;&#x67e5;&#x8be2;&#xff0c;&#x5411;&#x53f3;&#x904d;&#x5386;&#x65f6;&#x4e14;&#x6700;&#x540e;&#x4e00;&#x4e2a;&#x503c;&#x4e0d;&#x6ee1;&#x8db3;&#x7b49;&#x503c;&#x6761;&#x4ef6;&#x7684;&#x65f6;&#x5019;&#xff0c;nextkey lock &#x9000;&#x5316;&#x4e3a;&#x95f4;&#x9699;&#x9501;"/>
+<node CREATED="1616402302493" ID="ID_98016727" MODIFIED="1616402302494" TEXT="5. &#x4e00;&#x4e2a; bug&#xff1a;&#x552f;&#x4e00;&#x7d22;&#x5f15;&#x4e0a;&#x7684;&#x8303;&#x56f4;&#x67e5;&#x8be2;&#x4f1a;&#x8bbf;&#x95ee;&#x5230;&#x4e0d;&#x6ee1;&#x8db3;&#x6761;&#x4ef6;&#x7684;&#x7b2c;&#x4e00;&#x4e2a;&#x503c;&#x4e3a;&#x6b62;"/>
+</node>
+<node CREATED="1616405146191" ID="ID_1868851620" MODIFIED="1616405150631" TEXT="&#x6ce8;&#x610f;">
+<node CREATED="1616405182382" ID="ID_1803736821" MODIFIED="1616405193429" TEXT="&#x9501;&#x662f;&#x52a0;&#x5728;&#x7d22;&#x5f15;&#x4e0a;&#x7684;"/>
+<node CREATED="1616405150631" ID="ID_1823003052" MODIFIED="1616405222565" TEXT="&#x7528; lock in share mode &#x6765;&#x7ed9;&#x884c;&#x52a0;&#x8bfb;&#x9501;&#x907f;&#x514d;&#x6570;&#x636e;&#x88ab;&#x66f4;&#x65b0;&#x7684;&#x8bdd;&#xff0c;&#x5c31;&#x5fc5;&#x987b;&#x5f97;&#x7ed5;&#x8fc7;&#x8986;&#x76d6;&#x7d22;&#x5f15;&#x7684;&#x4f18;&#x5316;&#xff0c;&#x5728;&#x67e5;&#x8be2;&#x5b57;&#x6bb5;&#x4e2d; &#x52a0;&#x5165;&#x7d22;&#x5f15;&#x4e2d;&#x4e0d;&#x5b58;&#x5728;&#x7684;&#x5b57;&#x6bb5;">
+<node CREATED="1616464125788" ID="ID_33719303" MODIFIED="1616464162706" TEXT="&#x901a;&#x8fc7;&#x4e3b;&#x952e;&#x6761;&#x4ef6;&#x66f4;&#x65b0;&#xff0c;&#x4e3b;&#x952e;&#x6ca1;&#x6709;&#x9501;&#xff0c;&#x800c;&#x8986;&#x76d6;&#x7d22;&#x5f15;&#xff0c;&#x6839;&#x636e;&#x539f;&#x5219;2&#xff0c;&#x662f;&#x4e0d;&#x4f1a;&#x7ed9;&#x4e3b;&#x952e;&#x52a0;&#x9501;&#xff0c;&#x6240;&#x4ee5;&#x53ef;&#x4ee5;&#x66f4;&#x65b0;"/>
+</node>
+<node CREATED="1616464088219" ID="ID_157176915" MODIFIED="1616464096416" TEXT="&#x5728;&#x5220;&#x9664;&#x6570;&#x636e;&#x7684;&#x65f6;&#x5019;&#x5c3d;&#x91cf;&#x52a0; limit">
+<node CREATED="1616464096947" ID="ID_256652917" MODIFIED="1616464102392" TEXT="&#x4e0d;&#x4ec5;&#x53ef;&#x4ee5;&#x63a7;&#x5236; &#x5220;&#x9664;&#x6570;&#x636e;&#x7684;&#x6761;&#x6570;&#xff0c;&#x8ba9;&#x64cd;&#x4f5c;&#x66f4;&#x5b89;&#x5168;&#xff0c;&#x8fd8;&#x53ef;&#x4ee5;&#x51cf;&#x5c0f;&#x52a0;&#x9501;&#x7684;&#x8303;&#x56f4;"/>
+</node>
+<node CREATED="1616464007649" ID="ID_1863755449" MODIFIED="1616464024603" TEXT="&#x8bfb;&#x5df2;&#x63d0;&#x4ea4;&#x9694;&#x79bb;&#x7ea7;&#x522b;&#x4f18;&#x5316;">
+<node CREATED="1616464024605" ID="ID_389736160" MODIFIED="1616464040909" TEXT="&#x8bed;&#x53e5;&#x6267;&#x884c;&#x8fc7;&#x7a0b;&#x4e2d;&#x52a0;&#x4e0a;&#x7684;&#x884c;&#x9501;&#xff0c;&#x5728;&#x8bed;&#x53e5;&#x6267;&#x884c; &#x5b8c;&#x6210;&#x540e;&#xff0c;&#x5c31;&#x8981;&#x628a;&#x201c;&#x4e0d;&#x6ee1;&#x8db3;&#x6761;&#x4ef6;&#x7684;&#x884c;&#x201d;&#x4e0a;&#x7684;&#x884c;&#x9501;&#x76f4;&#x63a5;&#x91ca;&#x653e;&#x4e86;&#xff0c;&#x4e0d;&#x9700;&#x8981;&#x7b49;&#x5230;&#x4e8b;&#x52a1;&#x63d0;&#x4ea4;"/>
+</node>
+</node>
+</node>
+<node CREATED="1613637201039" ID="ID_1716766944" MODIFIED="1613637232081" TEXT="MySQL&#x6709;&#x54ea;&#x4e9b;&#x201c;&#x996e;&#x9e29;&#x6b62;&#x6e34;&#x201d;&#x63d0;&#x5347;&#x6027;&#x80fd;&#x7684;&#x65b9;&#x6cd5;">
+<node CREATED="1616464728018" ID="ID_246420754" MODIFIED="1616464755896" TEXT="&#x573a;&#x666f;&#xff1a;&#x4e1a;&#x52a1;&#x9ad8;&#x5cf0;&#x671f;&#xff0c;&#x751f;&#x4ea7;&#x73af;&#x5883;&#x7684; MySQL &#x538b; &#x529b;&#x592a;&#x5927;&#xff0c;&#x6ca1;&#x6cd5;&#x6b63;&#x5e38;&#x54cd;&#x5e94;&#xff0c;&#x9700;&#x8981;&#x77ed;&#x671f;&#x5185;&#x3001;&#x4e34;&#x65f6;&#x6027;&#x5730;&#x63d0;&#x5347;&#x4e00;&#x4e9b;&#x6027;&#x80fd;"/>
+<node CREATED="1616464760306" ID="ID_885943869" MODIFIED="1616464764222" TEXT="&#x65b9;&#x6848;">
+<node CREATED="1616464764490" ID="ID_1884320120" MODIFIED="1616464771175" TEXT="&#x77ed;&#x8fde;&#x63a5;&#x98ce;&#x66b4;">
+<node CREATED="1616464809132" ID="ID_1143513545" MODIFIED="1616464811289" TEXT="&#x6b63;&#x5e38;&#x7684;&#x77ed;&#x8fde;&#x63a5;&#x6a21;&#x5f0f;&#x5c31;&#x662f;&#x8fde;&#x63a5;&#x5230;&#x6570;&#x636e;&#x5e93;&#x540e;&#xff0c;&#x6267;&#x884c;&#x5f88;&#x5c11;&#x7684; SQL &#x8bed;&#x53e5;&#x5c31;&#x65ad;&#x5f00;&#xff0c;&#x4e0b;&#x6b21;&#x9700;&#x8981;&#x7684;&#x65f6;&#x5019;&#x518d; &#x91cd;&#x8fde;"/>
+<node CREATED="1616464880104" ID="ID_300686297" MODIFIED="1616464987944" TEXT="&#x5728;&#x673a;&#x5668;&#x8d1f;&#x8f7d;&#x9ad8;&#xff0c;&#x5904;&#x7406;&#x73b0;&#x6709;&#x8bf7;&#x6c42;&#x7684;&#x65f6;&#x95f4;&#x53d8;&#x957f;&#xff0c;&#x6bcf;&#x4e2a;&#x8fde;&#x63a5;&#x4fdd;&#x6301;&#x7684;&#x65f6;&#x95f4;&#x4e5f;&#x66f4;&#x957f;&#xff0c;&#x65b0;&#x5efa;&#x8fde;&#x63a5;&#xff0c;&#x4f1a;&#x8fbe;&#x5230;&#x8fde;&#x63a5;&#x4e0a;&#x9650;"/>
+<node CREATED="1616464988259" ID="ID_563644723" MODIFIED="1616464991524" TEXT="&#x89e3;&#x51b3;&#x65b9;&#x6848;">
+<node CREATED="1616464991525" ID="ID_1473541587" MODIFIED="1616465009217" TEXT="1.&#x5148;&#x5904;&#x7406;&#x6389;&#x90a3;&#x4e9b;&#x5360;&#x7740;&#x8fde;&#x63a5;&#x4f46;&#x662f;&#x4e0d;&#x5de5;&#x4f5c;&#x7684;&#x7ebf;&#x7a0b;">
+<node CREATED="1616465313742" ID="ID_1382912971" MODIFIED="1616465316372" TEXT="&#x6d41;&#x7a0b;">
+<node CREATED="1616465072638" ID="ID_456778751" MODIFIED="1616465385216" TEXT="&#x67e5;&#x770b;&#x5f53;&#x524d;&#x8fde;&#x63a5; show processlist&#xff0c;&#x53ef;&#x4ee5;&#x770b;&#x5230;&#x5f53;&#x524d;sleep&#x7684;&#x8fde;&#x63a5;"/>
+<node CREATED="1616465080470" ID="ID_1246013433" MODIFIED="1616465348949" TEXT="&#x83b7;&#x53d6;&#x4e8b;&#x52a1;&#x5916;&#x8fdb;&#x7a0b;id&#xff0c;&#x4e3b;&#x52a8;&#x8e22;&#x6389; kill connection + id"/>
+</node>
+<node CREATED="1616465297046" ID="ID_1098145509" MODIFIED="1616465305535" TEXT="&#x7f3a;&#x70b9;">
+<node CREATED="1616465305536" ID="ID_546636454" MODIFIED="1616465306611" TEXT="&#x4ece;&#x6570;&#x636e;&#x5e93;&#x7aef;&#x4e3b;&#x52a8;&#x65ad;&#x5f00;&#x8fde;&#x63a5;&#x53ef;&#x80fd;&#x662f;&#x6709;&#x635f;&#x7684;&#xff0c;&#x5c24;&#x5176;&#x662f;&#x6709;&#x7684;&#x5e94;&#x7528;&#x7aef;&#x6536;&#x5230;&#x8fd9;&#x4e2a;&#x9519;&#x8bef;&#x540e;&#xff0c;&#x4e0d;&#x91cd;&#x65b0;&#x8fde; &#x63a5;&#xff0c;&#x800c;&#x662f;&#x76f4;&#x63a5;&#x7528;&#x8fd9;&#x4e2a;&#x5df2;&#x7ecf;&#x4e0d;&#x80fd;&#x7528;&#x7684;&#x53e5;&#x67c4;&#x91cd;&#x8bd5;&#x67e5;&#x8be2;"/>
+</node>
+</node>
+<node CREATED="1616465526145" ID="ID_781200222" MODIFIED="1616465528718" TEXT="2.&#x51cf;&#x5c11;&#x8fde;&#x63a5;&#x8fc7;&#x7a0b;&#x7684;&#x6d88;&#x8017;">
+<node CREATED="1616465579326" ID="ID_130244087" MODIFIED="1616465583754" TEXT="&#x6d41;&#x7a0b;">
+<node CREATED="1616465584053" ID="ID_1832719498" MODIFIED="1616465590074" TEXT="&#x8df3;&#x8fc7;&#x6743;&#x9650;&#x8ba4;&#x8bc1;">
+<node CREATED="1616465600836" ID="ID_1724522153" MODIFIED="1616465601889" TEXT="&#x91cd;&#x542f;&#x6570;&#x636e;&#x5e93;&#xff0c;&#x5e76;&#x4f7f;&#x7528;&#x2013;skip-grant-tables &#x53c2;&#x6570;&#x542f;&#x52a8;">
+<node CREATED="1616465617251" ID="ID_380370292" MODIFIED="1616465618256" TEXT="MySQL &#x4f1a;&#x8df3;&#x8fc7;&#x6240;&#x6709;&#x7684;&#x6743;&#x9650;&#x9a8c;&#x8bc1;&#x9636;&#x6bb5;&#xff0c;&#x5305;&#x62ec;&#x8fde;&#x63a5;&#x8fc7;&#x7a0b;&#x548c;&#x8bed;&#x53e5;&#x6267;&#x884c;&#x8fc7;&#x7a0b;&#x5728;&#x5185;"/>
+</node>
+</node>
+</node>
+<node CREATED="1616465628666" ID="ID_711235383" MODIFIED="1616465630867" TEXT="&#x7f3a;&#x70b9;">
+<node CREATED="1616465630868" ID="ID_1861779762" MODIFIED="1616465640751" TEXT="&#x98ce;&#x9669;&#x5f88;&#x5927;&#xff0c;&#x5c24;&#x5176;&#x662f;&#x88ab;&#x5916;&#x7f51;&#x8bbf;&#x95ee;"/>
+</node>
+</node>
+</node>
+</node>
+<node CREATED="1616465677959" ID="ID_675878061" MODIFIED="1616465685908" TEXT="&#x6027;&#x80fd;&#x95ee;&#x9898;">
+<node CREATED="1616465686207" ID="ID_817727186" MODIFIED="1616465690615" TEXT="1.&#x6162;&#x67e5;&#x8be2;">
+<node CREATED="1616465706669" ID="ID_1451190802" MODIFIED="1616465713978" TEXT="&#x8868;&#x73b0;&#x5f62;&#x5f0f;">
+<node CREATED="1616465714166" ID="ID_1066512507" MODIFIED="1616465721034" TEXT="1.&#x7d22;&#x5f15;&#x6ca1;&#x6709;&#x8bbe;&#x8ba1;&#x597d;"/>
+<node CREATED="1616465721332" ID="ID_1586759968" MODIFIED="1616465731137" TEXT="2.SQL&#x6ca1;&#x6709;&#x5199;&#x597d;"/>
+<node CREATED="1616465733092" ID="ID_1688751362" MODIFIED="1616465743992" TEXT="3.MySQL&#x9009;&#x9519;&#x4e86;&#x7d22;&#x5f15;"/>
+</node>
+<node CREATED="1616466225588" ID="ID_1407669477" MODIFIED="1616466250717" TEXT="&#x4e8b;&#x524d;&#x65b9;&#x6848;">
+<node CREATED="1616466278753" ID="ID_618519284" MODIFIED="1616466285881" TEXT="1. &#x4e0a;&#x7ebf;&#x524d;&#xff0c;&#x5728;&#x6d4b;&#x8bd5;&#x73af;&#x5883;&#xff0c;&#x628a;&#x6162;&#x67e5;&#x8be2;&#x65e5;&#x5fd7;&#xff08;slow log&#xff09;&#x6253;&#x5f00;&#xff0c;&#x5e76;&#x4e14;&#x628a; long_query_time &#x8bbe; &#x7f6e;&#x6210; 0&#xff0c;&#x786e;&#x4fdd;&#x6bcf;&#x4e2a;&#x8bed;&#x53e5;&#x90fd;&#x4f1a;&#x88ab;&#x8bb0;&#x5f55;&#x5165;&#x6162;&#x67e5;&#x8be2;&#x65e5;&#x5fd7;&#xff1b; "/>
+<node CREATED="1616466285883" ID="ID_358108921" MODIFIED="1616466289056" TEXT="2. &#x5728;&#x6d4b;&#x8bd5;&#x8868;&#x91cc;&#x63d2;&#x5165;&#x6a21;&#x62df;&#x7ebf;&#x4e0a;&#x7684;&#x6570;&#x636e;&#xff0c;&#x505a;&#x4e00;&#x904d;&#x56de;&#x5f52;&#x6d4b;&#x8bd5;&#xff1b; "/>
+<node CREATED="1616466289057" ID="ID_11206304" MODIFIED="1616466289058" TEXT="3. &#x89c2;&#x5bdf;&#x6162;&#x67e5;&#x8be2;&#x65e5;&#x5fd7;&#x91cc;&#x6bcf;&#x7c7b;&#x8bed;&#x53e5;&#x7684;&#x8f93;&#x51fa;&#xff0c;&#x7279;&#x522b;&#x7559;&#x610f; Rows_examined &#x5b57;&#x6bb5;&#x662f;&#x5426;&#x4e0e;&#x9884;&#x671f;&#x4e00;&#x81f4;&#x3002;"/>
+<node CREATED="1616466335377" ID="ID_421585603" MODIFIED="1616466367063" TEXT="&#x56de;&#x5f52;&#x6d4b;&#x8bd5;&#xff0c;&#x68c0;&#x67e5;&#x6240;&#x6709;&#x7684; SQL &#x8bed;&#x53e5;&#x7684;&#x8fd4;&#x56de;&#x7ed3;&#x679c;&#xff0c;&#x53ef;&#x4ee5;&#x4f7f;&#x7528;&#x5f00;&#x6e90;&#x5de5;&#x5177; pt-querydigest"/>
+</node>
+<node CREATED="1616465770066" ID="ID_739246863" MODIFIED="1616466247736" TEXT="&#x4e8b;&#x4e2d;&#x89e3;&#x51b3;&#x65b9;&#x6848;">
+<node CREATED="1616465777241" ID="ID_1431938261" MODIFIED="1616465788925" TEXT="1.&#x7d27;&#x6025;&#x521b;&#x5efa;&#x7d22;&#x5f15;">
+<node CREATED="1616465860236" ID="ID_615224619" MODIFIED="1616465871600" TEXT="&#x6bd4;&#x8f83;&#x7406;&#x60f3;&#x7684;&#x662f;&#x5728;&#x5907;&#x5e93;&#x5148;&#x6267;&#x884c;">
+<node CREATED="1616465871979" ID="ID_1914679029" MODIFIED="1616465917141" TEXT="1.&#x5728;&#x5907;&#x5e93;B&#x4e0a;&#x6267;&#x884c;set set_log_bin=off&#xff0c;&#x4e0d;&#x5199;binlog&#xff0c;alter table &#x52a0;&#x4e0a;&#x7d22;&#x5f15;"/>
+<node CREATED="1616465917528" ID="ID_1205664042" MODIFIED="1616465922173" TEXT="2.&#x4e3b;&#x5907;&#x5207;&#x6362;"/>
+<node CREATED="1616465925295" ID="ID_12643662" MODIFIED="1616465937324" TEXT="3.A&#x4e3a;&#x5907;&#x5e93;&#xff0c;&#x4e00;&#x6837;&#x64cd;&#x4f5c;"/>
+</node>
+<node CREATED="1616465944766" ID="ID_1692193458" MODIFIED="1616465970178" TEXT="&#x5e73;&#x65f6;&#x53d8;&#x66f4;&#x65f6;&#xff0c;&#x8003;&#x8651;gh-ost&#x65b9;&#x5f0f;&#xff1f;"/>
+</node>
+<node CREATED="1616466049384" ID="ID_1638721420" MODIFIED="1616466173853" TEXT="2.&#x589e;&#x52a0;&#x8bed;&#x53e5;&#x6539;&#x5199;&#x89c4;&#x5219;&#xff0c;&#x67e5;&#x8be2;&#x91cd;&#x5199;">
+<node CREATED="1616466074806" ID="ID_901007443" MODIFIED="1616466148630" TEXT="insert into query_rewrite.rewrite_rules"/>
+<node CREATED="1616466157888" ID="ID_1249163286" MODIFIED="1616466158937" TEXT="call query_rewrite.flush_rewrite_rules();"/>
+</node>
+<node CREATED="1616466183063" ID="ID_1004878540" MODIFIED="1616466196939" TEXT="3.&#x5f3a;&#x5236;&#x6307;&#x5b9a;&#x7d22;&#x5f15; force index"/>
+</node>
+</node>
+<node CREATED="1616465692502" ID="ID_1337599793" MODIFIED="1616465699003" TEXT="2.&#x9ad8;QPS">
+<node CREATED="1616466381866" ID="ID_1010066771" MODIFIED="1616466392515" TEXT="&#x4e8b;&#x4e2d;&#x89e3;&#x51b3;&#x65b9;&#x6848;">
+<node CREATED="1616466392515" ID="ID_499709635" MODIFIED="1616466397432" TEXT="&#x4e0b;&#x6389;&#x529f;&#x80fd;">
+<node CREATED="1616466544032" ID="ID_799048838" MODIFIED="1616466546622" TEXT="1.&#x4e00;&#x79cd;&#x662f;&#x7531;&#x5168;&#x65b0;&#x4e1a;&#x52a1;&#x7684; bug &#x5bfc;&#x81f4;&#x7684;&#x3002;&#x5047;&#x8bbe;&#x4f60;&#x7684; DB &#x8fd0;&#x7ef4;&#x662f;&#x6bd4;&#x8f83;&#x89c4;&#x8303;&#x7684;&#xff0c;&#x4e5f;&#x5c31;&#x662f;&#x8bf4;&#x767d;&#x540d;&#x5355; &#x662f;&#x4e00;&#x4e2a;&#x4e2a;&#x52a0;&#x7684;&#x3002;&#x8fd9;&#x79cd;&#x60c5;&#x51b5;&#x4e0b;&#xff0c;&#x5982;&#x679c;&#x4f60;&#x80fd;&#x591f;&#x786e;&#x5b9a;&#x4e1a;&#x52a1;&#x65b9;&#x4f1a;&#x4e0b;&#x6389;&#x8fd9;&#x4e2a;&#x529f;&#x80fd;&#xff0c;&#x53ea;&#x662f;&#x65f6;&#x95f4;&#x4e0a;&#x6ca1;&#x90a3; &#x4e48;&#x5feb;&#xff0c;&#x90a3;&#x4e48;&#x5c31;&#x53ef;&#x4ee5;&#x4ece;&#x6570;&#x636e;&#x5e93;&#x7aef;&#x76f4;&#x63a5;&#x628a;&#x767d;&#x540d;&#x5355;&#x53bb;&#x6389;&#x3002;"/>
+<node CREATED="1616466557321" ID="ID_683784574" MODIFIED="1616466578350" TEXT="2.&#x5982;&#x679c;&#x8fd9;&#x4e2a;&#x65b0;&#x529f;&#x80fd;&#x4f7f;&#x7528;&#x7684;&#x662f;&#x5355;&#x72ec;&#x7684;&#x6570;&#x636e;&#x5e93;&#x7528;&#x6237;&#xff0c;&#x53ef;&#x4ee5;&#x7528;&#x7ba1;&#x7406;&#x5458;&#x8d26;&#x53f7;&#x628a;&#x8fd9;&#x4e2a;&#x7528;&#x6237;&#x5220;&#x6389;&#xff0c;&#x7136;&#x540e; &#x65ad;&#x5f00;&#x73b0;&#x6709;&#x8fde;&#x63a5;&#x3002;&#x8fd9;&#x6837;&#xff0c;&#x8fd9;&#x4e2a;&#x65b0;&#x529f;&#x80fd;&#x7684;&#x8fde;&#x63a5;&#x4e0d;&#x6210;&#x529f;&#xff0c;&#x7531;&#x5b83;&#x5f15;&#x53d1;&#x7684; QPS &#x5c31;&#x4f1a;&#x53d8;&#x6210; 0"/>
+<node CREATED="1616466570681" ID="ID_1144981847" MODIFIED="1616466572782" TEXT="3.&#x5982;&#x679c;&#x8fd9;&#x4e2a;&#x65b0;&#x589e;&#x7684;&#x529f;&#x80fd;&#x8ddf;&#x4e3b;&#x4f53;&#x529f;&#x80fd;&#x662f;&#x90e8;&#x7f72;&#x5728;&#x4e00;&#x8d77;&#x7684;&#xff0c;&#x90a3;&#x4e48;&#x6211;&#x4eec;&#x53ea;&#x80fd;&#x901a;&#x8fc7;&#x5904;&#x7406;&#x8bed;&#x53e5;&#x6765;&#x9650;&#x5236;&#x3002; &#x8fd9;&#x65f6;&#xff0c;&#x6211;&#x4eec;&#x53ef;&#x4ee5;&#x4f7f;&#x7528;&#x4e0a;&#x9762;&#x63d0;&#x5230;&#x7684;&#x67e5;&#x8be2;&#x91cd;&#x5199;&#x529f;&#x80fd;&#xff0c;&#x628a;&#x538b;&#x529b;&#x6700;&#x5927;&#x7684; SQL &#x8bed;&#x53e5;&#x76f4;&#x63a5;&#x91cd;&#x5199; &#x6210;&quot;select 1&quot;&#x8fd4;&#x56de;&#x3002;"/>
+</node>
+<node CREATED="1616466482478" ID="ID_1038040565" MODIFIED="1616466486430" TEXT="&#x4e1a;&#x52a1;&#x80cc;&#x666f;">
+<node CREATED="1616466486654" ID="ID_751117325" MODIFIED="1616466500716" TEXT="&#x865a;&#x62df;&#x5316;"/>
+<node CREATED="1616466500998" ID="ID_68747635" MODIFIED="1616466504932" TEXT="&#x767d;&#x540d;&#x5355;&#x673a;&#x5236;"/>
+<node CREATED="1616466505199" ID="ID_1350749712" MODIFIED="1616466513836" TEXT="&#x4e1a;&#x52a1;&#x8d26;&#x53f7;&#x9694;&#x79bb;"/>
+</node>
+<node CREATED="1616466598282" ID="ID_234298980" MODIFIED="1616466603463" TEXT="&#x526f;&#x4f5c;&#x7528;">
+<node CREATED="1616466603666" ID="ID_1337245504" MODIFIED="1616466623424" TEXT="&#x5176;&#x4ed6;&#x4e1a;&#x52a1;&#x4e5f;&#x7528;&#x5230;&#x7684;sql&#xff0c;&#x4f1a;&#x6709;&#x8bef;&#x4f24;"/>
+<node CREATED="1616466623738" ID="ID_1999854237" MODIFIED="1616466644080" TEXT="&#x4e1a;&#x52a1;&#x4f9d;&#x8d56;&#x6027;&#xff0c;&#x4f1a;&#x5bfc;&#x81f4;&#x5176;&#x4ed6;&#x4e1a;&#x52a1;&#x5931;&#x8d25;"/>
+</node>
+</node>
+</node>
+</node>
+</node>
+<node CREATED="1616466672988" ID="ID_704435276" MODIFIED="1616466675578" TEXT="&#x5c0f;&#x7ed3;">
+<node CREATED="1616466675797" ID="ID_1665309245" MODIFIED="1616466693786" TEXT="&#x5b9e;&#x9645;&#x5f00;&#x53d1;&#x4e2d;&#xff0c;&#x5c3d;&#x91cf;&#x907f;&#x514d;&#x4e00;&#x4e9b;&#x4f4e;&#x6548;&#x7684;&#x65b9;&#x6cd5;&#xff0c;&#x6bd4;&#x5982;&#x907f;&#x514d;&#x5927;&#x91cf;&#x5730;&#x4f7f;&#x7528;&#x77ed;&#x8fde;&#x63a5;"/>
+<node CREATED="1616466687973" ID="ID_1062355493" MODIFIED="1616466721699" TEXT="&#x4e1a;&#x52a1;&#x5f00;&#x53d1;&#x8fde;&#x63a5;&#x5f02;&#x5e38;&#x65ad;&#x5f00;&#x662f;&#x5e38;&#x6709;&#x7684;&#x4e8b;&#xff0c;&#x4ee3;&#x7801;&#x91cc;&#x8981;&#x6709;&#x6b63;&#x786e;&#x5730;&#x91cd;&#x8fde; &#x5e76;&#x91cd;&#x8bd5;&#x7684;&#x673a;&#x5236;"/>
+</node>
+</node>
+<node CREATED="1613637234290" ID="ID_1945656842" MODIFIED="1613637250834" TEXT="MySQL&#x662f;&#x5982;&#x4f55;&#x4fdd;&#x8bc1;&#x6570;&#x636e;&#x4e0d;&#x4e22;&#x5931;&#x7684;">
+<node CREATED="1616467754553" ID="ID_306672107" MODIFIED="1616467771823" TEXT="&#x573a;&#x666f;&#xff1a;&#x4e1a;&#x52a1;&#x9ad8;&#x5cf0;&#x671f;&#xff0c;&#x4fdd;&#x8bc1;&#x6570;&#x636e;&#x53ef;&#x9760;&#x6027;"/>
+<node CREATED="1616467813947" ID="ID_350938498" MODIFIED="1616467816597" TEXT="&#x7ed3;&#x8bba;">
+<node CREATED="1616467816597" ID="ID_954746881" MODIFIED="1616467856690" TEXT="&#x53ea;&#x8981;redolog&#x548c;binlog&#x6301;&#x4e45;&#x5316;&#x5230;&#x78c1;&#x76d8;&#xff0c;&#x5c31;&#x80fd;&#x4fdd;&#x8bc1;MySQl&#x91cd;&#x542f;&#x540e;&#xff0c;&#x6570;&#x636e;&#x53ef;&#x4ee5;&#x6062;&#x590d;"/>
+</node>
+<node CREATED="1616467868597" ID="ID_638038676" MODIFIED="1616467872226" TEXT="binlog &#x7684;&#x5199;&#x5165;&#x673a;&#x5236;">
+<node CREATED="1616467887318" ID="ID_480823578" MODIFIED="1616467888529" TEXT="&#x4e8b;&#x52a1;&#x6267;&#x884c;&#x8fc7;&#x7a0b;&#x4e2d;&#xff0c;&#x5148;&#x628a;&#x65e5;&#x5fd7;&#x5199;&#x5230; binlog cache&#xff0c;&#x4e8b; &#x52a1;&#x63d0;&#x4ea4;&#x7684;&#x65f6;&#x5019;&#xff0c;&#x518d;&#x628a; binlog cache &#x5199;&#x5230; binlog &#x6587;&#x4ef6;&#x4e2d;"/>
+</node>
+</node>
 <node CREATED="1613637257615" ID="ID_1716066562" MODIFIED="1613637268469" TEXT="MySQL&#x662f;&#x5982;&#x4f55;&#x4fdd;&#x8bc1;&#x4e3b;&#x5907;&#x4e00;&#x81f4;&#x7684;"/>
 <node CREATED="1613637285572" ID="ID_1399254704" MODIFIED="1613637298830" TEXT="MySQL&#x662f;&#x5982;&#x4f55;&#x4fdd;&#x8bc1;&#x9ad8;&#x53ef;&#x7528;&#x7684;"/>
 <node CREATED="1613637301185" ID="ID_246634046" MODIFIED="1613637314188" TEXT="&#x5907;&#x5e93;&#x4e3a;&#x4ec0;&#x4e48;&#x4f1a;&#x5ef6;&#x8fdf;&#x597d;&#x51e0;&#x4e2a;&#x5c0f;&#x65f6;"/>
