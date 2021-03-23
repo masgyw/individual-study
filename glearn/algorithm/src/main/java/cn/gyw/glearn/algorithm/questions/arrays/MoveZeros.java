@@ -9,6 +9,11 @@ package cn.gyw.glearn.algorithm.questions.arrays;
  */
 public class MoveZeros {
 
+    /**
+     * 1. 取出所有非0元素，放到新数组中
+     * 2. [0, k) 存储非0元素，其他位置为0
+     * 3. 交换元素的位置
+     */
     public void solution1() {
 
     }
