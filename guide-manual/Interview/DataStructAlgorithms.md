@@ -1,7 +1,17 @@
 # 数据结构与算法
 
 ## 数据结构
+### 1. 数组
+常见数组代码面试题：  
+1. 查找数组中第二小的元素：https://www.geeksforgeeks.org/  to-find-smallest-and-second-smallest-element-in-an-array/
+2. 查找第一个没有重复的数组元素： https://www.geeksforgeeks.org/non-repeating-element/  
+3. 合并 2 个排序好的数组：https://www.geeksforgeeks.org/merge-two-sorted-arrays/  
+4. 重新排列数组中的正数和负数: https://www.geeksforgeeks.org/rearrange-positive-and-negative-numbers-publish/
 
+### 2. 栈
+1. 使用栈计算后缀表达式：https://www.geeksforgeeks.org/stack-set-4-evaluation-postfix-expression/  
+2. 使用栈为栈中的元素排序：https://www.geeksforgeeks.org/sort-stack-using-temporary-stack/  
+3. 检查字符串中的括号是否匹配正确：https://www.geeksforgeeks.org/check-for-balanced-parentheses-in-an-expression/
 
 ## 算法面试
 ### 1. 算法面试是什么？

@@ -1,8 +1,9 @@
 package cn.gyw.glearn.algorithm;
 
-import cn.gyw.glearn.algorithm.stack.StackSortedByStack;
 import org.junit.Before;
 import org.junit.Test;
+
+import cn.gyw.glearn.algorithm.questions.stack.StackSortedByStack;
 
 import java.util.Stack;
 

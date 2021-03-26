@@ -1,4 +1,4 @@
-package cn.gyw.glearn.algorithm.stack;
+package cn.gyw.glearn.algorithm.questions.stack;
 
 /**
  * 检查字符串中的括号是否匹配

@@ -1,10 +1,11 @@
 package cn.gyw.glearn.algorithm;
 
-import cn.gyw.glearn.algorithm.stack.StackWithMin;
-import cn.gyw.glearn.algorithm.stack.StackWithMin2;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
+import cn.gyw.glearn.algorithm.questions.stack.StackWithMin;
+import cn.gyw.glearn.algorithm.questions.stack.StackWithMin2;
 
 /**
  * 测试：设计一个有getMin功能的栈

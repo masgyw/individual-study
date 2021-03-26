@@ -1,4 +1,4 @@
-package cn.gyw.glearn.algorithm.stack;
+package cn.gyw.glearn.algorithm.questions.stack;
 
 /**
  * 使用栈为栈中元素排序

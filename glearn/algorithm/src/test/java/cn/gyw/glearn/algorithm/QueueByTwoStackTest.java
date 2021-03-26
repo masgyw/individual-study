@@ -1,9 +1,10 @@
 package cn.gyw.glearn.algorithm;
 
-import cn.gyw.glearn.algorithm.stack.QueueByTwoStack;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
+import cn.gyw.glearn.algorithm.questions.stack.QueueByTwoStack;
 
 /**
  * Created by guanyw on 2019/3/5.

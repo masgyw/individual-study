@@ -1,7 +1,8 @@
 package cn.gyw.glearn.algorithm;
 
-import cn.gyw.glearn.algorithm.stack.HanoiProblem;
 import org.junit.Test;
+
+import cn.gyw.glearn.algorithm.questions.stack.HanoiProblem;
 
 /**
  * 汉诺塔问题测试

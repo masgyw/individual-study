@@ -1,4 +1,4 @@
-package cn.gyw.glearn.algorithm.stack;
+package cn.gyw.glearn.algorithm.questions.stack;
 
 import java.util.Stack;
 

@@ -1,7 +1,8 @@
 package cn.gyw.glearn.algorithm;
 
-import cn.gyw.glearn.algorithm.heap.TopN;
 import org.junit.Test;
+
+import cn.gyw.glearn.algorithm.datastructure.heap.TopN;
 
 /**
  * 大小顶堆实现 Top N 的排序算法

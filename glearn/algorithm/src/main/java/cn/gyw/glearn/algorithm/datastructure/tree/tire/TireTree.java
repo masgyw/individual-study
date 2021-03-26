@@ -1,4 +1,4 @@
-package cn.gyw.glearn.algorithm.datastructure.tree;
+package cn.gyw.glearn.algorithm.datastructure.tree.tire;
 
 import java.util.Collections;
 import java.util.List;

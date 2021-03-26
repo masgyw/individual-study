@@ -1,8 +1,9 @@
 package cn.gyw.glearn.algorithm;
 
-import cn.gyw.glearn.algorithm.stack.StackWithReverse;
 import org.junit.Before;
 import org.junit.Test;
+
+import cn.gyw.glearn.algorithm.questions.stack.StackWithReverse;
 
 import java.util.Stack;
 

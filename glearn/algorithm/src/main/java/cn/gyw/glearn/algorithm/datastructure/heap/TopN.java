@@ -1,4 +1,4 @@
-package cn.gyw.glearn.algorithm.heap;
+package cn.gyw.glearn.algorithm.datastructure.heap;
 
 /**
  * 场景：10亿数据取最大的1000个数
@@ -10,28 +10,27 @@ package cn.gyw.glearn.algorithm.heap;
  */
 public class TopN {
 
-	private int parent(int n) {
-		return (n - 1) / 2;
+	// 一个完全二叉树，所以它也就可以用数组存储
+	private int[] topData;
+	
+	private int size;
+	
+	public TopN(int n, int[] data) {
+		this.size = n;
+		this.topData = new int[this.size];
+		for (int i = 0; i < size; i ++) {
+			this.topData[i] = data[i];
+		}
+		// 堆化
+		heapify();
 	}
-
-	private int left(int n) {
-		return 2 * n + 1;
-	}
-
-	private int right(int n) {
-		return 2 * n + 2;
-	}
-
+	
 	// 构建Heap (取top的n个数，data[]原数组)
-	private void buildHeap(int n , int[] data) {
-		for (int i = 1 ; i < n ; i++) {
-			int t = i;
-			while (t != 0 && data[parent(t)] > data[t]) {
-				int temp = data[t];
-				data[t] = data[parent(t)];
-				data[parent(t)] = temp;
-				t = parent(t);
-			}
+	private void heapify() {
+		// 最后一个节点的父节点
+		int lastNodeParentIndex = (size - 2) / 2;
+		for (int i = lastNodeParentIndex ; i >= 0 ; i --) {
+			siftDown(i);
 		}
 	}
 
@@ -62,20 +61,45 @@ public class TopN {
 		}
 
 	}
-
-	public void print(int[] data) {
-		for (int i = 0 ; i < data.length ; i++) {
-			System.out.println(data[i] + "  ");
-		}
-		System.out.println("----------------------");
+	
+	/**
+	 * 下移
+	 * 在i 的子节点中选取最小的，如果最小的，小于i，和i交换位置
+	 * @param i
+	 */
+	public void siftDown(int i) {
+		if (i > )
+	}
+	
+	/**
+	 * 上移
+	 */
+	public void siftUp(int i) {
+		
 	}
 
-	public void findTopN(int n, int[] data) {
+	public int[] findTopN(int n, int[] data) {
 		// 先构造个小顶堆
 		buildHeap(n, data);
 		// n往后的逐个进行判断调整
 		for (int i = n; i < data.length; i++) {
 			adjustHeap(i, n, data);
 		}
+		return topData;
+	}
+	
+	// 下标为 i 的结点的父节点的下标是 （i - 1）/ 2
+	private int parent(int i) {
+		return (i - 1) / 2;
+	}
+
+	// 左孩子结点为 (2 * i) + 1; 
+	private int left(int i) {
+		return 2 * i + 1;
+	}
+
+	// 右孩子结点为 （2 * i ）+ 2
+	private int right(int i) {
+		return 2 * i + 2;
 	}
 }
