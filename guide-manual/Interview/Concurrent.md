@@ -20,4 +20,4 @@
 3）任务等待队列满，线程数小于maxSize，线程池新增线程执行任务  
 4）大于coreSize 的线程数，会在指定时长后停止，回收，最终保持线程池大小为coreSize
 
-## 
+## ConcurrentHashMap如何扩容？

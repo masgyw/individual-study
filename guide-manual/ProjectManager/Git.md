@@ -1,6 +1,13 @@
 # GIT
 ## 一、基础
 
+1. 中文异常
+git config --global core.quotepath false
+2. 提交换行符
+windows (上传LF下载CRLF)
+git config --global core.autocrlf true
+linux (上传和下载都是LF)
+git config --global core.autocrlf false
 
 ## 二、常用操作
 ### 2.1 取消文件git管理，删除Github上文件，不删除本地文件
