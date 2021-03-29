@@ -6,13 +6,19 @@
 |---|---|
 |NEW|新建，没有调用start()方法|
 |RUNNABLE|运行状态，RUNNING/READY切换|
-|BLOCKED|
-|WAITING|
-|TIME_WAITING|
-|TERMINATED|
+|BLOCKED|阻塞|
+|WAITING|等待|
+|TIME_WAITING|时间等待|
+|TERMINATED|结束|
 ## 创建线程有几种方式
-4种
-##
+1. Thread 继承
+2. 实现Runnable接口
+3. 实现Callable接口，通过FutureTask 实现线程
+4. 线程池 ExecutorService 管理上面三种方式
+## FutureTask 的工作原理
+
+## Synchronized 和 ReentrantLock 区别与联系
+
 
 ## 1 请说说线程池工作机制  
 1）若线程池未到coreSize ，任务直接分配新的线程执行  
