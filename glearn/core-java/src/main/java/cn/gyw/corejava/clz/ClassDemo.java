@@ -1,6 +1,34 @@
 package cn.gyw.corejava.clz;
 
+import java.lang.reflect.Method;
+import java.util.Arrays;
+
 public class ClassDemo {
+
+    interface A {
+    }
+
+    interface B {
+    }
+
+    interface C {
+    }
+
+    class Toy {
+        Toy() {
+        }
+
+        Toy(int i) {
+        }
+    }
+
+    class FancyToy extends Toy implements
+            A, B, C {
+        public FancyToy() {
+            super(1);
+        }
+    }
+
     public static void main(String[] args) {
         Class cl = null;
         try{
@@ -34,21 +62,9 @@ public class ClassDemo {
                 "  >> is interface ? [" + cc.isInterface()+"]");
         System.out.println("Simple name : " + cc.getSimpleName());
         System.out.println("Canonical name : " + cc.getCanonicalName());
+        System.out.println(cc.getTypeParameters());
+        for (Method method : cc.getDeclaredMethods()) {
+            System.out.println(Arrays.toString(method.getParameterTypes()));
+        }
     }
 }
-
-class Toy{
-    Toy(){}
-    Toy(int i){}
-}
-
-class FancyToy extends Toy implements
-    A,B,C{
-    public FancyToy() {
-        super(1);
-    }
-}
-
-interface A{}
-interface B{}
-interface C{}

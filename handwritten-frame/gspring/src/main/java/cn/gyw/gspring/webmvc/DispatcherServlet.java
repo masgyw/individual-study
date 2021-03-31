@@ -1,5 +1,10 @@
-package cn.gyw.gmvc.servlet;
+package cn.gyw.gspring.webmvc;
 
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -8,24 +13,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Properties;
-
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import cn.gyw.gmvc.annotation.MyAutowired;
-import cn.gyw.gmvc.annotation.MyController;
-import cn.gyw.gmvc.annotation.MyRequestMapping;
-import cn.gyw.gmvc.annotation.MyRequestParam;
-import cn.gyw.gmvc.annotation.MyService;
+import java.util.*;
 
 public class DispatcherServlet extends HttpServlet {
 

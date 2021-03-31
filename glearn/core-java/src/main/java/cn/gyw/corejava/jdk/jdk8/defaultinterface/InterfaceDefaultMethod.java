@@ -1,4 +1,4 @@
-package cn.gyw.corejava.jdk.jdk8;
+package cn.gyw.corejava.jdk.jdk8.defaultinterface;
 
 /**
  * 接口默认方法

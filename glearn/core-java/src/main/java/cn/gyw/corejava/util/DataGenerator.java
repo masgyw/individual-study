@@ -1,14 +1,11 @@
-package cn.gyw.corejava.jdk;
+package cn.gyw.corejava.util;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * 桩数据
- */
-class StubDatas {
+public class DataGenerator {
 
     /**
      * [
@@ -18,7 +15,7 @@ class StubDatas {
      * ]
      * @return
      */
-    protected static List<Map<String, Object>> ofYearPriceMapList() {
+    public static List<Map<String, Object>> ofYearPriceMapList() {
         List<Map<String, Object>> mapArrayList = new ArrayList<>(10);
         Map<String, Object> yearPriceData = new HashMap<>();
         yearPriceData.put("year", "2019");
@@ -43,5 +40,5 @@ class StubDatas {
         return mapArrayList;
     }
 
-    private StubDatas() {}
+    private DataGenerator() {}
 }

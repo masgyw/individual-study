@@ -1,6 +1,7 @@
 package cn.gyw.corejava.jdk;
 
 import cn.gyw.corejava.AbstractTest;
+import cn.gyw.corejava.util.DataGenerator;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -17,7 +18,7 @@ public class StreamAPITest extends AbstractTest {
      */
     @Test
     public void groupByYear() {
-        List<Map<String, Object>> datas = StubDatas.ofYearPriceMapList();
+        List<Map<String, Object>> datas = DataGenerator.ofYearPriceMapList();
         Map<String, List<Map<String, Object>>> dataMap = datas.stream()
                 .sorted()
                 .collect(Collectors.groupingBy((p) -> {
@@ -31,7 +32,7 @@ public class StreamAPITest extends AbstractTest {
      */
     @Test
     public void sortByYearAndPrice() {
-        List<Map<String, Object>> datas = StubDatas.ofYearPriceMapList();
+        List<Map<String, Object>> datas = DataGenerator.ofYearPriceMapList();
         List<Map<String, Object>> tmp = datas.stream().sorted((t1, t2) -> {
             int ret = Integer.parseInt(t1.get("year").toString()) - Integer.parseInt(t2.get("year").toString());
             if (ret > 0) {

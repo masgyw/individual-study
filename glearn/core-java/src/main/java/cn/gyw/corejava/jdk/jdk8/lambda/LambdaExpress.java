@@ -1,4 +1,4 @@
-package cn.gyw.corejava.jdk.jdk8;
+package cn.gyw.corejava.jdk.jdk8.lambda;
 
 
 import java.util.*;

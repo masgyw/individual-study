@@ -1,5 +1,8 @@
 package cn.gyw.gspring.beans;
 
+/**
+ * 单例工厂的顶层实现
+ */
 public interface GBeanFactory {
 
     /**
