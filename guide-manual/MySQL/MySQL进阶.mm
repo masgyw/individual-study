@@ -1382,7 +1382,12 @@
 <node CREATED="1617095650806" ID="ID_1883838403" MODIFIED="1617095653051" TEXT="&#x4f18;&#x5148;&#x8003;&#x8651; update &#x7cfb;&#x7edf;&#x8868;&#xff0c;&#x7136;&#x540e;&#x518d;&#x914d;&#x5408;&#x589e;&#x52a0;&#x68c0;&#x6d4b; performance_schema &#x7684;&#x4fe1;&#x606f;"/>
 </node>
 </node>
-<node CREATED="1613637349595" ID="ID_338218341" MODIFIED="1613637381811" TEXT="&#x8bef;&#x5220;&#x6570;&#x636e;&#x540e;&#x9664;&#x4e86;&#x8dd1;&#x8def;&#xff0c;&#x8fd8;&#x80fd;&#x600e;&#x4e48;&#x529e;"/>
+<node CREATED="1613637349595" ID="ID_338218341" MODIFIED="1613637381811" TEXT="&#x8bef;&#x5220;&#x6570;&#x636e;&#x540e;&#x9664;&#x4e86;&#x8dd1;&#x8def;&#xff0c;&#x8fd8;&#x80fd;&#x600e;&#x4e48;&#x529e;">
+<node CREATED="1617270550938" ID="ID_1960481999" MODIFIED="1617270576231" TEXT="1. &#x4f7f;&#x7528; delete &#x8bed;&#x53e5;&#x8bef;&#x5220;&#x6570;&#x636e;&#x884c;"/>
+<node CREATED="1617270555826" ID="ID_796054986" MODIFIED="1617270573551" TEXT="2. &#x4f7f;&#x7528; drop table &#x6216;&#x8005; truncate table &#x8bed;&#x53e5;&#x8bef;&#x5220;&#x6570;&#x636e;&#x8868; "/>
+<node CREATED="1617270560598" ID="ID_896378288" MODIFIED="1617270568215" TEXT="3. &#x4f7f;&#x7528; drop database &#x8bed;&#x53e5;&#x8bef;&#x5220;&#x6570;&#x636e;&#x5e93;"/>
+<node CREATED="1617270568961" ID="ID_79017086" MODIFIED="1617270570134" TEXT="4. &#x4f7f;&#x7528; rm &#x547d;&#x4ee4;&#x8bef;&#x5220;&#x6574;&#x4e2a; MySQL &#x5b9e;&#x4f8b;"/>
+</node>
 <node CREATED="1613637382303" ID="ID_1515867850" MODIFIED="1613637395751" TEXT="&#x4e3a;&#x4ec0;&#x4e48;&#x8fd8;&#x6709;kill&#x4e0d;&#x6389;&#x7684;&#x8bed;&#x53e5;"/>
 <node CREATED="1613637401276" ID="ID_451504797" MODIFIED="1613637414247" TEXT="&#x67e5;&#x8fd9;&#x4e48;&#x591a;&#x6570;&#x636e;&#xff0c;&#x4f1a;&#x4e0d;&#x4f1a;&#x628a;&#x6570;&#x636e;&#x5e93;&#x5185;&#x5b58;&#x6253;&#x7206;"/>
 <node CREATED="1613637417602" ID="ID_571014191" MODIFIED="1613637423398" TEXT="&#x5230;&#x5e95;&#x53ef;&#x4e0d;&#x53ef;&#x4ee5;&#x4f7f;&#x7528;join"/>
