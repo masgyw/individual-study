@@ -1,4 +1,4 @@
-package cn.gyw.gspring.webmvc;
+package cn.gyw.handwritten.gspring.webmvc;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;

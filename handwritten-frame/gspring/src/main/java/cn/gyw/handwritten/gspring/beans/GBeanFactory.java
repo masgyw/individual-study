@@ -1,4 +1,4 @@
-package cn.gyw.gspring.beans;
+package cn.gyw.handwritten.gspring.beans;
 
 /**
  * 单例工厂的顶层实现

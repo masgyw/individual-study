@@ -1,4 +1,4 @@
-package cn.gyw.gspring.annotation;
+package cn.gyw.handwritten.gspring.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
