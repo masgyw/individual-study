@@ -5,14 +5,17 @@
          version="3.1">
 
     <servlet>
-        <servlet-name>DispatcherServlet</servlet-name>
+        <servlet-name>GDispatcherServlet</servlet-name>
+        <servlet-class>cn.gyw.handwritten.gspring.web.servlet.GDispatcherServlet</servlet-class>
         <init-param>
-        	<param-name>contextConfigLocation</param-name>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath:application.properties</param-value>
         </init-param>
+        <load-on-startup>1</load-on-startup>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>DispatcherServlet</servlet-name>
+        <servlet-name>GDispatcherServlet</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 

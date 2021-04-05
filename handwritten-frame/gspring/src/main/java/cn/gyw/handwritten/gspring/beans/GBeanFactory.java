@@ -10,5 +10,7 @@ public interface GBeanFactory {
      * @param beanName
      * @return
      */
-    Object getBean(String beanName);
+    Object getBean(String beanName) throws Exception;
+
+    Object getBean(Class<?> beanClass) throws Exception;
 }

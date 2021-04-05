@@ -129,7 +129,7 @@ public class DispatcherServlet extends HttpServlet {
 
 	/**
 	 * 不存在类名首字母小写的情况及非字母的情况
-	 * 
+	 *
 	 * @param simpleName
 	 * @return
 	 */

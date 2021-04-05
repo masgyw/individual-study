@@ -13,6 +13,8 @@ public class GBeanDefinition {
 	private boolean lazyInit;
 	// 对象工厂
 	private String factoryBeanName;
+	// 是否但李
+	private boolean singleton = true;
 
 	public String getBeanClassName() {
 		return beanClassName;
@@ -38,4 +40,11 @@ public class GBeanDefinition {
 		this.factoryBeanName = factoryBeanName;
 	}
 
+	public boolean isSingleton() {
+		return singleton;
+	}
+
+	public void setSingleton(boolean singleton) {
+		this.singleton = singleton;
+	}
 }
