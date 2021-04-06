@@ -1,7 +1,8 @@
 package cn.gyw.handwritten.gspring.context;
 
-import cn.gyw.handwritten.gspring.demo.HelloService;
 import org.junit.jupiter.api.Test;
+
+import cn.gyw.handwritten.gspring.demo.HelloController;
 
 class GApplicationContextTest {
 
@@ -13,7 +14,7 @@ class GApplicationContextTest {
         try {
             Object object = applicationContext.getBean("helloService");
             System.out.println("1>> " + object);
-            object = applicationContext.getBean(HelloService.class);
+            object = applicationContext.getBean(HelloController.class);
             System.out.println("2>> " + object);
         } catch (Exception e) {
             e.printStackTrace();

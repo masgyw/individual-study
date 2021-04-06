@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Properties;
 import java.util.concurrent.ConcurrentHashMap;
 
 import cn.gyw.handwritten.gspring.annotation.GAutowired;
@@ -13,6 +14,7 @@ import cn.gyw.handwritten.gspring.annotation.GController;
 import cn.gyw.handwritten.gspring.annotation.GService;
 import cn.gyw.handwritten.gspring.beans.GBeanWrapper;
 import cn.gyw.handwritten.gspring.beans.GBeanFactory;
+import cn.gyw.handwritten.gspring.beans.factory.GListableBeanFactory;
 import cn.gyw.handwritten.gspring.beans.factory.config.GBeanDefinition;
 import cn.gyw.handwritten.gspring.beans.factory.config.GBeanPostProcessor;
 import cn.gyw.handwritten.gspring.beans.factory.support.GBeanDefinitionReader;
@@ -21,7 +23,7 @@ import cn.gyw.handwritten.gspring.beans.factory.support.GDefaultListableBeanFact
 /**
  * IOC -> DI -> MVC -> AOP
  */
-public class GApplicationContext extends GDefaultListableBeanFactory implements GBeanFactory {
+public class GApplicationContext extends GDefaultListableBeanFactory implements GListableBeanFactory, GBeanFactory {
 
     private String[] configLocations;
 
@@ -44,6 +46,8 @@ public class GApplicationContext extends GDefaultListableBeanFactory implements 
      * Cache of early singleton objects: bean name --> bean instance
      */
     private final Map<String, Object> earlySingletonObjects = new HashMap<>(16);
+    
+    private GBeanDefinitionReader reader;
 
     public GApplicationContext() {
         this("");
@@ -67,7 +71,7 @@ public class GApplicationContext extends GDefaultListableBeanFactory implements 
         try {
             // IOC 流程
             // 1. 定位，定位配置文件
-            GBeanDefinitionReader reader = new GBeanDefinitionReader();
+            reader = new GBeanDefinitionReader();
 
             // 2. 加载配置文件，扫描相关的类，把它们封装为BeanDefinition
             List<GBeanDefinition> beanDefinitions = reader.loadBeanDefinitions(this.configLocations);
@@ -195,4 +199,18 @@ public class GApplicationContext extends GDefaultListableBeanFactory implements 
         }
         return instance;
     }
+
+	@Override
+	public int getBeanDefinitionCount() {
+		return this.beanDefinitionMap.size();
+	}
+
+	@Override
+	public String[] getBeanDefinitionNames() {
+		return this.beanDefinitionMap.keySet().toArray(new String[this.beanDefinitionMap.size()]);
+	}
+	
+	public Properties getConfig() {
+		return this.reader.getConfig();
+	}
 }

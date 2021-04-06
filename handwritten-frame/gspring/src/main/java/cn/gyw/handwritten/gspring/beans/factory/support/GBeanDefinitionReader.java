@@ -118,4 +118,8 @@ public class GBeanDefinitionReader {
         } // 其他的不处理
         return new String(chars);
     }
+    
+    public Properties getConfig() {
+    	return this.config;
+    }
 }
