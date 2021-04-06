@@ -1,4 +1,9 @@
+def logbackVersion = '1.2.3'
+
 sl4j_api='org.slf4j:slf4j-api:1.7.25'
+logback_classic="ch.qos.logback:logback-classic:${logbackVersion}"
+logback_core="ch.qos.logback:logback-core:${logbackVersion}"
+logback_access="ch.qos.logback:logback-access:${logbackVersion}"
 javax_persistence='org.javassist:javassist:3.27.0-GA'
 mysql_connector_java='mysql:mysql-connector-java:5.1.47'
 commons_io='commons-io:commons-io:2.7'

@@ -19,6 +19,7 @@ public class GHandlerAdapter {
 	}
 
 	public GModelAndView handle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+		System.out.println(">> handle :" + handler);
 		GHandlerMapping handlerMapping = (GHandlerMapping) handler;
 
 		// @RequestParam("name") String name, @RequestParam("value") String value

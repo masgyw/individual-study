@@ -71,6 +71,7 @@ public class GDispatcherServlet extends HttpServlet {
 		// 2. 准备调用前参数
 		GHandlerAdapter ha = getHandlerAdapter(handlerMapping);
 
+		LOG.info("ha :{}", ha);
 		// 3. 真正调用方法
 		GModelAndView mv = ha.handle(request, response, handlerMapping);
 
@@ -170,6 +171,7 @@ public class GDispatcherServlet extends HttpServlet {
 	}
 
 	private void initViewResolvers(GApplicationContext context) {
+		this.viewResolvers = new ArrayList<>();
 		// 拿到模板的存放目录
 		String templateRoot = context.getConfig().getProperty("templateRoot");
 		Path templateRootPath = Paths.get(this.getClass().getClassLoader().getResource(templateRoot).getFile());
@@ -191,9 +193,11 @@ public class GDispatcherServlet extends HttpServlet {
 
 	private void initHandlerAdapters(GApplicationContext context) {
 		// 把一个request请求变成handler，参数是字符串，自动配到handler中的形参
-
+		GHandlerAdapter adapter;
 		for (GHandlerMapping handlerMapping : this.handlerMappings) {
-
+			adapter = new GHandlerAdapter();
+			adapter
+			this.handlerAdapters.put(handlerMapping, )
 		}
 	}
 
@@ -216,8 +220,9 @@ public class GDispatcherServlet extends HttpServlet {
 					String regex = ("/" + baseUrl + "/"
 							+ method.getAnnotation(GRequestMapping.class).value().replace("\\*", ".*")).replaceAll("/+",
 									"/");
+					// TODO: 需要去重
 					this.handlerMappings.add(new GHandlerMapping(Pattern.compile(regex), instance, method));
-					LOG.info("{},{},{}", regex, instance, method);
+					LOG.info("initHandlerMappings {},{},{}", regex, instance, method);
 				}
 			}
 		} catch (Exception e) {

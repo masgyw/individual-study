@@ -20,6 +20,10 @@ dependencies {
 	// provided
 	compileOnly sl4j_api
     compileOnly javax_servlet_api
+
+    runtimeOnly logback_classic
+    runtimeOnly logback_core
+    runtimeOnly logback_access
 	
     testImplementation junit_jupiter_api
 	testImplementation junit_jupiter_engine

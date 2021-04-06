@@ -10,8 +10,8 @@ public class HelloController {
 
 	@GRequestMapping
 	public GModelAndView sayHello() {
+		System.out.println("111111>>>");
 		
-		
-		return new GModelAndView();
+		return new GModelAndView("404");
 	}
 }

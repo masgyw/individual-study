@@ -3,6 +3,7 @@ package cn.gyw.handwritten.gspring.web.servlet;
 import java.io.File;
 import java.io.RandomAccessFile;
 import java.util.Map;
+import java.util.Objects;
 import java.util.RandomAccess;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -48,8 +49,16 @@ public class GView {
 			line = new String(line.getBytes("ISO-8859-1"), "utf-8");
 			matcher = pattern.matcher(line);
 			while (matcher.find()) {
-				
+				String paramKey = matcher.group();
+				paramKey = paramKey.replaceAll("$\\{|\\}", "");
+				Object paramValue = model.get(paramKey);
+				if (Objects.isNull(paramValue)) {
+					continue;
+				}
+				line = matcher.replaceFirst(paramValue.toString());
+				matcher = pattern.matcher(line);
 			}
+			sb.append(line);
 		}
 		
 		response.setCharacterEncoding("utf-8");
