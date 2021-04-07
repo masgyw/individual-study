@@ -102,17 +102,19 @@ public class GDispatcherServlet extends HttpServlet {
 		for (int i = 0, len = this.viewResolvers.size(); i < len; i++) {
 			GView view = this.viewResolvers.get(i).resolveViewName(mv.getViewName(), Locale.CHINA);
 			view.render(mv.getModel(), request, response);
+			// 只有1个viewResolver
 			return ;
 		}
 	}
 
 	private GHandlerAdapter getHandlerAdapter(GHandlerMapping handlerMapping) {
-		if (this.handlerAdapters != null) {
-			GHandlerAdapter ha = this.handlerAdapters.get(handlerMapping);
-			if (ha.supports(handlerMapping)) {
-				return ha;
-			}
+		if (this.handlerAdapters == null) {
+			return null;
 		}
+        GHandlerAdapter ha = this.handlerAdapters.get(handlerMapping);
+        if (ha.supports(handlerMapping)) {
+            return ha;
+        }
 		return null;
 	}
 
@@ -183,6 +185,8 @@ public class GDispatcherServlet extends HttpServlet {
 		try {
 			Path templateRootPath = Paths.get(url.toURI());
 			Files.walk(templateRootPath).forEach(path -> {
+			    // 兼容多模块的目的，实际上只需要一个ViewResolver就可以
+                // 为了仿真，用list
 				this.viewResolvers.add(new GViewResolver(templateRootPath));
 			});
 		} catch (Exception e) {
@@ -199,10 +203,8 @@ public class GDispatcherServlet extends HttpServlet {
 	private void initHandlerAdapters(GApplicationContext context) {
 		this.handlerAdapters = new HashMap<GHandlerMapping, GHandlerAdapter>();
 		// 把一个request请求变成handler，参数是字符串，自动配到handler中的形参
-		GHandlerAdapter adapter;
 		for (GHandlerMapping handlerMapping : this.handlerMappings) {
-			adapter = new GHandlerAdapter();
-			this.handlerAdapters.put(handlerMapping, adapter);
+			this.handlerAdapters.put(handlerMapping, new GHandlerAdapter());
 		}
 	}
 
