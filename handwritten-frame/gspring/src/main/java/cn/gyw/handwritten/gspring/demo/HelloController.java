@@ -1,17 +1,57 @@
 package cn.gyw.handwritten.gspring.demo;
 
+import java.io.IOException;
+import java.time.LocalDateTime;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import cn.gyw.handwritten.gspring.annotation.GController;
 import cn.gyw.handwritten.gspring.annotation.GRequestMapping;
+import cn.gyw.handwritten.gspring.annotation.GRequestParam;
 import cn.gyw.handwritten.gspring.web.servlet.GModelAndView;
 
 @GController
 @GRequestMapping("/hello")
 public class HelloController {
 
-	@GRequestMapping
-	public GModelAndView sayHello() {
-		System.out.println("111111>>>");
-		
-		return new GModelAndView("404");
+	private static final Logger LOG = LoggerFactory.getLogger(HelloController.class);
+	
+	@GRequestMapping("/json")
+	public void queryJson(@GRequestParam String name, HttpServletResponse response) throws IOException {
+		String str = "{\"name\":\"" + name + "\", \"now\":" + LocalDateTime.now() + "}";
+		response.getWriter().write(str);
+	}
+	
+	@GRequestMapping("/say*")
+	public GModelAndView sayHello(HttpServletRequest request, HttpServletResponse response,
+			@GRequestParam String name) {
+		LOG.debug("say hello api , name :{}", name);
+		Map<String, Object> model = new HashMap<String, Object>();
+
+		GModelAndView mv = new GModelAndView();
+		mv.setModel(model);
+		mv.setViewName("404");
+		return mv;
+	}
+	
+	@GRequestMapping("/ex")
+	public GModelAndView exception(HttpServletRequest request, HttpServletResponse response,
+			@GRequestParam("name") String name, @GRequestParam("addr") String addr) {
+		LOG.debug("Request name :{}, addr :{}", name, addr);
+		try {
+			throw new RuntimeException("this is exception");
+		} catch (Exception e) {
+			Map<String, Object> model = new HashMap<String, Object>();
+			model.put("detail", e.getMessage());
+			model.put("stackTrace", Arrays.toString(e.getStackTrace()));
+			return new GModelAndView("500", model);
+		}
 	}
 }

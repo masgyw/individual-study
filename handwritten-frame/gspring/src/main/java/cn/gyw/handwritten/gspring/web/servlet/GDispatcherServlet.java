@@ -2,11 +2,13 @@ package cn.gyw.handwritten.gspring.web.servlet;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -99,6 +101,8 @@ public class GDispatcherServlet extends HttpServlet {
 
 		for (int i = 0, len = this.viewResolvers.size(); i < len; i++) {
 			GView view = this.viewResolvers.get(i).resolveViewName(mv.getViewName(), Locale.CHINA);
+			view.render(mv.getModel(), request, response);
+			return ;
 		}
 	}
 
@@ -174,13 +178,14 @@ public class GDispatcherServlet extends HttpServlet {
 		this.viewResolvers = new ArrayList<>();
 		// 拿到模板的存放目录
 		String templateRoot = context.getConfig().getProperty("templateRoot");
-		Path templateRootPath = Paths.get(this.getClass().getClassLoader().getResource(templateRoot).getFile());
+		URL url = this.getClass().getClassLoader().getResource(templateRoot);
 
 		try {
+			Path templateRootPath = Paths.get(url.toURI());
 			Files.walk(templateRootPath).forEach(path -> {
 				this.viewResolvers.add(new GViewResolver(templateRootPath));
 			});
-		} catch (IOException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -192,12 +197,12 @@ public class GDispatcherServlet extends HttpServlet {
 	}
 
 	private void initHandlerAdapters(GApplicationContext context) {
+		this.handlerAdapters = new HashMap<GHandlerMapping, GHandlerAdapter>();
 		// 把一个request请求变成handler，参数是字符串，自动配到handler中的形参
 		GHandlerAdapter adapter;
 		for (GHandlerMapping handlerMapping : this.handlerMappings) {
 			adapter = new GHandlerAdapter();
-			adapter
-			this.handlerAdapters.put(handlerMapping, )
+			this.handlerAdapters.put(handlerMapping, adapter);
 		}
 	}
 

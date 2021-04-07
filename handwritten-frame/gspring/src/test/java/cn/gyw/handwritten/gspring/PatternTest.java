@@ -9,17 +9,26 @@ public class PatternTest {
 
 	@Test
 	public void test() {
+		StringBuilder builder = new StringBuilder();
 		String regex = "\\$\\{[\\w]+\\}";
 		Pattern pattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
-		
-		String line = "1234${name}56789${age}";
-		Matcher matcher = pattern.matcher(line);
-		
-		while (matcher.find()) {
-			System.out.println(matcher.group());
-			line.replaceFirst(matcher.group(), "abc");
+
+		String[] lines = new String[] { "1234${name}", "56789${age}" };
+		Matcher matcher;
+		String line;
+		for (int i = 0, len = lines.length; i < len; i++) {
+			line = lines[i];
+			matcher = pattern.matcher(line);
+			while (matcher.find()) {
+				String paramKey = matcher.group();
+				paramKey = paramKey.replaceAll("\\$\\{|\\}", "");
+				System.out.println("group() :" + paramKey);
+				line = matcher.replaceFirst("0");
+				matcher = pattern.matcher(line);
+			}
+			builder.append(line);
 		}
-		
-		System.out.println(line);
+
+		System.out.println(builder.toString());
 	}
 }

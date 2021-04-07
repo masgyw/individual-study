@@ -19,7 +19,6 @@ public class GHandlerAdapter {
 	}
 
 	public GModelAndView handle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-		System.out.println(">> handle :" + handler);
 		GHandlerMapping handlerMapping = (GHandlerMapping) handler;
 
 		// @RequestParam("name") String name, @RequestParam("value") String value
@@ -74,7 +73,6 @@ public class GHandlerAdapter {
 			int respIdx = paramIndexMapping.get(HttpServletResponse.class.getName());
 			paramValues[respIdx] = response;
 		}
-		System.out.println("params :" + Arrays.toString(paramValues));
 		
 		// 方法执行
 		Object returnValue = handlerMapping.getMethod().invoke(handlerMapping.getHandler(), paramValues);
