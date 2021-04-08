@@ -18,8 +18,6 @@ public abstract class GAbstractAutoProxyCreator {
 		return null;
 	}
 	
-	protected Object createProxy(Class<?> beanClass, String beanName,
-			Object[] specificInterceptors, GTargetSource targetSource) {
-		
-	}
+	protected abstract Object createProxy(Class<?> beanClass, String beanName,
+										  Object[] specificInterceptors, GTargetSource targetSource);
 }

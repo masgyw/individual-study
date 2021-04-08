@@ -9,6 +9,8 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import cn.gyw.handwritten.gspring.annotation.GAutowired;
+import cn.gyw.handwritten.gspring.demo.service.IHelloService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -22,6 +24,9 @@ import cn.gyw.handwritten.gspring.web.servlet.GModelAndView;
 public class HelloController {
 
 	private static final Logger LOG = LoggerFactory.getLogger(HelloController.class);
+
+	@GAutowired
+	private IHelloService helloService;
 	
 	@GRequestMapping("/json")
 	public void queryJson(@GRequestParam String name, HttpServletResponse response) throws IOException {
@@ -33,11 +38,13 @@ public class HelloController {
 	public GModelAndView sayHello(HttpServletRequest request, HttpServletResponse response,
 			@GRequestParam String name) {
 		LOG.debug("say hello api , name :{}", name);
-		Map<String, Object> model = new HashMap<String, Object>();
+		String result = this.helloService.sayHello(name);
 
+		Map<String, Object> model = new HashMap<String, Object>();
+		model.put("content", result);
 		GModelAndView mv = new GModelAndView();
 		mv.setModel(model);
-		mv.setViewName("404");
+		mv.setViewName("demo");
 		return mv;
 	}
 	

@@ -12,6 +12,11 @@ import java.util.concurrent.ConcurrentHashMap;
 import cn.gyw.handwritten.gspring.annotation.GAutowired;
 import cn.gyw.handwritten.gspring.annotation.GController;
 import cn.gyw.handwritten.gspring.annotation.GService;
+import cn.gyw.handwritten.gspring.aop.config.GAopConfig;
+import cn.gyw.handwritten.gspring.aop.framework.GAdvisedSupport;
+import cn.gyw.handwritten.gspring.aop.framework.GAopProxy;
+import cn.gyw.handwritten.gspring.aop.framework.GCglibAopProxy;
+import cn.gyw.handwritten.gspring.aop.framework.GJdkDynamicAopProxy;
 import cn.gyw.handwritten.gspring.beans.GBeanWrapper;
 import cn.gyw.handwritten.gspring.beans.GBeanFactory;
 import cn.gyw.handwritten.gspring.beans.factory.GListableBeanFactory;
@@ -189,6 +194,15 @@ public class GApplicationContext extends GDefaultListableBeanFactory implements 
             } else {
                 Class<?> clazz = Class.forName(className);
                 instance = clazz.newInstance();
+
+                GAdvisedSupport proxyConfig = instantionAopConfig(gBeanDefinition);
+                proxyConfig.setTargetClass(clazz);
+                proxyConfig.setTarget(instance);
+                // 切点匹配的话，创建代理对象
+                if (proxyConfig.pointCutMatch()) {
+                    instance = createProxy(proxyConfig).getProxy();
+                }
+
                 // 类型 -> 实例
                 this.singletonObjects.put(className, instance);
                 // beanName -> 实例
@@ -200,7 +214,21 @@ public class GApplicationContext extends GDefaultListableBeanFactory implements 
         return instance;
     }
 
-	@Override
+    private GAopProxy createProxy(GAdvisedSupport proxyConfig) {
+        Class<?> targetClass = proxyConfig.getTargetClass();
+        if (targetClass.getInterfaces().length > 0) {
+            return new GJdkDynamicAopProxy(proxyConfig);
+        }
+        return new GCglibAopProxy(proxyConfig);
+    }
+
+    private GAdvisedSupport instantionAopConfig(GBeanDefinition gBeanDefinition) {
+        GAopConfig aopConfig = new GAopConfig();
+
+        return new GAdvisedSupport(aopConfig);
+    }
+
+    @Override
 	public int getBeanDefinitionCount() {
 		return this.beanDefinitionMap.size();
 	}
