@@ -36,7 +36,7 @@ public class HelloController {
 	
 	@GRequestMapping("/say*")
 	public GModelAndView sayHello(HttpServletRequest request, HttpServletResponse response,
-			@GRequestParam String name) {
+			@GRequestParam("name") String name) {
 		LOG.debug("say hello api , name :{}", name);
 		String result = this.helloService.sayHello(name);
 
@@ -53,7 +53,8 @@ public class HelloController {
 			@GRequestParam("name") String name, @GRequestParam("addr") String addr) {
 		LOG.debug("Request name :{}, addr :{}", name, addr);
 		try {
-			throw new RuntimeException("this is exception");
+			this.helloService.mockException();
+			return new GModelAndView("demo");
 		} catch (Exception e) {
 			Map<String, Object> model = new HashMap<String, Object>();
 			model.put("detail", e.getMessage());

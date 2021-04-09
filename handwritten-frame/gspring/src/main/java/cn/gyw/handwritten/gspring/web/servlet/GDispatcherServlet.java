@@ -225,7 +225,7 @@ public class GDispatcherServlet extends HttpServlet {
 						continue;
 					}
 					String regex = ("/" + baseUrl + "/"
-							+ method.getAnnotation(GRequestMapping.class).value().replace("\\*", ".*")).replaceAll("/+",
+							+ method.getAnnotation(GRequestMapping.class).value().replaceAll("\\*", ".*")).replaceAll("/+",
 									"/");
 					// TODO: 需要去重
 					this.handlerMappings.add(new GHandlerMapping(Pattern.compile(regex), instance, method));

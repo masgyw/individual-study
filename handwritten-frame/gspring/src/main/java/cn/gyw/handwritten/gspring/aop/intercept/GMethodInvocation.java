@@ -1,8 +1,8 @@
 package cn.gyw.handwritten.gspring.aop.intercept;
 
-import cn.gyw.handwritten.gspring.aop.aspect.GJoinPoint;
-
 import java.lang.reflect.Method;
+
+import cn.gyw.handwritten.gspring.aop.adapter.GJoinPoint;
 
 public interface GMethodInvocation extends GJoinPoint {
 

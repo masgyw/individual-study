@@ -139,7 +139,7 @@ public class GApplicationContext extends GDefaultListableBeanFactory implements 
 
         beanPostProcessor.postProcessAfterInitialization(instance, beanName);
 
-        // 3. 注入
+        // 3. 依赖注入
         populateBean(beanName, beanDefinition, beanWrapper);
 
         return this.factoryBeanInstanceCache.get(beanName).getWrappedInstance();
@@ -158,7 +158,7 @@ public class GApplicationContext extends GDefaultListableBeanFactory implements 
             return;
         }
 
-        Field[] fields = clazz.getFields();
+        Field[] fields = clazz.getDeclaredFields();
         for (Field field : fields) {
             if (!field.isAnnotationPresent(GAutowired.class)) {
                 continue;
@@ -202,7 +202,7 @@ public class GApplicationContext extends GDefaultListableBeanFactory implements 
                 if (proxyConfig.pointCutMatch()) {
                     instance = createProxy(proxyConfig).getProxy();
                 }
-
+                
                 // 类型 -> 实例
                 this.singletonObjects.put(className, instance);
                 // beanName -> 实例
@@ -224,7 +224,12 @@ public class GApplicationContext extends GDefaultListableBeanFactory implements 
 
     private GAdvisedSupport instantionAopConfig(GBeanDefinition gBeanDefinition) {
         GAopConfig aopConfig = new GAopConfig();
-
+        aopConfig.setPointCut(this.reader.getConfig().getProperty("pointCut"));
+        aopConfig.setAspectClass(this.reader.getConfig().getProperty("aspectClass"));
+        aopConfig.setAspectBefore(this.reader.getConfig().getProperty("aspectBefore"));
+        aopConfig.setAspectAfter(this.reader.getConfig().getProperty("aspectAfter"));
+        aopConfig.setAspectAfterThrow(this.reader.getConfig().getProperty("aspectAfterThrow"));
+        aopConfig.setAspectThrowExceptionName(this.reader.getConfig().getProperty("aspectThrowExceptionName"));
         return new GAdvisedSupport(aopConfig);
     }
 

@@ -61,7 +61,7 @@ public class GHandlerAdapter {
 			if (!paramIndexMapping.containsKey(paramEntry.getKey())) {
 				continue;
 			}
-			String value = Arrays.toString(paramEntry.getValue()).replaceAll("\\[\\]", "").replaceAll("\\s", "");
+			String value = Arrays.toString(paramEntry.getValue()).replaceAll("\\[|\\]", "").replaceAll("\\s", "");
 			int idx = paramIndexMapping.get(paramEntry.getKey());
 			paramValues[idx] = convert(value, parameters[idx].getType());
 		}
@@ -96,7 +96,7 @@ public class GHandlerAdapter {
 	 */
 	private Object convert(String value, Class<?> type) {
 		if (String.class.equals(type)) {
-			return value.replaceAll("\\[\\]", "").replaceAll("\\s", ",");
+			return value.replaceAll("\\[|\\]", "").replaceAll("\\s", ",");
 		}
 		if (Integer.class.equals(type)) {
 			return Integer.valueOf(value);

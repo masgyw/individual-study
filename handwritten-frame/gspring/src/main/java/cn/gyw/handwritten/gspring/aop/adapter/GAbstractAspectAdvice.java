@@ -1,4 +1,4 @@
-package cn.gyw.handwritten.gspring.aop.aspect;
+package cn.gyw.handwritten.gspring.aop.adapter;
 
 import java.lang.reflect.Method;
 
