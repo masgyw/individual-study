@@ -1,4 +1,4 @@
-package cn.gyw.spring.tx;
+package cn.gyw.spring.db.tx;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 import org.springframework.beans.factory.annotation.Value;
@@ -61,9 +61,9 @@ import java.beans.PropertyVetoException;
  */
 @EnableTransactionManagement
 @ComponentScan(basePackages = {
-        "cn.gyw.spring.tx"
+        "cn.gyw.spring.db.tx"
 })
-@PropertySource(value = "classpath:db.properties")
+@PropertySource(value = "classpath:db/db.properties")
 @Configuration
 public class TransactionConfig implements EmbeddedValueResolverAware {
 

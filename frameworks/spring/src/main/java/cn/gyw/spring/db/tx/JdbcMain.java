@@ -1,4 +1,4 @@
-package cn.gyw.spring.tx;
+package cn.gyw.spring.db.tx;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

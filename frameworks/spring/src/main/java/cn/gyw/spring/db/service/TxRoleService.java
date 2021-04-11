@@ -1,7 +1,7 @@
-package cn.gyw.spring.service;
+package cn.gyw.spring.db.service;
 
-import cn.gyw.spring.annotations.DataSourceUsage;
-import cn.gyw.spring.enums.DataSourceType;
+import cn.gyw.spring.db.DataSourceUsage;
+import cn.gyw.spring.db.DataSourceType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

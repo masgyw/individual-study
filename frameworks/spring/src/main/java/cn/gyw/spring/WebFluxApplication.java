@@ -7,7 +7,7 @@ import org.springframework.http.server.reactive.HttpHandler;
 import org.springframework.http.server.reactive.ReactorHttpHandlerAdapter;
 import org.springframework.web.server.adapter.WebHttpHandlerBuilder;
 
-import cn.gyw.spring.config.WebFluxConfig;
+import cn.gyw.spring.webflux.WebFluxConfig;
 import reactor.netty.http.server.HttpServer;
 
 public class WebFluxApplication {

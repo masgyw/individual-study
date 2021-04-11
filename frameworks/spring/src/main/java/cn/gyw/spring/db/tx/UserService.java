@@ -1,4 +1,4 @@
-package cn.gyw.spring.tx;
+package cn.gyw.spring.db.tx;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

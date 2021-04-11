@@ -1,4 +1,4 @@
-package cn.gyw.spring.config;
+package cn.gyw.spring.webflux;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;

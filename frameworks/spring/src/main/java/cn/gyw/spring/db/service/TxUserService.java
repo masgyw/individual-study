@@ -1,4 +1,4 @@
-package cn.gyw.spring.service;
+package cn.gyw.spring.db.service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

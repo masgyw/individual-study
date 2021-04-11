@@ -1,9 +1,8 @@
-package cn.gyw.spring.config;
+package cn.gyw.spring.aop;
 
 import cn.gyw.spring.aop.aspect.AopXmlConfigAspect;
 import cn.gyw.spring.aop.aspect.LogAspect;
 import cn.gyw.spring.aop.aspect.TimeAspect;
-import cn.gyw.spring.aop.aspect.TransactionAspect;
 import cn.gyw.spring.plugins.DefaultSpringPluginFactory;
 import cn.gyw.spring.service.MathCalculator;
 import org.springframework.context.annotation.Bean;
@@ -166,7 +165,7 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
  */
 @Configuration
 @EnableAspectJAutoProxy
-public class MainConfigOfAop {
+public class AopConfig {
 
     @Bean
     public MathCalculator mathCalculator() {
@@ -184,19 +183,9 @@ public class MainConfigOfAop {
      *
      * @return
      */
-//    @Bean
+    @Bean
     public AopXmlConfigAspect aopXmlConfigAspect() {
         return new AopXmlConfigAspect();
-    }
-
-    /**
-     * 定义注解切面bean
-     *
-     * @return
-     */
-//    @Bean
-    public TransactionAspect transactionAspect() {
-        return new TransactionAspect();
     }
 
     /**
@@ -204,7 +193,7 @@ public class MainConfigOfAop {
      *
      * @return
      */
-//    @Bean
+    @Bean
     public TimeAspect timeAspect() {
         return new TimeAspect();
     }

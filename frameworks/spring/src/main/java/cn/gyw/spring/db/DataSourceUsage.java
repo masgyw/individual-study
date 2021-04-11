@@ -1,6 +1,6 @@
-package cn.gyw.spring.annotations;
+package cn.gyw.spring.db;
 
-import cn.gyw.spring.enums.DataSourceType;
+import cn.gyw.spring.db.DataSourceType;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

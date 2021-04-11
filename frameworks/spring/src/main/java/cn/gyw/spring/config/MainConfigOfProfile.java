@@ -26,7 +26,7 @@ import cn.gyw.spring.model.FakeDataSource;
  * 3）、没有标注环境标识的bean在，任何环境下都是加载的；
  */
 
-@PropertySource({"classpath:db.properties"})
+@PropertySource({"classpath:db/db.properties"})
 @Configuration
 public class MainConfigOfProfile implements EmbeddedValueResolverAware {
 

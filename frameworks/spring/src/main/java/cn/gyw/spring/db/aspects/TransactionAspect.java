@@ -1,4 +1,4 @@
-package cn.gyw.spring.aspects;
+package cn.gyw.spring.db.aspects;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -23,6 +23,10 @@ public class TransactionAspect {
 
     @Pointcut("execution(public * cn.gyw.spring.service.*.*(..))")
     public void pointCut(){}
+
+    public void before() {
+        System.out.println("Method before...");
+    }
 
     // 环绕拦截
     @Around(value = "pointCut()")

@@ -1,8 +1,8 @@
-package cn.gyw.spring.aspects;
+package cn.gyw.spring.db.aspects;
 
-import cn.gyw.spring.annotations.DataSourceUsage;
-import cn.gyw.spring.enums.DataSourceType;
-import cn.gyw.spring.external.DataSourceManager;
+import cn.gyw.spring.db.DataSourceUsage;
+import cn.gyw.spring.db.DataSourceType;
+import cn.gyw.spring.db.route.DynamicDataSourceEntry;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.slf4j.Logger;
@@ -69,7 +69,7 @@ public class DataSourceAspect {
 
         DataSourceType type = anno.value();
         // 切换数据源
-        DataSourceManager.set(type);
+        DynamicDataSourceEntry.setGlobal(type);
         log.debug("切换至数据源类型:{}", type);
     }
 
@@ -77,17 +77,17 @@ public class DataSourceAspect {
     @After("pointCut()")
     public void afterInvoke(JoinPoint joinPoint) {
         log.debug("重置数据源类型");
-        DataSourceManager.reset();
+        DynamicDataSourceEntry.resetGlobal();
     }
 
     // JoinPoint 一定要放在第一个参数，returning : 指定结果的接收字段
-    @AfterReturning(value = "cn.gyw.spring.aspects.DataSourceAspect.pointCut()", returning = "result")
+    @AfterReturning(value = "cn.gyw.spring.db.aspects.DataSourceAspect.pointCut()", returning = "result")
     public void invokeReturn(JoinPoint joinPoint, Object result) {
         log.debug("方法签名：{}, 返回值：{}", joinPoint.getSignature().getName(), result);
     }
 
     // throwing : 异常的接收字段
-    @AfterThrowing(value = "cn.gyw.spring.aspects.DataSourceAspect.pointCut()", throwing = "exception")
+    @AfterThrowing(value = "cn.gyw.spring.db.aspects.DataSourceAspect.pointCut()", throwing = "exception")
     public void invokeException(JoinPoint joinPoint, Exception exception) {
         log.debug("方法签名：{}, 异常：{}", joinPoint.getSignature().getName(), exception);
     }
