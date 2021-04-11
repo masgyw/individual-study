@@ -1,7 +1,7 @@
 package cn.gyw.spring;
 
-import cn.gyw.spring.tx.TransactionConfig;
-import cn.gyw.spring.tx.UserService;
+import cn.gyw.spring.db.tx.TransactionConfig;
+import cn.gyw.spring.db.tx.UserService;
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 

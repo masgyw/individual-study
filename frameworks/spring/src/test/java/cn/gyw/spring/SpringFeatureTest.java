@@ -4,12 +4,15 @@ import org.junit.Test;
 
 import cn.gyw.spring.external.ServiceRegister;
 import cn.gyw.spring.service.DataService;
+import org.junit.runner.RunWith;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 /**
  * Unit test for spring framework.
  */
-//@RunWith(SpringJUnit4ClassRunner.class)
-//@ContextConfiguration(value = "classpath:applicationContext.xml")
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(value = "classpath:applicationContext.xml")
 public class SpringFeatureTest {
 
 //    @Autowired // 无法使用，根据Type 来自动装配，有两个实现类，报错；可以和@Qulifiy 组合

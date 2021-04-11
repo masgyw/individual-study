@@ -3,7 +3,7 @@ package cn.gyw.spring;
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import cn.gyw.spring.config.MainConfigOfAop;
+import cn.gyw.spring.aop.AopConfig;
 import cn.gyw.spring.service.MathCalculator;
 
 /**
@@ -12,7 +12,7 @@ import cn.gyw.spring.service.MathCalculator;
 public class SpringAOPTest extends AbstractTest {
 
     public SpringAOPTest() {
-        super(MainConfigOfAop.class);
+        super(AopConfig.class);
     }
 
     @Test

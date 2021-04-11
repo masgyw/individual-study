@@ -2,6 +2,8 @@ package cn.gyw.spring;
 
 import javax.sql.DataSource;
 
+import cn.gyw.spring.db.dao.MemberDao;
+import cn.gyw.spring.db.entity.Member;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,16 +12,16 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import cn.gyw.spring.config.DBConfig;
+import cn.gyw.spring.db.DBAutoRouteConfig;
 import cn.gyw.spring.config.RootConfig;
-import cn.gyw.spring.service.TxOperations;
-import cn.gyw.spring.service.TxUserService;
+import cn.gyw.spring.db.service.TxOperations;
+import cn.gyw.spring.db.service.TxUserService;
 
 /**
  * spring 事务测试
  */
 @RunWith(value = SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {RootConfig.class, DBConfig.class})
+@ContextConfiguration(classes = {DBAutoRouteConfig.class})
 @Rollback(value = false) // 配置事务不自动回滚
 // extends AbstractTransactionalJUnit4SpringContextTests
 public class DatabaseTest {
@@ -35,6 +37,18 @@ public class DatabaseTest {
 
     @Autowired
     private TxOperations txOperations;
+
+    @Autowired
+    private MemberDao memberDao;
+
+    /**
+     * 数据源自动路由
+     * 分库分表
+     */
+    @Test
+    public void dataBaseAutoRoute() {
+        this.memberDao.insert(null);
+    }
 
     /**
      * 测试事务方式运行
