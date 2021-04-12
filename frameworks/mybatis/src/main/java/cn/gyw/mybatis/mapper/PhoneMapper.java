@@ -1,15 +1,16 @@
 package cn.gyw.mybatis.mapper;
 
-import cn.gyw.mybatis.model.MybatisUser;
-import org.apache.ibatis.annotations.Mapper;
-
 import java.util.List;
 import java.util.Map;
 
-@Mapper
-public interface UserMapper {
+import org.apache.ibatis.annotations.Mapper;
 
-    List<MybatisUser> queryAll();
+import cn.gyw.mybatis.model.Phone;
+
+@Mapper
+public interface PhoneMapper {
+
+    List<Phone> queryAll();
 
     List<Map<String, Object>> findByOneToOne();
 
@@ -23,4 +24,6 @@ public interface UserMapper {
      * @return
      */
     List<Map<String, Object>> rankByCoin();
+    
+    boolean insert(Phone phone);
 }

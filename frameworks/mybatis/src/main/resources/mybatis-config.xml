@@ -22,6 +22,7 @@
         <setting name="useGeneratedKeys" value="false"/>
         <setting name="autoMappingBehavior" value="PARTIAL"/>
         <setting name="autoMappingUnknownColumnBehavior" value="WARNING"/>
+        <!-- 执行器类型 -->
         <setting name="defaultExecutorType" value="SIMPLE"/>
         <setting name="defaultStatementTimeout" value="25"/>
         <setting name="defaultFetchSize" value="100"/>
@@ -36,8 +37,9 @@
 
     <!-- 类型别名 -->
     <typeAliases>
-        <typeAlias type="cn.gyw.mybatis.model.MybatisUser" alias="user" />
-        <typeAlias type="cn.gyw.mybatis.model.MybatisRole" alias="role" />
+        <typeAlias type="cn.gyw.mybatis.model.Phone" alias="phone"/>
+        <typeAlias type="cn.gyw.mybatis.model.Consumer" alias="consumer"/>
+        <package name="cn.gyw.mybatis.model"/>
     </typeAliases>
 
     <!-- 类型处理器 -->
@@ -50,9 +52,9 @@
      默认的对象工厂需要做的仅仅是实例化目标，要么通过默认构造器，要么通过参数映射存在的参数构造方法来实例化。
      使用ObjectFactory可以覆盖默认对象工厂行为
      -->
-    <!--<objectFactory type="cn.gyw.mybatis.factory.MyObjectFactory">-->
-        <!--<property name="someProperty" value="100"/>-->
-    <!--</objectFactory>-->
+    <objectFactory type="cn.gyw.mybatis.factory.CustomObjectFactory">
+        <property name="phonePrice" value="123"></property>
+    </objectFactory>
 
     <!-- 插件
     MyBatis 允许使用插件来拦截的方法调用包括：
@@ -89,7 +91,10 @@
 
     <!-- 映射器-->
     <mappers>
-        <mapper resource="mapper/mysql/UserMapper.xml"/>
+        <mapper resource="mapper/mysql/ConsumerMapper.xml"/>
+        <mapper resource="mapper/mysql/PhoneMapper.xml"/>
+        <!-- package -->
+        <!-- <package name=""/> -->
     </mappers>
 
 </configuration>
