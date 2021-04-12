@@ -265,3 +265,18 @@ mkdir /usr/share/fonts/cascadiacode-font
 6. linux vscode 修改文件不编译的问题解决  
 echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
 给目录加777 权限
+
+7. Linux 配置快捷启动命令  
+- ~/.bash_profile: 每个用户都可使用该文件输入专用于自己使用的shell信息,当用户登录时,该文件仅仅执行一次!默认情况下,他设置一些环境变量,执行用户的.bashrc文件
+- 在~ 目录下新建 .bash_profile 文件
+```bash
+# .bash_profile
+# Get the aliases and functions
+if [ -f ~/.bashrc ]; then
+        . ~/.bashrc
+fi
+# User specific environment and startup programs
+PATH=$PATH:$HOME/.local/bin:$HOME/bin
+export PATH
+```
+- 在~目录下新建目录：bin，放入只有该用户可执行的快捷命令
