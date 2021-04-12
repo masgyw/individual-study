@@ -40,3 +40,5 @@ VBoxManage.exe internalcommands sethduuid {path/filename}.vdi
 ```
 
 ```
+
+6. Idea

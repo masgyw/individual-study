@@ -5,7 +5,7 @@
 [三、进程管理](三、进程管理)  
 [四、Shell编程](四、Shell编程)  
 [五、源码解读](五、源码解读)  
-[六、系统安装问题](六、系统安装问题)  
+[六、系统安装问题](#六、系统安装问题)  
 ***
 
 ## 一、常用命令
@@ -249,22 +249,24 @@ rpm -qa | grep kernel-devel != uname -r
 yum install -y kernel-devel-3.10.0-514.el7
 参考网站：  
 http://rpm.pbone.net/index.php3/stat/4/idpl/44990415/dir/scientific_linux_7/com/kernel-devel-3.10.0-862.el7.x86_64.rpm.html  
-
-5. centos7 安装 hack 字体
-wget https://github.com/source-foundry/Hack/releases/download/v3.003/Hack-v3.003-ttf.zip
-unzip Hack-v3.003-ttf.zip
-mkdir /usr/share/fonts/hack-font
-cd Hack-v3.003-tff
-cp Hack* /usr/share/fonts/hack-font
-
-安装微软开源字体 
+5. centos7安装字体  
+- 安装 hack 字体  
+wget https://github.com/source-foundry/Hack/releases/download/v3.003/Hack-v3.003-ttf.zip  
+unzip Hack-v3.003-ttf.zip  
+mkdir /usr/share/fonts/hack-font  
+cd Hack-v3.003-tff  
+cp Hack* /usr/share/fonts/hack-font  
+- 安装微软开源字体  
 wget https://github.com/microsoft/cascadia-code/releases/download/v2009.22/CascadiaCode-2009.22.zip  
 unzip CascadiaCode-2009.22.zip  
-mkdir /usr/share/fonts/cascadiacode-font
-
+mkdir /usr/share/fonts/cascadiacode-font  
 6. linux vscode 修改文件不编译的问题解决  
 echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
 给目录加777 权限
+7. ssh免密登陆
+- 服务器生成ssh密钥 ssh-keygen -t rsa  
+- 将公钥文件拷贝至目标服务器  
+ssh-copy-id -i ~/.ssh/id_rsa.pub root@服务器IP
 
 7. Linux 配置快捷启动命令  
 - ~/.bash_profile: 每个用户都可使用该文件输入专用于自己使用的shell信息,当用户登录时,该文件仅仅执行一次!默认情况下,他设置一些环境变量,执行用户的.bashrc文件

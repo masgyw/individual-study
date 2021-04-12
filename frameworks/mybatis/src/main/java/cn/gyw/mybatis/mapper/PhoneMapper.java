@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.Mapper;
 import cn.gyw.mybatis.model.Phone;
 
 @Mapper
-public interface PhoneMapper {
+public interface PhoneMapper extends BaseMapper<Phone> {
 
     List<Phone> queryAll();
 
@@ -24,6 +24,5 @@ public interface PhoneMapper {
      * @return
      */
     List<Map<String, Object>> rankByCoin();
-    
-    boolean insert(Phone phone);
+
 }

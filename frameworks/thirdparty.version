@@ -84,6 +84,7 @@ mysql_connector_java='mysql:mysql-connector-java:5.1.47'
 c3p0='c3p0:c3p0:0.9.1.1'
 h2database='com.h2database:h2:1.4.200'
 commons_dbutils='commons-dbutils:commons-dbutils:1.7'
+tk_mybatis_mapper='tk.mybatis:mapper:4.1.5'
 
 /* lucence */
 lucene_core='org.apache.lucene:lucene-core:8.6.3'
