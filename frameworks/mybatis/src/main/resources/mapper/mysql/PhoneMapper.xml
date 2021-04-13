@@ -6,7 +6,7 @@
 		select * from t_phone
 	</select>
 
-	<insert id="insert" parameterType="phone">
+	<!-- <insert id="insert" parameterType="phone">
 		insert into t_phone (name,
 		price, `desc`, image, producedDate, createdTime) values (
 		#{name},
@@ -16,5 +16,5 @@
 		#{producedDate},
 		#{createdTime}
 		)
-	</insert>
+	</insert> -->
 </mapper>

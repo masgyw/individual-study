@@ -3,6 +3,8 @@ package cn.gyw.mybatis.util;
 import cn.gyw.mybatis.MybatisConfig;
 import cn.gyw.mybatis.mapper.PhoneMapper;
 import org.apache.ibatis.session.SqlSession;
+
+import tk.mybatis.mapper.code.Style;
 import tk.mybatis.mapper.entity.Config;
 import tk.mybatis.mapper.mapperhelper.MapperHelper;
 
@@ -29,6 +31,8 @@ public class SqlSessionUtil {
         config.setEnumAsSimpleType(true);
         //自动处理关键字 - mysql
         config.setWrapKeyword("`{0}`");
+        //键名类型
+        config.setStyle(Style.normal);
         //设置配置
         mapperHelper.setConfig(config);
         //注册通用接口，和其他集成方式中的 mappers 参数作用相同

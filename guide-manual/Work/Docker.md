@@ -1,7 +1,7 @@
 
 ***
 目录  
-[安装](#安装)
+[安装](#安装)  
 [安装Elasticsearch](#安装Elasticsearch)
 
 ***
@@ -62,12 +62,15 @@ nameserver 8.8.8.4
 # Docker 使用
 参考：https://docs.docker.com/engine/reference/commandline/  
 ## 基本使用
-查看版本  docker version  
-查看docker日志  cat /var/log/docker  
-搜索镜像  docker search tomcat  
-查看当前所有镜像  docker images  
-下载镜像  docker pull centos  
-运行容器  docker run centos echo “hello world”  
+1. 查看版本  docker version  
+1. 查看docker日志  cat /var/log/docker  
+1. 搜索镜像  docker search tomcat  
+1. 查看当前所有镜像  docker images  
+1. 下载镜像  docker pull centos  
+1. 运行容器  docker run centos echo “hello world”  
+1. 启动容器 docker start {containerId/containerName}
+1. 进入容器 docker exec -it {containerId/containerName} /bin/bash
+
 
 ## docker搭建Java开发环境  
 centos7.2 + JDK1.8  
@@ -150,4 +153,5 @@ docker run -d -p 28080:8080 --name {name} -itv /home/root/softwares/:/mnt/softwa
 - docker run -d -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" -e ES_JAVA_OPTS="-Xms512m -Xmx512m" --name es5 elasticsearch:5.5.0  
 9300：集群节点指点的tcp通讯端口  
 9200：http协议的web客户端RESTful端口  
-- 
+- 安装中文分词器
+./bin/elasticsearch-plugin install https://github.com/medcl/elasticsearch-analysis-ik/releases/download/v7.10.1/elasticsearch-analysis-ik-7.10.1.zip
