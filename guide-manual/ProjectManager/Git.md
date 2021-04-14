@@ -8,6 +8,10 @@ windows (上传LF下载CRLF)
 git config --global core.autocrlf true
 linux (上传和下载都是LF)
 git config --global core.autocrlf false
+3. 基于Https 的免密登录
+- 配置存储模式
+git config --global credential.helper store
+- git pull 输入密码后，会在用户目录下生成 .git-credentials文件，之后就免密
 
 ## 二、常用操作
 ### 2.1 取消文件git管理，删除Github上文件，不删除本地文件

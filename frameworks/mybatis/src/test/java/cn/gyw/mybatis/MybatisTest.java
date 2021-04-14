@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -19,6 +20,35 @@ import cn.gyw.mybatis.model.Phone;
 public class MybatisTest {
 
 	private String resource = "mybatis-config.xml"; 
+	
+	/**
+	 * 二级缓存
+	 */
+	@Test
+	public void secondCache() throws IOException {
+		Reader reader = Resources.getResourceAsReader(resource);
+		SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
+		SqlSession sqlSession1 = sqlSessionFactory.openSession();
+		SqlSession sqlSession2 = sqlSessionFactory.openSession();
+		
+		PhoneMapper phoneMapper1 = sqlSession1.getMapper(PhoneMapper.class);
+		PhoneMapper phoneMapper2 = sqlSession1.getMapper(PhoneMapper.class);
+		
+		Phone phone1 = phoneMapper1.selectById(2);
+		System.out.println("1>>" + phone1);
+		
+//		Phone phone = new Phone();
+//		phone.setId(2);
+//		phone.setName(UUID.randomUUID().toString());
+//		phoneMapper1.updateById(phone);
+		
+		Phone phone2 = phoneMapper2.selectById(2);
+		System.out.println("2>>" + phone2);
+
+		reader.close();
+		sqlSession1.close();
+		sqlSession2.close();
+	}
 	
 	/**
 	 * Mapper 接口编程模型

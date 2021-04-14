@@ -37,7 +37,7 @@ public class SqlSessionUtil {
         mapperHelper.setConfig(config);
         //注册通用接口，和其他集成方式中的 mappers 参数作用相同
         //4.0 之后的版本，如果类似 Mapper.class 这样的基础接口带有 @RegisterMapper 注解，就不必在这里注册
-        mapperHelper.registerMapper(PhoneMapper.class);
+//        mapperHelper.registerMapper(PhoneMapper.class);
         //配置 mapperHelper 后，执行下面的操作
         mapperHelper.processConfiguration(sqlSession.getConfiguration());
         return sqlSession;

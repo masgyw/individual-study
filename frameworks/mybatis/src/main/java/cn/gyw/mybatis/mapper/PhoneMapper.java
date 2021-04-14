@@ -3,11 +3,16 @@ package cn.gyw.mybatis.mapper;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.CacheNamespace;
+import org.apache.ibatis.annotations.CacheNamespaceRef;
 import org.apache.ibatis.annotations.Mapper;
 
 import cn.gyw.mybatis.model.Phone;
 
 @Mapper
+// 二级缓存 接口+XML 配置相关
+//@CacheNamespaceRef(value = PhoneMapper.class)
+//@CacheNamespace
 public interface PhoneMapper extends BaseMapper<Phone> {
 
     List<Phone> queryAll();
@@ -25,4 +30,7 @@ public interface PhoneMapper extends BaseMapper<Phone> {
      */
     List<Map<String, Object>> rankByCoin();
 
+    Phone selectById(Integer id);
+    
+    int updateById(Phone phone);
 }
