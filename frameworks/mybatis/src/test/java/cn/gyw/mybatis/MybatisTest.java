@@ -52,6 +52,7 @@ public class MybatisTest {
 	
 	/**
 	 * Mapper 接口编程模型
+	 *
 	 */
 	@Test
 	public void selectByIMapper() throws IOException {

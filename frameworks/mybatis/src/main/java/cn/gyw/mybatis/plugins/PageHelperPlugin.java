@@ -10,6 +10,8 @@ import java.util.Properties;
 
 /**
  * 拦截器bind 四大对象
+ *
+ * 自定义插件的实现：物理翻页，sql语句及执行时间输出
  */
 @Intercepts({
         @Signature(type = StatementHandler.class, method = "parameterize", args = Statement.class)
@@ -27,8 +29,11 @@ public class PageHelperPlugin implements Interceptor {
     @Override
     public Object intercept(Invocation invocation) throws Throwable {
         logger.info("target :{}, method :{}", invocation.getTarget(), invocation.getMethod());
+        StatementHandler statementHandler = (StatementHandler) invocation.getTarget();
         // 执行原来的方法
-        return invocation.proceed();
+        Object result = invocation.proceed();
+
+        return result;
     }
 
     /**
