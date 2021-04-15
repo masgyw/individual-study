@@ -1,4 +1,4 @@
-package cn.gyw.spring;
+package cn.gyw.spring.db;
 
 import javax.sql.DataSource;
 
