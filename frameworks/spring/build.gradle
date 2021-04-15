@@ -54,6 +54,12 @@ dependencies {
     implementation javax_annotation_api
 	implementation gson
 	implementation commons_io
+	
+	// spring 整合 mybatis
+	implementation 'org.mybatis:mybatis-spring:2.0.6'
+	implementation 'org.mybatis:mybatis:3.4.5'
+	implementation 'org.mybatis:mybatis-typehandlers-jsr310:1.0.2'
+	implementation tk_mybatis_mapper
 
     testCompile junit
 }

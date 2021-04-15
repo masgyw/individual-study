@@ -3,7 +3,7 @@ package cn.gyw.spring;
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import cn.gyw.spring.config.MainConfigOfLifeCycle;
+import cn.gyw.spring.lifecycle.LifecycleConfig;
 import cn.gyw.spring.model.UserSpring;
 
 /**
@@ -12,7 +12,7 @@ import cn.gyw.spring.model.UserSpring;
 public class BeanLifeCycleTest extends AbstractTest {
 
     public BeanLifeCycleTest() {
-        super(MainConfigOfLifeCycle.class);
+        super(LifecycleConfig.class);
     }
 
     @Test

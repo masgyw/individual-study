@@ -1,12 +1,10 @@
-package cn.gyw.spring.config;
+package cn.gyw.spring.lifecycle;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-
-import cn.gyw.spring.model.UserSpring;
 
 /**
  * bean的生命周期：
@@ -56,16 +54,14 @@ import cn.gyw.spring.model.UserSpring;
  * Spring底层对 BeanPostProcessor 的使用；
  * 		bean赋值，注入其他组件，@Autowired，生命周期注解功能，@Async,xxx BeanPostProcessor;
  *
- * @author lfy
- *
  */
-@ComponentScan(basePackages = {"cn.gyw.spring.controller"})
 @Configuration
-public class MainConfigOfLifeCycle {
+@ComponentScan(basePackages = {"cn.gyw.spring.lifecycle"})
+public class LifecycleConfig {
 
-    @Bean(initMethod = "init", destroyMethod = "over")
-    public UserSpring user() {
-        return new UserSpring();
+    @Bean(initMethod = "customInit", destroyMethod = "customeDestroy")
+    public Product product() {
+        return new Product();
     }
 
     @Bean

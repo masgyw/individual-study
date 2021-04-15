@@ -1,13 +1,13 @@
-package cn.gyw.mybatis.mapper;
+package cn.gyw.spring.mybatis.mapper;
 
 import java.util.List;
 import java.util.Map;
 
-import org.apache.ibatis.annotations.CacheNamespace;
 import org.apache.ibatis.annotations.CacheNamespaceRef;
 import org.apache.ibatis.annotations.Mapper;
 
-import cn.gyw.mybatis.model.Phone;
+import cn.gyw.spring.mybatis.model.Phone;
+import tk.mybatis.mapper.common.BaseMapper;
 
 @Mapper
 // 二级缓存 接口+XML 配置相关

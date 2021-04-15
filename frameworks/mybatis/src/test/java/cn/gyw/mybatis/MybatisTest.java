@@ -25,17 +25,20 @@ public class MybatisTest {
 	 * 二级缓存
 	 */
 	@Test
-	public void secondCache() throws IOException {
+	public void secondLevelCache() throws IOException {
 		Reader reader = Resources.getResourceAsReader(resource);
 		SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
 		SqlSession sqlSession1 = sqlSessionFactory.openSession();
 		SqlSession sqlSession2 = sqlSessionFactory.openSession();
 		
 		PhoneMapper phoneMapper1 = sqlSession1.getMapper(PhoneMapper.class);
-		PhoneMapper phoneMapper2 = sqlSession1.getMapper(PhoneMapper.class);
+		PhoneMapper phoneMapper2 = sqlSession2.getMapper(PhoneMapper.class);
 		
 		Phone phone1 = phoneMapper1.selectById(2);
 		System.out.println("1>>" + phone1);
+		
+		// 事务不提交的情况下，二级缓存会写入吗？
+		sqlSession1.commit();
 		
 //		Phone phone = new Phone();
 //		phone.setId(2);
@@ -48,6 +51,108 @@ public class MybatisTest {
 		reader.close();
 		sqlSession1.close();
 		sqlSession2.close();
+	}
+	
+	/**
+	 * 一级缓存 读旧数据问题，localCacheScope=SESSION
+	 * 需要先关闭二级缓存
+	 */
+	@Test
+	public void firstLevelCacheDirtyData() throws IOException {
+		Reader reader = Resources.getResourceAsReader(resource);
+		SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
+		
+		SqlSession sqlSession1 = sqlSessionFactory.openSession();
+		SqlSession sqlSession2 = sqlSessionFactory.openSession();
+		
+		PhoneMapper phoneMapper1 = sqlSession1.getMapper(PhoneMapper.class);
+		PhoneMapper phoneMapper2 = sqlSession2.getMapper(PhoneMapper.class);
+		
+		System.out.println("会话1查询id=2的数据，生成一级缓存");
+		Phone phone1 = phoneMapper1.selectById(2);
+		System.out.println(">>" + phone1);
+		
+		System.out.println("会话2更新id=2的数据并提交");
+		Phone phone = new Phone();
+		phone.setId(2);
+		phone.setName(UUID.randomUUID().toString());
+		phoneMapper2.updateById(phone);
+		sqlSession2.commit();
+		sqlSession2.close();
+		
+		System.out.println("会话1查询id=2的数据，更新之后的吗？");
+		Phone phone2 = phoneMapper1.selectById(2);
+		System.out.println(">>" + phone2);
+
+		reader.close();
+		sqlSession1.close();
+	}
+	
+	/**
+	 * 一级缓存，localCacheScope=SESSION
+	 * 需要先关闭二级缓存
+	 */
+	@Test
+	public void firstLevelCache() throws IOException {
+		Reader reader = Resources.getResourceAsReader(resource);
+		SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
+		
+		SqlSession sqlSession1 = sqlSessionFactory.openSession();
+		SqlSession sqlSession2 = sqlSessionFactory.openSession();
+		
+		PhoneMapper phoneMapper1 = sqlSession1.getMapper(PhoneMapper.class);
+		PhoneMapper phoneMapper2 = sqlSession1.getMapper(PhoneMapper.class);
+		
+		System.out.println("第一次查询...");
+		Phone phone1 = phoneMapper1.selectById(2);
+		System.out.println("1>>" + phone1);
+//		Phone phone = new Phone();
+//		phone.setId(2);
+//		phone.setName(UUID.randomUUID().toString());
+//		phoneMapper1.updateById(phone);
+		System.out.println("第二次查询...");
+		Phone phone2 = phoneMapper2.selectById(2);
+		System.out.println("2>>" + phone2);
+
+		System.out.println("第三次查询...不同会话");
+		PhoneMapper phoneMapper3 = sqlSession2.getMapper(PhoneMapper.class);
+		Phone phone3 = phoneMapper3.selectById(2);
+		System.out.println("3>>" + phone3);
+		
+		reader.close();
+		sqlSession1.close();
+		sqlSession2.close();
+	}
+	
+	/**
+	 * 一级缓存失效，localCacheScope=SESSION
+	 * 需要先关闭二级缓存
+	 */
+	@Test
+	public void firstLevelCacheInvalid() throws IOException {
+		Reader reader = Resources.getResourceAsReader(resource);
+		SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
+		
+		SqlSession sqlSession1 = sqlSessionFactory.openSession();
+		
+		PhoneMapper phoneMapper1 = sqlSession1.getMapper(PhoneMapper.class);
+		PhoneMapper phoneMapper2 = sqlSession1.getMapper(PhoneMapper.class);
+		
+		System.out.println("第一次查询...");
+		Phone phone1 = phoneMapper1.selectById(2);
+		System.out.println("1>>" + phone1);
+		
+		Phone phone = new Phone();
+		phone.setId(2);
+		phone.setName(UUID.randomUUID().toString());
+		phoneMapper1.updateById(phone);
+
+		System.out.println("第二次查询...");
+		Phone phone2 = phoneMapper2.selectById(2);
+		System.out.println("2>>" + phone2);
+
+		reader.close();
+		sqlSession1.close();
 	}
 	
 	/**

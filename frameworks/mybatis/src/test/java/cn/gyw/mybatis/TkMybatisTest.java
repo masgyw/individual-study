@@ -29,19 +29,21 @@ public class TkMybatisTest {
         Example example = new Example(Phone.class);
         example.createCriteria().andEqualTo("id", "2");
         
-//        Phone phone1 = phoneMapper1.selectOneByExample(example);
-        Phone phone1 = phoneMapper1.selectById(2);
+        Phone phone1 = phoneMapper1.selectOneByExample(example);
+//        Phone phone1 = phoneMapper1.selectById(2);
         System.out.println("1>>" + phone1);
+        // 事务级别，事务只有提交才会写入
+        sqlSession1.commit();
         
         // session2 更新了数据
-//        Phone phone = new Phone();
-//        phone.setName("iphone13");
-//        phoneMapper2.updateByExampleSelective(phone, example);
-//        SqlSessionUtil.closeSqlSession(sqlSession2);
+        Phone phone = new Phone();
+        phone.setName("iphone13");
+        phoneMapper2.updateByExampleSelective(phone, example);
+        sqlSession2.commit();
         
         // session1 查询的是旧的数据
-//        Phone phone2 = phoneMapper2.selectOneByExample(example);
-        Phone phone2 = phoneMapper2.selectById(2);
+        Phone phone2 = phoneMapper2.selectOneByExample(example);
+//        Phone phone2 = phoneMapper2.selectById(2);
         System.out.println("2>>" + phone2);
         
         SqlSessionUtil.closeSqlSession(sqlSession1);

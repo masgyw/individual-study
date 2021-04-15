@@ -1,4 +1,4 @@
-<map version="1.1.0">
+<map version="1.0.1">
 <!-- To view this file, download free mind mapping software FreeMind from http://freemind.sourceforge.net -->
 <node CREATED="1618383858961" ID="ID_982747462" MODIFIED="1618383868824" TEXT="Mybatis">
 <node CREATED="1618383869298" ID="ID_160103703" MODIFIED="1618383874656" POSITION="right" TEXT="&#x76ee;&#x7684;">
@@ -109,6 +109,19 @@
 </node>
 </node>
 </node>
+</node>
+</node>
+</node>
+<node CREATED="1618469197037" ID="ID_257278316" MODIFIED="1618469203985" POSITION="right" TEXT="&#x6574;&#x5408;Spring">
+<node CREATED="1618469204380" ID="ID_1145280233" MODIFIED="1618469207133" TEXT="&#x4f9d;&#x8d56;">
+<node CREATED="1618469207134" ID="ID_1196739697" MODIFIED="1618469218075" TEXT="mybatis-spring.jar"/>
+</node>
+<node CREATED="1618469219469" ID="ID_1800025385" MODIFIED="1618469223624" TEXT="&#x6838;&#x5fc3;&#x7c7b;">
+<node CREATED="1618469223625" ID="ID_1756724794" MODIFIED="1618469230109" TEXT="SqlSessionFactoryBean"/>
+<node CREATED="1618472837454" ID="ID_1755332805" MODIFIED="1618472859468" TEXT="SqlSessionTemplate &#x4ee3;&#x66ff;&#x7ebf;&#x7a0b;&#x4e0d;&#x5b89;&#x5168;&#x7684;DefaultSqlSession"/>
+<node CREATED="1618471018477" ID="ID_58980920" MODIFIED="1618471019605" TEXT="MapperScannerConfigurer">
+<node CREATED="1618475753983" ID="ID_1214710245" MODIFIED="1618475812598" TEXT="&#x6ce8;&#x518c;&#x5230;&#x5bb9;&#x5668;&#x4e3a;MapperFactoryBean&#x5bf9;&#x8c61;&#x5de5;&#x5382;&#xff0c;&#x7ee7;&#x627f;&#x4e86;SqlSessionDaoSupport"/>
+<node CREATED="1618475818328" ID="ID_1326611932" MODIFIED="1618475926601" TEXT="MapperFactoryBean.getObject() &#x903b;&#x8f91;&#xff1a;this.sqlSessionTemplate.getMapper() &#x8fdb;&#x5165;mybatis&#x903b;&#x8f91;"/>
 </node>
 </node>
 </node>
