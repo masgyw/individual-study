@@ -112,7 +112,10 @@ ResultSet：通过执行SQL获得结果封装，在Java中的体现形式（Map+
 1）没有抛出运行时异常，异常被catch，事务不会回滚：TransactionManager 通过catch 运行时异常，判断事务是否需要回滚（RuntimeException or Error）,可以指定异常来进行回滚  
 2）this 调用自身方法：事务实际实现是通过动态代理的方式，所以调用的方法是代理类的方法，通过this调用自身的方法，没有走代理类，则不会被事务管理器管理，回滚；可以通过AopContext 获取代理对象，实现事务
 6. Spring tx 和 aop 命名空间事务的实现原理
-7. Spring 事务 @Transactional 的实现原理
+7. Spring 事务 @Transactional 的实现原理  
+- @EnableTransactionManagement 开启声明式事务，默认通知类型PROXY，引入类TransactionManagementConfigurationSelector，实现selectImport 引入类AutoProxyRegistrar、ProxyTransactionManagementConfiguration
+- AutoProxyRegistrar:给容器中注册一个 InfrastructureAdvisorAutoProxyCreator 组件，通过PostProcessor 对Bean 进行代理，方法调用时，通过拦截器链增强
+- ProxyTransactionManagementConfiguration：@Configuration 配置的类，给容器添加三个bean：BeanFactoryTransactionAttributeSourceAdvisor（容器级别事务属性资源增强器，）、TransactionAttributeSource（事务属性信息类，用来解析@Transactional的信息，获取TransactionAttribute 事务属性）、TransactionInterceptor（事务拦截器，保存了事务属性信息，事务管理器）
 
 
 ## MVC

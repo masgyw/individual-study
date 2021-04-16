@@ -32,6 +32,8 @@ dependencies {
     implementation spring_websocket
     // spring test 支持
     testImplementation spring_test
+	// 嵌入式Tomcat
+	implementation 'org.apache.tomcat.embed:tomcat-embed-core:8.5.32'
 
     // spring bean 验证工具
     implementation "org.hibernate:hibernate-validator:5.4.1.Final"

@@ -1,4 +1,4 @@
-package cn.gyw.spring.db.service;
+package cn.gyw.spring.db.tx;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,12 +10,9 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service
 public class TxOperations {
-
-    @Autowired
-    private TxUserService txUserService;
-
-    @Autowired
-    private TxRoleService txRoleService;
+	
+	@Autowired
+	private TxPhoneService txPhoneService;
 
     @Transactional(propagation = Propagation.REQUIRED) // 需要事务，若无，新建；
     // @Transactional(propagation = Propagation.SUPPORTS) // 支持事务，若无，以非事务方式运行；
@@ -24,15 +21,14 @@ public class TxOperations {
     // @Transactional(propagation = Propagation.NO_SUPPORTED) // 不支持事务，若有，挂起；
     // @Transactional(propagation = Propagation.NEVER) // 不支持事务，若有，异常；
     // @Transactional(propagation = Propagation.NESTED) // 嵌入子事务；
-    public void queryUsers() {
-        txUserService.findUsers();
+    public void selectList() {
+    	txPhoneService.selectList();
     }
 
     @Transactional(propagation = Propagation.REQUIRED)
-    public void addRoleAndUser1() {
-        txUserService.addUser();
+    public void insertAndQuery() {
         try {
-            txRoleService.addRole();
+        	txPhoneService.selectList();
         } catch (Exception e) {
             // 捕获嵌入式异常，主事务完成，嵌入式事务失败
         }
