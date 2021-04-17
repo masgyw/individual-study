@@ -28,6 +28,7 @@ dependencies {
 	implementation commons_lang3
 	implementation mysql_connector_java
 	implementation freemarker
+	implementation commons_io
 	// jackson
 	implementation jackson_databind
 	implementation jackson_core
