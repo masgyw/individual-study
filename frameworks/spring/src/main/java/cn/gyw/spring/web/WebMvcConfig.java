@@ -1,4 +1,4 @@
-package cn.gyw.spring.config;
+package cn.gyw.spring.web;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -15,7 +15,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
  * Spring Web 配置
  */
 @Configuration
-@ComponentScan(value = "cn.gyw.spring.controller",
+@ComponentScan(value = "cn.gyw.spring.web",
         includeFilters = {@ComponentScan.Filter(type = FilterType.ANNOTATION, value = RestController.class),
                 @ComponentScan.Filter(type = FilterType.ANNOTATION, value = Controller.class)},
         useDefaultFilters = false

@@ -1,7 +1,9 @@
-package cn.gyw.spring.db.tx;
+package cn.gyw.spring.db;
 
-import com.mchange.v2.c3p0.ComboPooledDataSource;
-import org.springframework.beans.factory.annotation.Value;
+import java.beans.PropertyVetoException;
+
+import javax.sql.DataSource;
+
 import org.springframework.context.EmbeddedValueResolverAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -13,8 +15,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.util.StringValueResolver;
 
-import javax.sql.DataSource;
-import java.beans.PropertyVetoException;
+import com.mchange.v2.c3p0.ComboPooledDataSource;
 
 /**
  * 声明式事务：
@@ -69,18 +70,14 @@ public class TransactionConfig implements EmbeddedValueResolverAware {
 
     private StringValueResolver resolver;
 
-    @Value("${mysql.username}")
-    private String username;
-
     // 数据源
     @Bean
     public DataSource dataSource() throws PropertyVetoException {
-        System.out.println(">> username:" + username);
         ComboPooledDataSource dataSource = new ComboPooledDataSource();
-        dataSource.setUser(resolver.resolveStringValue("${mysql.username}"));
-        dataSource.setPassword(resolver.resolveStringValue("${mysql.password}").trim());
-        dataSource.setDriverClass(resolver.resolveStringValue("${mysql.driverClass}"));
-        dataSource.setJdbcUrl(resolver.resolveStringValue("${mysql.jdbcUrl}"));
+        dataSource.setUser(resolver.resolveStringValue("${db.local.username}"));
+        dataSource.setPassword(resolver.resolveStringValue("${db.local.password}").trim());
+        dataSource.setDriverClass(resolver.resolveStringValue("${db.local.driverClassName}"));
+        dataSource.setJdbcUrl(resolver.resolveStringValue("${db.local.url}"));
         return dataSource;
     }
 

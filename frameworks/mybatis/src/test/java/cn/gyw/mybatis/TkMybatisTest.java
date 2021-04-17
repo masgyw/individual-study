@@ -8,7 +8,10 @@ import tk.mybatis.mapper.entity.Example;
 import org.apache.ibatis.session.SqlSession;
 import org.junit.Test;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * tk.mybatis 通用mapper 解决修改字段问题
@@ -114,5 +117,21 @@ public class TkMybatisTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    
+    @Test
+    public void insertOne() {
+    	 SqlSession sqlSession = SqlSessionUtil.openSqlSession();
+         PhoneMapper phoneMapper = sqlSession.getMapper(PhoneMapper.class);
+         Phone phone = new Phone();
+         phone.setName(UUID.randomUUID().toString());
+         phone.setPrice(88.9);
+         phone.setDesc("this is android phone");
+         phone.setImage("phone image".getBytes());
+         phone.setCreatedTime(LocalDateTime.now());
+         phone.setProducedDate(LocalDate.of(2021, 1, 1));
+         
+         phoneMapper.insertSelective(phone);
+         SqlSessionUtil.closeSqlSession(sqlSession);
     }
 }

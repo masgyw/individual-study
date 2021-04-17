@@ -1,4 +1,4 @@
-package cn.gyw.spring;
+package cn.gyw.spring.webflux;
 
 import java.io.IOException;
 
@@ -7,7 +7,6 @@ import org.springframework.http.server.reactive.HttpHandler;
 import org.springframework.http.server.reactive.ReactorHttpHandlerAdapter;
 import org.springframework.web.server.adapter.WebHttpHandlerBuilder;
 
-import cn.gyw.spring.webflux.WebFluxConfig;
 import reactor.netty.http.server.HttpServer;
 
 public class WebFluxApplication {
