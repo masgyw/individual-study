@@ -2,9 +2,11 @@ package cn.gyw.glearn.designpattern.creational.singleton;
 
 /**
  * 枚举实现单例模式
- * Created by guanyw on 2018/7/9.
+ *
+ * 优点：避免串行化和反射攻击
+ * 缺点：不能继承
  */
-public enum Singleton3 {
+public enum EnumSingleton {
 
 	/**
 	 * 定义一个枚举元素，本身就是一个单例的实例了

@@ -5,7 +5,7 @@ commons_io='commons-io:commons-io:2.7'
 jackson_databind='com.fasterxml.jackson.core:jackson-databind:2.11.2'
 jackson_core='com.fasterxml.jackson.core:jackson-core:2.11.2'
 jackson_annotations='com.fasterxml.jackson.core:jackson-annotations:2.11.2'
-junit='junit:junit:4.12'
+
 // apache commons until
 commons_cli='commons-cli:commons-cli:1.4'
 commons_beanutils='commons-beanutils:commons-beanutils:1.9.3'
@@ -33,3 +33,9 @@ logback_classic='ch.qos.logback:logback-classic:1.2.3'
 logback_core='ch.qos.logback:logback-core:1.2.3'
 logback_access='ch.qos.logback:logback-access:1.2.3'
 jaxb_api='javax.xml.bind:jaxb-api:2.3.1'
+
+// test
+junit='junit:junit:4.12'
+junit_jupiter_api='org.junit.jupiter:junit-jupiter-api:5.7.1'
+junit_jupiter_engine='org.junit.jupiter:junit-jupiter-engine:5.7.1'
+junit_platform_runner='org.junit.platform:junit-platform-runner:1.7.1'
