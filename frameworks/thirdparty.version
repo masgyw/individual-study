@@ -31,6 +31,7 @@ spring_boot_starter_tomcat= "org.springframework.boot:spring-boot-starter-tomcat
 spring_boot_devtools= "org.springframework.boot:spring-boot-devtools:${springBootVersion}"
 spring_boot_starter_actuator= "org.springframework.boot:spring-boot-starter-actuator:${springBootVersion}"
 spring_boot_starter_test= "org.springframework.boot:spring-boot-starter-test:${springBootVersion}"
+spring_boot_starter_redis= "org.springframework.boot:spring-boot-starter-data-redis:${springBootVersion}"
 
 // GraphQL
 // GraphQL Java Engine itself is only concerned with executing queries. It doesn’t deal with any HTTP or JSON related topics.
@@ -65,6 +66,7 @@ commons_beanutils='commons-beanutils:commons-beanutils:1.9.3'
 commons_lang3='org.apache.commons:commons-lang3:3.6'
 commons_text='org.apache.commons:commons-text:1.6'
 commons_net='commons-net:commons-net:3.6'
+commons_pool2='org.apache.commons:commons-pool2:2.6.2'
 jfreechart='jfree:jfreechart:1.0.13'
 freemarker='org.freemarker:freemarker:2.3.23'
 jcommon='jfree:jcommon:1.0.16'
