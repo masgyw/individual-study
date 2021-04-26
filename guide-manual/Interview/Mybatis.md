@@ -9,7 +9,11 @@
 - 数据库移植性差，语法耦合
 - SQL语句编写量大，不利于管理
 ## Mybatis 中用到了哪些设计模式？举例说明
-
+- SqlSessionFactory:工厂模式
+- SqlSessionFactoryBuilder:建造者模式
+- MapperProxy: 代理模式
+- InterceptorChain：插件执行链，责任链模式
+- CacheingExecutor:装饰器模式
 ## Mybatis 是否支持延迟加载？如果支持，实现原理是什么？
 支持，仅一对一/一对多支持，lazyLoadingEnabled配置  
 实现原理是，对象是代理对象，实际调用的时候，调用实际的对象，获取属性值

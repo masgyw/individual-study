@@ -5,9 +5,7 @@ import cn.gyw.gbatis.session.SqlSession;
 import java.lang.reflect.Proxy;
 
 /**
- * Mapper 接口 工厂
- *
- * Created by guanyw on 2019/3/4.
+ * Mapper 代理对象 工厂
  */
 public class MapperProxyFactory<T> {
 

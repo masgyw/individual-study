@@ -14,14 +14,12 @@ import org.dom4j.io.SAXReader;
 
 import cn.gyw.gbatis.config.Configuration;
 import cn.gyw.gbatis.config.MappedStatement;
-import cn.gyw.gbatis.mapper.UserMapper;
+import cn.gyw.gbatis.mapper.PersonMapper;
 
 /**
  *
  * 1.实例化的时候，加载配置信息到Configuration
  * 2.生产 SqlSession
- *
- * Created by guanyw on 2019/3/1.
  */
 public class SqlSessionFactory {
 
@@ -117,9 +115,8 @@ public class SqlSessionFactory {
         }
     }
 
-    // TODO : 添加 Mapper 接口解析方式
     private void loadMapperInterface() {
-        configuration.registerMapper(UserMapper.class);
+        configuration.registerMapper(PersonMapper.class);
     }
 
     public SqlSession openSession() {

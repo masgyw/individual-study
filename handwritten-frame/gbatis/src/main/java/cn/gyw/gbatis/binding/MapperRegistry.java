@@ -8,7 +8,7 @@ import java.util.Map;
 
 /**
  * 接口映射注册器
- *
+ * <p>
  * Created by guanyw on 2019/3/4.
  */
 public class MapperRegistry {
@@ -24,6 +24,7 @@ public class MapperRegistry {
 
     /**
      * 生成 接口 的代理对象
+     *
      * @param type
      * @param sqlSession
      * @param <T>
@@ -40,13 +41,13 @@ public class MapperRegistry {
     }
 
     public <T> void addMapper(Class<T> type) {
-        if(type.isInterface()) {
+        if (type.isInterface()) {
             boolean loadCompleted = false;
             try {
                 this.knownMappers.put(type, new MapperProxyFactory(type));
                 loadCompleted = true;
             } finally {
-                if(!loadCompleted) {
+                if (!loadCompleted) {
                     this.knownMappers.remove(type);
                 }
 

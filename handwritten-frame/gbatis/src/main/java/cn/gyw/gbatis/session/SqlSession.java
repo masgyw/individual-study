@@ -7,18 +7,29 @@ import java.util.List;
  *
  * 1.对外提供数据访问api
  * 2.对内将请求转发给Executor
- *
- * Created by guanyw on 2019/3/1.
  */
 public interface SqlSession {
 
     <T> T selectOne(String statement);
 
-    <T> T selectOne(String statement, Object parameter);
+    /**
+     * 调用 Executor 获取一条数据
+     * @param statementId
+     * @param parameter
+     * @param <T>
+     * @return
+     */
+    <T> T selectOne(String statementId, Object parameter);
 
     <E> List<E> selectList(String statement);
 
     <E> List<E> selectList(String statement, Object parameter);
 
-    <T> T getMapper(Class<T> mapperClaz);
+    /**
+     * 获取 Mapper的代理对象
+     * @param mapperClazz
+     * @param <T>
+     * @return
+     */
+    <T> T getMapper(Class<T> mapperClazz);
 }

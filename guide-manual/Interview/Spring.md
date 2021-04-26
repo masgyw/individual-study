@@ -53,10 +53,16 @@ PostProcessor 扩展、Aware 回调、Event事件通知等功能
 XMLClassPathApplicationContext/WebXMLApplicationContext/FileSystemApplicationContext/AnnotationApplicationContext等
 2. 请解释一下SpringBean 的生命周期  
 由spring管理bean 的创建和销毁
-- JSR 标准 @PostConstruct 和 @PreDestroy 的支持
-- InitializationBean 和 DestroyBean 的回调
-- 自定义方法 method-init 和 method destroy 的回调
+- 实例化bean
+- 设置属性
 - Aware 接口  
+- BeanPostProcessor.postProcessBeforeInitialization
+- JSR @PostConstruct
+- InitializationBean
+- 自定义方法 method-init 和 method destroy 的回调
+- BeanPostProcessor.postProcessAfterInitialization
+- JSR @PreDestroy
+- DestroyBean 的回调
 3. SpringBean的作用域有哪些？有什么区别？SpringBean生命周期特征  
 什么是作用域？什么时候创建，什么时候销毁  
 Bean 有2中作用域：

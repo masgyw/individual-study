@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by guanyw on 2019/3/4.
+ * 动态代理
  */
 public class MapperProxy<T> implements InvocationHandler {
 
@@ -23,6 +23,7 @@ public class MapperProxy<T> implements InvocationHandler {
 
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+        // 获取 statementId
         String statementId = method.getDeclaringClass().getName() + "." + method.getName();
         List<Object> result =  sqlSession.selectList(statementId);
         return result;

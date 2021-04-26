@@ -1,5 +1,6 @@
 dependencies {
 	implementation dom4j
+	implementation mysql_connector_java
 	
 	testImplementation junit4
 }

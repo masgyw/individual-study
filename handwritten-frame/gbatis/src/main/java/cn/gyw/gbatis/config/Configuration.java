@@ -3,13 +3,17 @@ package cn.gyw.gbatis.config;
 import cn.gyw.gbatis.binding.MapperRegistry;
 import cn.gyw.gbatis.session.SqlSession;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
+import java.util.ResourceBundle;
 
 /**
  * 全局配置类
- *
- * Created by guanyw on 2019/3/1.
  */
 public class Configuration {
 
@@ -25,6 +29,7 @@ public class Configuration {
     private Map<String, MappedStatement> mappedStatementMap = new HashMap<>();
 
     public Configuration() {
+        // 创建MapperProxy 的注册器
         this.mapperRegistry = new MapperRegistry(this);
     }
 
@@ -40,6 +45,13 @@ public class Configuration {
         return mappedStatementMap.get(statementId);
     }
 
+    /**
+     * 获取代理对象
+     * @param type
+     * @param sqlSession
+     * @param <T>
+     * @return
+     */
     public <T> T getMapper(Class<T> type, SqlSession sqlSession) {
         return this.mapperRegistry.getMapper(type, sqlSession);
     }

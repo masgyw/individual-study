@@ -34,13 +34,13 @@ public class DefaultSqlSession implements SqlSession {
     }
 
     @Override
-    public <T> T selectOne(String statement) {
-        return this.<T>selectOne(statement, null);
+    public <T> T selectOne(String statementId) {
+        return this.<T>selectOne(statementId, null);
     }
 
     @Override
-    public <T> T selectOne(String statement, Object parameter) {
-        List<T> list = this.<T>selectList(statement, parameter);
+    public <T> T selectOne(String statementId, Object parameter) {
+        List<T> list = this.<T>selectList(statementId, parameter);
         if (list.size() == 1) {
             return list.get(0);
         } else if (list.size() > 1) {
@@ -51,14 +51,13 @@ public class DefaultSqlSession implements SqlSession {
     }
 
     @Override
-    public <E> List<E> selectList(String statement) {
-        return this.<E>selectList(statement, null);
+    public <E> List<E> selectList(String statementId) {
+        return this.<E>selectList(statementId, null);
     }
 
     @Override
-    public <E> List<E> selectList(String statement, Object parameter) {
-
-        MappedStatement ms = this.configuration.getMappedStatement(statement);
+    public <E> List<E> selectList(String statementId, Object parameter) {
+        MappedStatement ms = this.configuration.getMappedStatement(statementId);
         try {
             return this.executor.query(ms, parameter);
         } catch (SQLException e) {
@@ -68,7 +67,7 @@ public class DefaultSqlSession implements SqlSession {
     }
 
     @Override
-    public <T> T getMapper(Class<T> mapperClaz) {
-        return this.configuration.getMapper(mapperClaz, this);
+    public <T> T getMapper(Class<T> mapperClazz) {
+        return this.configuration.getMapper(mapperClazz, this);
     }
 }
