@@ -6,6 +6,7 @@ import cn.gyw.gbatis.session.SqlSessionFactory;
 
 import cn.gyw.gbatis.model.Person;
 
+import cn.gyw.gbatis.session.SqlSessionFactoryBuilder;
 import org.junit.Test;
 
 import java.util.List;
@@ -15,7 +16,8 @@ public class SimpleMybatisTest {
     @Test
     public void selectByMapperInterface() {
         // 1、实例化SqlSessionFactory，加载配置文件到Configuration 对象
-        SqlSessionFactory sqlSessionFactory = new SqlSessionFactory();
+        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder()
+                .build("application.properties");
         // 2、获取SqlSession 对象
         SqlSession sqlSession = sqlSessionFactory.openSession();
 

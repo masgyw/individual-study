@@ -11,11 +11,11 @@ import java.util.List;
 /**
  * 默认执行器
  */
-public class DefaultExecutor implements Executor {
+public class SimpleExecutor implements Executor {
 
     private final Configuration configuration;
 
-    public DefaultExecutor(Configuration configuration) {
+    public SimpleExecutor(Configuration configuration) {
         super();
         this.configuration = configuration;
     }

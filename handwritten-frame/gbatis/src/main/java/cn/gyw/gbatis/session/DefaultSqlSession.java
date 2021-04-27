@@ -5,7 +5,7 @@ import java.util.List;
 
 import cn.gyw.gbatis.config.Configuration;
 import cn.gyw.gbatis.config.MappedStatement;
-import cn.gyw.gbatis.executor.DefaultExecutor;
+import cn.gyw.gbatis.executor.SimpleExecutor;
 import cn.gyw.gbatis.executor.Executor;
 
 public class DefaultSqlSession implements SqlSession {
@@ -30,7 +30,7 @@ public class DefaultSqlSession implements SqlSession {
     }
 
     public DefaultSqlSession(Configuration configuration) {
-        this(configuration, new DefaultExecutor(configuration), false);
+        this(configuration, new SimpleExecutor(configuration), false);
     }
 
     @Override

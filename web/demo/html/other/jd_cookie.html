@@ -17,7 +17,7 @@
       $("#btnGetCookie").click(function() {
         var cv = $("#inputCookie").val();
         var result = cv.match(/pt_pin=.+?;/) + cv.match(/pt_key=.+?;/);
-        $("#result").append(result + "<br>");
+        $("#result").val(result + "<br>");
       });
 
     });
