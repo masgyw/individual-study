@@ -10,8 +10,10 @@ linux (上传和下载都是LF)
 git config --global core.autocrlf false
 3. 基于Https 的免密登录
 - 配置存储模式
-git config --global credential.helper store
+git config --global credential.helper store/cache
 - git pull 输入密码后，会在用户目录下生成 .git-credentials文件，之后就免密
+4. 修改远程分支 url
+git remote set-url origin git@github.com:*.git
 
 ## 二、常用操作
 ### 2.1 取消文件git管理，删除Github上文件，不删除本地文件

@@ -7,9 +7,10 @@ import cn.gyw.gbatis.session.SqlSessionFactory;
 import cn.gyw.gbatis.model.Person;
 
 import cn.gyw.gbatis.session.SqlSessionFactoryBuilder;
-import org.junit.Test;
 
 import java.util.List;
+
+import org.junit.jupiter.api.Test;
 
 public class SimpleMybatisTest {
 
