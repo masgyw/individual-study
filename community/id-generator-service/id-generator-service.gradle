@@ -4,8 +4,6 @@ plugins {
 }
 
 dependencies {
-    implementation project(":components:common-web")
-    
     implementation platform_common
     
     implementation spring_boot_starter_web

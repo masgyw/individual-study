@@ -6,7 +6,6 @@ plugins {
 
 dependencies {
     // 公共模块依赖
-    implementation project(":components:common-web")
     implementation project(":facade:rest-service-api")
     implementation project(":facade:system-service-api")
 

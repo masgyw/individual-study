@@ -3,8 +3,6 @@ plugins {
 }
 
 dependencies {
-    implementation project(":components:common-web")
-    
     implementation platform_common
 
 //    implementation 'org.springframework.boot:spring-boot:2.0.4.RELEASE'

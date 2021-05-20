@@ -11,7 +11,7 @@ targetCompatibility = 1.8
 
 dependencies {
     implementation platform_annotations
-    implementation "org.openjdk.jol:jol-core:0.10"
+    implementation jol_core
 
     // logback log
 	implementation sl4j_api

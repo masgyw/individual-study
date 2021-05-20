@@ -12,7 +12,6 @@ sourceSets {
 dependencies {
     implementation project(':facade:system-service-api')
     // 公共模块依赖
-    implementation project(":components:common-web")
     implementation platform_common
 
     implementation "org.springframework.boot:spring-boot-starter:${springBootVersion}"

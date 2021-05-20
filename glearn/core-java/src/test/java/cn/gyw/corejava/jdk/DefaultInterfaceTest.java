@@ -1,9 +1,10 @@
 package cn.gyw.corejava.jdk;
 
-import cn.gyw.corejava.jdk.jdk8.DefaultInterfaceExtends1;
-import cn.gyw.corejava.jdk.jdk8.DefaultInterfaceExtends2;
-import cn.gyw.corejava.jdk.jdk8.InterfaceDefaultMethod;
 import org.junit.Test;
+
+import cn.gyw.corejava.jdk.jdk8.defaultinterface.DefaultInterfaceExtends1;
+import cn.gyw.corejava.jdk.jdk8.defaultinterface.DefaultInterfaceExtends2;
+import cn.gyw.corejava.jdk.jdk8.defaultinterface.InterfaceDefaultMethod;
 
 /**
  * 默认接口的测试

@@ -1,10 +1,6 @@
 // 项目名称
 rootProject.name = 'community'
 
-// 公共组件
-include ':components:common-web'
-project(':components:common-web').projectDir = new File(rootDir, '../components/common-web')
-
 // RPC 接口
 include ':facade:system-service-api'
 project(':facade:system-service-api').projectDir = new File(rootDir, 'facade/system-service-api')
@@ -24,17 +20,15 @@ include 'service-registry'
 
 // 服务
 include 'system-service' // 系统管理服务
-include 'rest-service' // 
-include 'instant-messaging' // 简单及时通信
+include 'rest-service' // 社区接口服务
+include 'instant-messaging' // 及时通信服务
 include 'file-service' // 文件服务
 include 'id-generator-service' // 分布式ID生成服务
-include 'elasticsearch-in-action' // 搜索服务
+include 'elasticsearch-service' // 搜索服务
 include 'security-service' // 认证授权服务
-
-// 商店服务
-include 'product-service'
-include 'inventory-service'
-include 'order-service'
+include 'product-service' // 产品服务
+include 'inventory-service' // 库存服务
+include 'order-service' // 订单服务
 
 rootProject.children.each {project ->
 	

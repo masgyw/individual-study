@@ -4,7 +4,6 @@ plugins {
 }
 
 dependencies {
-	implementation project(':components:common-web')
 	implementation project(':facade:order-service-api')
 	implementation project(':facade:inventory-service-api')
 
