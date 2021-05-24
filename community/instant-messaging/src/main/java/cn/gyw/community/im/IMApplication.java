@@ -26,12 +26,4 @@ public class IMApplication {
     public static void main(String[] args) {
         SpringApplication.run(IMApplication.class, args);
     }
-
-    @Bean
-    public ApplicationRunner applicationRunner(
-            @Value("${server.servlet.context-path}") String contextPath,
-            @Value("${server.port}") int port) {
-        return args -> System.out.println("http://127.0.0.1:" + port + contextPath);
-    }
-
 }

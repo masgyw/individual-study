@@ -3,6 +3,7 @@ package cn.gyw.community.im.config;
 import java.io.Serializable;
 
 import cn.gyw.community.im.handler.MessageHandler;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
@@ -23,7 +24,8 @@ import cn.gyw.community.im.subscriber.TestTopicSubscriber;
  * 监听者配置
  */
 @Configuration
-public class ReceiverConfig {
+@ConditionalOnProperty(name = "cache.provider", havingValue = "1")
+public class RedisConfig {
 
     @Bean
     public RedisTemplate<String, Serializable> serialRedisTemplate(LettuceConnectionFactory lettuceConnectionFactory) {

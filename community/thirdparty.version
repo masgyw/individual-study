@@ -24,6 +24,7 @@ spring_test="org.springframework:spring-test:${springVersion}"
 
 spring_boot_starter= "org.springframework.boot:spring-boot-starter:${springBoot}"
 spring_boot_starter_web="org.springframework.boot:spring-boot-starter-web:${springBoot}"
+spring_boot_starter_websocket="org.springframework.boot:spring-boot-starter-websocket:${springBoot}"
 spring_boot_starter_data_redis="org.springframework.boot:spring-boot-starter-data-redis:${springBoot}"
 spring_boot_starter_data_jpa="org.springframework.boot:spring-boot-starter-data-jpa:${springBoot}"
 spring_boot_starter_data_elasticsearch="org.springframework.boot:spring-boot-starter-data-elasticsearch:${springBoot}"
@@ -64,7 +65,6 @@ jackson_databind='com.fasterxml.jackson.core:jackson-databind:2.11.2'
 jackson_core='com.fasterxml.jackson.core:jackson-core:2.11.2'
 jackson_annotations='com.fasterxml.jackson.core:jackson-annotations:2.11.2'
 json='org.json:json:20200518'
-
 // apache commons until
 commons_io='commons-io:commons-io:2.7'
 commons_cli='commons-cli:commons-cli:1.4'

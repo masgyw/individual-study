@@ -5,31 +5,28 @@ plugins {
 dependencies {
     implementation platform_common
 
-//    implementation 'org.springframework.boot:spring-boot:2.0.4.RELEASE'
     implementation spring_boot_starter_web
     implementation spring_boot_starter_jdbc
     implementation spring_boot_starter_data_redis
+    implementation spring_boot_starter_websocket
+    implementation spring_boot_devtools
 
-    implementation commons_lang3
-
-    implementation 'com.alibaba:fastjson:1.2.60'
     // 打包时使用provide
 //    providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat:2.0.4.RELEASE'
     // 本地运行，否则异常：
     implementation 'org.springframework.boot:spring-boot-starter-tomcat:2.0.4.RELEASE'
     // javax websocket
 //    compileOnly 'javax:javaee-api:8.0'
-    implementation 'org.springframework.boot:spring-boot-devtools:2.0.4.RELEASE'
-    implementation 'org.springframework.boot:spring-boot-starter-websocket:2.0.4.RELEASE'
     implementation "org.reactivestreams:reactive-streams:1.0.2"
     implementation "io.lettuce:lettuce-core:5.0.4.RELEASE"
 
     implementation mysql_connector_java
 	implementation 'org.json:json:20190722'
-	
+    implementation commons_lang3
+    implementation 'com.alibaba:fastjson:1.2.60'
 	implementation "com.squareup.okhttp3:okhttp:4.2.1"
+    implementation netty_all
 	// 录音
-	// https://mvnrepository.com/artifact/org.bytedeco.javacpp-presets/ffmpeg
 //	implementation group: 'org.bytedeco.javacpp-presets', name: 'ffmpeg', version: '4.1-1.4.4'
 //	implementation group: 'org.bytedeco', name: 'javacv-platform', version: '1.5.4'
 	
