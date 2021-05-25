@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import cn.gyw.components.web.base.mgb.BaseController;
 import cn.gyw.demo.seckill.inventory.api.WarehouseInfoService;
 import cn.gyw.demo.seckill.inventory.api.model.WarehouseInfo;
 import cn.gyw.demo.seckill.inventory.api.model.WarehouseInfoExample;

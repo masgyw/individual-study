@@ -1,10 +1,7 @@
 package cn.gyw.community.im;
 
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
 
 /**
  * war包形式部署：需要继承类 SpringBootServletInitializer

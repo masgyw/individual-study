@@ -5,6 +5,7 @@ plugins {
 }
 
 dependencies {
+	implementation platform_common_web
     // 公共模块依赖
     implementation project(":facade:rest-service-api")
     implementation project(":facade:system-service-api")

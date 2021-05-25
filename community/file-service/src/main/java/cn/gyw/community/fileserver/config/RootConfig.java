@@ -10,11 +10,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Conditional;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
-
 import cn.gyw.community.fileserver.model.ServiceProperties;
-import cn.gyw.components.web.condition.LinuxCondition;
-import cn.gyw.components.web.condition.WindowsCondition;
 import cn.gyw.platform.common.util.SnowFlake;
+import cn.gyw.platform.common.web.condition.LinuxCondition;
+import cn.gyw.platform.common.web.condition.WindowsCondition;
 
 @Configuration
 public class RootConfig {

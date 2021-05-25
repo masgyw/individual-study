@@ -1,5 +1,5 @@
 var websocket = null;
-var baseUrl = "ws://localhost:8083/im/websocket/";
+var baseUrl = "ws://localhost:8083/im/";
 
 var fromUserId = "";
 var toUserId = "";

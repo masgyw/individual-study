@@ -20,7 +20,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * WebSocket 服务
  */
 @Service
-@ServerEndpoint(value = "/websocket/{userId}/{toUserId}")
+@ServerEndpoint(value = "/{userId}/{toUserId}")
 public class IMWebSocketService {
 
     private final static Logger log = LoggerFactory.getLogger(IMWebSocketService.class);

@@ -2,3 +2,4 @@
 
 platform_annotations='cn.gyw.platform:annotations:1.0.0'
 platform_common='cn.gyw.platform:common:1.0.0'
+platform_common_web='cn.gyw.platform:common-web:1.0.0'

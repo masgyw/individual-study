@@ -2,7 +2,7 @@ package cn.gyw.community.fileserver.enums;
 
 import org.springframework.web.multipart.MultipartFile;
 
-import cn.gyw.components.web.exceptions.BusinessExceptionAssert;
+import cn.gyw.platform.common.web.exceptions.BusinessExceptionAssert;
 
 public enum FileServerAssert implements BusinessExceptionAssert {
 

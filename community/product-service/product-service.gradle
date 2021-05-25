@@ -4,6 +4,8 @@ plugins {
 }
 
 dependencies {
+	implementation platform_common_web
+	
     implementation project(':facade:product-service-api')
     implementation project(':facade:order-service-api')
     implementation project(':facade:inventory-service-api')

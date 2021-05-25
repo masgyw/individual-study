@@ -1,5 +1,7 @@
 package cn.gyw.community.im.config;
 
+import java.util.List;
+
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,8 +12,6 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 import org.springframework.web.socket.server.standard.ServerEndpointExporter;
 
-import java.util.List;
-
 /**
  * SpringBoot + javax.websocket 支持
  *
@@ -20,7 +20,6 @@ import java.util.List;
  * 3. 非嵌入式Tomcat 不需要 2 步骤，由容器负责
  */
 @Configuration
-
 public class WebConfig extends WebMvcConfigurationSupport {
 
     @Bean
@@ -36,13 +35,13 @@ public class WebConfig extends WebMvcConfigurationSupport {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/static/**")
-                .addResourceLocations("classpath:/static/htm/");
+                .addResourceLocations("classpath:/static/");
         // javascript file
         registry.addResourceHandler("/js/**")
                 .addResourceLocations("classpath:/static/js/");
         // css file
         registry.addResourceHandler("/css/**")
-                .addResourceLocations("classpath:/static/css/");
+                .addResourceLocations("classpath:/static/");
         // 解决Swagger-ui不显示的问题
         registry.addResourceHandler("swagger-ui.htm")
                 .addResourceLocations("classpath:/META-INF/resources/");

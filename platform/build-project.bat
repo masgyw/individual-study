@@ -5,6 +5,7 @@ echo [1]: mybatis-generator-plus
 echo [2]: spring-plugins
 echo [3]: annotations
 echo [4]: common
+echo [5]: common-web
 
 set /p PROJECT_INDEX=":"
 
@@ -31,5 +32,11 @@ if "%PROJECT_INDEX%" equ "3" (
 if "%PROJECT_INDEX%" equ "4" (
 	echo start build common.jar
 	call gradlew :common:build :common:jarToLocalMaven -x test --offline
+	exit;
+) 
+
+if "%PROJECT_INDEX%" equ "5" (
+	echo start build common-web.jar
+	call gradlew :common-web:build :common-web:jarToLocalMaven -x test --offline
 	exit;
 ) 

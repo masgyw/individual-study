@@ -14,6 +14,10 @@ git config --global credential.helper store/cache
 - git pull 输入密码后，会在用户目录下生成 .git-credentials文件，之后就免密
 4. 修改远程分支 url
 git remote set-url origin git@github.com:*.git
+5. 文件名过长  
+全局修改：git config --global core.longpaths true  
+本项目：git config core.longpaths true
+
 
 ## 二、常用操作
 ### 2.1 取消文件git管理，删除Github上文件，不删除本地文件

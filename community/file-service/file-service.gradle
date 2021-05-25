@@ -2,6 +2,7 @@ apply plugin: 'java'
 
 dependencies {
     implementation platform_common
+    implementation platform_common_web
     
     implementation spring_boot_starter_web
     implementation spring_boot_starter_data_jpa

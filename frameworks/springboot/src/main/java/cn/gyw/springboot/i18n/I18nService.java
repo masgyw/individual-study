@@ -1,4 +1,4 @@
-package cn.gyw.springboot.service;
+package cn.gyw.springboot.i18n;
 
 import java.util.Locale;
 

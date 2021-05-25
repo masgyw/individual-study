@@ -13,6 +13,7 @@ dependencies {
     implementation project(':facade:system-service-api')
     // 公共模块依赖
     implementation platform_common
+	implementation platform_common_web
 
     implementation "org.springframework.boot:spring-boot-starter:${springBootVersion}"
     implementation "org.springframework.boot:spring-boot-starter-web:${springBootVersion}"
