@@ -26,7 +26,7 @@ else
 fi
 
 start() {
-	nohup java $JAVA_OPTS -jar ***.jar 2>1 1>/dev/null &
+	nohup java $JAVA_OPTS -jar ***.jar 2>&1 1>/dev/null &
 	echo $! > $PID_FILE
 }
 
@@ -44,10 +44,15 @@ cd $RUN_PATH/
 
 case $1 in 
 	start)
-		start()
+		start
 	;;
 	stop)
-		stop()
+		stop
+	;;
+	restart)
+		stop
+		sleep 1s
+		start
 	;;
 	*)
 	echo "arguments start/stop"

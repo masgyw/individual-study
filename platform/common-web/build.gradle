@@ -10,6 +10,7 @@ dependencies {
     implementation 'org.apache.commons:commons-lang3:3.6'
 	implementation 'com.auth0:java-jwt:3.10.3' // java json web tokens
 	implementation pagehelper
+	implementation tk_mybatis_mapper
 	
     // 编译期依赖
     // spring web support

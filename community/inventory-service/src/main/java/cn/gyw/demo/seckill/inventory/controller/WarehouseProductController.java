@@ -8,11 +8,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import cn.gyw.components.web.base.mgb.BaseController;
 import cn.gyw.demo.seckill.inventory.api.WarehouseProductService;
 import cn.gyw.demo.seckill.inventory.api.model.WarehouseProduct;
 import cn.gyw.demo.seckill.inventory.api.model.WarehouseProductExample;
 import cn.gyw.demo.seckill.inventory.model.dto.WarehouseProductDto;
+import cn.gyw.platform.common.web.base.mgb.BaseController;
 
 @RestController
 @RequestMapping("/warehouse-product")

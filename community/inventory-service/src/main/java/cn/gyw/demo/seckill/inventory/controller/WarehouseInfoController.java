@@ -10,6 +10,7 @@ import cn.gyw.demo.seckill.inventory.api.WarehouseInfoService;
 import cn.gyw.demo.seckill.inventory.api.model.WarehouseInfo;
 import cn.gyw.demo.seckill.inventory.api.model.WarehouseInfoExample;
 import cn.gyw.demo.seckill.inventory.model.dto.WarehouseInfoDto;
+import cn.gyw.platform.common.web.base.mgb.BaseController;
 
 @RestController
 @RequestMapping("/warehouse-info")

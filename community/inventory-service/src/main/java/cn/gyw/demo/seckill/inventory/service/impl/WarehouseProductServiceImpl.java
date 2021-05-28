@@ -10,12 +10,12 @@ import com.alibaba.dubbo.config.annotation.Service;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
-import cn.gyw.components.web.base.mgb.BaseService;
 import cn.gyw.demo.seckill.inventory.api.WarehouseProductService;
 import cn.gyw.demo.seckill.inventory.api.model.WarehouseProduct;
 import cn.gyw.demo.seckill.inventory.api.model.WarehouseProductExample;
 import cn.gyw.demo.seckill.inventory.dao.WarehouseProductMapper;
 import cn.gyw.demo.seckill.order.api.OrderMasterService;
+import cn.gyw.platform.common.web.base.mgb.BaseService;
 
 @Component
 @Service
