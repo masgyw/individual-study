@@ -1,9 +1,11 @@
 package cn.gyw.community.rest.mapper;
 
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Mapper;
 
 import cn.gyw.community.rest.post.entity.Post;
+import cn.gyw.platform.common.web.base.mgb.BaseDao;
 
-public interface PostMapper extends BaseMapper<Post> {
+@Mapper
+public interface PostMapper extends BaseDao<Post> {
 
 }

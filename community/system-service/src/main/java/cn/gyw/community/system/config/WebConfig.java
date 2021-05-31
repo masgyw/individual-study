@@ -15,8 +15,8 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 
-import cn.gyw.components.web.external.AuthenticationInterceptor;
-import cn.gyw.components.web.log.GlobalApiLogInterceptor;
+import cn.gyw.platform.common.web.external.AuthenticationInterceptor;
+import cn.gyw.platform.common.web.log.GlobalApiLogInterceptor;
 
 @Configuration
 public class WebConfig extends WebMvcConfigurationSupport {

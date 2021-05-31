@@ -11,6 +11,7 @@ dependencies {
 	implementation 'com.auth0:java-jwt:3.10.3' // java json web tokens
 	implementation pagehelper
 	implementation tk_mybatis_mapper
+	implementation mapper_spring_boot_starter
 	
     // 编译期依赖
     // spring web support

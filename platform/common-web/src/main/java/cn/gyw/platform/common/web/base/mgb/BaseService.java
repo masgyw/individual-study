@@ -10,7 +10,9 @@ import org.apache.commons.lang3.reflect.FieldUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public abstract class BaseService<T, Example> implements IBaseService<T, Example> {
+import tk.mybatis.mapper.entity.Example;
+
+public abstract class BaseService<T> implements IBaseService<T> {
 
 	public final Logger log = LoggerFactory.getLogger(this.getClass());
 
@@ -18,37 +20,8 @@ public abstract class BaseService<T, Example> implements IBaseService<T, Example
 	protected String entityClassSimpleName;
 	protected Class<T> entityClass;
 
-	private BaseDao<T, Example> baseDao;
+	protected BaseDao<T> baseDao;
 	private static final String SUFFIX = "Mapper";
-
-	@Override
-	public List<T> query(Example example) {
-		return baseDao.selectByExample(example);
-	}
-
-	@Override
-	public List<T> queryAll() {
-		return baseDao.selectByExample(null);
-	}
-
-	@Override
-	public int save(T record) {
-		return baseDao.insertSelective(record);
-	}
-
-	@Override
-	public int remove(Example example) {
-		return baseDao.deleteByExample(example);
-	}
-
-	@Override
-	public T selectOne(Example example) {
-		List<T> dataList = baseDao.selectByExample(example);
-		if (dataList != null && dataList.size() > 0) {
-			return dataList.get(0);
-		}
-		return null;
-	}
 
 	/**
 	 * 初始化方法
@@ -66,7 +39,37 @@ public abstract class BaseService<T, Example> implements IBaseService<T, Example
 				.append(entityClassSimpleName.substring(1)).append(SUFFIX);
 		log.info("base service name:{}", serviceBuilder.toString());
 		// forceAccess: 访问非public 属性
-		baseDao = (BaseDao<T, Example>) FieldUtils.readField(this, serviceBuilder.toString(), true);
+		baseDao = (BaseDao<T>) FieldUtils.readField(this, serviceBuilder.toString(), true);
+	}
+
+	@Override
+	public List<T> queryAll() {
+		return baseDao.selectAll();
+	}
+
+	@Override
+	public List<T> query(Example example) {
+		return baseDao.selectByExample(example);
+	}
+
+	@Override
+	public int remove(Example example) {
+		return baseDao.deleteByExample(example);
+	}
+
+	@Override
+	public int save(T record) {
+		return baseDao.insertSelective(record);
+	}
+
+	@Override
+	public T selectOne(T record) {
+		return baseDao.selectOne(record);
+	}
+	
+	@Override
+	public T selectOne(Example example) {
+		return baseDao.selectOneByExample(example);
 	}
 
 }

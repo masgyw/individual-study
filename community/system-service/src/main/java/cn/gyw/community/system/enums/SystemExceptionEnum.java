@@ -1,6 +1,6 @@
 package cn.gyw.community.system.enums;
 
-import cn.gyw.components.web.exceptions.BusinessExceptionAssert;
+import cn.gyw.platform.common.web.exceptions.BusinessExceptionAssert;
 
 /**
  * 系统服务异常

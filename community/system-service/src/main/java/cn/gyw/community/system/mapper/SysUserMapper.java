@@ -1,9 +1,10 @@
 package cn.gyw.community.system.mapper;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+
 import cn.gyw.community.system.dto.UserDto;
 import cn.gyw.community.system.entity.SysUser;
-import cn.gyw.components.web.model.QueryExample;
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import cn.gyw.platform.common.web.model.QueryExample;
 
 public interface SysUserMapper extends BaseMapper<SysUser> {
 

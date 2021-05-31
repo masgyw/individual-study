@@ -1,5 +1,6 @@
 package cn.gyw.platform.common.web.base.mgb;
 
+import java.lang.invoke.MethodHandles;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.List;
@@ -25,25 +26,23 @@ import cn.gyw.platform.common.web.base.AbstractController;
 import cn.gyw.platform.common.web.enums.ArgumentExceptionEnum;
 import cn.gyw.platform.common.web.model.PageInfo;
 import cn.gyw.platform.common.web.model.QueryData;
+import tk.mybatis.mapper.entity.Example;
 
 /**
- * TODO： Controller 不能直接使用DAO 层的T 和 Example
- *
+ * 通用Controller
  * @param <T>
- * @param <Example>
  * @param <Dto>
  */
-public abstract class BaseController<T, Example, Dto> extends AbstractController {
+public abstract class BaseController<T, DTO> extends AbstractController {
 
-	public final Logger log = LoggerFactory.getLogger(this.getClass());
+	protected static final Logger log = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
 	protected String entityClassFullName;
 	protected String entityClassSimpleName;
 	protected Class<T> entityClass;
-	protected Class<Example> exampleClass;
 
-	private IBaseService<T, Example> baseService;
-	
+	private IBaseService<T> baseService;
+
 	@GetMapping
 	public List<T> query(WebRequest webRequest) {
 		Example example = buildExample(fillVariablesMapWithIncomingRequestParameters(webRequest.getParameterMap()));
@@ -59,7 +58,7 @@ public abstract class BaseController<T, Example, Dto> extends AbstractController
 		String limit = params.get("limit");
 		ArgumentExceptionEnum.NULL_ERROR.assertNotNull(page, "page");
 		ArgumentExceptionEnum.NULL_ERROR.assertNotNull(limit, "limit");
-		
+
 		Page<T> pageObj = PageHelper.startPage(Integer.parseInt(page), Integer.parseInt(limit));
 		List<T> data = baseService.query(example);
 		PageInfo pageInfo = new PageInfo();
@@ -67,7 +66,7 @@ public abstract class BaseController<T, Example, Dto> extends AbstractController
 		pageInfo.setPage(pageObj.getPageNum());
 		pageInfo.setLimit(pageObj.getPageSize());
 		pageInfo.setCount(pageObj.getPages());
-		
+
 		queryData.setRecords(data);
 		queryData.setPageInfo(pageInfo);
 		return queryData;
@@ -79,7 +78,7 @@ public abstract class BaseController<T, Example, Dto> extends AbstractController
 	 * @return
 	 */
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public int add(@RequestBody Dto dto) throws IllegalAccessException, InstantiationException {
+	public int add(@RequestBody DTO dto) throws IllegalAccessException, InstantiationException {
 		log.info("Add api data：{}", dto);
 		T bean = entityClass.newInstance();
 		BeanUtils.copyProperties(dto, bean);
@@ -114,9 +113,7 @@ public abstract class BaseController<T, Example, Dto> extends AbstractController
 				.append(entityClassSimpleName.substring(1)).append("Service");
 		log.info("base service name:{}", serviceBuilder.toString());
 		// forceAccess: 访问非public 属性
-		baseService = (IBaseService<T, Example>) FieldUtils.readField(this, serviceBuilder.toString(), true);
-
-		exampleClass = (Class<Example>) params[1];
+		baseService = (IBaseService<T>) FieldUtils.readField(this, serviceBuilder.toString(), true);
 	}
 
 	public Example buildExample(Map<String, String> requestMap) {

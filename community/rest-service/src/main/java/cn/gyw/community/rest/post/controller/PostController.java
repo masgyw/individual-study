@@ -1,8 +1,5 @@
 package cn.gyw.community.rest.post.controller;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.annotation.Resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +11,7 @@ import cn.gyw.community.rest.dto.PostDto;
 import cn.gyw.community.rest.post.entity.Post;
 import cn.gyw.community.rest.post.service.IPostService;
 import cn.gyw.community.rest.rpc.SystemServiceClient;
-import cn.gyw.components.web.base.mybatisplus.BaseController;
+import cn.gyw.platform.common.web.base.mgb.BaseController;
 
 @RestController
 @RequestMapping("/post")
@@ -51,10 +48,4 @@ public class PostController extends BaseController<Post, PostDto> {
         return "i am zouren ";
     }
     
-    @Override
-    protected Map<String, String> setOrderColumns() {
-    	Map<String, String> orderMap = new HashMap<>();
-    	orderMap.put("desc", Post.CREATED_TIME);
-    	return orderMap;
-    }
 }

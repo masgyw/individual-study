@@ -1,9 +1,11 @@
 package cn.gyw.community.rest.mapper;
 
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Mapper;
 
 import cn.gyw.community.rest.reply.entity.Reply;
+import cn.gyw.platform.common.web.base.mgb.BaseDao;
 
-public interface ReplyMapper extends BaseMapper<Reply> {
+@Mapper
+public interface ReplyMapper extends BaseDao<Reply> {
 
 }

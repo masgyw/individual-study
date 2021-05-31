@@ -39,9 +39,11 @@ spring_test="org.springframework:spring-test:${springVersion}"
 // Spring boot
 spring_boot_starter="org.springframework.boot:spring-boot-starter:$springBootVersion"
 
+// mybatis
 mybatis='org.mybatis:mybatis:3.5.4'
 mybatis_generator_core='org.mybatis.generator:mybatis-generator-core:1.4.0'
 tk_mybatis_mapper='tk.mybatis:mapper:4.1.5'
+mapper_spring_boot_starter="tk.mybatis:mapper-spring-boot-starter:2.1.5"
 
 // db
 mysql_connector_java='mysql:mysql-connector-java:5.1.47'

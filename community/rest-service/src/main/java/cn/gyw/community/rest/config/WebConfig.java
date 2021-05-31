@@ -10,7 +10,7 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import cn.gyw.components.web.log.GlobalApiLogInterceptor;
+import cn.gyw.platform.common.web.log.GlobalApiLogInterceptor;
 
 @Configuration
 public class WebConfig implements WebMvcConfigurer {

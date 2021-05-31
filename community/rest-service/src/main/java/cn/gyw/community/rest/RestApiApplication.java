@@ -14,7 +14,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @EnableEurekaClient
 @EnableFeignClients
 @EnableAspectJAutoProxy
-@SpringBootApplication(scanBasePackages = {"cn.gyw.community.rest", "cn.gyw.components"},
+@SpringBootApplication(scanBasePackages = {"cn.gyw.community.rest"},
         exclude = {FreeMarkerAutoConfiguration.class})
 public class RestApiApplication {
 

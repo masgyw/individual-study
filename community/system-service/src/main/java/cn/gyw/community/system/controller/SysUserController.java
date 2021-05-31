@@ -20,9 +20,7 @@ import cn.gyw.community.system.entity.SysUser;
 import cn.gyw.community.system.enums.SystemExceptionEnum;
 import cn.gyw.community.system.service.IRedisService;
 import cn.gyw.community.system.service.ISysUserService;
-import cn.gyw.components.web.base.mybatisplus.BaseController;
-import cn.gyw.components.web.model.QueryExample;
-import cn.gyw.components.web.utils.JwtTokenUtil;
+import cn.gyw.platform.common.web.base.mgb.BaseController;
 
 /**
  * <p>

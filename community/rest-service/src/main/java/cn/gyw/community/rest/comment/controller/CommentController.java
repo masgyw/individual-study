@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import cn.gyw.community.rest.comment.entity.Comment;
 import cn.gyw.community.rest.comment.service.ICommentService;
 import cn.gyw.community.rest.dto.CommentDto;
-import cn.gyw.components.web.base.mybatisplus.BaseController;
+import cn.gyw.platform.common.web.base.mgb.BaseController;
 
 @RestController
 @RequestMapping("/comment")
