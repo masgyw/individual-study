@@ -1,6 +1,51 @@
+// MGB 插件
+buildscript {
+	repositories {
+		// maven 本地仓库
+		mavenLocal()
+		// 添加 Maven 仓库
+		maven { url 'https://maven.aliyun.com/nexus/content/groups/htm' }
+		maven { url 'https://maven.aliyun.com/nexus/content/repositories/jcenter' }
+		maven { url 'https://maven.aliyun.com/nexus/content/repositories/google' }
+		maven { url 'https://maven.aliyun.com/nexus/content/repositories/gradle-plugin' }
+		maven {
+			url "https://plugins.gradle.org/m2/"
+		}
+	}
+	dependencies {
+		classpath "gradle.plugin.com.cuisongliu.plugin:mybatis-generator:0.9.6"
+
+	}
+}
+
 plugins {
 	id 'java'
 	id 'org.springframework.boot'
+	id "com.cuisongliu.plugin.mybatis-generator" version "0.9.6"
+}
+
+// 不设置，使用默认值
+mbg {
+	// 是否覆盖已经生成的xml或者代码
+	overwrite = true
+	consoleable = true
+	jdbc{
+		driver = "com.mysql.jdbc.Driver"
+		url    = "jdbc:mysql://[ip]:[port]/[dbname]?useSSL=false"
+		username = "username"
+		password = "password"
+	}
+	xml{
+		resourcesProject = "src/main/java"
+		mapperPlugin = tk.mybatis.mapper.generator.MapperPlugin.class
+		mapperMapper = "com.cuisongliu.springboot.core.mapper.MyMapper"
+		mapperPackage= "com.cuisongliu.mapper"
+		modelPackage = "com.cuisongliu.entity"
+		xmlPackage =   "com.cuisongliu.mapper"
+		tableName ="s_system"
+		objectName ="System"
+		mapperSuffix ="Mapper"
+	}
 }
 
 dependencies {

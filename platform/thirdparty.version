@@ -41,7 +41,8 @@ spring_boot_starter="org.springframework.boot:spring-boot-starter:$springBootVer
 
 // mybatis
 mybatis='org.mybatis:mybatis:3.5.4'
-mybatis_generator_core='org.mybatis.generator:mybatis-generator-core:1.4.0'
+// 使用1.3.7避免和tkmybatis 冲突
+mybatis_generator_core='org.mybatis.generator:mybatis-generator-core:1.3.7'
 tk_mybatis_mapper='tk.mybatis:mapper:4.1.5'
 mapper_spring_boot_starter="tk.mybatis:mapper-spring-boot-starter:2.0.4"
 
@@ -52,6 +53,7 @@ pagehelper='com.github.pagehelper:pagehelper:5.1.11'
 // other
 jsoup='org.jsoup:jsoup:1.11.3'
 selenium_java='org.seleniumhq.selenium:selenium-java:3.141.59'
+freemarker='org.freemarker:freemarker:2.3.23'
 // OCR
 //jai_imageio='com.sun.media:jai_imageio:1.1'
 //jai_imageio_core='com.github.jai-imageio:jai-imageio-core:1.3.1'

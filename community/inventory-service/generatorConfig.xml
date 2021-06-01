@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+<!--  <classPathEntry location="mysql-connector-java-5.1.44.jar" />-->
+
+  <context id="MySqlTables" targetRuntime="MyBatis3" defaultModelType="flat">
+    <property name="autoDelimitKeywords" value="true"/>
+    <property name="beginningDelimiter" value="`"/>
+    <property name="endingDelimiter" value="`"/>
+
+    <!-- 自定义XML格式化器（可选） -->
+    <property name="xmlFormatter" value="org.mybatis.generator.api.dom.DefaultXmlFormatter"/>
+
+    <!-- 自定义注释生成器（可选） -->
+    <commentGenerator type="org.mybatis.generator.internal.DefaultCommentGenerator"/>
+
+    <!-- 数据库连接 -->
+    <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+        connectionURL="jdbc:mysql://192.168.1.181:3306/mall_warehouse?useSSL=false"
+        userId="root"
+        password="root">
+    </jdbcConnection>
+	
+    <javaTypeResolver >
+      <property name="forceBigDecimals" value="false" />
+    </javaTypeResolver>
+
+    <!-- 文件路径：实体 -->
+    <javaModelGenerator targetPackage="cn.gyw.community.inventory.model" targetProject="src/main/java">
+      <property name="enableSubPackages" value="true" />
+      <property name="trimStrings" value="true" />
+    </javaModelGenerator>
+
+    <!-- 文件路径：xxxMapper.xml -->
+    <sqlMapGenerator targetPackage="mappers"  targetProject="src/main/resources">
+      <property name="enableSubPackages" value="true" />
+    </sqlMapGenerator>
+
+    <!-- 文件路径：xxxMapper.java（可选） -->
+    <javaClientGenerator type="XMLMAPPER" targetPackage="cn.gyw.community.inventory.dao"
+                         targetProject="src/main/java">
+      <property name="enableSubPackages" value="true" />
+    </javaClientGenerator>
+
+    <!-- 要生成的关系表 -->
+    <table schema="all" tableName="warehouse_product" domainObjectName="WarehouseProduct">
+      <property name="useActualColumnNames" value="false"/>
+      <!--<generatedKey column="ID" sqlStatement="DB2" identity="true" />-->
+	  <!-- -->
+      <!--<columnOverride column="DATE_FIELD" property="startDate" />-->
+	  <!-- -->
+      <!--<ignoreColumn column="FRED" />-->
+	  <!-- -->
+      <!--<columnOverride column="LONG_VARCHAR_FIELD" jdbcType="VARCHAR" />-->
+    </table>
+
+  </context>
+</generatorConfiguration>

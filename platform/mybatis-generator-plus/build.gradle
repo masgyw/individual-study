@@ -3,7 +3,8 @@ dependencies {
 	implementation mybatis_generator_core
 	
 	implementation tk_mybatis_mapper
-	
+	implementation freemarker
+
 	testImplementation mysql_connector_java
 	testImplementation junit
 }
