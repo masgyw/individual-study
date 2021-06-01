@@ -6,7 +6,7 @@ import javax.annotation.Nullable;
 
 import org.apache.commons.lang3.RandomUtils;
 
-import cn.gyw.demo.seckill.inventory.api.model.WarehouseProduct;
+import cn.gyw.community.inventory.api.model.WarehouseProduct;
 
 public abstract class MockDataFactory {
 

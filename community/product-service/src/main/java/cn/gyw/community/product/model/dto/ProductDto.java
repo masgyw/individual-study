@@ -7,7 +7,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-import cn.gyw.demo.seckill.inventory.api.model.WarehouseProduct;
+import cn.gyw.community.inventory.api.model.WarehouseProduct;
 
 public class ProductDto {
 

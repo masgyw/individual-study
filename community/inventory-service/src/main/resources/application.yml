@@ -16,14 +16,14 @@ spring:
     restart:
       enabled: true
       exclude: application.yml
-mybatis:
-  check-config-location: true                             # 是否检测MyBatis运行参数配置文件
+#mybatis:
+  #check-config-location: true                             # 是否检测MyBatis运行参数配置文件
   #config-location: classpath:/mybatis-config.xml          # 指定MyBatis运行参数配置文件位置
-  mapper-locations: classpath:/mapper/**/*.xml            # 注册XML映射器
+  #mapper-locations: classpath:/mapper/**/*.xml            # 注册XML映射器
   #type-aliases-package: test.springboot.model             # 配置Java类型包名
   #type-handlers-package: test.springboot.handlers         # 配置类型处理器包名
-  executor-type: SIMPLE                                   # 指定执行器类型
-  configuration:
-    default-fetch-size: 20
-    default-statement-timeout: 30
-    mapUnderscoreToCamelCase: true
+  #executor-type: SIMPLE                                   # 指定执行器类型
+  #configuration:
+    #default-fetch-size: 20
+    #default-statement-timeout: 30
+    #mapUnderscoreToCamelCase: true

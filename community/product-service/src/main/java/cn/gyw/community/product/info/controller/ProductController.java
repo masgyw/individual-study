@@ -13,16 +13,15 @@ import org.springframework.web.bind.annotation.RestController;
 import cn.gyw.community.product.info.model.Product;
 import cn.gyw.community.product.info.service.ProductInfoServiceImpl;
 import cn.gyw.community.product.model.ProductInfo;
-import cn.gyw.community.product.model.ProductInfoExample;
 import cn.gyw.community.product.model.dto.ProductDto;
-import cn.gyw.components.web.base.mgb.BaseController;
+import cn.gyw.platform.common.web.base.mgb.BaseController;
 
 /**
  * Product service
  */
 @RestController
 @RequestMapping("/product")
-public class ProductController extends BaseController<ProductInfo, ProductInfoExample, ProductDto> {
+public class ProductController extends BaseController<ProductInfo, ProductDto> {
 
 	@Autowired
 	private ProductInfoServiceImpl productInfoService;
@@ -59,25 +58,5 @@ public class ProductController extends BaseController<ProductInfo, ProductInfoEx
 		log.info("params is {}", reqObject);
 		String categoryName = reqObject.get("categoryName");
 		return productInfoService.getProductPics(categoryName);
-	}
-
-	@Override
-	public ProductInfoExample buildExample(Map<String, String> requestMap) {
-		ProductInfoExample example = new ProductInfoExample();
-		ProductInfoExample.Criteria criteria = example.createCriteria();
-
-		if (requestMap.containsKey("productId")) {
-			criteria.andProductIdEqualTo(Integer.parseInt(requestMap.get("productId")));
-		}
-		if (requestMap.containsKey("productCore")) {
-			criteria.andProductCoreEqualTo(requestMap.get("productCore"));
-		}
-		if (requestMap.containsKey("startDate")) {
-			criteria.andProductionDateGreaterThanOrEqualTo(parseDate(requestMap.get("startDate")));
-		}
-		if (requestMap.containsKey("endDate")) {
-			criteria.andProductionDateLessThanOrEqualTo(parseDate(requestMap.get("endDate")));
-		}
-		return example;
 	}
 }

@@ -2,8 +2,8 @@ package cn.gyw.community.system.service;
 
 import cn.gyw.community.system.dto.UserDto;
 import cn.gyw.community.system.entity.SysUser;
-import cn.gyw.components.web.base.mybatisplus.IBaseService;
-import cn.gyw.components.web.model.QueryExample;
+import cn.gyw.platform.common.web.base.mgb.IBaseService;
+import cn.gyw.platform.common.web.model.QueryExample;
 
 
 /**

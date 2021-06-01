@@ -2,8 +2,8 @@ package cn.gyw.community.product.model.dto;
 
 import java.io.Serializable;
 
+import cn.gyw.community.inventory.api.model.WarehouseProduct;
 import cn.gyw.community.product.model.ProductInfo;
-import cn.gyw.demo.seckill.inventory.api.model.WarehouseProduct;
 
 public class ProductWithWarehouseDto implements Serializable {
 

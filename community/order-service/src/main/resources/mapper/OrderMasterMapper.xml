@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.gyw.demo.seckill.order.dao.OrderMasterMapper">
-  <resultMap id="BaseResultMap" type="cn.gyw.demo.seckill.order.api.model.OrderMaster">
+<mapper namespace="cn.gyw.community.order.dao.OrderMasterMapper">
+  <resultMap id="BaseResultMap" type="cn.gyw.community.order.api.model.OrderMaster">
     <id column="order_id" jdbcType="INTEGER" property="orderId" />
     <result column="order_sn" jdbcType="BIGINT" property="orderSn" />
     <result column="customer_id" jdbcType="INTEGER" property="customerId" />
@@ -90,7 +90,7 @@
     shipping_sn, create_time, shipping_time, pay_time, receive_time, order_status, order_point, 
     invoice_time, modified_time
   </sql>
-  <select id="selectByExample" parameterType="cn.gyw.demo.seckill.order.api.model.OrderMasterExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="cn.gyw.community.order.api.model.OrderMasterExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -114,13 +114,13 @@
     delete from order_master
     where order_id = #{orderId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="cn.gyw.demo.seckill.order.api.model.OrderMasterExample">
+  <delete id="deleteByExample" parameterType="cn.gyw.community.order.api.model.OrderMasterExample">
     delete from order_master
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="cn.gyw.demo.seckill.order.api.model.OrderMaster">
+  <insert id="insert" parameterType="cn.gyw.community.order.api.model.OrderMaster">
     insert into order_master (order_id, order_sn, customer_id, 
       shipping_user, province, city, 
       district, address, payment_method, 
@@ -138,7 +138,7 @@
       #{receiveTime,jdbcType=TIMESTAMP}, #{orderStatus,jdbcType=TINYINT}, #{orderPoint,jdbcType=INTEGER}, 
       #{invoiceTime,jdbcType=VARCHAR}, #{modifiedTime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="cn.gyw.demo.seckill.order.api.model.OrderMaster">
+  <insert id="insertSelective" parameterType="cn.gyw.community.order.api.model.OrderMaster">
     insert into order_master
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <!-- <if test="orderId != null">
@@ -283,7 +283,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="cn.gyw.demo.seckill.order.api.model.OrderMasterExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="cn.gyw.community.order.api.model.OrderMasterExample" resultType="java.lang.Long">
     select count(*) from order_master
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -395,7 +395,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="cn.gyw.demo.seckill.order.api.model.OrderMaster">
+  <update id="updateByPrimaryKeySelective" parameterType="cn.gyw.community.order.api.model.OrderMaster">
     update order_master
     <set>
       <if test="orderSn != null">
@@ -467,7 +467,7 @@
     </set>
     where order_id = #{orderId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="cn.gyw.demo.seckill.order.api.model.OrderMaster">
+  <update id="updateByPrimaryKey" parameterType="cn.gyw.community.order.api.model.OrderMaster">
     update order_master
     set order_sn = #{orderSn,jdbcType=BIGINT},
       customer_id = #{customerId,jdbcType=INTEGER},

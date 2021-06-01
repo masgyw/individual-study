@@ -1,23 +1,25 @@
 package cn.gyw.community.product;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.Banner.Mode;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.autoconfigure.freemarker.FreeMarkerAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import com.alibaba.dubbo.config.spring.context.annotation.DubboComponentScan;
+import tk.mybatis.spring.annotation.MapperScan;
 
+@MapperScan(basePackages = "cn.gyw.community.product")
 //@EnableDubbo
-@DubboComponentScan(basePackages = {"cn.gyw.community.product.rpc"})
+//@DubboComponentScan(basePackages = {"cn.gyw.community.product.rpc"})
 @EnableTransactionManagement
-@SpringBootApplication(scanBasePackages = {"cn.gyw.community", "cn.gyw.components.web.external"})
+@SpringBootApplication(scanBasePackages = {"cn.gyw.community"}, exclude = {FreeMarkerAutoConfiguration.class})
 public class ProductApplication {
 
 	public static void main(String[] args) {
-		new SpringApplicationBuilder(ProductApplication.class).bannerMode(Mode.OFF).build().run(args);
+//		new SpringApplicationBuilder(ProductApplication.class).bannerMode(Mode.OFF).build().run(args);
+		SpringApplication.run(ProductApplication.class, args);
 	}
 
 	@Bean

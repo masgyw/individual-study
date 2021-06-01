@@ -10,23 +10,20 @@ dependencies {
     implementation project(":facade:rest-service-api")
     implementation project(":facade:system-service-api")
 
-    implementation "org.springframework.boot:spring-boot-starter:${springBootVersion}"
-    implementation "org.springframework.boot:spring-boot-starter-web:${springBootVersion}"
-    implementation "org.springframework.boot:spring-boot-starter-jdbc:${springBootVersion}"
+    implementation spring_boot_starter
+    implementation spring_boot_starter_web
+    implementation spring_boot_starter_jdbc
     // 打包时使用provide
 //    providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat:2.0.4.RELEASE'
     // 本地运行，否则异常：
-    implementation "org.springframework.boot:spring-boot-starter-tomcat:${springBootVersion}"
-    implementation "org.springframework.boot:spring-boot-devtools:${springBootVersion}"
-    // redis
-    implementation "org.springframework.boot:spring-boot-starter-data-redis:${springBootVersion}"
+    implementation spring_boot_starter_tomcat
+    implementation spring_boot_devtools
+    implementation spring_boot_starter_data_redis
+	implementation mapper_spring_boot_starter
 
-    implementation 'org.apache.commons:commons-lang3:3.6'
-	implementation 'mysql:mysql-connector-java:5.1.47'
-    // mybatis plus
-    implementation ('com.baomidou:mybatis-plus-boot-starter:3.0.5') {
-//        transitive = false // 开启、关闭传递性依赖，传递性依赖会下载依赖的所有包，也可以用@jar
-    }
+    implementation commons_lang3
+	implementation mysql_connector_java
+	
     // 时间插件：Mybatis对Java 8 time (JSR 310)支持
     implementation 'org.mybatis:mybatis-typehandlers-jsr310:1.0.2'
 	// lettuce pool 缓存连接池

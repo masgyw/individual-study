@@ -11,8 +11,10 @@ dependencies {
 
 	implementation spring_boot_starter
 	implementation spring_boot_starter_web
-	implementation mybatis_spring_boot_starter
 	implementation spring_boot_devtools
+	implementation mybatis_spring_boot_starter
+	implementation mapper_spring_boot_starter
+	
 	implementation (dubbo) {
 		exclude group: 'log4j'
 	}

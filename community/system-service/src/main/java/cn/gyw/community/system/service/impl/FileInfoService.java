@@ -2,13 +2,11 @@ package cn.gyw.community.system.service.impl;
 
 import org.springframework.stereotype.Service;
 
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-
 import cn.gyw.community.system.entity.FileInfo;
-import cn.gyw.community.system.mapper.FileInfoMapper;
 import cn.gyw.community.system.service.IFileInfoService;
+import cn.gyw.platform.common.web.base.mgb.BaseService;
 
 @Service
-public class FileInfoService extends ServiceImpl<FileInfoMapper, FileInfo> implements IFileInfoService {
+public class FileInfoService extends BaseService<FileInfo> implements IFileInfoService {
 
 }

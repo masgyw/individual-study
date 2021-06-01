@@ -8,11 +8,11 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import cn.gyw.community.system.dto.UserDto;
 import cn.gyw.community.system.mapper.SysUserMapper;
-import cn.gyw.components.web.client.IdGenerationService;
-import cn.gyw.components.web.model.QueryExample;
+import cn.gyw.platform.common.web.client.IdGenerationService;
+import cn.gyw.platform.common.web.model.QueryExample;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringBootTest(classes = {SystemApiApplication.class}, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(classes = {SystemApplication.class}, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class SystemApplicationTest {
 
     @Autowired

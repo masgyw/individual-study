@@ -3,12 +3,12 @@ package cn.gyw.community.rest.post.entity;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-@TableName(value = "rest_post")
+@Table(name = "rest_post")
 public class Post implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -17,7 +17,7 @@ public class Post implements Serializable {
     /**
      * 帖子编号
      */
-    @TableId(value = "uid", type = IdType.AUTO)
+    @Id
     private Integer uid;
 
     /**

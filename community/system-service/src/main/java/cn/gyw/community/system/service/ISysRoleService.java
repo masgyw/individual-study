@@ -1,7 +1,7 @@
 package cn.gyw.community.system.service;
 
 import cn.gyw.community.system.entity.SysRole;
-import cn.gyw.components.web.base.mybatisplus.IBaseService;
+import cn.gyw.platform.common.web.base.mgb.IBaseService;
 
 /**
  * <p>

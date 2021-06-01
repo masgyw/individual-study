@@ -24,11 +24,8 @@ dependencies {
     implementation "org.springframework.boot:spring-boot-starter-tomcat:${springBootVersion}"
     implementation "org.springframework.boot:spring-boot-devtools:${springBootVersion}"
     implementation spring_boot_starter_data_redis
+	implementation mapper_spring_boot_starter
 
-    // mybatis plus
-    implementation ('com.baomidou:mybatis-plus-boot-starter:3.0.5') {
-//        transitive = false // 开启、关闭传递性依赖，传递性依赖会下载依赖的所有包，也可以用@jar
-    }
     // 时间插件：Mybatis对Java 8 time (JSR 310)支持
     implementation 'org.mybatis:mybatis-typehandlers-jsr310:1.0.2'
 	// eurake 注册

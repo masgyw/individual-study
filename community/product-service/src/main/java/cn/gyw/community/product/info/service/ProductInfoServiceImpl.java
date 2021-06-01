@@ -1,6 +1,13 @@
 package cn.gyw.community.product.info.service;
 
-import cn.gyw.community.product.api.ProductInfoService;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Objects;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import cn.gyw.community.product.category.model.ProductCategory;
 import cn.gyw.community.product.category.model.ProductCategoryExample;
 import cn.gyw.community.product.info.model.Product;
@@ -8,18 +15,11 @@ import cn.gyw.community.product.mapper.product.ProductCategoryMapper;
 import cn.gyw.community.product.mapper.product.ProductInfoMapper;
 import cn.gyw.community.product.model.ProductInfo;
 import cn.gyw.community.product.model.ProductInfoExample;
-import cn.gyw.components.web.base.mgb.BaseService;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
+import cn.gyw.platform.common.web.base.mgb.BaseService;
+import tk.mybatis.mapper.entity.Example;
 
 @Service
-public class ProductInfoServiceImpl extends BaseService<ProductInfo, ProductInfoExample>
+public class ProductInfoServiceImpl extends BaseService<ProductInfo>
         implements LocalProductInfoService {
 	
 	@Autowired
@@ -37,16 +37,18 @@ public class ProductInfoServiceImpl extends BaseService<ProductInfo, ProductInfo
 		 * 
 		 * }else { list.add("/appliance/AirCondition-F3W1.png"); }
 		 */
-        ProductCategoryExample pce = new ProductCategoryExample();
-        pce.createCriteria().andCategoryNameEqualTo(categoryName);
-        ProductCategory category = productCategoryMapper.selectOne(pce);
+        Example example = new Example(ProductCategory.class);
+        example.createCriteria().andEqualTo("category_name", categoryName);
+        ProductCategory category = productCategoryMapper.selectOneByExample(example);
         if (Objects.isNull(category)) {
         	log.info("Category {} is not exists!", categoryName);
         	return Collections.emptyList();
         }
-        ProductInfoExample example = new ProductInfoExample();
-        example.createCriteria().andOneCategoryIdEqualTo(Short.valueOf(category.getCategoryCode()));
-        List<Product> datas = productInfoMapper.selectWithPicByExample(example);
+        example = new Example(ProductInfo.class);
+//        example.createCriteria().andOneCategoryIdEqualTo(Short.valueOf(category.getCategoryCode()));
+        List<Product> datas = new ArrayList<>();
+//        		productInfoMapper.selectWithPicByExample(example);
         return datas;
     }
+
 }

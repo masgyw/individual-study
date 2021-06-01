@@ -1,9 +1,9 @@
 package cn.gyw.community.system.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
-import java.time.LocalDateTime;
 import java.io.Serializable;
+import java.time.LocalDateTime;
+
+import javax.persistence.Id;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -27,7 +27,7 @@ public class SysUser implements Serializable {
     /**
      * 用户编号
      */
-    @TableId(value = "uid", type = IdType.AUTO)
+    @Id
     private Integer uid;
 
     /**

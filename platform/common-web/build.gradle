@@ -10,14 +10,14 @@ dependencies {
     implementation 'org.apache.commons:commons-lang3:3.6'
 	implementation 'com.auth0:java-jwt:3.10.3' // java json web tokens
 	implementation pagehelper
-	implementation tk_mybatis_mapper
-	implementation mapper_spring_boot_starter
+//	implementation tk_mybatis_mapper
 	
     // 编译期依赖
     // spring web support
     compileOnly "org.springframework.boot:spring-boot-starter-web:${springBootVersion}"
     // mybatis-plus
     compileOnly 'com.baomidou:mybatis-plus-boot-starter:3.0.5'
+	compileOnly mapper_spring_boot_starter
     
     // test
     testImplementation('org.springframework.boot:spring-boot-starter-test:2.0.4.RELEASE') {

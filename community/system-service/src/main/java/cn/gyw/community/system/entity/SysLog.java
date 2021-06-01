@@ -1,11 +1,12 @@
 package cn.gyw.community.system.entity;
 
-import com.baomidou.mybatisplus.annotation.TableName;
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 import java.util.Date;
 
-@TableName(value = "apilog0")
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+@Table(name = "apilog0")
 public class SysLog {
 
     // 创建时间

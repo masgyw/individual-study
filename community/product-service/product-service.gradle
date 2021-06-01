@@ -15,18 +15,22 @@ dependencies {
     implementation spring_boot_starter_data_redis
     implementation spring_boot_devtools
     implementation spring_boot_starter_jta_atomikos
+	implementation mapper_spring_boot_starter
 
     implementation pagehelper
-    implementation mybatis_spring_boot_starter
 
-    implementation(dubbo) {
-        exclude group: 'log4j'
-    }
+//    implementation(dubbo) {
+//        exclude group: 'log4j'
+//    }
     implementation curator_framework
     implementation curator_recipes
 
     implementation commons_lang3
     implementation mysql_connector_java
+	// jackson
+	implementation 'com.fasterxml.jackson.core:jackson-databind:2.11.2'
+	implementation 'com.fasterxml.jackson.core:jackson-core:2.11.2'
+	implementation 'com.fasterxml.jackson.core:jackson-annotations:2.11.2'
 
     implementation sl4j_api
     implementation gson

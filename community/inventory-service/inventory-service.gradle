@@ -12,8 +12,9 @@ dependencies {
 
 	implementation spring_boot_starter
 	implementation spring_boot_starter_web
-	implementation mybatis_spring_boot_starter
 	implementation spring_boot_devtools
+	implementation mapper_spring_boot_starter
+	
 	implementation (dubbo) {
 		exclude group: 'log4j'
 	}
@@ -24,6 +25,11 @@ dependencies {
 
 	implementation sl4j_api
 	implementation gson
+	
+	implementation 'org.freemarker:freemarker:2.3.28'
+	testImplementation("org.springframework.boot:spring-boot-starter-test:${springBootVersion}") {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
 }
 
 task buildTestPackage(type: Zip, dependsOn: bootJar) {

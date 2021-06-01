@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import cn.gyw.community.system.dto.RoleDto;
 import cn.gyw.community.system.entity.SysRole;
 import cn.gyw.community.system.service.ISysRoleService;
-import cn.gyw.components.web.base.mybatisplus.BaseController;
+import cn.gyw.platform.common.web.base.mgb.BaseController;
 
 /**
  * <p>

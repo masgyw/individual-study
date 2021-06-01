@@ -1,27 +1,19 @@
 package cn.gyw.community.rest.reply.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import java.io.Serializable;
+import java.time.LocalDateTime;
+
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-import java.time.LocalDateTime;
-import java.io.Serializable;
-
-/**
- * <p>
- * 
- * </p>
- *
- * @author guanyw
- * @since 2020-08-11
- */
-@TableName("rest_reply")
+@Table(name = "rest_reply")
 public class Reply implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @TableId(value = "id", type = IdType.AUTO)
+    @Id
     private Integer id;
     /**
      * 父评论ID

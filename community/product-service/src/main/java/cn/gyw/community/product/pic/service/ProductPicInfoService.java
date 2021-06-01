@@ -5,11 +5,10 @@ import org.springframework.stereotype.Service;
 
 import cn.gyw.community.product.mapper.product.ProductPicInfoMapper;
 import cn.gyw.community.product.pic.model.ProductPicInfo;
-import cn.gyw.community.product.pic.model.ProductPicInfoExample;
-import cn.gyw.components.web.base.mgb.BaseService;
+import cn.gyw.platform.common.web.base.mgb.BaseService;
 
 @Service
-public class ProductPicInfoService extends BaseService<ProductPicInfo, ProductPicInfoExample> {
+public class ProductPicInfoService extends BaseService<ProductPicInfo> {
 
 	@Autowired
 	private ProductPicInfoMapper productPicInfoMapper;
