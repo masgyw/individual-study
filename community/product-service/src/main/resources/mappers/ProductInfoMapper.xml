@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.gyw.community.product.info.dao.ProductInfoMapper">
+  <resultMap id="BaseResultMap" type="cn.gyw.community.product.info.entity.ProductInfo">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="product_id" jdbcType="INTEGER" property="productId" />
+    <result column="product_core" jdbcType="CHAR" property="productCore" />
+    <result column="product_name" jdbcType="VARCHAR" property="productName" />
+    <result column="bar_code" jdbcType="VARCHAR" property="barCode" />
+    <result column="brand_id" jdbcType="INTEGER" property="brandId" />
+    <result column="one_category_id" jdbcType="SMALLINT" property="oneCategoryId" />
+    <result column="two_category_id" jdbcType="SMALLINT" property="twoCategoryId" />
+    <result column="three_category_id" jdbcType="SMALLINT" property="threeCategoryId" />
+    <result column="supplier_id" jdbcType="INTEGER" property="supplierId" />
+    <result column="price" jdbcType="DECIMAL" property="price" />
+    <result column="average_cost" jdbcType="DECIMAL" property="averageCost" />
+    <result column="publish_status" jdbcType="TINYINT" property="publishStatus" />
+    <result column="audit_status" jdbcType="TINYINT" property="auditStatus" />
+    <result column="weight" jdbcType="REAL" property="weight" />
+    <result column="length" jdbcType="REAL" property="length" />
+    <result column="height" jdbcType="REAL" property="height" />
+    <result column="width" jdbcType="REAL" property="width" />
+    <result column="color_type" jdbcType="CHAR" property="colorType" />
+    <result column="production_date" jdbcType="TIMESTAMP" property="productionDate" />
+    <result column="shelf_life" jdbcType="INTEGER" property="shelfLife" />
+    <result column="indate" jdbcType="TIMESTAMP" property="indate" />
+    <result column="modified_time" jdbcType="TIMESTAMP" property="modifiedTime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="cn.gyw.community.product.info.entity.ProductInfo">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <result column="descript" jdbcType="LONGVARCHAR" property="descript" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    product_id, product_core, product_name, bar_code, brand_id, one_category_id, two_category_id, 
+    three_category_id, supplier_id, price, average_cost, publish_status, audit_status, 
+    weight, length, height, width, color_type, production_date, shelf_life, indate, modified_time
+  </sql>
+  <sql id="Blob_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    descript
+  </sql>
+</mapper>

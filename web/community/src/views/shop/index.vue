@@ -170,11 +170,11 @@
       })
       // 获取各类商品数据
       this.getPromo("手机", "phoneList");
-      this.getPromo("电视机", "miTvList");
-      this.getPromo("保护套", "protectingShellList");
-      this.getPromo("充电器", "chargerList");
-      this.getHot(["电视机", "空调", "洗衣机"], "applianceList");
-      this.getHot(["保护套", "保护膜", "充电器", "充电宝"], "accessoryList");
+      // this.getPromo("电视机", "miTvList");
+      // this.getPromo("保护套", "protectingShellList");
+      // this.getPromo("充电器", "chargerList");
+      // this.getHot(["电视机", "空调", "洗衣机"], "applianceList");
+      // this.getHot(["保护套", "保护膜", "充电器", "充电宝"], "accessoryList");
     },
     methods: {
       // 获取家电模块子组件传过来的数据
@@ -187,7 +187,7 @@
       },
       // 获取各类商品数据方法封装
       getPromo(categoryName, val) {
-        promo({categoryName})
+        promo({"categoryNameList": [categoryName]})
           .then(resp => {
             this[val] = resp.data;
           })

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.gyw.community.product.category.dao.ProductCategoryMapper">
+  <resultMap id="BaseResultMap" type="cn.gyw.community.product.category.entity.ProductCategory">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="category_id" jdbcType="SMALLINT" property="categoryId" />
+    <result column="category_name" jdbcType="VARCHAR" property="categoryName" />
+    <result column="category_code" jdbcType="VARCHAR" property="categoryCode" />
+    <result column="parent_id" jdbcType="SMALLINT" property="parentId" />
+    <result column="category_level" jdbcType="TINYINT" property="categoryLevel" />
+    <result column="category_status" jdbcType="TINYINT" property="categoryStatus" />
+    <result column="modified_time" jdbcType="TIMESTAMP" property="modifiedTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    category_id, category_name, category_code, parent_id, category_level, category_status, 
+    modified_time
+  </sql>
+</mapper>

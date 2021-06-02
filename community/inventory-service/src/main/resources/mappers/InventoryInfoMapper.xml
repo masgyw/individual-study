@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.gyw.community.inventory.info.dao.InventoryInfoMapper">
+  <resultMap id="BaseResultMap" type="cn.gyw.community.inventory.info.entity.InventoryInfo">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="w_id" jdbcType="SMALLINT" property="wId" />
+    <result column="inventory_sn" jdbcType="CHAR" property="inventorySn" />
+    <result column="warehoust_name" jdbcType="VARCHAR" property="warehoustName" />
+    <result column="inventory_phone" jdbcType="VARCHAR" property="inventoryPhone" />
+    <result column="contact" jdbcType="VARCHAR" property="contact" />
+    <result column="province" jdbcType="SMALLINT" property="province" />
+    <result column="city" jdbcType="SMALLINT" property="city" />
+    <result column="distrct" jdbcType="SMALLINT" property="distrct" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="inventory_status" jdbcType="TINYINT" property="inventoryStatus" />
+    <result column="modified_time" jdbcType="TIMESTAMP" property="modifiedTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    w_id, inventory_sn, warehoust_name, inventory_phone, contact, province, city, distrct, 
+    address, inventory_status, modified_time
+  </sql>
+</mapper>

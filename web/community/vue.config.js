@@ -27,7 +27,9 @@ module.exports = {
   publicPath: '/',
   outputDir: 'dist',
   assetsDir: 'static',
-  lintOnSave: process.env.NODE_ENV === 'development',
+  // lintOnSave: process.env.NODE_ENV === 'development',
+  // 关闭eslint
+  lintOnSave: false,
   productionSourceMap: false,
   devServer: {
     port: port,
@@ -35,6 +37,17 @@ module.exports = {
     overlay: {
       warnings: false,
       errors: true
+    },
+    // set proxy
+    proxy: {
+      '/product': {
+        target: 'http://127.0.0.1:9001',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/product': ''
+        }
+
+      },
     },
     before: require('./mock/mock-server.js')
   },
@@ -87,7 +100,7 @@ module.exports = {
             .plugin('ScriptExtHtmlWebpackPlugin')
             .after('html')
             .use('script-ext-html-webpack-plugin', [{
-            // `runtime` must same as runtimeChunk name. default is `runtime`
+              // `runtime` must same as runtimeChunk name. default is `runtime`
               inline: /runtime\..*\.js$/
             }])
             .end()

@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.alibaba.dubbo.config.annotation.Service;
 
-import cn.gyw.community.inventory.api.WarehouseProductService;
+import cn.gyw.community.inventory.api.IInventoryProductApi;
 import cn.gyw.community.order.api.OrderMasterService;
 import cn.gyw.community.order.api.model.OrderMaster;
 import cn.gyw.community.order.dao.OrderMasterMapper;
@@ -24,7 +24,7 @@ public class OrderMasterServiceImpl extends BaseService<OrderMaster> implements 
 	private OrderMasterMapper orderMasterMapper;
 
 	@Reference
-	private WarehouseProductService warehouseProductService;
+	private IInventoryProductApi warehouseProductService;
 
 	private DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyyMMddHHmmssSSS");
 

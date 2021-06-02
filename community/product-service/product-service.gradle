@@ -1,6 +1,28 @@
+// MGB 插件
+buildscript {
+	repositories {
+		// maven 本地仓库
+		mavenLocal()
+		// 添加 Maven 仓库
+		maven { url 'https://maven.aliyun.com/nexus/content/groups/htm' }
+		maven { url 'https://maven.aliyun.com/nexus/content/repositories/jcenter' }
+		maven { url 'https://maven.aliyun.com/nexus/content/repositories/google' }
+		maven { url 'https://maven.aliyun.com/nexus/content/repositories/gradle-plugin' }
+		maven {
+			url "https://plugins.gradle.org/m2/"
+		}
+	}
+	dependencies {
+		classpath "gradle.plugin.com.cuisongliu.plugin:mybatis-generator:0.9.6"
+		classpath tk_mybatis_mapper
+		classpath freemarker
+	}
+}
+
 plugins {
     id 'java'
     id 'org.springframework.boot'
+	id "com.cuisongliu.plugin.mybatis-generator" version "0.9.6"
 }
 
 dependencies {
@@ -34,6 +56,30 @@ dependencies {
 
     implementation sl4j_api
     implementation gson
+}
+
+// 不设置，使用默认值
+mbg {
+	// 是否覆盖已经生成的xml或者代码
+	overwrite = true
+	consoleable = true
+	generatorFile = "generatorConfig.xml"
+	tableNames = "product_info,product_category"
+	jdbc{
+		driver = "com.mysql.jdbc.Driver"
+		url    = "jdbc:mysql://127.0.0.1:3306/mall_product?useSSL=false"
+		username = "root"
+		password = "root"
+	}
+	xml{
+		mapperPackage= "cn.gyw.community.product.info.dao"
+		modelPackage = "cn.gyw.community.product.info.entity"
+		mapperMapper = "cn.gyw.platform.common.web.base.mgb.BaseDao"
+		xmlPackage =   "mappers"
+		tableName ="product_info"
+		objectName ="ProductInfo"
+		mapperSuffix ="Mapper"
+	}
 }
 
 task buildTestPackage(type: Zip, dependsOn: bootJar) {

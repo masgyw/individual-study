@@ -104,6 +104,7 @@ function doSendMsg() {
         }),
         "sendInfo": content
     }
+    msg = "1234";
     if (websocket.readyState == websocket.OPEN) {
         websocket.send(JSON.stringify(msg));
     } else {

@@ -14,7 +14,8 @@ buildscript {
 	}
 	dependencies {
 		classpath "gradle.plugin.com.cuisongliu.plugin:mybatis-generator:0.9.6"
-
+		classpath tk_mybatis_mapper
+		classpath freemarker
 	}
 }
 
@@ -29,21 +30,21 @@ mbg {
 	// 是否覆盖已经生成的xml或者代码
 	overwrite = true
 	consoleable = true
+	generatorFile = "generatorConfig.xml"
+	tableNames = "inventory_info,shipping_info"
 	jdbc{
 		driver = "com.mysql.jdbc.Driver"
-		url    = "jdbc:mysql://[ip]:[port]/[dbname]?useSSL=false"
-		username = "username"
-		password = "password"
+		url    = "jdbc:mysql://127.0.0.1:3306/mall_inventory?useSSL=false"
+		username = "root"
+		password = "root"
 	}
 	xml{
-		resourcesProject = "src/main/java"
-		mapperPlugin = tk.mybatis.mapper.generator.MapperPlugin.class
-		mapperMapper = "com.cuisongliu.springboot.core.mapper.MyMapper"
-		mapperPackage= "com.cuisongliu.mapper"
-		modelPackage = "com.cuisongliu.entity"
-		xmlPackage =   "com.cuisongliu.mapper"
-		tableName ="s_system"
-		objectName ="System"
+		mapperPackage= "cn.gyw.community.inventory.dao"
+		modelPackage = "cn.gyw.community.inventory.entity"
+		mapperMapper = "cn.gyw.platform.common.web.base.mgb.BaseDao"
+		xmlPackage =   "mappers"
+		tableName ="inventory_info"
+		objectName ="InventoryInfo"
 		mapperSuffix ="Mapper"
 	}
 }

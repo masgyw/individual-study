@@ -13,10 +13,10 @@ const apiTypes = {
   FILE_INFO: '/system/fileInfo',
 
   // product about
-  PRODUCT: '/prod',
-  CATEGORY: '/prod/category',
-  PRODUCT_INFO: '/prod/product',
-  PRODUCT_PIC: '/prod/pic'
+  PRODUCT: '/product',
+  CATEGORY: '/product/category',
+  PRODUCT_INFO: '/product/info',
+  PRODUCT_PIC: '/product/pic'
   
 }
 

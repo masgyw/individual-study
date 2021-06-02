@@ -12,7 +12,7 @@ export function carousel(data) {
 // 促销商品
 export function promo(params) {
   return request({
-    url: apiTypes.PRODUCT + '/product/promo',
+    url: apiTypes.PRODUCT + '/info/promo',
     method: 'POST',
     data: params
   });
@@ -20,7 +20,7 @@ export function promo(params) {
 
 export function hot(params) {
   return request({
-    url: apiTypes.PRODUCT + '/product/hot',
+    url: apiTypes.PRODUCT + '/info/hot',
     method: 'POST',
     data: params
   });
