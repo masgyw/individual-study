@@ -3,7 +3,11 @@ package cn.gyw.community.product.info.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,6 +41,7 @@ public class ProductInfoController extends BaseController<ProductInfo, ProductIn
 	 */
 	@PostMapping("/hot")
 	public List<ProductInfo> getHotProduct(@RequestBody ProductInfoRequest request) {
+		
 		log.info("params is {}", request);
 		List<String> categoryList = request.getCategoryNameList();
 		List<ProductInfo> productList = new ArrayList<>();
@@ -51,7 +56,7 @@ public class ProductInfoController extends BaseController<ProductInfo, ProductIn
 	 * 
 	 * @return
 	 */
-	@PostMapping("/promo")
+	@PostMapping(path = "/promo", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public List<ProductInfo> getPromoProduct(@RequestBody ProductInfoRequest request) {
 		log.info("params is {}", request);
 		List<String> categoryList = request.getCategoryNameList();

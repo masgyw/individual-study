@@ -10,11 +10,11 @@ export function carousel(data) {
   });
 }
 // 促销商品
-export function promo(params) {
+export function promo(data) {
   return request({
     url: apiTypes.PRODUCT + '/info/promo',
     method: 'POST',
-    data: params
+    data
   });
 }
 
@@ -23,5 +23,16 @@ export function hot(params) {
     url: apiTypes.PRODUCT + '/info/hot',
     method: 'POST',
     data: params
+  });
+}
+
+export function add(data) {
+  return request({
+    url: apiTypes.PRODUCT + '/info',
+    method: 'POST',
+    data: JSON.stringify(data),
+    header: {
+      'Content-Type': 'application/json'
+    }
   });
 }

@@ -95,7 +95,7 @@
 
   import BaseList from '@/components/BaseList'
   import BaseMenu from '@/components/BaseMenu'
-  import { carousel, promo, hot } from '@/api/product.js'
+  import { add, carousel, promo, hot } from '@/api/product.js'
 
   export default {
     components: {
@@ -163,11 +163,11 @@
     created() {
       this.target = this.$store.getters.productHost;
       // 获取轮播图数据
-      carousel({}).then(resp => {
-        this.carousel = resp.data;
-      }).catch(err => {
-        console.log(err);
-      })
+      // carousel({}).then(resp => {
+      //   this.carousel = resp.data;
+      // }).catch(err => {
+      //   console.log(err);
+      // })
       // 获取各类商品数据
       this.getPromo("手机", "phoneList");
       // this.getPromo("电视机", "miTvList");
@@ -187,13 +187,14 @@
       },
       // 获取各类商品数据方法封装
       getPromo(categoryName, val) {
-        promo({"categoryNameList": [categoryName]})
-          .then(resp => {
-            this[val] = resp.data;
-          })
-          .catch(err => {
+        add({"productName": "phone"});
+        // promo({"categoryNameList": [categoryName]})
+        //   .then(resp => {
+        //     this[val] = resp.data;
+        //   })
+        //   .catch(err => {
 
-          });
+        //   });
         // this.$axios
         //   .post(api, {
         //     categoryName

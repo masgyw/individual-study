@@ -32,7 +32,7 @@ import Layout from '@/layout'
  */
 export const constantRoutes = [
   {
-    path: '/shop',
+    path: '/',
     component: () => import('@/views/shop/index'),
     hidden: false
   },
@@ -50,7 +50,7 @@ export const constantRoutes = [
   },
 
   {
-    path: '/',
+    path: '/admin',
     component: Layout,
     redirect: '/dashboard',
     children: [{

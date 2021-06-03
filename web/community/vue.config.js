@@ -41,7 +41,7 @@ module.exports = {
     // set proxy
     proxy: {
       '/product': {
-        target: 'http://127.0.0.1:9001',
+        target: `http://127.0.0.1:9001`,
         changeOrigin: true,
         pathRewrite: {
           '^/product': ''

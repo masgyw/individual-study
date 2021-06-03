@@ -40,9 +40,12 @@ public class ProductInfoService extends BaseService<ProductInfo> {
         	log.info("Category {} is not exists!", categoryName);
         	return Collections.emptyList();
         }
-        example = new Example(ProductDto.class);
+//        example = new Example(ProductDto.class);
 //        example.createCriteria().andOneCategoryIdEqualTo(Short.valueOf(category.getCategoryCode()));
         List<ProductInfo> datas = new ArrayList<>();
+        ProductInfo productInfo = new ProductInfo();
+        productInfo.setProductName("Phone");
+        datas.add(productInfo);
 //        		productInfoMapper.selectWithPicByExample(example);
         return datas;
     }
