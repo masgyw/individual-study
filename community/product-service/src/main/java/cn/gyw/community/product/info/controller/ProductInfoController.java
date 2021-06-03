@@ -56,7 +56,7 @@ public class ProductInfoController extends BaseController<ProductInfo, ProductIn
 	 * 
 	 * @return
 	 */
-	@PostMapping(path = "/promo", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@PostMapping(path = "/promo")
 	public List<ProductInfo> getPromoProduct(@RequestBody ProductInfoRequest request) {
 		log.info("params is {}", request);
 		List<String> categoryList = request.getCategoryNameList();

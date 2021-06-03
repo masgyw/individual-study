@@ -95,7 +95,7 @@
 
   import BaseList from '@/components/BaseList'
   import BaseMenu from '@/components/BaseMenu'
-  import { add, carousel, promo, hot } from '@/api/product.js'
+  import { carousel, promo, hot } from '@/api/product.js'
 
   export default {
     components: {
@@ -187,7 +187,7 @@
       },
       // 获取各类商品数据方法封装
       getPromo(categoryName, val) {
-        promo({"categoryNameList": [categoryName]})
+        promo({categoryName})
           .then(resp => {
             this[val] = resp.data;
           })
