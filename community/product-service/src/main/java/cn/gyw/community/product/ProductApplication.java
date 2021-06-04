@@ -15,7 +15,7 @@ import tk.mybatis.spring.annotation.MapperScan;
 //@EnableDubbo
 //@DubboComponentScan(basePackages = {"cn.gyw.community.product.rpc"})
 @EnableTransactionManagement
-@SpringBootApplication(scanBasePackages = { "cn.gyw.community" }, exclude = { FreeMarkerAutoConfiguration.class })
+@SpringBootApplication(scanBasePackages = { "cn.gyw.community", "cn.gyw.platform" }, exclude = { FreeMarkerAutoConfiguration.class })
 public class ProductApplication {
 
 	public static void main(String[] args) {

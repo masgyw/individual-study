@@ -15,29 +15,31 @@ dependencies {
     implementation platform_common
 	implementation platform_common_web
 
-    implementation "org.springframework.boot:spring-boot-starter:${springBootVersion}"
-    implementation "org.springframework.boot:spring-boot-starter-web:${springBootVersion}"
-    implementation "org.springframework.boot:spring-boot-starter-jdbc:${springBootVersion}"
+    implementation spring_boot_starter
+    implementation spring_boot_starter_web
+    implementation spring_boot_starter_jdbc
     // 打包时使用provide
-//    providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat:2.0.4.RELEASE'
+//    providedRuntime spring_boot_starter_tomcat
     // 本地运行，否则异常：
-    implementation "org.springframework.boot:spring-boot-starter-tomcat:${springBootVersion}"
-    implementation "org.springframework.boot:spring-boot-devtools:${springBootVersion}"
+    implementation spring_boot_starter_tomcat
+    implementation spring_boot_devtools
     implementation spring_boot_starter_data_redis
-	implementation mapper_spring_boot_starter
+	implementation (mapper_spring_boot_starter) {
+        exclude group: 'javax.persistence', module: 'persistence-api'
+    }
 
     // 时间插件：Mybatis对Java 8 time (JSR 310)支持
     implementation 'org.mybatis:mybatis-typehandlers-jsr310:1.0.2'
 	// eurake 注册
 	implementation "org.springframework.cloud:spring-cloud-starter-netflix-eureka-client"
-    implementation "cn.gyw.platform:configuration:1.0.0"
+    implementation platform_configuration
     // avoid NullPointerException
-    implementation ("org.javassist:javassist:3.27.0-GA") {
+    implementation (javax_persistence) {
         force = true
     }
 
-    implementation 'mysql:mysql-connector-java:5.1.47'
-    testImplementation("org.springframework.boot:spring-boot-starter-test:${springBootVersion}") {
+    implementation mysql_connector_java
+    testImplementation(spring_boot_starter_test) {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
 }

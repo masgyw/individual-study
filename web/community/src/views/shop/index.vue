@@ -3,8 +3,8 @@
     <!-- 轮播图 -->
     <div class="block">
       <el-carousel height="460px">
-        <el-carousel-item v-for="item in carousel" :key="item.carouselId">
-          <img style="height:460px;" :src="target + item.imgPath" :alt="item.describes" />
+        <el-carousel-item v-for="item in carousel" :key="item.productPicId">
+          <img style="height:460px;" :src="target + item.picUrl" :alt="item.picDesc" />
         </el-carousel-item>
       </el-carousel>
     </div>
@@ -44,10 +44,10 @@
             <div class="promo-list">
               <ul>
                 <li>
-                  <img :src="target + '/appliance/appliance-promo1.png'"/>
+                  <img :src="target + '/appliance/appliance-promo1.png'" />
                 </li>
                 <li>
-                  <img :src="target + '/appliance/appliance-promo2.png'"/>
+                  <img :src="target + '/appliance/appliance-promo2.png'" />
                 </li>
               </ul>
             </div>
@@ -77,7 +77,7 @@
                   <img :src="target + '/accessory/accessory-promo1.png'" />
                 </li>
                 <li>
-                  <img :src="target + '/accessory/accessory-promo2.png'"  />
+                  <img :src="target + '/accessory/accessory-promo2.png'" />
                 </li>
               </ul>
             </div>
@@ -95,7 +95,7 @@
 
   import BaseList from '@/components/BaseList'
   import BaseMenu from '@/components/BaseMenu'
-  import { add, carousel, promo, hot } from '@/api/product.js'
+  import { carousel, promo, hot } from '@/api/product.js'
 
   export default {
     components: {
@@ -162,17 +162,18 @@
     },
     created() {
       this.target = this.$store.getters.productHost;
+      console.log(this.target)
       // 获取轮播图数据
-      // carousel({}).then(resp => {
-      //   this.carousel = resp.data;
-      // }).catch(err => {
-      //   console.log(err);
-      // })
+      carousel({}).then(resp => {
+        this.carousel = resp.data;
+      }).catch(err => {
+        console.log(err);
+      })
       // 获取各类商品数据
       this.getPromo("手机", "phoneList");
-      // this.getPromo("电视机", "miTvList");
-      // this.getPromo("保护套", "protectingShellList");
-      // this.getPromo("充电器", "chargerList");
+      this.getPromo("电视机", "miTvList");
+      this.getPromo("保护套", "protectingShellList");
+      this.getPromo("充电器", "chargerList");
       // this.getHot(["电视机", "空调", "洗衣机"], "applianceList");
       // this.getHot(["保护套", "保护膜", "充电器", "充电宝"], "accessoryList");
     },
@@ -187,26 +188,16 @@
       },
       // 获取各类商品数据方法封装
       getPromo(categoryName, val) {
-        promo({"categoryNameList": [categoryName]})
+        promo({ "categoryNameList": [categoryName] })
           .then(resp => {
             this[val] = resp.data;
           })
           .catch(err => {
 
           });
-        // this.$axios
-        //   .post(api, {
-        //     categoryName
-        //   })
-        //   .then(res => {
-        //     this[val] = res.data.Product;
-        //   })
-        //   .catch(err => {
-        //     return Promise.reject(err);
-        //   });
       },
       getHot(categoryName, val) {
-        hot({categoryName})
+        hot({ categoryName })
           .then(resp => {
             this[val] = resp.data;
           }).catch(err => {

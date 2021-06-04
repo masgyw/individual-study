@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.gyw.community.product.pic.dao.ProductPicInfoMapper">
+  <resultMap id="BaseResultMap" type="cn.gyw.community.product.pic.entity.ProductPicInfo">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="product_pic_id" jdbcType="INTEGER" property="productPicId" />
+    <result column="product_id" jdbcType="INTEGER" property="productId" />
+    <result column="pic_desc" jdbcType="VARCHAR" property="picDesc" />
+    <result column="pic_url" jdbcType="VARCHAR" property="picUrl" />
+    <result column="is_master" jdbcType="TINYINT" property="isMaster" />
+    <result column="pic_order" jdbcType="TINYINT" property="picOrder" />
+    <result column="pic_status" jdbcType="TINYINT" property="picStatus" />
+    <result column="modified_time" jdbcType="TIMESTAMP" property="modifiedTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    product_pic_id, product_id, pic_desc, pic_url, is_master, pic_order, pic_status, 
+    modified_time
+  </sql>
+</mapper>

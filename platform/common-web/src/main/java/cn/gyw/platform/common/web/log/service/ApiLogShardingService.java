@@ -7,12 +7,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
 
 import cn.gyw.platform.common.web.log.dao.ApiLogShardingDao;
 import cn.gyw.platform.common.web.log.entity.ApiLog;
 
-@Service
 public class ApiLogShardingService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ApiLogShardingService.class);

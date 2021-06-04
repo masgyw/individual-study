@@ -12,25 +12,21 @@ import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
-import cn.gyw.platform.common.web.base.mybatisplus.IBaseDao;
-import cn.gyw.platform.common.web.log.ApiLogConfig;
-import cn.gyw.platform.common.web.log.entity.ApiLog;
-
 import org.apache.commons.lang3.tuple.ImmutableTriple;
 import org.apache.commons.lang3.tuple.Triple;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementSetter;
-import org.springframework.stereotype.Repository;
+
+import cn.gyw.platform.common.web.base.mybatisplus.IBaseDao;
+import cn.gyw.platform.common.web.log.entity.ApiLog;
 
 /**
  * api 调用日志 dao
  */
-@Repository
 public class ApiLogShardingDao implements IBaseDao {
 
     private final static Logger LOGGER = LoggerFactory.getLogger(ApiLogShardingDao.class);

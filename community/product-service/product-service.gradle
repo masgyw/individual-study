@@ -49,11 +49,12 @@ dependencies {
 
     implementation commons_lang3
     implementation mysql_connector_java
-	// jackson
-	implementation 'com.fasterxml.jackson.core:jackson-databind:2.11.2'
-	implementation 'com.fasterxml.jackson.core:jackson-core:2.11.2'
-	implementation 'com.fasterxml.jackson.core:jackson-annotations:2.11.2'
-
+	implementation jackson_databind
+	implementation jackson_core
+	implementation jackson_annotations
+	implementation poi_ooxml
+	implementation jsoup
+	
     implementation sl4j_api
     implementation gson
 }
@@ -64,7 +65,7 @@ mbg {
 	overwrite = true
 	consoleable = true
 	generatorFile = "generatorConfig.xml"
-	tableNames = "product_info,product_category"
+	tableNames = "product_info,product_category,product_pic_info"
 	jdbc{
 		driver = "com.mysql.jdbc.Driver"
 		url    = "jdbc:mysql://127.0.0.1:3306/mall_product?useSSL=false"
@@ -72,12 +73,12 @@ mbg {
 		password = "root"
 	}
 	xml{
-		mapperPackage= "cn.gyw.community.product.info.dao"
-		modelPackage = "cn.gyw.community.product.info.entity"
+		mapperPackage= "cn.gyw.community.product.pic.dao"
+		modelPackage = "cn.gyw.community.product.pic.entity"
 		mapperMapper = "cn.gyw.platform.common.web.base.mgb.BaseDao"
 		xmlPackage =   "mappers"
-		tableName ="product_info"
-		objectName ="ProductInfo"
+		tableName ="product_pic_info"
+		objectName ="ProductPicInfo"
 		mapperSuffix ="Mapper"
 	}
 }

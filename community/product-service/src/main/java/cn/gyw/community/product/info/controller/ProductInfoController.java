@@ -3,11 +3,7 @@ package cn.gyw.community.product.info.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -57,9 +53,8 @@ public class ProductInfoController extends BaseController<ProductInfo, ProductIn
 	 * @return
 	 */
 	@PostMapping(path = "/promo")
-	public List<ProductInfo> getPromoProduct(@RequestBody ProductInfoRequest request) {
-		log.info("params is {}", request);
-		List<String> categoryList = request.getCategoryNameList();
-		return productInfoService.getProductPics(categoryList.get(0));
+	public List<ProductInfo> getPromoProduct(@RequestBody ProductInfoRequest piRequest) {
+		List<String> categoryNames = piRequest.getCategoryNameList();
+		return productInfoService.getProductWithPics(categoryNames);
 	}
 }

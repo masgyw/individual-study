@@ -22,4 +22,5 @@ public abstract class MockDataFactory {
 		warehouseProduct.setAverageCost(BigDecimal.valueOf(RandomUtils.nextInt(100, 999)));
 		return warehouseProduct;
 	}
+	
 }

@@ -1,6 +1,6 @@
 module.exports = {
 
-  title: 'community',
+  title: 'Community',
 
   /**
    * @type {boolean} true | false
@@ -12,5 +12,7 @@ module.exports = {
    * @type {boolean} true | false
    * @description Whether show the logo in sidebar
    */
-  sidebarLogo: false
+  sidebarLogo: false,
+
+  productHost: 'http://127.0.0.1:9001'
 }

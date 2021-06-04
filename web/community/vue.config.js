@@ -7,16 +7,17 @@ function resolve(dir) {
 }
 
 const name = defaultSettings.title || 'community' // page title
-
 // If your port is set to 80,
 // use administrator privileges to execute the command line.
 // For example, Mac: sudo npm run
-// You can change the port by the following methods:
-// port = 9528 npm run dev OR npm run dev --port = 9528
-const port = process.env.port || process.env.npm_config_port || 9528 // dev port
+const port = 8087 // dev port
 
 // All configuration item explanations can be find in https://cli.vuejs.org/config/
 module.exports = {
+  transpileDependencies: [
+    'vue-echarts',
+    'resize-detector'
+  ],
   /**
    * You will need to set publicPath if you plan to deploy your site under a sub path,
    * for example GitHub Pages. If you plan to deploy your site to https://foo.github.io/bar/,
@@ -28,28 +29,66 @@ module.exports = {
   outputDir: 'dist',
   assetsDir: 'static',
   // lintOnSave: process.env.NODE_ENV === 'development',
-  // 关闭eslint
+  // 取消ESlint
   lintOnSave: false,
   productionSourceMap: false,
   devServer: {
     port: port,
-    open: true,
+    open: false,
     overlay: {
       warnings: false,
       errors: true
     },
-    // set proxy
     proxy: {
-      '/product': {
-        target: `http://127.0.0.1:9001`,
+      // mock VUE_APP_BASE_API -> mock js
+      // detail: https://cli.vuejs.org/config/#devserver-proxy
+      [process.env.VUE_APP_BASE_API]: {
+        target: `http://localhost:${port}/mock`,
+        secure: false, // 如果是https接口，需要配置这个参数为true
         changeOrigin: true,
         pathRewrite: {
-          '^/product': ''
+          ['^' + process.env.VUE_APP_BASE_API]: ''
         }
-
+      },
+      // Api gateway
+      '/api': {
+        target: 'http://localhost:9001',
+        secure: false,
+        changeOrigin: true,
+        pathRewrite: {
+          ['^/api']: ''
+        }
+      },
+      '/prod': {
+        target: 'http://localhost:9001',
+        secure: false,
+        changeOrigin: true,
+        pathRewrite: {
+          ['^/prod']: ''
+        }
+      },
+      '/system': {
+        target: 'http://localhost:8081',
+        secure: false,
+        changeOrigin: true
+      },
+      '/rest': {
+        target: 'http://localhost:8082',
+        secure: false,
+        changeOrigin: true
+      },
+      '/chat-info': {
+        target: 'http://localhost:8083/im',
+        secure: false,
+        changeOrigin: true
+      },
+      '/file': {
+        target: 'http://localhost:8085',
+        secure: false,
+        changeOrigin: true
       },
     },
-    before: require('./mock/mock-server.js')
+    after: require('./mock/mock-server.js')
   },
   configureWebpack: {
     // provide the app's title in webpack's name field, so that
@@ -57,41 +96,36 @@ module.exports = {
     name: name,
     resolve: {
       alias: {
-        '@': resolve('src')
+        '@': resolve('src'),
+        'src': path.resolve(__dirname, '../src'),
+        'components': path.resolve(__dirname, '../src/components'),
+        'api': path.resolve(__dirname, '../src/api'),
+        'utils': path.resolve(__dirname, '../src/utils'),
+        'store': path.resolve(__dirname, '../src/store'),
+        'router': path.resolve(__dirname, '../src/router')
       }
     }
   },
   chainWebpack(config) {
-    // it can improve the speed of the first screen, it is recommended to turn on preload
-    config.plugin('preload').tap(() => [
-      {
-        rel: 'preload',
-        // to ignore runtime.js
-        // https://github.com/vuejs/vue-cli/blob/dev/packages/@vue/cli-service/lib/config/app.js#L171
-        fileBlacklist: [/\.map$/, /hot-update\.js$/, /runtime\..*\.js$/],
-        include: 'initial'
-      }
-    ])
+    config.plugins.delete('preload') // TODO: need test
+    config.plugins.delete('prefetch') // TODO: need test
 
-    // when there are many pages, it will cause too many meaningless requests
-    config.plugins.delete('prefetch')
-
-    // set svg-sprite-loader
+    // set preserveWhitespace
     config.module
-      .rule('svg')
-      .exclude.add(resolve('src/icons'))
-      .end()
-    config.module
-      .rule('icons')
-      .test(/\.svg$/)
-      .include.add(resolve('src/icons'))
-      .end()
-      .use('svg-sprite-loader')
-      .loader('svg-sprite-loader')
-      .options({
-        symbolId: 'icon-[name]'
+      .rule('vue')
+      .use('vue-loader')
+      .loader('vue-loader')
+      .tap(options => {
+        options.compilerOptions.preserveWhitespace = true
+        return options
       })
       .end()
+
+    config
+      // https://webpack.js.org/configuration/devtool/#development
+      .when(process.env.NODE_ENV === 'development',
+        config => config.devtool('cheap-source-map')
+      )
 
     config
       .when(process.env.NODE_ENV !== 'development',
@@ -128,7 +162,6 @@ module.exports = {
                 }
               }
             })
-          // https:// webpack.js.org/configuration/optimization/#optimizationruntimechunk
           config.optimization.runtimeChunk('single')
         }
       )

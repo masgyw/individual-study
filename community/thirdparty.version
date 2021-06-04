@@ -86,6 +86,7 @@ httpmime='org.apache.httpcomponents:httpmime:4.5.3'
 quartz='org.quartz-scheduler:quartz:2.3.0'
 quartz_jobs='org.quartz-scheduler:quartz:2.3.0'
 netty_all='io.netty:netty-all:4.1.52.Final'
+jsoup='org.jsoup:jsoup:1.13.1'
 
 // DB
 mysql_connector_java='mysql:mysql-connector-java:5.1.47'

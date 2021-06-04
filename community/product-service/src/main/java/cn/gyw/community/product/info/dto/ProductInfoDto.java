@@ -5,6 +5,8 @@ import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import cn.gyw.community.product.pic.entity.ProductPicInfo;
+
 public class ProductInfoDto {
 
 	private Integer productId;
@@ -37,10 +39,10 @@ public class ProductInfoDto {
 	private Date productionDate;
 
 	private Integer shelfLife;
-	
+
 	private String descript;
 
-	private String productPicture;
+	private ProductPicInfo productPicInfo;
 
 	public Integer getProductId() {
 		return productId;
@@ -170,12 +172,12 @@ public class ProductInfoDto {
 		this.descript = descript;
 	}
 
-	public String getProductPicture() {
-		return productPicture;
+	public ProductPicInfo getProductPicInfo() {
+		return productPicInfo;
 	}
 
-	public void setProductPicture(String productPicture) {
-		this.productPicture = productPicture;
+	public void setProductPicInfo(ProductPicInfo productPicInfo) {
+		this.productPicInfo = productPicInfo;
 	}
-	
+
 }

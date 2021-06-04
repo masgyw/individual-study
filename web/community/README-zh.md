@@ -1,4 +1,32 @@
-# 个人社区
+# community
+个人学习社区项目
+
+### 项目布局
+
+``` lua
+src -- 源码目录
+├── api -- axios网络请求定义
+├── assets -- 静态图片资源文件
+├── components -- 通用组件封装
+├── config -- 配置
+├── directive -- 自定义指令
+├── layout -- 通用页面加载框架
+├── router -- vue-router路由配置
+├── store -- vuex的状态管理
+├── styles -- 全局css样式
+├── utils -- 工具类
+└── views -- 前端页面
+    └── admin -- 管理端
+      ├── oms -- 订单模块页面
+      ├── pms -- 商品模块页面
+      └── sms -- 营销模块页面
+    ├── chat -- 聊天
+    ├── home -- 首页
+    ├── login -- 登录页
+    ├── register -- 注册页
+    ├── login -- 登录页
+
+```
 
 ## Build Setup
 
@@ -12,6 +40,8 @@ npm install --registry=https://registry.npm.taobao.org
 # 启动服务
 npm run dev
 ```
+
+浏览器访问 [http://localhost:9528](http://localhost:9528)
 
 ## 发布
 

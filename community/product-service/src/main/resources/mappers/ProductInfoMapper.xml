@@ -34,6 +34,17 @@
     -->
     <result column="descript" jdbcType="LONGVARCHAR" property="descript" />
   </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithPic" type="cn.gyw.community.product.info.dto.ProductInfoDto">
+  	<association property="productPicInfo" javaType="cn.gyw.community.product.pic.entity.ProductPicInfo">
+    	<id column="product_pic_id" jdbcType="INTEGER" property="productPicId" />
+	    <result column="pic_desc" jdbcType="VARCHAR" property="picDesc" />
+	    <result column="pic_url" jdbcType="VARCHAR" property="picUrl" />
+	    <result column="is_master" jdbcType="TINYINT" property="isMaster" />
+	    <result column="pic_order" jdbcType="TINYINT" property="picOrder" />
+	    <result column="pic_status" jdbcType="TINYINT" property="picStatus" />
+  	</association>
+  </resultMap>
+  
   <sql id="Base_Column_List">
     <!--
       WARNING - @mbg.generated
@@ -48,4 +59,16 @@
     -->
     descript
   </sql>
+  <sql id="Pic_Info_Column_List">
+    pic_desc, pic_url, is_master, pic_order, pic_status
+  </sql>
+  
+  <select id="selectWithPic" resultMap="ResultMapWithPic" parameterType="String">
+  	select <include refid="Blob_Column_List" />
+  	, <include refid="Pic_Info_Column_List"/> from product_info t1 inner join product_pic_info t2
+  	on t1.product_id = t2.product_id
+  	where one_category_id = #{_parameter, jdbcType=VARCHAR}
+  	
+  </select>
+  
 </mapper>
