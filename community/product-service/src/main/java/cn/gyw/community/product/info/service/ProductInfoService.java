@@ -43,7 +43,7 @@ public class ProductInfoService extends BaseService<ProductInfo> {
 		}
 		List<ProductInfoDto> result = new ArrayList<>();
 		categorys.forEach((pc) -> {
-			productInfoMapper.selectWithPic(pc.)
+			productInfoMapper.selectWithPic(pc.getCategoryName());
 		});
 		return result;
 	}

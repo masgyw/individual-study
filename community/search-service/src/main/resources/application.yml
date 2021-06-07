@@ -1,0 +1,15 @@
+server:
+  port: 8089
+spring:
+  elasticsearch:
+    rest:
+      uris: http://192.168.1.181:9200
+
+# 文件输出
+logging:
+  config: classpath:log/logback.xml
+
+es:
+  host: 127.0.0.1
+  port: 9200
+  schema: http

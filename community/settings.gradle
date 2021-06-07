@@ -24,7 +24,7 @@ include 'rest-service' // 社区接口服务
 include 'instant-messaging' // 及时通信服务
 include 'file-service' // 文件服务
 include 'id-generator-service' // 分布式ID生成服务
-include 'elasticsearch-service' // 搜索服务
+include 'search-service' // 搜索服务
 include 'security-service' // 认证授权服务
 include 'product-service' // 产品服务
 include 'inventory-service' // 库存服务

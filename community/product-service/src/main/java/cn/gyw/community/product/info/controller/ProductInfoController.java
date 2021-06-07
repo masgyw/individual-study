@@ -36,15 +36,9 @@ public class ProductInfoController extends BaseController<ProductInfo, ProductIn
 	 * @return
 	 */
 	@PostMapping("/hot")
-	public List<ProductInfo> getHotProduct(@RequestBody ProductInfoRequest request) {
-		
-		log.info("params is {}", request);
-		List<String> categoryList = request.getCategoryNameList();
-		List<ProductInfo> productList = new ArrayList<>();
-		categoryList.forEach(cate -> {
-			productList.addAll(productInfoService.getProductPics(cate));
-		});
-		return productList;
+	public List<ProductInfoDto> getHotProduct(@RequestBody ProductInfoRequest piRequest) {
+		List<String> categoryNames = piRequest.getCategoryNameList();
+		return productInfoService.getProductWithPics(categoryNames);
 	}
 
 	/**
@@ -53,7 +47,7 @@ public class ProductInfoController extends BaseController<ProductInfo, ProductIn
 	 * @return
 	 */
 	@PostMapping(path = "/promo")
-	public List<ProductInfo> getPromoProduct(@RequestBody ProductInfoRequest piRequest) {
+	public List<ProductInfoDto> getPromoProduct(@RequestBody ProductInfoRequest piRequest) {
 		List<String> categoryNames = piRequest.getCategoryNameList();
 		return productInfoService.getProductWithPics(categoryNames);
 	}
