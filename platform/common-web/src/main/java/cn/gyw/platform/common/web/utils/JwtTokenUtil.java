@@ -1,11 +1,11 @@
 package cn.gyw.platform.common.web.utils;
 
+import cn.gyw.platform.common.web.enums.CommonRespEnum;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.JWTVerifier;
 
-import cn.gyw.platform.common.web.enums.BusinessExceptionEnum;
 import cn.gyw.platform.common.web.exceptions.BaseException;
 
 /**
@@ -35,7 +35,7 @@ public final class JwtTokenUtil {
 	    try {
 	        jwtVerifier.verify(token);
 	    } catch (JWTVerificationException e) {
-	        throw new BaseException(BusinessExceptionEnum.TOKEN_ILLEGAL);
+	        throw new BaseException(CommonRespEnum.TOKEN_ILLEGAL);
         }
 	}
 	

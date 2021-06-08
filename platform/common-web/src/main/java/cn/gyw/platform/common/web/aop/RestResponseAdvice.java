@@ -1,8 +1,10 @@
-package cn.gyw.platform.common.web.external;
+package cn.gyw.platform.common.web.aop;
 
 import java.lang.reflect.Type;
 import java.util.Objects;
 
+import cn.gyw.platform.common.web.constants.BaseConstants;
+import cn.gyw.platform.common.web.exceptions.GlobalExceptionHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.MethodParameter;
@@ -18,7 +20,6 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
 import com.google.gson.Gson;
 
-import cn.gyw.platform.common.web.constants.BaseConstants;
 import cn.gyw.platform.common.web.model.BaseResponse;
 import cn.gyw.platform.common.web.model.DataResponse;
 
@@ -30,8 +31,6 @@ public class RestResponseAdvice implements ResponseBodyAdvice<Object> {
 
     private final Logger LOGGER = LoggerFactory.getLogger(RestResponseAdvice.class);
 
-    private static final String IGNORE_CLASS = "cn.gyw.community.system.controller.SysLogController";
-    
     @SuppressWarnings("rawtypes")
     @Override
     public boolean supports(MethodParameter returnType, Class converterType) {
@@ -39,7 +38,7 @@ public class RestResponseAdvice implements ResponseBodyAdvice<Object> {
         boolean isSupported = controllerClass.isAnnotationPresent(RestController.class)
                 || controllerClass.isAnnotationPresent(ResponseBody.class)
                 || returnType.getMethodAnnotation(ResponseBody.class) != null
-                || controllerClass.equals(UnifiedExceptionHandler.class);
+                || controllerClass.equals(GlobalExceptionHandler.class);
         LOGGER.debug("{} is supported:{}", controllerClass.getSimpleName(), isSupported);
         return isSupported;
     }
@@ -50,23 +49,21 @@ public class RestResponseAdvice implements ResponseBodyAdvice<Object> {
                                   Class selectedConverterType, ServerHttpRequest request, ServerHttpResponse response) {
         Object resp = null;
         if (body != null) {
-            LOGGER.info("return body class type: [{}]", body.getClass());
+            LOGGER.info("Return body class type: [{}]", body.getClass());
             resp = body;
         }
         if (request instanceof ServletServerHttpRequest) {
             if (Objects.nonNull(resp) && !(resp instanceof BaseResponse)) {
                 resp = DataResponse.success(body);
                 Type paramType = returnType.getGenericParameterType();
-                LOGGER.debug("return type:{}, response:{}", paramType, resp);
+                LOGGER.debug("Return type:{}, response:{}", paramType, resp);
             }
         } else {
             LOGGER.debug("request not servlet web");
         }
-        if (!IGNORE_CLASS.equals(returnType.getContainingClass().getName())) {
-            HttpHeaders headers = response.getHeaders();
-            headers.set(BaseConstants.HEADER_RESPONSE_OBJECT, new Gson().toJson(resp));
-            LOGGER.debug("Not ignore controller class, set header[responseObject] success");
-        }
+        HttpHeaders headers = response.getHeaders();
+        headers.set(BaseConstants.HEADER_RESPONSE_OBJECT, new Gson().toJson(resp));
+        LOGGER.debug("Not ignore controller class, set header[responseObject] success");
         return resp;
     }
 }

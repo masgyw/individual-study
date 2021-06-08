@@ -1,6 +1,6 @@
 package cn.gyw.platform.common.web.model;
 
-import cn.gyw.platform.common.web.enums.CommonResponseEnum;
+import cn.gyw.platform.common.web.enums.CommonRespEnum;
 
 /**
  * 通用返回对象
@@ -13,16 +13,8 @@ public class DataResponse<T> extends BaseResponse {
 
     public static <T> DataResponse<T> success(T data) {
         DataResponse<T> result = new DataResponse<>();
-        result.setCode(CommonResponseEnum.SUCCESS.getCode());
-        result.setMessage(CommonResponseEnum.SUCCESS.getMessage());
-        result.setData(data);
-        return result;
-    }
-    
-    public static <T> DataResponse<T> error(T data) {
-        DataResponse<T> result = new DataResponse<>();
-        result.setCode(CommonResponseEnum.SUCCESS.getCode());
-        result.setMessage(CommonResponseEnum.SUCCESS.getMessage());
+        result.setCode(CommonRespEnum.SUCCESS.getCode());
+        result.setMessage(CommonRespEnum.SUCCESS.getMessage());
         result.setData(data);
         return result;
     }

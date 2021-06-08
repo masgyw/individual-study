@@ -1,4 +1,4 @@
-package cn.gyw.platform.common.web.external;
+package cn.gyw.platform.common.web.utils;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeansException;

@@ -1,4 +1,4 @@
-package cn.gyw.platform.common.web.external;
+package cn.gyw.platform.common.web.aop;
 
 import java.lang.reflect.Method;
 

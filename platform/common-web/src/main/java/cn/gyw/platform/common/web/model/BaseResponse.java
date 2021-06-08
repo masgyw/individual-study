@@ -1,8 +1,8 @@
 package cn.gyw.platform.common.web.model;
 
-import java.io.Serializable;
+import cn.gyw.platform.common.web.IRespCode;
 
-import cn.gyw.platform.common.web.constants.ErrorConstants;
+import java.io.Serializable;
 
 /**
  * 基础返回对象
@@ -11,8 +11,8 @@ public class BaseResponse implements Serializable {
 
     private static final long serialVersionUID = 2951887768275356440L;
     
-    // 错误编码，0：成功
-    protected int errorCode = ErrorConstants.ERR_OK;
+    // 错误编码
+    protected int errorCode;
     // 结果编码
     protected int code;
     // 结果信息
@@ -27,9 +27,11 @@ public class BaseResponse implements Serializable {
     }
     
     public static BaseResponse error(int code, String message) {
-        BaseResponse errorResponse = new BaseResponse(code, message);
-        errorResponse.setErrorCode(ErrorConstants.ERR_INTERNAL_ERROR);
-        return errorResponse;
+        return new BaseResponse(code, message);
+    }
+
+    public static BaseResponse error(IRespCode respCode) {
+        return error(respCode.getCode(), respCode.getMessage());
     }
 
     public int getErrorCode() {
@@ -54,13 +56,5 @@ public class BaseResponse implements Serializable {
 
     public void setMessage(String message) {
         this.message = message;
-    }
-
-    @Override
-    public String toString() {
-        return "BaseResponse{" +
-                "code=" + code +
-                ", message='" + message + '\'' +
-                '}';
     }
 }

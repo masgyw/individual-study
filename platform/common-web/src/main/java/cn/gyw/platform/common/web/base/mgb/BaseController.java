@@ -8,6 +8,7 @@ import java.util.Map;
 
 import javax.annotation.PostConstruct;
 
+import cn.gyw.platform.common.web.enums.CommonRespEnum;
 import org.apache.commons.lang3.reflect.FieldUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,7 +24,6 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 
 import cn.gyw.platform.common.web.base.AbstractController;
-import cn.gyw.platform.common.web.enums.ArgumentExceptionEnum;
 import cn.gyw.platform.common.web.model.PageInfo;
 import cn.gyw.platform.common.web.model.QueryData;
 import tk.mybatis.mapper.entity.Example;
@@ -56,8 +56,8 @@ public abstract class BaseController<T, DTO> extends AbstractController {
 		Example example = buildExample(params);
 		String page = params.get("page");
 		String limit = params.get("limit");
-		ArgumentExceptionEnum.NULL_ERROR.assertNotNull(page, "page");
-		ArgumentExceptionEnum.NULL_ERROR.assertNotNull(limit, "limit");
+		CommonRespEnum.PARAM_NULL.assertNotNull(page, "page");
+		CommonRespEnum.PARAM_NULL.assertNotNull(limit, "limit");
 
 		Page<T> pageObj = PageHelper.startPage(Integer.parseInt(page), Integer.parseInt(limit));
 		List<T> data = baseService.query(example);

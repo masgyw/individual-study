@@ -5,6 +5,8 @@ package cn.gyw.platform.common.web;
  */
 public interface IRespCode {
 
+    String KEY_RESPONSE_CODE = "code";
+
     int getCode();
 
     String getMessage();

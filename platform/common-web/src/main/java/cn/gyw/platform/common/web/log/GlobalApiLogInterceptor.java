@@ -1,5 +1,6 @@
 package cn.gyw.platform.common.web.log;
 
+import cn.gyw.platform.common.web.IRespCode;
 import cn.gyw.platform.common.web.constants.BaseConstants;
 import cn.gyw.platform.common.web.log.entity.ApiLog;
 import cn.gyw.platform.common.web.log.event.ApiLogEvent;
@@ -21,11 +22,11 @@ import java.util.Date;
 
 /**
  * interceptor 拦截规则：
- *  preHandle ：低优先级 -> 高优先级
- *  postHandle：高优先级 -> 低优先级
- *  afterCompletion：高优先级 -> 低优先级
- *  
- *  全局接口请求api
+ * preHandle ：低优先级 -> 高优先级
+ * postHandle：高优先级 -> 低优先级
+ * afterCompletion：高优先级 -> 低优先级
+ * <p>
+ * 全局接口请求api
  */
 public class GlobalApiLogInterceptor implements HandlerInterceptor, Ordered {
 
@@ -37,7 +38,7 @@ public class GlobalApiLogInterceptor implements HandlerInterceptor, Ordered {
     public GlobalApiLogInterceptor(ApplicationEventPublisher eventPublisher) {
         this.eventPublisher = eventPublisher;
     }
-    
+
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response,
                                 Object handler, Exception ex) throws Exception {
@@ -66,12 +67,12 @@ public class GlobalApiLogInterceptor implements HandlerInterceptor, Ordered {
     private void handleResponse(HttpServletResponse response, ApiLog apiLog) {
         String respJson = response.getHeader(BaseConstants.HEADER_RESPONSE_OBJECT);
         if (StringUtils.isEmpty(respJson)) {
-            LOGGER.warn("response header do not have responseObject");
-            return ;
+            LOGGER.warn("response header do not have [respObject]");
+            return;
         }
         JsonObject jsonObject = new Gson().fromJson(respJson, JsonObject.class);
         apiLog.setResponseData(respJson);
-        apiLog.setResponseCode(jsonObject.get(BaseConstants.FIELD_RESPONSE_CODE).getAsString());
+        apiLog.setResponseCode(jsonObject.get(IRespCode.KEY_RESPONSE_CODE).getAsString());
         response.setHeader(BaseConstants.HEADER_RESPONSE_OBJECT, "");
     }
 

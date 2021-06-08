@@ -1,12 +1,9 @@
 package cn.gyw.platform.common.web.constants;
 
 /**
- * 基本常量类
+ * 基本常量
  */
-public final class BaseConstants {
+public interface BaseConstants {
 
-    public final static String HEADER_RESPONSE_OBJECT = "responseObject";
-    public final static String FIELD_RESPONSE_CODE = "code";
-
-    private BaseConstants() {}
+    String HEADER_RESPONSE_OBJECT = "respObject";
 }
