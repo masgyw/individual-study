@@ -18,6 +18,14 @@ public class DataResponse<T> extends BaseResponse {
         result.setData(data);
         return result;
     }
+    
+    public static <T> DataResponse<T> error(T data) {
+        DataResponse<T> result = new DataResponse<>();
+        result.setCode(CommonResponseEnum.SUCCESS.getCode());
+        result.setMessage(CommonResponseEnum.SUCCESS.getMessage());
+        result.setData(data);
+        return result;
+    }
 
     public T getData() {
         return data;

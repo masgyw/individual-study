@@ -3,7 +3,7 @@ package cn.gyw.platform.common.web.exceptions;
 /**
  * 异常断言
  */
-public interface ExceptionAssert {
+public interface IExceptionAssert {
 	
 	BaseException newException(Object... args);
 

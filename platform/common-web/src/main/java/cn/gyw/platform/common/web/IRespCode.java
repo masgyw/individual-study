@@ -1,9 +1,9 @@
-package cn.gyw.platform.common.web.enums;
+package cn.gyw.platform.common.web;
 
 /**
  * 通用返回接口
  */
-public interface IResponseEnum {
+public interface IRespCode {
 
     int getCode();
 

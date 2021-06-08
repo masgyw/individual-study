@@ -1,6 +1,6 @@
 package cn.gyw.platform.common.web.exceptions;
 
-import cn.gyw.platform.common.web.enums.IResponseEnum;
+import cn.gyw.platform.common.web.IRespCode;
 
 /**
  * 基础异常
@@ -9,27 +9,27 @@ public class BaseException extends RuntimeException {
 
     private static final long serialVersionUID = 1L;
 
-    private IResponseEnum responseEnum;
+    private IRespCode respCode;
 
     private Object[] args;
 
-    public BaseException(IResponseEnum resp) {
-        this(resp, null, null, null);
+    public BaseException(IRespCode respCode) {
+        this(respCode, null, null, null);
     }
 
-    public BaseException(IResponseEnum resp, Object[] args, String message) {
-        this(resp, args, message, null);
+    public BaseException(IRespCode respCode, Object[] args, String message) {
+        this(respCode, args, message, null);
     }
 
-    public BaseException(IResponseEnum resp, Object[] args, String message, Throwable t) {
+    public BaseException(IRespCode respCode, Object[] args, String message, Throwable t) {
         super(message, t);
-        this.responseEnum = resp;
+        this.respCode = respCode;
         this.args = args;
     }
 
-    public IResponseEnum getResponseEnum() {
-        return responseEnum;
-    }
+    public IRespCode getRespCode() {
+		return respCode;
+	}
 
     public Object[] getArgs() {
         return args;

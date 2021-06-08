@@ -1,13 +1,13 @@
 package cn.gyw.platform.common.web.exceptions;
 
-import cn.gyw.platform.common.web.enums.IResponseEnum;
-
 import java.text.MessageFormat;
+
+import cn.gyw.platform.common.web.IRespCode;
 
 /**
  * 业务异常断言
  */
-public interface BusinessExceptionAssert extends IResponseEnum, ExceptionAssert {
+public interface BusinessExceptionAssert extends IRespCode, IExceptionAssert {
 
     @Override
     default BaseException newException(Object... args) {

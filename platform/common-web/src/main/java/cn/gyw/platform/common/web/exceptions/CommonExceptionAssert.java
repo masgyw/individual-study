@@ -2,9 +2,9 @@ package cn.gyw.platform.common.web.exceptions;
 
 import java.text.MessageFormat;
 
-import cn.gyw.platform.common.web.enums.IResponseEnum;
+import cn.gyw.platform.common.web.IRespCode;
 
-public interface CommonExceptionAssert extends IResponseEnum, ExceptionAssert {
+public interface CommonExceptionAssert extends IRespCode, IExceptionAssert {
 
 	@Override
 	default BaseException newException(Object... args) {
