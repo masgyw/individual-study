@@ -1,9 +1,14 @@
 package cn.gyw.community.search.controller;
 
 import cn.gyw.community.search.domain.EsProduct;
+import cn.gyw.community.search.domain.EsProductRelatedInfo;
 import cn.gyw.community.search.service.EsProductService;
+import cn.gyw.platform.common.web.enums.CommonRespEnum;
+import cn.gyw.platform.common.web.model.BaseResponse;
 import cn.gyw.platform.common.web.model.DataResponse;
+import cn.gyw.platform.common.web.model.PageData;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -37,12 +42,12 @@ public class EsProductController {
     }
 
     @PostMapping(value = "/create/{id}")
-    public DataResponse<EsProduct> create(@PathVariable Long id) {
+    public BaseResponse create(@PathVariable Long id) {
         EsProduct esProduct = esProductService.create(id);
         if (esProduct != null) {
             return DataResponse.success(esProduct);
         } else {
-            return DataResponse.failed();
+            return DataResponse.error(CommonRespEnum.NO_DATA);
         }
     }
 
@@ -54,45 +59,40 @@ public class EsProductController {
      * @return
      */
     @GetMapping(value = "/search/simple")
-    public CommonResult<CommonPage<EsProduct>> search(@RequestParam(required = false) String keyword,
-                                                      @RequestParam(required = false, defaultValue = "0") Integer pageNum,
-                                                      @RequestParam(required = false, defaultValue = "5") Integer pageSize) {
+    public DataResponse<PageData<EsProduct>> search(@RequestParam(required = false) String keyword,
+                                                   @RequestParam(required = false, defaultValue = "0") Integer pageNum,
+                                                   @RequestParam(required = false, defaultValue = "5") Integer pageSize) {
         Page<EsProduct> esProductPage = esProductService.search(keyword, pageNum, pageSize);
-        return CommonResult.success(CommonPage.restPage(esProductPage));
+        return DataResponse.success(PageData.resetPage(esProductPage));
     }
 
-    @ApiOperation(value = "综合搜索、筛选、排序")
     // 综合搜索、筛选、排序
-    @ApiImplicitParam(name = "sort", value = "排序字段:0->按相关度；1->按新品；2->按销量；3->价格从低到高；4->价格从高到低",
-            defaultValue = "0", allowableValues = "0,1,2,3,4", paramType = "query", dataType = "integer")
+    // @ApiImplicitParam(name = "sort", value = "排序字段:0->按相关度；1->按新品；2->按销量；3->价格从低到高；4->价格从高到低",
+    //         defaultValue = "0", allowableValues = "0,1,2,3,4", paramType = "query", dataType = "integer")
     @RequestMapping(value = "/search", method = RequestMethod.GET)
-    @ResponseBody
-    public CommonResult<CommonPage<EsProduct>> search(@RequestParam(required = false) String keyword,
+    public DataResponse<PageData<EsProduct>> search(@RequestParam(required = false) String keyword,
                                                       @RequestParam(required = false) Long brandId,
                                                       @RequestParam(required = false) Long productCategoryId,
                                                       @RequestParam(required = false, defaultValue = "0") Integer pageNum,
                                                       @RequestParam(required = false, defaultValue = "5") Integer pageSize,
                                                       @RequestParam(required = false, defaultValue = "0") Integer sort) {
         Page<EsProduct> esProductPage = esProductService.search(keyword, brandId, productCategoryId, pageNum, pageSize, sort);
-        return CommonResult.success(CommonPage.restPage(esProductPage));
+        return DataResponse.success(PageData.resetPage(esProductPage));
     }
 
-    @ApiOperation(value = "根据商品id推荐商品")
-    @RequestMapping(value = "/recommend/{id}", method = RequestMethod.GET)
-    @ResponseBody
-    public CommonResult<CommonPage<EsProduct>> recommend(@PathVariable Long id,
+    // 根据商品id推荐商品
+    @GetMapping(value = "/recommend/{id}")
+    public DataResponse<PageData<EsProduct>> recommend(@PathVariable Long id,
                                                          @RequestParam(required = false, defaultValue = "0") Integer pageNum,
                                                          @RequestParam(required = false, defaultValue = "5") Integer pageSize) {
         Page<EsProduct> esProductPage = esProductService.recommend(id, pageNum, pageSize);
-        return CommonResult.success(CommonPage.restPage(esProductPage));
+        return DataResponse.success(PageData.resetPage(esProductPage));
     }
 
-    @ApiOperation(value = "获取搜索的相关品牌、分类及筛选属性")
-    @RequestMapping(value = "/search/relate", method = RequestMethod.GET)
-    @ResponseBody
-    public CommonResult<EsProductRelatedInfo> searchRelatedInfo(@RequestParam(required = false) String keyword) {
+    //获取搜索的相关品牌、分类及筛选属性
+    @GetMapping(value = "/search/relate")
+    public DataResponse<EsProductRelatedInfo> searchRelatedInfo(@RequestParam(required = false) String keyword) {
         EsProductRelatedInfo productRelatedInfo = esProductService.searchRelatedInfo(keyword);
-        return CommonResult.success(productRelatedInfo);
+        return DataResponse.success(productRelatedInfo);
     }
-
 }

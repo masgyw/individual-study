@@ -9,6 +9,8 @@ import java.util.Map;
 import javax.annotation.PostConstruct;
 
 import cn.gyw.platform.common.web.enums.CommonRespEnum;
+import cn.gyw.platform.common.web.model.DataResponse;
+import cn.gyw.platform.common.web.model.PageData;
 import org.apache.commons.lang3.reflect.FieldUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,7 +27,6 @@ import com.github.pagehelper.PageHelper;
 
 import cn.gyw.platform.common.web.base.AbstractController;
 import cn.gyw.platform.common.web.model.PageInfo;
-import cn.gyw.platform.common.web.model.QueryData;
 import tk.mybatis.mapper.entity.Example;
 
 /**
@@ -50,9 +51,9 @@ public abstract class BaseController<T, DTO> extends AbstractController {
 	}
 
 	@GetMapping("/")
-	public QueryData<T> queryByPage(WebRequest webRequest) {
+	public DataResponse<PageData<T>> queryByPage(WebRequest webRequest) {
 		Map<String, String> params = fillVariablesMapWithIncomingRequestParameters(webRequest.getParameterMap());
-		QueryData<T> queryData = new QueryData<>();
+		// PageData<T> pageData = new PageData<>();
 		Example example = buildExample(params);
 		String page = params.get("page");
 		String limit = params.get("limit");
@@ -61,15 +62,7 @@ public abstract class BaseController<T, DTO> extends AbstractController {
 
 		Page<T> pageObj = PageHelper.startPage(Integer.parseInt(page), Integer.parseInt(limit));
 		List<T> data = baseService.query(example);
-		PageInfo pageInfo = new PageInfo();
-		pageInfo.setTotal(pageObj.getTotal());
-		pageInfo.setPage(pageObj.getPageNum());
-		pageInfo.setLimit(pageObj.getPageSize());
-		pageInfo.setCount(pageObj.getPages());
-
-		queryData.setRecords(data);
-		queryData.setPageInfo(pageInfo);
-		return queryData;
+		return DataResponse.success(PageData.resetPage(pageObj));
 	}
 
 	/**

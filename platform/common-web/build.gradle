@@ -18,6 +18,7 @@ dependencies {
     // mybatis-plus
     compileOnly 'com.baomidou:mybatis-plus-boot-starter:3.0.5'
 	compileOnly mapper_spring_boot_starter
+    compileOnly spring_data_commons
     
     // test
     testImplementation('org.springframework.boot:spring-boot-starter-test:2.0.4.RELEASE') {

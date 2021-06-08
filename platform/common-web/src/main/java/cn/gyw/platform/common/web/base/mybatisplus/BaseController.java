@@ -8,6 +8,8 @@ import java.util.Map;
 
 import javax.annotation.PostConstruct;
 
+import cn.gyw.platform.common.web.model.DataResponse;
+import cn.gyw.platform.common.web.model.PageData;
 import org.apache.commons.lang3.reflect.FieldUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,7 +31,6 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
 import cn.gyw.platform.common.web.base.AbstractController;
 import cn.gyw.platform.common.web.model.PageInfo;
-import cn.gyw.platform.common.web.model.QueryData;
 
 /**
  * 抽象父类控制器
@@ -87,8 +88,8 @@ public abstract class BaseController<T, V> extends AbstractController {
      * @return
      */
     @GetMapping(value = "/")
-    public QueryData<T> pageQuery(@RequestParam(value = "page", defaultValue = "1") int page,
-                              @RequestParam(value = "limit", defaultValue = "20") int limit) {
+    public DataResponse<PageData<T>> pageQuery(@RequestParam(value = "page", defaultValue = "1") int page,
+                                               @RequestParam(value = "limit", defaultValue = "20") int limit) {
         log.debug("page :{}, limit:{}", page, limit);
         IPage<T> params = new Page<>(page, limit);
         QueryWrapper<T> qw = new QueryWrapper<>();
@@ -104,15 +105,16 @@ public abstract class BaseController<T, V> extends AbstractController {
             });
         }
         IPage<T> pageObj = this.baseService.page(params, qw);
-        QueryData<T> queryData = new QueryData<>();
+        PageData<T> pageData = new PageData<>();
         PageInfo pageInfo = new PageInfo();
+        pageInfo.setPageNum((int)pageObj.getCurrent());
+        pageInfo.setPageSize((int)pageObj.getSize());
+        pageInfo.setTotalPage((int)pageObj.getPages());
         pageInfo.setTotal(pageObj.getTotal());
-        pageInfo.setPage((int)pageObj.getCurrent());
-        pageInfo.setLimit((int)pageObj.getSize());
-        pageInfo.setCount((int)pageObj.getPages());
-        queryData.setPageInfo(pageInfo);
-        queryData.setRecords(pageObj.getRecords());
-        return queryData;
+
+        pageData.setPageInfo(pageInfo);
+        pageData.setRecords(pageObj.getRecords());
+        return DataResponse.success(pageData);
     }
 
     /**
