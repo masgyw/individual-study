@@ -11,6 +11,7 @@ import javax.annotation.PostConstruct;
 import cn.gyw.platform.common.web.enums.CommonRespEnum;
 import cn.gyw.platform.common.web.model.DataResponse;
 import cn.gyw.platform.common.web.model.PageData;
+import cn.gyw.platform.common.web.utils.PageHelperUtil;
 import org.apache.commons.lang3.reflect.FieldUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,7 +33,7 @@ import tk.mybatis.mapper.entity.Example;
 /**
  * 通用Controller
  * @param <T>
- * @param <Dto>
+ * @param <DTO>
  */
 public abstract class BaseController<T, DTO> extends AbstractController {
 
@@ -62,7 +63,7 @@ public abstract class BaseController<T, DTO> extends AbstractController {
 
 		Page<T> pageObj = PageHelper.startPage(Integer.parseInt(page), Integer.parseInt(limit));
 		List<T> data = baseService.query(example);
-		return DataResponse.success(PageHelper.resetPage(pageObj));
+		return DataResponse.success(PageHelperUtil.resetPage(pageObj));
 	}
 
 	/**

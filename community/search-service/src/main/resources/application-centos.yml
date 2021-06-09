@@ -1,5 +1,0 @@
-spring:
-  profiles: centos
-
-es:
-  host: 10.1.11.33

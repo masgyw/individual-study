@@ -7,6 +7,7 @@ import cn.gyw.platform.common.web.enums.CommonRespEnum;
 import cn.gyw.platform.common.web.model.BaseResponse;
 import cn.gyw.platform.common.web.model.DataResponse;
 import cn.gyw.platform.common.web.model.PageData;
+import cn.gyw.platform.common.web.utils.SpringDataUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
@@ -63,7 +64,7 @@ public class EsProductController {
                                                    @RequestParam(required = false, defaultValue = "0") Integer pageNum,
                                                    @RequestParam(required = false, defaultValue = "5") Integer pageSize) {
         Page<EsProduct> esProductPage = esProductService.search(keyword, pageNum, pageSize);
-        return DataResponse.success(PageData.resetPage(esProductPage));
+        return DataResponse.success(SpringDataUtil.resetPage(esProductPage));
     }
 
     // 综合搜索、筛选、排序
@@ -77,7 +78,7 @@ public class EsProductController {
                                                       @RequestParam(required = false, defaultValue = "5") Integer pageSize,
                                                       @RequestParam(required = false, defaultValue = "0") Integer sort) {
         Page<EsProduct> esProductPage = esProductService.search(keyword, brandId, productCategoryId, pageNum, pageSize, sort);
-        return DataResponse.success(PageData.resetPage(esProductPage));
+        return DataResponse.success(SpringDataUtil.resetPage(esProductPage));
     }
 
     // 根据商品id推荐商品
@@ -86,7 +87,7 @@ public class EsProductController {
                                                          @RequestParam(required = false, defaultValue = "0") Integer pageNum,
                                                          @RequestParam(required = false, defaultValue = "5") Integer pageSize) {
         Page<EsProduct> esProductPage = esProductService.recommend(id, pageNum, pageSize);
-        return DataResponse.success(PageData.resetPage(esProductPage));
+        return DataResponse.success(SpringDataUtil.resetPage(esProductPage));
     }
 
     //获取搜索的相关品牌、分类及筛选属性
