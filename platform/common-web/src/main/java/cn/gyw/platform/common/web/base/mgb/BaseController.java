@@ -62,7 +62,7 @@ public abstract class BaseController<T, DTO> extends AbstractController {
 
 		Page<T> pageObj = PageHelper.startPage(Integer.parseInt(page), Integer.parseInt(limit));
 		List<T> data = baseService.query(example);
-		return DataResponse.success(PageData.resetPage(pageObj));
+		return DataResponse.success(PageHelper.resetPage(pageObj));
 	}
 
 	/**

@@ -2,4 +2,4 @@ spring:
   profiles: centos
 
 es:
-  host: 10.1.7.225
+  host: 10.1.11.33
