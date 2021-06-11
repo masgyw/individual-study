@@ -6,7 +6,6 @@ const apiTypes = {
   REPLY: '/rest/reply',
 
   // system about
-  // USER: '/system/user',
   USER: '/system/user',
   LOG: '/system/log',
   ROLE: '/system/role',
@@ -16,5 +15,8 @@ const apiTypes = {
   PRODUCT: '/prod',
   
 }
+
+// mock user api
+apiTypes.USER = '/dev/user'
 
 export default apiTypes;

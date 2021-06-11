@@ -4,30 +4,20 @@ PWD_PATH="$(cd "$(dirname $0)";pwd)"
 PID_FILE=run.pid
 
 HOST_NAME=`hostname`
-export HOST_NAME
 
 if [ "x$JAVA_OPTS" = "x" ]; then
    # set memory parameters and GC strategy
-   JAVA_OPTS="-Xmx4096m -Xms4096m -XX:+UseG1GC"
-   
-   # set path of logback configuration file
-   JAVA_OPTS="$JAVA_OPTS -Dlogback.configurationFile=./logback.xml"
-   
-   # set path of log4j configuration file
-   JAVA_OPTS="$JAVA_OPTS -Dlog4j.configuration=file:./log4j.properties"
-   
-   # set path of log4j log file 
-   JAVA_OPTS="$JAVA_OPTS -Dlog4j.home=./logs"
-   
-   # set security provider
-   JAVA_OPTS="$JAVA_OPTS -Djava.security.egd=file:/"
+   #JAVA_OPTS="-Xmx4096m -Xms4096m -XX:+UseG1GC"
 else
    echo "JAVA_OPTS already set in environment; overriding default settings with value: $JAVA_OPTS"
 fi
 
 start() {
-	nohup java $JAVA_OPTS -jar ***.jar 2>&1 1>/dev/null &
+	nohup java $JAVA_OPTS -jar *.jar &
 	echo $! > $PID_FILE
+	sleep 5s
+	echo "Jar is started"
+	exit
 }
 
 stop() {
@@ -55,6 +45,6 @@ case $1 in
 		start
 	;;
 	*)
-	echo "arguments start/stop"
+	echo "arguments start/stop/restart"
 	;;
 esac
