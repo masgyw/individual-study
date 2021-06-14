@@ -87,78 +87,21 @@ const adminRouter = [
       }
     ]
   },
-  // {
-  //   path: '/sysconfig',
-  //   component: AdminLayout,
-  //   redirect: '/sysconfig/index',
-  //   name: 'SysConfig',
-  //   meta: { title: '系统设置', icon: 'setting' },
-  //   children: [
-  //     {
-  //       // path: 'tree',
-  //       // name: 'Tree',
-  //       // component: () => import('@/views/admin/tree/index'),
-  //       // meta: { title: 'Tree', icon: 'warning' }
-  //     }
-  //   ]
-  // },
-  // {
-  //   path: '/nested',
-  //   component: AdminLayout,
-  //   redirect: '/nested/menu1',
-  //   name: 'Nested',
-  //   meta: {
-  //     title: 'Nested',
-  //     icon: 'warning'
-  //   },
-  //   children: [
-  //     {
-  //       path: 'menu1',
-  //       component: () => import('@/views/admin/nested/menu1/index'), // Parent router-view
-  //       name: 'Menu1',
-  //       meta: { title: 'Menu1' },
-  //       children: [
-  //         {
-  //           path: 'menu1-1',
-  //           component: () => import('@/views/admin/nested/menu1/menu1-1'),
-  //           name: 'Menu1-1',
-  //           meta: { title: 'Menu1-1' }
-  //         },
-  //         {
-  //           path: 'menu1-2',
-  //           component: () => import('@/views/admin/nested/menu1/menu1-2'),
-  //           name: 'Menu1-2',
-  //           meta: { title: 'Menu1-2' },
-  //           children: [
-  //             {
-  //               path: 'menu1-2-1',
-  //               component: () => import('@/views/admin/nested/menu1/menu1-2/menu1-2-1'),
-  //               name: 'Menu1-2-1',
-  //               meta: { title: 'Menu1-2-1' }
-  //             },
-  //             {
-  //               path: 'menu1-2-2',
-  //               component: () => import('@/views/admin/nested/menu1/menu1-2/menu1-2-2'),
-  //               name: 'Menu1-2-2',
-  //               meta: { title: 'Menu1-2-2' }
-  //             }
-  //           ]
-  //         },
-  //         {
-  //           path: 'menu1-3',
-  //           component: () => import('@/views/admin/nested/menu1/menu1-3'),
-  //           name: 'Menu1-3',
-  //           meta: { title: 'Menu1-3' }
-  //         }
-  //       ]
-  //     },
-  //     {
-  //       path: 'menu2',
-  //       component: () => import('@/views/admin/nested/menu2/index'),
-  //       meta: { title: 'menu2' }
-  //     }
-  //   ]
-  // }
+  {
+    path: '/oms',
+    component: AdminLayout,
+    redirect: '/oms/index',
+    name: 'Order',
+    meta: { title: '订单管理', icon: 'setting' },
+    children: [
+      {
+        path: 'index',
+        name: 'order',
+        component: () => import('@/views/oms/order/index'),
+        meta: { title: 'order', icon: 'warning' }
+      }
+    ]
+  },
 ]
 
 export default adminRouter
