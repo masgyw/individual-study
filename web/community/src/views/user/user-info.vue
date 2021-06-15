@@ -28,7 +28,7 @@
 
 <script>
   import apiTypes from '@/api/api-types'
-  import apiFileService from '@/api/api-file-service.js';
+  import fileStore from '@/api/fileStore.js';
 
   export default {
     name: "UserInfo",

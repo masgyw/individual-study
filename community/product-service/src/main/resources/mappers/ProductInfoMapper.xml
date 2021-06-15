@@ -5,37 +5,73 @@
     <!--
       WARNING - @mbg.generated
     -->
-    <id column="product_id" jdbcType="INTEGER" property="productId" />
-    <result column="product_core" jdbcType="CHAR" property="productCore" />
-    <result column="product_name" jdbcType="VARCHAR" property="productName" />
-    <result column="bar_code" jdbcType="VARCHAR" property="barCode" />
-    <result column="brand_id" jdbcType="INTEGER" property="brandId" />
-    <result column="one_category_id" jdbcType="SMALLINT" property="oneCategoryId" />
-    <result column="two_category_id" jdbcType="SMALLINT" property="twoCategoryId" />
-    <result column="three_category_id" jdbcType="SMALLINT" property="threeCategoryId" />
-    <result column="supplier_id" jdbcType="INTEGER" property="supplierId" />
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="brand_id" jdbcType="BIGINT" property="brandId" />
+    <result column="product_category_id" jdbcType="BIGINT" property="productCategoryId" />
+    <result column="feight_template_id" jdbcType="BIGINT" property="feightTemplateId" />
+    <result column="product_attribute_category_id" jdbcType="BIGINT" property="productAttributeCategoryId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="pic" jdbcType="VARCHAR" property="pic" />
+    <result column="product_sn" jdbcType="VARCHAR" property="productSn" />
+    <result column="delete_status" jdbcType="INTEGER" property="deleteStatus" />
+    <result column="publish_status" jdbcType="INTEGER" property="publishStatus" />
+    <result column="new_status" jdbcType="INTEGER" property="newStatus" />
+    <result column="recommand_status" jdbcType="INTEGER" property="recommandStatus" />
+    <result column="verify_status" jdbcType="INTEGER" property="verifyStatus" />
+    <result column="sort" jdbcType="INTEGER" property="sort" />
+    <result column="sale" jdbcType="INTEGER" property="sale" />
     <result column="price" jdbcType="DECIMAL" property="price" />
-    <result column="average_cost" jdbcType="DECIMAL" property="averageCost" />
-    <result column="publish_status" jdbcType="TINYINT" property="publishStatus" />
-    <result column="audit_status" jdbcType="TINYINT" property="auditStatus" />
-    <result column="weight" jdbcType="REAL" property="weight" />
-    <result column="length" jdbcType="REAL" property="length" />
-    <result column="height" jdbcType="REAL" property="height" />
-    <result column="width" jdbcType="REAL" property="width" />
-    <result column="color_type" jdbcType="CHAR" property="colorType" />
-    <result column="production_date" jdbcType="TIMESTAMP" property="productionDate" />
-    <result column="shelf_life" jdbcType="INTEGER" property="shelfLife" />
-    <result column="indate" jdbcType="TIMESTAMP" property="indate" />
-    <result column="modified_time" jdbcType="TIMESTAMP" property="modifiedTime" />
+    <result column="promotion_price" jdbcType="DECIMAL" property="promotionPrice" />
+    <result column="gift_growth" jdbcType="INTEGER" property="giftGrowth" />
+    <result column="gift_point" jdbcType="INTEGER" property="giftPoint" />
+    <result column="use_point_limit" jdbcType="INTEGER" property="usePointLimit" />
+    <result column="sub_title" jdbcType="VARCHAR" property="subTitle" />
+    <result column="original_price" jdbcType="DECIMAL" property="originalPrice" />
+    <result column="stock" jdbcType="INTEGER" property="stock" />
+    <result column="low_stock" jdbcType="INTEGER" property="lowStock" />
+    <result column="unit" jdbcType="VARCHAR" property="unit" />
+    <result column="weight" jdbcType="DECIMAL" property="weight" />
+    <result column="preview_status" jdbcType="INTEGER" property="previewStatus" />
+    <result column="service_ids" jdbcType="VARCHAR" property="serviceIds" />
+    <result column="keywords" jdbcType="VARCHAR" property="keywords" />
+    <result column="note" jdbcType="VARCHAR" property="note" />
+    <result column="album_pics" jdbcType="VARCHAR" property="albumPics" />
+    <result column="detail_title" jdbcType="VARCHAR" property="detailTitle" />
+    <result column="promotion_start_time" jdbcType="TIMESTAMP" property="promotionStartTime" />
+    <result column="promotion_end_time" jdbcType="TIMESTAMP" property="promotionEndTime" />
+    <result column="promotion_per_limit" jdbcType="INTEGER" property="promotionPerLimit" />
+    <result column="promotion_type" jdbcType="INTEGER" property="promotionType" />
+    <result column="brand_name" jdbcType="VARCHAR" property="brandName" />
+    <result column="product_category_name" jdbcType="VARCHAR" property="productCategoryName" />
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="cn.gyw.community.product.info.entity.ProductInfo">
     <!--
       WARNING - @mbg.generated
     -->
-    <result column="descript" jdbcType="LONGVARCHAR" property="descript" />
+    <result column="description" jdbcType="LONGVARCHAR" property="description" />
+    <result column="detail_desc" jdbcType="LONGVARCHAR" property="detailDesc" />
+    <result column="detail_html" jdbcType="LONGVARCHAR" property="detailHtml" />
+    <result column="detail_mobile_html" jdbcType="LONGVARCHAR" property="detailMobileHtml" />
   </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    id, brand_id, product_category_id, feight_template_id, product_attribute_category_id, 
+    name, pic, product_sn, delete_status, publish_status, new_status, recommand_status, 
+    verify_status, sort, sale, price, promotion_price, gift_growth, gift_point, use_point_limit, 
+    sub_title, original_price, stock, low_stock, unit, weight, preview_status, service_ids, 
+    keywords, note, album_pics, detail_title, promotion_start_time, promotion_end_time, 
+    promotion_per_limit, promotion_type, brand_name, product_category_name
+  </sql>
+  <sql id="Blob_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    description, detail_desc, detail_html, detail_mobile_html
+  </sql>
   <resultMap extends="BaseResultMap" id="ResultMapWithPic" type="cn.gyw.community.product.info.dto.ProductInfoDto">
-  	<association property="productPicInfo" javaType="cn.gyw.community.product.pic.entity.ProductPicInfo">
+  	<association javaType="cn.gyw.community.product.pic.entity.ProductPicInfo" property="productPicInfo">
     	<id column="product_pic_id" jdbcType="INTEGER" property="productPicId" />
 	    <result column="pic_desc" jdbcType="VARCHAR" property="picDesc" />
 	    <result column="pic_url" jdbcType="VARCHAR" property="picUrl" />
@@ -44,28 +80,13 @@
 	    <result column="pic_status" jdbcType="TINYINT" property="picStatus" />
   	</association>
   </resultMap>
-  
-  <sql id="Base_Column_List">
-    <!--
-      WARNING - @mbg.generated
-    -->
-    product_id, product_core, product_name, bar_code, brand_id, one_category_id, two_category_id, 
-    three_category_id, supplier_id, price, average_cost, publish_status, audit_status, 
-    weight, length, height, width, color_type, production_date, shelf_life, indate, modified_time
-  </sql>
-  <sql id="Blob_Column_List">
-    <!--
-      WARNING - @mbg.generated
-    -->
-    descript
-  </sql>
   <sql id="Pic_Info_Column_List">
     pic_desc, pic_url, is_master, pic_order, pic_status
   </sql>
   
-  <select id="selectWithPic" resultMap="ResultMapWithPic" parameterType="String">
+  <select id="selectWithPic" parameterType="String" resultMap="ResultMapWithPic">
   	select <include refid="Blob_Column_List" />
-  	, <include refid="Pic_Info_Column_List"/> from product_info t1 inner join product_pic_info t2
+  	, <include refid="Pic_Info_Column_List" /> from product_info t1 inner join product_pic_info t2
   	on t1.product_id = t2.product_id
   	where one_category_id = #{_parameter, jdbcType=VARCHAR}
   	

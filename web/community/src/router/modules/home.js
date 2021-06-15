@@ -63,19 +63,6 @@ const homeRouter = [
     ]
   },
   {
-    path: '/md',
-    component: HomeLayout,
-    redirect: '/md/index',
-    children: [
-      {
-        path: 'index',
-        component: () => import('@/views/markdown/index'),
-        name: 'MdIndex',
-        meta: { title: 'Markdown文档', icon: 'home', affix: true }
-      }
-    ]
-  },
-  {
     path: '/login',
     component: () => import('@/views/login/index'),
     name: 'Login',

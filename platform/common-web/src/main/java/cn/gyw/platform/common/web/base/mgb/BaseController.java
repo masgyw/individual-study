@@ -8,10 +8,6 @@ import java.util.Map;
 
 import javax.annotation.PostConstruct;
 
-import cn.gyw.platform.common.web.enums.CommonRespEnum;
-import cn.gyw.platform.common.web.model.DataResponse;
-import cn.gyw.platform.common.web.model.PageData;
-import cn.gyw.platform.common.web.utils.PageHelperUtil;
 import org.apache.commons.lang3.reflect.FieldUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,11 +19,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.context.request.WebRequest;
 
-import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 
 import cn.gyw.platform.common.web.base.AbstractController;
-import cn.gyw.platform.common.web.model.PageInfo;
+import cn.gyw.platform.common.web.enums.CommonRespEnum;
+import cn.gyw.platform.common.web.model.DataResponse;
+import cn.gyw.platform.common.web.model.PageData;
+import cn.gyw.platform.common.web.utils.PageHelperUtil;
 import tk.mybatis.mapper.entity.Example;
 
 /**
@@ -61,8 +59,9 @@ public abstract class BaseController<T, DTO> extends AbstractController {
 		CommonRespEnum.PARAM_NULL.assertNotNull(page, "page");
 		CommonRespEnum.PARAM_NULL.assertNotNull(limit, "limit");
 
-		Page<T> pageObj = PageHelper.startPage(Integer.parseInt(page), Integer.parseInt(limit));
+		PageHelper.startPage(Integer.parseInt(page), Integer.parseInt(limit));
 		List<T> data = baseService.query(example);
+		com.github.pagehelper.PageInfo<T> pageObj = new com.github.pagehelper.PageInfo<>(data);
 		return DataResponse.success(PageHelperUtil.resetPage(pageObj));
 	}
 

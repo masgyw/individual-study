@@ -53,6 +53,8 @@ dependencies {
 	implementation jackson_core
 	implementation jackson_annotations
 	implementation poi_ooxml
+	implementation httpclient
+	implementation httpmime
 	implementation jsoup
 	
     implementation sl4j_api
@@ -65,20 +67,20 @@ mbg {
 	overwrite = true
 	consoleable = true
 	generatorFile = "generatorConfig.xml"
-	tableNames = "product_info,product_category,product_pic_info"
+	tableNames = "product"
 	jdbc{
 		driver = "com.mysql.jdbc.Driver"
-		url    = "jdbc:mysql://127.0.0.1:3306/mall_product?useSSL=false"
+		url    = "jdbc:mysql://127.0.0.1:3306/cs_product?useSSL=false"
 		username = "root"
 		password = "root"
 	}
 	xml{
-		mapperPackage= "cn.gyw.community.product.pic.dao"
-		modelPackage = "cn.gyw.community.product.pic.entity"
+		mapperPackage= "cn.gyw.community.product.info.dao"
+		modelPackage = "cn.gyw.community.product.info.entity"
 		mapperMapper = "cn.gyw.platform.common.web.base.mgb.BaseDao"
 		xmlPackage =   "mappers"
-		tableName ="product_pic_info"
-		objectName ="ProductPicInfo"
+		tableName ="product"
+		objectName ="ProductInfo"
 		mapperSuffix ="Mapper"
 	}
 }

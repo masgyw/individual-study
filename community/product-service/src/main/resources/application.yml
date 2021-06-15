@@ -11,7 +11,7 @@ spring:
       exclude: application.yml
   datasource:
     driverClassName: com.mysql.jdbc.Driver
-    url: jdbc:mysql://${datasource.host}/mall_product?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai&useSSL=false
+    url: jdbc:mysql://${datasource.host}/cs_product?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai&useSSL=false
     username: root
     password: root
     dbcp2:

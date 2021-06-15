@@ -5,157 +5,157 @@ import java.util.Date;
 
 public class ApiLog implements Serializable {
 
-    private static final long serialVersionUID = -2819065952237845813L;
+	private static final long serialVersionUID = -2819065952237845813L;
 
-    /**
-     * 日志id
-     */
-    private String sequenceNum;
+	/**
+	 * 日志id
+	 */
+	private String sequenceNum;
 
-    /**
-     * 当前操作人id
-     */
-    private String loginAccount;
+	/**
+	 * 当前操作人id
+	 */
+	private String loginAccount;
 
-    /**
-     * 服务api
-     */
-    private String host;
-    
-    private String port;
+	/**
+	 * 服务api
+	 */
+	private String host;
 
-    /**
-     * 操作请求的链接
-     */
-    private String actionUrl;
+	private String port;
 
-    /**
-     * 执行的模块
-     */
-    private String module;
+	/**
+	 * 操作请求的链接
+	 */
+	private String actionUrl;
 
-    /**
-     * 执行的方法
-     */
-    private String method;
+	/**
+	 * 执行的模块
+	 */
+	private String module;
 
-    /**
-     * 描述
-     */
-    private String description;
-    
-    private String requestData;
-    
-    private String responseCode;
-    
-    private String responseData;
+	/**
+	 * 执行的方法
+	 */
+	private String method;
 
-    /**
-     * 执行的时间
-     */
-    private Date gmtCreate;
+	/**
+	 * 描述
+	 */
+	private String description;
 
-    public String getSequenceNum() {
-        return sequenceNum;
-    }
+	private String requestData;
 
-    public void setSequenceNum(String sequenceNum) {
-        this.sequenceNum = sequenceNum;
-    }
+	private String responseCode;
 
-    public String getLoginAccount() {
-        return loginAccount;
-    }
+	private String responseData;
 
-    public void setLoginAccount(String loginAccount) {
-        this.loginAccount = loginAccount;
-    }
-    
-    public String getHost() {
-        return host;
-    }
+	/**
+	 * 执行的时间
+	 */
+	private Date gmtCreate;
 
-    public void setHost(String host) {
-        this.host = host;
-    }
+	public String getSequenceNum() {
+		return sequenceNum;
+	}
 
-    public String getActionUrl() {
-        return actionUrl;
-    }
+	public void setSequenceNum(String sequenceNum) {
+		this.sequenceNum = sequenceNum;
+	}
 
-    public void setActionUrl(String actionUrl) {
-        this.actionUrl = actionUrl;
-    }
+	public String getLoginAccount() {
+		return loginAccount;
+	}
 
-    public String getModule() {
-        return module;
-    }
+	public void setLoginAccount(String loginAccount) {
+		this.loginAccount = loginAccount;
+	}
 
-    public void setModule(String module) {
-        this.module = module;
-    }
+	public String getHost() {
+		return host;
+	}
 
-    public String getMethod() {
-        return method;
-    }
+	public void setHost(String host) {
+		this.host = host;
+	}
 
-    public void setMethod(String method) {
-        this.method = method;
-    }
+	public String getActionUrl() {
+		return actionUrl;
+	}
 
-    public String getDescription() {
-        return description;
-    }
+	public void setActionUrl(String actionUrl) {
+		this.actionUrl = actionUrl;
+	}
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+	public String getModule() {
+		return module;
+	}
 
-    public Date getGmtCreate() {
-        return gmtCreate;
-    }
+	public void setModule(String module) {
+		this.module = module;
+	}
 
-    public void setGmtCreate(Date gmtCreate) {
-        this.gmtCreate = gmtCreate;
-    }
-    
-    public String getRequestData() {
-        return requestData;
-    }
+	public String getMethod() {
+		return method;
+	}
 
-    public void setRequestData(String requestData) {
-        this.requestData = requestData;
-    }
+	public void setMethod(String method) {
+		this.method = method;
+	}
 
-    public String getResponseData() {
-        return responseData;
-    }
+	public String getDescription() {
+		return description;
+	}
 
-    public void setResponseData(String responseData) {
-        this.responseData = responseData;
-    }
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
-    public String getPort() {
-        return port;
-    }
+	public Date getGmtCreate() {
+		return gmtCreate;
+	}
 
-    public void setPort(String port) {
-        this.port = port;
-    }
+	public void setGmtCreate(Date gmtCreate) {
+		this.gmtCreate = gmtCreate;
+	}
 
-    public String getResponseCode() {
-        return responseCode;
-    }
+	public String getRequestData() {
+		return requestData;
+	}
 
-    public void setResponseCode(String responseCode) {
-        this.responseCode = responseCode;
-    }
+	public void setRequestData(String requestData) {
+		this.requestData = requestData;
+	}
 
-    @Override
-    public String toString() {
-        return "ApiLog [sequenceNum=" + sequenceNum + ", loginAccount=" + loginAccount + ", host=" + host + ", port="
-                + port + ", actionUrl=" + actionUrl + ", module=" + module + ", method=" + method + ", description="
-                + description + ", requestData=" + requestData + ", responseCode=" + responseCode + ", responseData="
-                + responseData + ", gmtCreate=" + gmtCreate + "]";
-    }
+	public String getResponseData() {
+		return responseData;
+	}
+
+	public void setResponseData(String responseData) {
+		this.responseData = responseData;
+	}
+
+	public String getPort() {
+		return port;
+	}
+
+	public void setPort(String port) {
+		this.port = port;
+	}
+
+	public String getResponseCode() {
+		return responseCode;
+	}
+
+	public void setResponseCode(String responseCode) {
+		this.responseCode = responseCode;
+	}
+
+	@Override
+	public String toString() {
+		return "ApiLog [sequenceNum=" + sequenceNum + ", loginAccount=" + loginAccount + ", host=" + host + ", port="
+				+ port + ", actionUrl=" + actionUrl + ", module=" + module + ", method=" + method + ", description="
+				+ description + ", requestData=" + requestData + ", responseCode=" + responseCode + ", responseData="
+				+ responseData + ", gmtCreate=" + gmtCreate + "]";
+	}
 }

@@ -59,12 +59,12 @@ module.exports = {
           ['^/api']: ''
         }
       },
-      '/prod': {
+      '/product': {
         target: 'http://localhost:9001',
         secure: false,
         changeOrigin: true,
         pathRewrite: {
-          ['^/prod']: ''
+          ['^/product']: ''
         }
       },
       '/system': {

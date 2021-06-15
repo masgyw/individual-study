@@ -1,7 +1,7 @@
 datasource:
   product:
     driverClassName: com.mysql.jdbc.Driver
-    url: jdbc:mysql://${datasource.host}/mall_product?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai&useSSL=false&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://${datasource.host}/cs_product?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai&useSSL=false&allowPublicKeyRetrieval=true
     username: root
     password: root
   warehouse:

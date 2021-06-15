@@ -3,12 +3,9 @@ package cn.gyw.platform.common.web.aop;
 import java.lang.reflect.Type;
 import java.util.Objects;
 
-import cn.gyw.platform.common.web.constants.BaseConstants;
-import cn.gyw.platform.common.web.exceptions.GlobalExceptionHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.MethodParameter;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.server.ServerHttpRequest;
 import org.springframework.http.server.ServerHttpResponse;
@@ -18,8 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
-import com.google.gson.Gson;
-
+import cn.gyw.platform.common.web.exceptions.GlobalExceptionHandler;
 import cn.gyw.platform.common.web.model.BaseResponse;
 import cn.gyw.platform.common.web.model.DataResponse;
 
@@ -61,9 +57,6 @@ public class RestResponseAdvice implements ResponseBodyAdvice<Object> {
         } else {
             LOGGER.debug("request not servlet web");
         }
-        HttpHeaders headers = response.getHeaders();
-        headers.set(BaseConstants.HEADER_RESPONSE_OBJECT, new Gson().toJson(resp));
-        LOGGER.debug("Not ignore controller class, set header[responseObject] success");
         return resp;
     }
 }

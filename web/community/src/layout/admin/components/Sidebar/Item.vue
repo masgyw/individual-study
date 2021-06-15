@@ -19,6 +19,8 @@ export default {
     if (icon) {
       let elIcon = "el-icon-" + icon;
       vnodes.push(<i class={elIcon}></i>)
+      // elIcon = 'icon-' + icon;
+      // vnodes.push(<svg-icon icon-class={elIcon}></svg-icon>)
     }
 
     if (title) {

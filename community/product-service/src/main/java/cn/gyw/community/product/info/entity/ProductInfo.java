@@ -4,544 +4,918 @@ import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.*;
 
-@Table(name = "product_info")
+@Table(name = "product")
 public class ProductInfo {
-    /**
-     * 商品ID
-     */
     @Id
-    @Column(name = "product_id")
-    private Integer productId;
+    private Long id;
 
-    /**
-     * 商品编码
-     */
-    @Column(name = "product_core")
-    private String productCore;
-
-    /**
-     * 商品名称
-     */
-    @Column(name = "product_name")
-    private String productName;
-
-    /**
-     * 国条码
-     */
-    @Column(name = "bar_code")
-    private String barCode;
-
-    /**
-     * 品牌表的ID
-     */
     @Column(name = "brand_id")
-    private Integer brandId;
+    private Long brandId;
+
+    @Column(name = "product_category_id")
+    private Long productCategoryId;
+
+    @Column(name = "feight_template_id")
+    private Long feightTemplateId;
+
+    @Column(name = "product_attribute_category_id")
+    private Long productAttributeCategoryId;
+
+    private String name;
+
+    private String pic;
 
     /**
-     * 一级分类ID
+     * 货号
      */
-    @Column(name = "one_category_id")
-    private Short oneCategoryId;
+    @Column(name = "product_sn")
+    private String productSn;
 
     /**
-     * 二级分类ID
+     * 删除状态：0->未删除；1->已删除
      */
-    @Column(name = "two_category_id")
-    private Short twoCategoryId;
+    @Column(name = "delete_status")
+    private Integer deleteStatus;
 
     /**
-     * 三级分类ID
+     * 上架状态：0->下架；1->上架
      */
-    @Column(name = "three_category_id")
-    private Short threeCategoryId;
+    @Column(name = "publish_status")
+    private Integer publishStatus;
 
     /**
-     * 商品的供应商ID
+     * 新品状态:0->不是新品；1->新品
      */
-    @Column(name = "supplier_id")
-    private Integer supplierId;
+    @Column(name = "new_status")
+    private Integer newStatus;
 
     /**
-     * 商品销售价格
+     * 推荐状态；0->不推荐；1->推荐
      */
+    @Column(name = "recommand_status")
+    private Integer recommandStatus;
+
+    /**
+     * 审核状态：0->未审核；1->审核通过
+     */
+    @Column(name = "verify_status")
+    private Integer verifyStatus;
+
+    /**
+     * 排序
+     */
+    private Integer sort;
+
+    /**
+     * 销量
+     */
+    private Integer sale;
+
     private BigDecimal price;
 
     /**
-     * 商品加权平均成本
+     * 促销价格
      */
-    @Column(name = "average_cost")
-    private BigDecimal averageCost;
+    @Column(name = "promotion_price")
+    private BigDecimal promotionPrice;
 
     /**
-     * 上下架状态：0下架1上架
+     * 赠送的成长值
      */
-    @Column(name = "publish_status")
-    private Byte publishStatus;
+    @Column(name = "gift_growth")
+    private Integer giftGrowth;
 
     /**
-     * 审核状态：0未审核，1已审核
+     * 赠送的积分
      */
-    @Column(name = "audit_status")
-    private Byte auditStatus;
+    @Column(name = "gift_point")
+    private Integer giftPoint;
 
     /**
-     * 商品重量
+     * 限制使用的积分数
      */
-    private Float weight;
+    @Column(name = "use_point_limit")
+    private Integer usePointLimit;
 
     /**
-     * 商品长度
+     * 副标题
      */
-    private Float length;
+    @Column(name = "sub_title")
+    private String subTitle;
 
     /**
-     * 商品高度
+     * 市场价
      */
-    private Float height;
+    @Column(name = "original_price")
+    private BigDecimal originalPrice;
 
     /**
-     * 商品宽度
+     * 库存
      */
-    private Float width;
-
-    @Column(name = "color_type")
-    private String colorType;
+    private Integer stock;
 
     /**
-     * 生产日期
+     * 库存预警值
      */
-    @Column(name = "production_date")
-    private Date productionDate;
+    @Column(name = "low_stock")
+    private Integer lowStock;
 
     /**
-     * 商品有效期
+     * 单位
      */
-    @Column(name = "shelf_life")
-    private Integer shelfLife;
+    private String unit;
 
     /**
-     * 商品录入时间
+     * 商品重量，默认为克
      */
-    private Date indate;
+    private BigDecimal weight;
 
     /**
-     * 最后修改时间
+     * 是否为预告商品：0->不是；1->是
      */
-    @Column(name = "modified_time")
-    private Date modifiedTime;
+    @Column(name = "preview_status")
+    private Integer previewStatus;
+
+    /**
+     * 以逗号分割的产品服务：1->无忧退货；2->快速退款；3->免费包邮
+     */
+    @Column(name = "service_ids")
+    private String serviceIds;
+
+    private String keywords;
+
+    private String note;
+
+    /**
+     * 画册图片，连产品图片限制为5张，以逗号分割
+     */
+    @Column(name = "album_pics")
+    private String albumPics;
+
+    @Column(name = "detail_title")
+    private String detailTitle;
+
+    /**
+     * 促销开始时间
+     */
+    @Column(name = "promotion_start_time")
+    private Date promotionStartTime;
+
+    /**
+     * 促销结束时间
+     */
+    @Column(name = "promotion_end_time")
+    private Date promotionEndTime;
+
+    /**
+     * 活动限购数量
+     */
+    @Column(name = "promotion_per_limit")
+    private Integer promotionPerLimit;
+
+    /**
+     * 促销类型：0->没有促销使用原价;1->使用促销价；2->使用会员价；3->使用阶梯价格；4->使用满减价格；5->限时购
+     */
+    @Column(name = "promotion_type")
+    private Integer promotionType;
+
+    /**
+     * 品牌名称
+     */
+    @Column(name = "brand_name")
+    private String brandName;
+
+    /**
+     * 商品分类名称
+     */
+    @Column(name = "product_category_name")
+    private String productCategoryName;
 
     /**
      * 商品描述
      */
-    private String descript;
+    private String description;
+
+    @Column(name = "detail_desc")
+    private String detailDesc;
 
     /**
-     * 获取商品ID
-     *
-     * @return product_id - 商品ID
+     * 产品详情网页内容
      */
-    public Integer getProductId() {
-        return productId;
+    @Column(name = "detail_html")
+    private String detailHtml;
+
+    /**
+     * 移动端网页详情
+     */
+    @Column(name = "detail_mobile_html")
+    private String detailMobileHtml;
+
+    /**
+     * @return id
+     */
+    public Long getId() {
+        return id;
     }
 
     /**
-     * 设置商品ID
-     *
-     * @param productId 商品ID
+     * @param id
      */
-    public void setProductId(Integer productId) {
-        this.productId = productId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     /**
-     * 获取商品编码
-     *
-     * @return product_core - 商品编码
+     * @return brand_id
      */
-    public String getProductCore() {
-        return productCore;
-    }
-
-    /**
-     * 设置商品编码
-     *
-     * @param productCore 商品编码
-     */
-    public void setProductCore(String productCore) {
-        this.productCore = productCore == null ? null : productCore.trim();
-    }
-
-    /**
-     * 获取商品名称
-     *
-     * @return product_name - 商品名称
-     */
-    public String getProductName() {
-        return productName;
-    }
-
-    /**
-     * 设置商品名称
-     *
-     * @param productName 商品名称
-     */
-    public void setProductName(String productName) {
-        this.productName = productName == null ? null : productName.trim();
-    }
-
-    /**
-     * 获取国条码
-     *
-     * @return bar_code - 国条码
-     */
-    public String getBarCode() {
-        return barCode;
-    }
-
-    /**
-     * 设置国条码
-     *
-     * @param barCode 国条码
-     */
-    public void setBarCode(String barCode) {
-        this.barCode = barCode == null ? null : barCode.trim();
-    }
-
-    /**
-     * 获取品牌表的ID
-     *
-     * @return brand_id - 品牌表的ID
-     */
-    public Integer getBrandId() {
+    public Long getBrandId() {
         return brandId;
     }
 
     /**
-     * 设置品牌表的ID
-     *
-     * @param brandId 品牌表的ID
+     * @param brandId
      */
-    public void setBrandId(Integer brandId) {
+    public void setBrandId(Long brandId) {
         this.brandId = brandId;
     }
 
     /**
-     * 获取一级分类ID
-     *
-     * @return one_category_id - 一级分类ID
+     * @return product_category_id
      */
-    public Short getOneCategoryId() {
-        return oneCategoryId;
+    public Long getProductCategoryId() {
+        return productCategoryId;
     }
 
     /**
-     * 设置一级分类ID
-     *
-     * @param oneCategoryId 一级分类ID
+     * @param productCategoryId
      */
-    public void setOneCategoryId(Short oneCategoryId) {
-        this.oneCategoryId = oneCategoryId;
+    public void setProductCategoryId(Long productCategoryId) {
+        this.productCategoryId = productCategoryId;
     }
 
     /**
-     * 获取二级分类ID
-     *
-     * @return two_category_id - 二级分类ID
+     * @return feight_template_id
      */
-    public Short getTwoCategoryId() {
-        return twoCategoryId;
+    public Long getFeightTemplateId() {
+        return feightTemplateId;
     }
 
     /**
-     * 设置二级分类ID
-     *
-     * @param twoCategoryId 二级分类ID
+     * @param feightTemplateId
      */
-    public void setTwoCategoryId(Short twoCategoryId) {
-        this.twoCategoryId = twoCategoryId;
+    public void setFeightTemplateId(Long feightTemplateId) {
+        this.feightTemplateId = feightTemplateId;
     }
 
     /**
-     * 获取三级分类ID
-     *
-     * @return three_category_id - 三级分类ID
+     * @return product_attribute_category_id
      */
-    public Short getThreeCategoryId() {
-        return threeCategoryId;
+    public Long getProductAttributeCategoryId() {
+        return productAttributeCategoryId;
     }
 
     /**
-     * 设置三级分类ID
-     *
-     * @param threeCategoryId 三级分类ID
+     * @param productAttributeCategoryId
      */
-    public void setThreeCategoryId(Short threeCategoryId) {
-        this.threeCategoryId = threeCategoryId;
+    public void setProductAttributeCategoryId(Long productAttributeCategoryId) {
+        this.productAttributeCategoryId = productAttributeCategoryId;
     }
 
     /**
-     * 获取商品的供应商ID
-     *
-     * @return supplier_id - 商品的供应商ID
+     * @return name
      */
-    public Integer getSupplierId() {
-        return supplierId;
+    public String getName() {
+        return name;
     }
 
     /**
-     * 设置商品的供应商ID
-     *
-     * @param supplierId 商品的供应商ID
+     * @param name
      */
-    public void setSupplierId(Integer supplierId) {
-        this.supplierId = supplierId;
+    public void setName(String name) {
+        this.name = name == null ? null : name.trim();
     }
 
     /**
-     * 获取商品销售价格
+     * @return pic
+     */
+    public String getPic() {
+        return pic;
+    }
+
+    /**
+     * @param pic
+     */
+    public void setPic(String pic) {
+        this.pic = pic == null ? null : pic.trim();
+    }
+
+    /**
+     * 获取货号
      *
-     * @return price - 商品销售价格
+     * @return product_sn - 货号
+     */
+    public String getProductSn() {
+        return productSn;
+    }
+
+    /**
+     * 设置货号
+     *
+     * @param productSn 货号
+     */
+    public void setProductSn(String productSn) {
+        this.productSn = productSn == null ? null : productSn.trim();
+    }
+
+    /**
+     * 获取删除状态：0->未删除；1->已删除
+     *
+     * @return delete_status - 删除状态：0->未删除；1->已删除
+     */
+    public Integer getDeleteStatus() {
+        return deleteStatus;
+    }
+
+    /**
+     * 设置删除状态：0->未删除；1->已删除
+     *
+     * @param deleteStatus 删除状态：0->未删除；1->已删除
+     */
+    public void setDeleteStatus(Integer deleteStatus) {
+        this.deleteStatus = deleteStatus;
+    }
+
+    /**
+     * 获取上架状态：0->下架；1->上架
+     *
+     * @return publish_status - 上架状态：0->下架；1->上架
+     */
+    public Integer getPublishStatus() {
+        return publishStatus;
+    }
+
+    /**
+     * 设置上架状态：0->下架；1->上架
+     *
+     * @param publishStatus 上架状态：0->下架；1->上架
+     */
+    public void setPublishStatus(Integer publishStatus) {
+        this.publishStatus = publishStatus;
+    }
+
+    /**
+     * 获取新品状态:0->不是新品；1->新品
+     *
+     * @return new_status - 新品状态:0->不是新品；1->新品
+     */
+    public Integer getNewStatus() {
+        return newStatus;
+    }
+
+    /**
+     * 设置新品状态:0->不是新品；1->新品
+     *
+     * @param newStatus 新品状态:0->不是新品；1->新品
+     */
+    public void setNewStatus(Integer newStatus) {
+        this.newStatus = newStatus;
+    }
+
+    /**
+     * 获取推荐状态；0->不推荐；1->推荐
+     *
+     * @return recommand_status - 推荐状态；0->不推荐；1->推荐
+     */
+    public Integer getRecommandStatus() {
+        return recommandStatus;
+    }
+
+    /**
+     * 设置推荐状态；0->不推荐；1->推荐
+     *
+     * @param recommandStatus 推荐状态；0->不推荐；1->推荐
+     */
+    public void setRecommandStatus(Integer recommandStatus) {
+        this.recommandStatus = recommandStatus;
+    }
+
+    /**
+     * 获取审核状态：0->未审核；1->审核通过
+     *
+     * @return verify_status - 审核状态：0->未审核；1->审核通过
+     */
+    public Integer getVerifyStatus() {
+        return verifyStatus;
+    }
+
+    /**
+     * 设置审核状态：0->未审核；1->审核通过
+     *
+     * @param verifyStatus 审核状态：0->未审核；1->审核通过
+     */
+    public void setVerifyStatus(Integer verifyStatus) {
+        this.verifyStatus = verifyStatus;
+    }
+
+    /**
+     * 获取排序
+     *
+     * @return sort - 排序
+     */
+    public Integer getSort() {
+        return sort;
+    }
+
+    /**
+     * 设置排序
+     *
+     * @param sort 排序
+     */
+    public void setSort(Integer sort) {
+        this.sort = sort;
+    }
+
+    /**
+     * 获取销量
+     *
+     * @return sale - 销量
+     */
+    public Integer getSale() {
+        return sale;
+    }
+
+    /**
+     * 设置销量
+     *
+     * @param sale 销量
+     */
+    public void setSale(Integer sale) {
+        this.sale = sale;
+    }
+
+    /**
+     * @return price
      */
     public BigDecimal getPrice() {
         return price;
     }
 
     /**
-     * 设置商品销售价格
-     *
-     * @param price 商品销售价格
+     * @param price
      */
     public void setPrice(BigDecimal price) {
         this.price = price;
     }
 
     /**
-     * 获取商品加权平均成本
+     * 获取促销价格
      *
-     * @return average_cost - 商品加权平均成本
+     * @return promotion_price - 促销价格
      */
-    public BigDecimal getAverageCost() {
-        return averageCost;
+    public BigDecimal getPromotionPrice() {
+        return promotionPrice;
     }
 
     /**
-     * 设置商品加权平均成本
+     * 设置促销价格
      *
-     * @param averageCost 商品加权平均成本
+     * @param promotionPrice 促销价格
      */
-    public void setAverageCost(BigDecimal averageCost) {
-        this.averageCost = averageCost;
+    public void setPromotionPrice(BigDecimal promotionPrice) {
+        this.promotionPrice = promotionPrice;
     }
 
     /**
-     * 获取上下架状态：0下架1上架
+     * 获取赠送的成长值
      *
-     * @return publish_status - 上下架状态：0下架1上架
+     * @return gift_growth - 赠送的成长值
      */
-    public Byte getPublishStatus() {
-        return publishStatus;
+    public Integer getGiftGrowth() {
+        return giftGrowth;
     }
 
     /**
-     * 设置上下架状态：0下架1上架
+     * 设置赠送的成长值
      *
-     * @param publishStatus 上下架状态：0下架1上架
+     * @param giftGrowth 赠送的成长值
      */
-    public void setPublishStatus(Byte publishStatus) {
-        this.publishStatus = publishStatus;
+    public void setGiftGrowth(Integer giftGrowth) {
+        this.giftGrowth = giftGrowth;
     }
 
     /**
-     * 获取审核状态：0未审核，1已审核
+     * 获取赠送的积分
      *
-     * @return audit_status - 审核状态：0未审核，1已审核
+     * @return gift_point - 赠送的积分
      */
-    public Byte getAuditStatus() {
-        return auditStatus;
+    public Integer getGiftPoint() {
+        return giftPoint;
     }
 
     /**
-     * 设置审核状态：0未审核，1已审核
+     * 设置赠送的积分
      *
-     * @param auditStatus 审核状态：0未审核，1已审核
+     * @param giftPoint 赠送的积分
      */
-    public void setAuditStatus(Byte auditStatus) {
-        this.auditStatus = auditStatus;
+    public void setGiftPoint(Integer giftPoint) {
+        this.giftPoint = giftPoint;
     }
 
     /**
-     * 获取商品重量
+     * 获取限制使用的积分数
      *
-     * @return weight - 商品重量
+     * @return use_point_limit - 限制使用的积分数
      */
-    public Float getWeight() {
+    public Integer getUsePointLimit() {
+        return usePointLimit;
+    }
+
+    /**
+     * 设置限制使用的积分数
+     *
+     * @param usePointLimit 限制使用的积分数
+     */
+    public void setUsePointLimit(Integer usePointLimit) {
+        this.usePointLimit = usePointLimit;
+    }
+
+    /**
+     * 获取副标题
+     *
+     * @return sub_title - 副标题
+     */
+    public String getSubTitle() {
+        return subTitle;
+    }
+
+    /**
+     * 设置副标题
+     *
+     * @param subTitle 副标题
+     */
+    public void setSubTitle(String subTitle) {
+        this.subTitle = subTitle == null ? null : subTitle.trim();
+    }
+
+    /**
+     * 获取市场价
+     *
+     * @return original_price - 市场价
+     */
+    public BigDecimal getOriginalPrice() {
+        return originalPrice;
+    }
+
+    /**
+     * 设置市场价
+     *
+     * @param originalPrice 市场价
+     */
+    public void setOriginalPrice(BigDecimal originalPrice) {
+        this.originalPrice = originalPrice;
+    }
+
+    /**
+     * 获取库存
+     *
+     * @return stock - 库存
+     */
+    public Integer getStock() {
+        return stock;
+    }
+
+    /**
+     * 设置库存
+     *
+     * @param stock 库存
+     */
+    public void setStock(Integer stock) {
+        this.stock = stock;
+    }
+
+    /**
+     * 获取库存预警值
+     *
+     * @return low_stock - 库存预警值
+     */
+    public Integer getLowStock() {
+        return lowStock;
+    }
+
+    /**
+     * 设置库存预警值
+     *
+     * @param lowStock 库存预警值
+     */
+    public void setLowStock(Integer lowStock) {
+        this.lowStock = lowStock;
+    }
+
+    /**
+     * 获取单位
+     *
+     * @return unit - 单位
+     */
+    public String getUnit() {
+        return unit;
+    }
+
+    /**
+     * 设置单位
+     *
+     * @param unit 单位
+     */
+    public void setUnit(String unit) {
+        this.unit = unit == null ? null : unit.trim();
+    }
+
+    /**
+     * 获取商品重量，默认为克
+     *
+     * @return weight - 商品重量，默认为克
+     */
+    public BigDecimal getWeight() {
         return weight;
     }
 
     /**
-     * 设置商品重量
+     * 设置商品重量，默认为克
      *
-     * @param weight 商品重量
+     * @param weight 商品重量，默认为克
      */
-    public void setWeight(Float weight) {
+    public void setWeight(BigDecimal weight) {
         this.weight = weight;
     }
 
     /**
-     * 获取商品长度
+     * 获取是否为预告商品：0->不是；1->是
      *
-     * @return length - 商品长度
+     * @return preview_status - 是否为预告商品：0->不是；1->是
      */
-    public Float getLength() {
-        return length;
+    public Integer getPreviewStatus() {
+        return previewStatus;
     }
 
     /**
-     * 设置商品长度
+     * 设置是否为预告商品：0->不是；1->是
      *
-     * @param length 商品长度
+     * @param previewStatus 是否为预告商品：0->不是；1->是
      */
-    public void setLength(Float length) {
-        this.length = length;
+    public void setPreviewStatus(Integer previewStatus) {
+        this.previewStatus = previewStatus;
     }
 
     /**
-     * 获取商品高度
+     * 获取以逗号分割的产品服务：1->无忧退货；2->快速退款；3->免费包邮
      *
-     * @return height - 商品高度
+     * @return service_ids - 以逗号分割的产品服务：1->无忧退货；2->快速退款；3->免费包邮
      */
-    public Float getHeight() {
-        return height;
+    public String getServiceIds() {
+        return serviceIds;
     }
 
     /**
-     * 设置商品高度
+     * 设置以逗号分割的产品服务：1->无忧退货；2->快速退款；3->免费包邮
      *
-     * @param height 商品高度
+     * @param serviceIds 以逗号分割的产品服务：1->无忧退货；2->快速退款；3->免费包邮
      */
-    public void setHeight(Float height) {
-        this.height = height;
+    public void setServiceIds(String serviceIds) {
+        this.serviceIds = serviceIds == null ? null : serviceIds.trim();
     }
 
     /**
-     * 获取商品宽度
+     * @return keywords
+     */
+    public String getKeywords() {
+        return keywords;
+    }
+
+    /**
+     * @param keywords
+     */
+    public void setKeywords(String keywords) {
+        this.keywords = keywords == null ? null : keywords.trim();
+    }
+
+    /**
+     * @return note
+     */
+    public String getNote() {
+        return note;
+    }
+
+    /**
+     * @param note
+     */
+    public void setNote(String note) {
+        this.note = note == null ? null : note.trim();
+    }
+
+    /**
+     * 获取画册图片，连产品图片限制为5张，以逗号分割
      *
-     * @return width - 商品宽度
+     * @return album_pics - 画册图片，连产品图片限制为5张，以逗号分割
      */
-    public Float getWidth() {
-        return width;
+    public String getAlbumPics() {
+        return albumPics;
     }
 
     /**
-     * 设置商品宽度
+     * 设置画册图片，连产品图片限制为5张，以逗号分割
      *
-     * @param width 商品宽度
+     * @param albumPics 画册图片，连产品图片限制为5张，以逗号分割
      */
-    public void setWidth(Float width) {
-        this.width = width;
+    public void setAlbumPics(String albumPics) {
+        this.albumPics = albumPics == null ? null : albumPics.trim();
     }
 
     /**
-     * @return color_type
+     * @return detail_title
      */
-    public String getColorType() {
-        return colorType;
+    public String getDetailTitle() {
+        return detailTitle;
     }
 
     /**
-     * @param colorType
+     * @param detailTitle
      */
-    public void setColorType(String colorType) {
-        this.colorType = colorType == null ? null : colorType.trim();
+    public void setDetailTitle(String detailTitle) {
+        this.detailTitle = detailTitle == null ? null : detailTitle.trim();
     }
 
     /**
-     * 获取生产日期
+     * 获取促销开始时间
      *
-     * @return production_date - 生产日期
+     * @return promotion_start_time - 促销开始时间
      */
-    public Date getProductionDate() {
-        return productionDate;
+    public Date getPromotionStartTime() {
+        return promotionStartTime;
     }
 
     /**
-     * 设置生产日期
+     * 设置促销开始时间
      *
-     * @param productionDate 生产日期
+     * @param promotionStartTime 促销开始时间
      */
-    public void setProductionDate(Date productionDate) {
-        this.productionDate = productionDate;
+    public void setPromotionStartTime(Date promotionStartTime) {
+        this.promotionStartTime = promotionStartTime;
     }
 
     /**
-     * 获取商品有效期
+     * 获取促销结束时间
      *
-     * @return shelf_life - 商品有效期
+     * @return promotion_end_time - 促销结束时间
      */
-    public Integer getShelfLife() {
-        return shelfLife;
+    public Date getPromotionEndTime() {
+        return promotionEndTime;
     }
 
     /**
-     * 设置商品有效期
+     * 设置促销结束时间
      *
-     * @param shelfLife 商品有效期
+     * @param promotionEndTime 促销结束时间
      */
-    public void setShelfLife(Integer shelfLife) {
-        this.shelfLife = shelfLife;
+    public void setPromotionEndTime(Date promotionEndTime) {
+        this.promotionEndTime = promotionEndTime;
     }
 
     /**
-     * 获取商品录入时间
+     * 获取活动限购数量
      *
-     * @return indate - 商品录入时间
+     * @return promotion_per_limit - 活动限购数量
      */
-    public Date getIndate() {
-        return indate;
+    public Integer getPromotionPerLimit() {
+        return promotionPerLimit;
     }
 
     /**
-     * 设置商品录入时间
+     * 设置活动限购数量
      *
-     * @param indate 商品录入时间
+     * @param promotionPerLimit 活动限购数量
      */
-    public void setIndate(Date indate) {
-        this.indate = indate;
+    public void setPromotionPerLimit(Integer promotionPerLimit) {
+        this.promotionPerLimit = promotionPerLimit;
     }
 
     /**
-     * 获取最后修改时间
+     * 获取促销类型：0->没有促销使用原价;1->使用促销价；2->使用会员价；3->使用阶梯价格；4->使用满减价格；5->限时购
      *
-     * @return modified_time - 最后修改时间
+     * @return promotion_type - 促销类型：0->没有促销使用原价;1->使用促销价；2->使用会员价；3->使用阶梯价格；4->使用满减价格；5->限时购
      */
-    public Date getModifiedTime() {
-        return modifiedTime;
+    public Integer getPromotionType() {
+        return promotionType;
     }
 
     /**
-     * 设置最后修改时间
+     * 设置促销类型：0->没有促销使用原价;1->使用促销价；2->使用会员价；3->使用阶梯价格；4->使用满减价格；5->限时购
      *
-     * @param modifiedTime 最后修改时间
+     * @param promotionType 促销类型：0->没有促销使用原价;1->使用促销价；2->使用会员价；3->使用阶梯价格；4->使用满减价格；5->限时购
      */
-    public void setModifiedTime(Date modifiedTime) {
-        this.modifiedTime = modifiedTime;
+    public void setPromotionType(Integer promotionType) {
+        this.promotionType = promotionType;
+    }
+
+    /**
+     * 获取品牌名称
+     *
+     * @return brand_name - 品牌名称
+     */
+    public String getBrandName() {
+        return brandName;
+    }
+
+    /**
+     * 设置品牌名称
+     *
+     * @param brandName 品牌名称
+     */
+    public void setBrandName(String brandName) {
+        this.brandName = brandName == null ? null : brandName.trim();
+    }
+
+    /**
+     * 获取商品分类名称
+     *
+     * @return product_category_name - 商品分类名称
+     */
+    public String getProductCategoryName() {
+        return productCategoryName;
+    }
+
+    /**
+     * 设置商品分类名称
+     *
+     * @param productCategoryName 商品分类名称
+     */
+    public void setProductCategoryName(String productCategoryName) {
+        this.productCategoryName = productCategoryName == null ? null : productCategoryName.trim();
     }
 
     /**
      * 获取商品描述
      *
-     * @return descript - 商品描述
+     * @return description - 商品描述
      */
-    public String getDescript() {
-        return descript;
+    public String getDescription() {
+        return description;
     }
 
     /**
      * 设置商品描述
      *
-     * @param descript 商品描述
+     * @param description 商品描述
      */
-    public void setDescript(String descript) {
-        this.descript = descript == null ? null : descript.trim();
+    public void setDescription(String description) {
+        this.description = description == null ? null : description.trim();
+    }
+
+    /**
+     * @return detail_desc
+     */
+    public String getDetailDesc() {
+        return detailDesc;
+    }
+
+    /**
+     * @param detailDesc
+     */
+    public void setDetailDesc(String detailDesc) {
+        this.detailDesc = detailDesc == null ? null : detailDesc.trim();
+    }
+
+    /**
+     * 获取产品详情网页内容
+     *
+     * @return detail_html - 产品详情网页内容
+     */
+    public String getDetailHtml() {
+        return detailHtml;
+    }
+
+    /**
+     * 设置产品详情网页内容
+     *
+     * @param detailHtml 产品详情网页内容
+     */
+    public void setDetailHtml(String detailHtml) {
+        this.detailHtml = detailHtml == null ? null : detailHtml.trim();
+    }
+
+    /**
+     * 获取移动端网页详情
+     *
+     * @return detail_mobile_html - 移动端网页详情
+     */
+    public String getDetailMobileHtml() {
+        return detailMobileHtml;
+    }
+
+    /**
+     * 设置移动端网页详情
+     *
+     * @param detailMobileHtml 移动端网页详情
+     */
+    public void setDetailMobileHtml(String detailMobileHtml) {
+        this.detailMobileHtml = detailMobileHtml == null ? null : detailMobileHtml.trim();
     }
 }

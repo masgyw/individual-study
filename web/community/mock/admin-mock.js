@@ -2,28 +2,28 @@ import mockdata from './mockdata'
 
 const tokens = {
   admin: {
-    token: 'admin-token'
+    token: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxMDAxIn0.mfd9Q4HRQMRr36aGHlIOn4wV6934_rU24gjRMRrSnTM'
   },
   editor: {
-    token: 'editor-token'
+    token: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxMDAyIn0.vjp1rJb6jwxoyg1dqArEQfUSyo9nbtttPYsxJfGYf4c'
   }
 }
 
 const users = {
-  'admin-token': {
+  'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxMDAxIn0.mfd9Q4HRQMRr36aGHlIOn4wV6934_rU24gjRMRrSnTM': {
     roles: ['admin'],
     introduction: 'I am a super administrator',
-    avatar: 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif',
+    avatar: '',
     name: 'Super Admin',
     userName: 'Super Admin',
     role: {
       roleName: 'admin'
     }
   },
-  'editor-token': {
+  'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxMDAyIn0.vjp1rJb6jwxoyg1dqArEQfUSyo9nbtttPYsxJfGYf4c': {
     roles: ['editor'],
     introduction: 'I am an editor',
-    avatar: 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif',
+    avatar: '',
     name: 'Normal Editor',
     userName: 'Normal Editor',
     role: {

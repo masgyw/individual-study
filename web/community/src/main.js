@@ -9,12 +9,15 @@ import cnLocale from 'element-ui/lib/locale/lang/zh-CN' // lang i18n
 
 import '@/styles/index.scss' // global css
 
+import VCharts from 'v-charts'
+
 import App from './App'
 import axios from 'axios'
 import store from './store'
 import router from './router'
 import * as apis from '@/api/common.js'
 
+import '@/icons' // icon
 import '@/permission' // permission control
 
 import '@/directive/dialog-drag.js'
@@ -36,6 +39,7 @@ if (process.env.NODE_ENV === 'production') {
 // Vue.use(ElementUI, { enLocale })
 // set ElementUI lang to CN
 Vue.use(ElementUI, { cnLocale })
+Vue.use(VCharts)
 
 Vue.config.productionTip = false
 Vue.prototype.$axios = axios
