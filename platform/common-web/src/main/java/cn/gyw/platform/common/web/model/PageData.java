@@ -10,16 +10,67 @@ public class PageData<T> implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private PageInfo pageInfo;
+    /**
+     * 当前页码
+     */
+    private Integer pageNum;
+    /**
+     * 每页数量
+     */
+    private Integer pageSize;
+    /**
+     * 总页数
+     */
+    private Integer totalPage;
+    /**
+     * 总条数
+     */
+    private Long total;
+    /**
+     * 是否更多
+     */
+    private Boolean hasMore;
 
     private List<T> records;
 
-    public PageInfo getPageInfo() {
-        return pageInfo;
+    public Integer getPageNum() {
+        return pageNum;
     }
 
-    public void setPageInfo(PageInfo pageInfo) {
-        this.pageInfo = pageInfo;
+    public void setPageNum(Integer pageNum) {
+        this.pageNum = pageNum;
+    }
+
+    public Integer getPageSize() {
+        return pageSize;
+    }
+
+    public void setPageSize(Integer pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public Integer getTotalPage() {
+        return totalPage;
+    }
+
+    public void setTotalPage(Integer totalPage) {
+        this.totalPage = totalPage;
+    }
+
+    public Long getTotal() {
+        return total;
+    }
+
+    public void setTotal(Long total) {
+        this.total = total;
+    }
+
+    public Boolean getHasMore() {
+        return hasMore;
+    }
+
+    public void setHasMore(Boolean hasMore) {
+        this.hasMore = hasMore;
     }
 
     public List<T> getRecords() {

@@ -8,6 +8,7 @@ import java.util.Map;
 
 import javax.annotation.PostConstruct;
 
+import com.github.pagehelper.PageInfo;
 import org.apache.commons.lang3.reflect.FieldUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -61,7 +62,7 @@ public abstract class BaseController<T, DTO> extends AbstractController {
 
 		PageHelper.startPage(Integer.parseInt(page), Integer.parseInt(limit));
 		List<T> data = baseService.query(example);
-		com.github.pagehelper.PageInfo<T> pageObj = new com.github.pagehelper.PageInfo<>(data);
+		PageInfo<T> pageObj = new PageInfo<>(data);
 		return DataResponse.success(PageHelperUtil.resetPage(pageObj));
 	}
 

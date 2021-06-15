@@ -1,20 +1,23 @@
 package cn.gyw.platform.common.web.utils;
 
 import cn.gyw.platform.common.web.model.PageData;
-import cn.gyw.platform.common.web.model.PageInfo;
+import com.github.pagehelper.PageInfo;
 
 public class PageHelperUtil {
 
-	/**
+    /**
      * 将PageHelper分页后的Page转为分页信息
      */
-    public static <T> PageData<T> resetPage(com.github.pagehelper.PageInfo<T> page) {
+    public static <T> PageData<T> resetPage(PageInfo<T> page) {
         PageData<T> result = new PageData<>();
-        PageInfo pageInfo = PageInfo.Builder.aPageInfo()
-                .pageNum(page.getPageNum()).pageSize(page.getPageSize())
-                .totalPage(page.getPages()).total(page.getTotal()).build();
+        result.setPageNum(page.getPageNum());
+        result.setPageSize(page.getPageSize());
+        result.setTotalPage(page.getPages());
+        result.setTotal(page.getTotal());
         result.setRecords(page.getList());
-        result.setPageInfo(pageInfo);
         return result;
+    }
+
+    private PageHelperUtil() {
     }
 }

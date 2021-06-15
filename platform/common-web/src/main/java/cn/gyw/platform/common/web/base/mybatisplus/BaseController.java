@@ -10,6 +10,7 @@ import javax.annotation.PostConstruct;
 
 import cn.gyw.platform.common.web.model.DataResponse;
 import cn.gyw.platform.common.web.model.PageData;
+import cn.gyw.platform.common.web.utils.MBPUtil;
 import org.apache.commons.lang3.reflect.FieldUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,7 +31,6 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
 import cn.gyw.platform.common.web.base.AbstractController;
-import cn.gyw.platform.common.web.model.PageInfo;
 
 /**
  * 抽象父类控制器
@@ -105,16 +105,7 @@ public abstract class BaseController<T, V> extends AbstractController {
             });
         }
         IPage<T> pageObj = this.baseService.page(params, qw);
-        PageData<T> pageData = new PageData<>();
-        PageInfo pageInfo = new PageInfo();
-        pageInfo.setPageNum((int)pageObj.getCurrent());
-        pageInfo.setPageSize((int)pageObj.getSize());
-        pageInfo.setTotalPage((int)pageObj.getPages());
-        pageInfo.setTotal(pageObj.getTotal());
-
-        pageData.setPageInfo(pageInfo);
-        pageData.setRecords(pageObj.getRecords());
-        return DataResponse.success(pageData);
+        return DataResponse.success(MBPUtil.resetPage(pageObj));
     }
 
     /**
@@ -150,7 +141,7 @@ public abstract class BaseController<T, V> extends AbstractController {
      */
     @DeleteMapping
     public boolean delete(WebRequest webRequest) throws IllegalAccessException, InstantiationException {
-    	Map<String, String> params = fillVariablesMapWithIncomingRequestParameters(webRequest);
+        Map<String, String> params = fillVariablesMapWithIncomingRequestParameters(webRequest);
         String key = (String) FieldUtils.readField(entityClass.newInstance(), "UID");
         UpdateWrapper<T> wrapper = new UpdateWrapper<>();
         wrapper.eq(humpToUnderline(key), params.get(key));
@@ -160,9 +151,10 @@ public abstract class BaseController<T, V> extends AbstractController {
     protected Map<String, String> setOrderColumns() {
         return Collections.emptyMap();
     }
-    
+
     /**
      * 驼峰命名转下划线
+     *
      * @param humpName
      * @return
      */
@@ -171,10 +163,10 @@ public abstract class BaseController<T, V> extends AbstractController {
         char[] charArray = humpName.toCharArray();
         StringBuffer buffer = new StringBuffer();
         //处理字符串
-        for (int i = 0,l=charArray.length; i < l; i++) {
+        for (int i = 0, l = charArray.length; i < l; i++) {
             if (charArray[i] >= 65 && charArray[i] <= 90) {
                 buffer.append("_").append(charArray[i] += 32);
-            }else {
+            } else {
                 buffer.append(charArray[i]);
             }
         }
