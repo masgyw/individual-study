@@ -16,6 +16,7 @@ const apiTypes = {
   PRODUCT_ATTR: '/product/attr',
   PRODUCT_CATEGORY: '/product/category',
   PRODUCT_BRAND: '/product/brand',
+  PRODUCT_SKU: '/product/sku',
   
 }
 
