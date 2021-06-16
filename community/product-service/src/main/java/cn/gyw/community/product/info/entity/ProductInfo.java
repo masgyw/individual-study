@@ -1,11 +1,13 @@
 package cn.gyw.community.product.info.entity;
 
+import cn.gyw.platform.common.web.model.ToStringObject;
+
 import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.*;
 
 @Table(name = "product")
-public class ProductInfo {
+public class ProductInfo extends ToStringObject {
     @Id
     private Long id;
 

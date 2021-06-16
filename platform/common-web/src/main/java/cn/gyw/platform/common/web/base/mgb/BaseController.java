@@ -42,12 +42,11 @@ public abstract class BaseController<T, DTO> extends AbstractController {
 	private IBaseService<T> baseService;
 
 	@GetMapping
-	public List<T> query(WebRequest webRequest) {
-		Map<String, Object> params = fillVariablesMapWithIncomingRequestParameters(webRequest.getParameterMap());
-		log.debug("query params:{}", params);
-		T condition;
+	public List<T> query(DTO dto) {
+		log.debug("query params:{}", dto);
 		try {
-			condition = BeanMapUtil.mapToBean(params, entityClass);
+			T condition = entityClass.newInstance();
+			BeanUtils.copyProperties(dto, condition);
 			log.debug("query condition bean :{}", condition);
 			List<T> data = baseService.query(condition);
 			return data;

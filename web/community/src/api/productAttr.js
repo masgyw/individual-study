@@ -1,7 +1,7 @@
 import request from '@/utils/request'
 import BaseApi from './base/BaseApi'
 import LoggerFactory from "./base/logger"
-import apiTypes from './base/api-types';
+import apiTypes from './base/api-types'
 
 class ProductAttrApi extends BaseApi {
 

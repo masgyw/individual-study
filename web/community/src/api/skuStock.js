@@ -1,16 +1,19 @@
 import request from '@/utils/request'
-export function fetchList(pid,params) {
-  return request({
-    url:'/sku/'+pid,
-    method:'get',
-    params:params
-  })
+import BaseApi from './base/BaseApi'
+import LoggerFactory from "./base/logger"
+import apiTypes from './base/api-types';
+
+class SkuStockApi extends BaseApi {
+
+  constructor() {
+    super(apiTypes.PRODUCT_SKU);
+  }
+
 }
 
-export function update(pid,data) {
-  return request({
-    url:'/sku/update/'+pid,
-    method:'post',
-    data:data
-  })
+let logger = LoggerFactory.getLogger(apiTypes.PRODUCT_SKU)
+let skuStockApi = new SkuStockApi();
+
+export {
+  skuStockApi
 }

@@ -1,11 +1,11 @@
 # centos8 config
 spring:
   datasource:
-    url: jdbc:mysql://192.168.1.181:3306/mall_product?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai&useSSL=false&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://192.168.1.181:3306/cs_product?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai&useSSL=false&allowPublicKeyRetrieval=true
 
 datasource:
   host: 192.168.1.181:3306
 
 dubbo:
   address: zookeeper://192.168.1.181:2181
-  cacheFile: /home/guanyw/temp/Zookeeper/product-service.txt
+  cacheFile: /home/gyw/temp/Zookeeper/product-service.txt
