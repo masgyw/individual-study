@@ -1,45 +1,55 @@
 import request from '@/utils/request'
-export function fetchList(cid,params) {
-  return request({
-    url:'/productAttribute/list/'+cid,
-    method:'get',
-    params:params
-  })
+import BaseApi from './base/BaseApi'
+import LoggerFactory from "./base/logger"
+import apiTypes from './base/api-types';
+
+class ProductAttrApi extends BaseApi {
+
+  constructor() {
+    super(apiTypes.PRODUCT_ATTR);
+  }
+  
+  deleteProductAttr(data) {
+    return request({
+      url:'/delete',
+      method:'post',
+      data:data
+    })
+  }
+  
+  createProductAttr(data) {
+    return request({
+      url:'/create',
+      method:'post',
+      data:data
+    })
+  }
+  
+  updateProductAttr(id,data) {
+    return request({
+      url:'/update/'+id,
+      method:'post',
+      data:data
+    })
+  }
+  getProductAttr(id) {
+    return request({
+      url:'/'+id,
+      method:'get'
+    })
+  }
+  
+  getProductAttrInfo(productCategoryId) {
+    return request({
+      url:'/attrInfo/'+productCategoryId,
+      method:'get'
+    })
+  }
 }
 
-export function deleteProductAttr(data) {
-  return request({
-    url:'/productAttribute/delete',
-    method:'post',
-    data:data
-  })
-}
+let logger = LoggerFactory.getLogger(apiTypes.PRODUCT_ATTR)
+let productAttrApi = new ProductAttrApi();
 
-export function createProductAttr(data) {
-  return request({
-    url:'/productAttribute/create',
-    method:'post',
-    data:data
-  })
-}
-
-export function updateProductAttr(id,data) {
-  return request({
-    url:'/productAttribute/update/'+id,
-    method:'post',
-    data:data
-  })
-}
-export function getProductAttr(id) {
-  return request({
-    url:'/productAttribute/'+id,
-    method:'get'
-  })
-}
-
-export function getProductAttrInfo(productCategoryId) {
-  return request({
-    url:'/productAttribute/attrInfo/'+productCategoryId,
-    method:'get'
-  })
+export {
+  productAttrApi
 }

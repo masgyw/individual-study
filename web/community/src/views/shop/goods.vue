@@ -51,7 +51,7 @@
 </template>
 <script>
 
-import apiTypes from '@/api/api-types'
+import apiTypes from '@/api/base/api-types'
 import BaseList from '@/components/BaseList'
 
 export default {

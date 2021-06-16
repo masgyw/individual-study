@@ -27,7 +27,7 @@
 </template>
 
 <script>
-  import apiTypes from '@/api/api-types'
+  import apiTypes from '@/api/base/api-types'
   import fileStore from '@/api/fileStore.js';
 
   export default {

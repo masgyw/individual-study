@@ -47,7 +47,7 @@ public class ApiLogConfig {
 				ApiLog apiLog = new ApiLog();
 				handleRequest(wrappedRequest, apiLog);
 				handleResponse(wrappedResponse, apiLog);
-				LOGGER.debug("Api log :{}", apiLog);
+				LOGGER.debug("{}", apiLog);
 				// 注意这一行代码一定要调用，不然无法返回响应体
 				wrappedResponse.copyBodyToResponse();
 			}

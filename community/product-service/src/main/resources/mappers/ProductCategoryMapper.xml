@@ -5,19 +5,48 @@
     <!--
       WARNING - @mbg.generated
     -->
-    <id column="category_id" jdbcType="SMALLINT" property="categoryId" />
-    <result column="category_name" jdbcType="VARCHAR" property="categoryName" />
-    <result column="category_code" jdbcType="VARCHAR" property="categoryCode" />
-    <result column="parent_id" jdbcType="SMALLINT" property="parentId" />
-    <result column="category_level" jdbcType="TINYINT" property="categoryLevel" />
-    <result column="category_status" jdbcType="TINYINT" property="categoryStatus" />
-    <result column="modified_time" jdbcType="TIMESTAMP" property="modifiedTime" />
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="parent_id" jdbcType="BIGINT" property="parentId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="level" jdbcType="INTEGER" property="level" />
+    <result column="product_count" jdbcType="INTEGER" property="productCount" />
+    <result column="product_unit" jdbcType="VARCHAR" property="productUnit" />
+    <result column="nav_status" jdbcType="INTEGER" property="navStatus" />
+    <result column="show_status" jdbcType="INTEGER" property="showStatus" />
+    <result column="sort" jdbcType="INTEGER" property="sort" />
+    <result column="icon" jdbcType="VARCHAR" property="icon" />
+    <result column="keywords" jdbcType="VARCHAR" property="keywords" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="cn.gyw.community.product.category.entity.ProductCategory">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <result column="description" jdbcType="LONGVARCHAR" property="description" />
   </resultMap>
   <sql id="Base_Column_List">
     <!--
       WARNING - @mbg.generated
     -->
-    category_id, category_name, category_code, parent_id, category_level, category_status, 
-    modified_time
+    id, parent_id, name, level, product_count, product_unit, nav_status, show_status, 
+    sort, icon, keywords
   </sql>
+  <sql id="Blob_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    description
+  </sql>
+
+  <resultMap id="listWithChildrenMap" type="cn.gyw.community.product.category.entity.ProductCategoryWithChildren"
+             extends="cn.gyw.community.product.category.dao.ProductCategoryMapper.BaseResultMap">
+    <collection property="children" resultMap="cn.gyw.community.product.category.dao.ProductCategoryMapper.BaseResultMap"
+                columnPrefix="child_"></collection>
+  </resultMap>
+
+  <select id="listWithChildren" resultMap="listWithChildrenMap">
+    select t1.id,t1.name,t2.id as child_id,t2.name as child_name
+    from product_category t1 left join product_category t2 on t2.parent_id = t1.id
+    where t1.parent_id = 0
+  </select>
+
 </mapper>

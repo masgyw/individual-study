@@ -8,7 +8,6 @@ import java.util.Map;
 
 import javax.annotation.PostConstruct;
 
-import com.github.pagehelper.PageInfo;
 import org.apache.commons.lang3.reflect.FieldUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,17 +19,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.context.request.WebRequest;
 
-import com.github.pagehelper.PageHelper;
-
 import cn.gyw.platform.common.web.base.AbstractController;
 import cn.gyw.platform.common.web.enums.CommonRespEnum;
-import cn.gyw.platform.common.web.model.DataResponse;
 import cn.gyw.platform.common.web.model.PageData;
+import cn.gyw.platform.common.web.utils.BeanMapUtil;
 import cn.gyw.platform.common.web.utils.PageHelperUtil;
-import tk.mybatis.mapper.entity.Example;
 
 /**
  * 通用Controller
+ * 
  * @param <T>
  * @param <DTO>
  */
@@ -46,24 +43,38 @@ public abstract class BaseController<T, DTO> extends AbstractController {
 
 	@GetMapping
 	public List<T> query(WebRequest webRequest) {
-		Example example = buildExample(fillVariablesMapWithIncomingRequestParameters(webRequest.getParameterMap()));
-		return baseService.query(example);
+		Map<String, Object> params = fillVariablesMapWithIncomingRequestParameters(webRequest.getParameterMap());
+		log.debug("query params:{}", params);
+		T condition;
+		try {
+			condition = BeanMapUtil.mapToBean(params, entityClass);
+			log.debug("query condition bean :{}", condition);
+			List<T> data = baseService.query(condition);
+			return data;
+		} catch (Exception e) {
+			log.error("New instance error :", e);
+		}
+		return null;
 	}
 
 	@GetMapping("/")
-	public DataResponse<PageData<T>> queryByPage(WebRequest webRequest) {
-		Map<String, String> params = fillVariablesMapWithIncomingRequestParameters(webRequest.getParameterMap());
-		// PageData<T> pageData = new PageData<>();
-		Example example = buildExample(params);
-		String page = params.get("page");
-		String limit = params.get("limit");
-		CommonRespEnum.PARAM_NULL.assertNotNull(page, "page");
-		CommonRespEnum.PARAM_NULL.assertNotNull(limit, "limit");
-
-		PageHelper.startPage(Integer.parseInt(page), Integer.parseInt(limit));
-		List<T> data = baseService.query(example);
-		PageInfo<T> pageObj = new PageInfo<>(data);
-		return DataResponse.success(PageHelperUtil.resetPage(pageObj));
+	public PageData<T> queryByPage(WebRequest webRequest) {
+		Map<String, Object> params = fillVariablesMapWithIncomingRequestParameters(webRequest.getParameterMap());
+		log.debug("queryByPage params:{}", params);
+		String pageNum = params.get("pageNum").toString();
+		String pageSize = params.get("pageSize").toString();
+		CommonRespEnum.PARAM_NULL.assertNotNull(pageNum, "page");
+		CommonRespEnum.PARAM_NULL.assertNotNull(pageNum, "limit");
+		T condition;
+		try {
+			condition = BeanMapUtil.mapToBean(params, entityClass);
+			log.debug("query condition bean :{}", condition);
+			List<T> data = baseService.query(condition, Integer.parseInt(pageNum), Integer.parseInt(pageSize));
+			return PageHelperUtil.resetPage(data);
+		} catch (Exception e) {
+			log.error("Map to bean error :", e);
+		}
+		return null;
 	}
 
 	/**
@@ -73,10 +84,9 @@ public abstract class BaseController<T, DTO> extends AbstractController {
 	 */
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public int add(@RequestBody DTO dto) throws IllegalAccessException, InstantiationException {
-		log.info("Add api data：{}", dto);
+		log.info("add data：{}", dto);
 		T bean = entityClass.newInstance();
 		BeanUtils.copyProperties(dto, bean);
-		log.info("Add api entity is :{}", bean);
 		return baseService.save(bean);
 	}
 
@@ -86,9 +96,11 @@ public abstract class BaseController<T, DTO> extends AbstractController {
 	 * @return
 	 */
 	@DeleteMapping
-	public int delete(WebRequest webRequest) throws IllegalAccessException, InstantiationException {
-		Example example = buildExample(fillVariablesMapWithIncomingRequestParameters(webRequest.getParameterMap()));
-		return baseService.remove(example);
+	public int delete(@RequestBody DTO dto) throws IllegalAccessException, InstantiationException {
+		log.info("delete data：{}", dto);
+		T bean = entityClass.newInstance();
+		BeanUtils.copyProperties(dto, bean);
+		return baseService.remove(bean);
 	}
 
 	/**
@@ -108,10 +120,6 @@ public abstract class BaseController<T, DTO> extends AbstractController {
 		log.info("base service name:{}", serviceBuilder.toString());
 		// forceAccess: 访问非public 属性
 		baseService = (IBaseService<T>) FieldUtils.readField(this, serviceBuilder.toString(), true);
-	}
-
-	public Example buildExample(Map<String, String> requestMap) {
-		return null;
 	}
 
 }

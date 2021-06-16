@@ -1,7 +1,6 @@
 import request from '@/utils/request'
-import apiTypes from './api-types'
+import apiTypes from './base/api-types'
 
-export * from './common.js'
 
 export function login(data) {
   return request({

@@ -46,7 +46,7 @@
 </template>
 
 <script>
-  import apiTypes from '@/api/api-types'
+  import apiTypes from '@/api/base/api-types'
   import * as LoginRequest from "@/api/user.js";
 
   export default {

@@ -10,6 +10,8 @@ import org.apache.commons.lang3.reflect.FieldUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.github.pagehelper.PageHelper;
+
 import tk.mybatis.mapper.entity.Example;
 
 public abstract class BaseService<T> implements IBaseService<T> {
@@ -48,12 +50,24 @@ public abstract class BaseService<T> implements IBaseService<T> {
 	}
 
 	@Override
-	public List<T> query(Example example) {
+	public List<T> query(T record) {
+		Example example = new Example(entityClass);
+		example.createCriteria().andEqualTo(record);
+		return baseDao.selectByExample(example);
+	}
+	
+	@Override
+	public List<T> query(T condition, Integer pageNum, Integer pageSize) {
+		PageHelper.startPage(pageNum, pageSize);
+		Example example = new Example(entityClass);
+		example.createCriteria().andEqualTo(condition);
 		return baseDao.selectByExample(example);
 	}
 
 	@Override
-	public int remove(Example example) {
+	public int remove(T record) {
+		Example example = new Example(entityClass);
+		example.createCriteria().andEqualTo(record);
 		return baseDao.deleteByExample(example);
 	}
 
@@ -65,11 +79,6 @@ public abstract class BaseService<T> implements IBaseService<T> {
 	@Override
 	public T selectOne(T record) {
 		return baseDao.selectOne(record);
-	}
-	
-	@Override
-	public T selectOne(Example example) {
-		return baseDao.selectOneByExample(example);
 	}
 
 }

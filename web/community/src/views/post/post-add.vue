@@ -25,7 +25,7 @@
 
   import { mavonEditor } from 'mavon-editor'
   import 'mavon-editor/dist/css/index.css'
-  import apiTypes from '@/api/api-types'
+  import apiTypes from '@/api/base/api-types'
 
   export default {
     name: "PostPage",

@@ -36,9 +36,9 @@ dependencies {
     implementation spring_boot_starter_web
     implementation spring_boot_starter_data_redis
     implementation spring_boot_devtools
-    implementation spring_boot_starter_jta_atomikos
+//    implementation spring_boot_starter_jta_atomikos
 	implementation mapper_spring_boot_starter
-
+	implementation pagehelper_spring_boot_starter
     implementation pagehelper
 
 //    implementation(dubbo) {
@@ -67,7 +67,7 @@ mbg {
 	overwrite = true
 	consoleable = true
 	generatorFile = "generatorConfig.xml"
-	tableNames = "product"
+	tableNames = "product_attribute"
 	jdbc{
 		driver = "com.mysql.jdbc.Driver"
 		url    = "jdbc:mysql://127.0.0.1:3306/cs_product?useSSL=false"
@@ -75,12 +75,12 @@ mbg {
 		password = "root"
 	}
 	xml{
-		mapperPackage= "cn.gyw.community.product.info.dao"
-		modelPackage = "cn.gyw.community.product.info.entity"
+		mapperPackage= "cn.gyw.community.product.attribute.dao"
+		modelPackage = "cn.gyw.community.product.attribute.entity"
 		mapperMapper = "cn.gyw.platform.common.web.base.mgb.BaseDao"
 		xmlPackage =   "mappers"
-		tableName ="product"
-		objectName ="ProductInfo"
+		tableName ="product_attribute"
+		objectName ="ProductAttribute"
 		mapperSuffix ="Mapper"
 	}
 }

@@ -1,176 +1,246 @@
 package cn.gyw.community.product.category.entity;
 
-import java.util.Date;
 import javax.persistence.*;
 
 @Table(name = "product_category")
 public class ProductCategory {
-    /**
-     * 分类ID
-     */
     @Id
-    @Column(name = "category_id")
-    private Short categoryId;
+    private Long id;
 
     /**
-     * 分类名称
-     */
-    @Column(name = "category_name")
-    private String categoryName;
-
-    /**
-     * 分类编码
-     */
-    @Column(name = "category_code")
-    private String categoryCode;
-
-    /**
-     * 父分类ID
+     * 上机分类的编号：0表示一级分类
      */
     @Column(name = "parent_id")
-    private Short parentId;
+    private Long parentId;
+
+    private String name;
 
     /**
-     * 分类层级
+     * 分类级别：0->1级；1->2级
      */
-    @Column(name = "category_level")
-    private Byte categoryLevel;
+    private Integer level;
+
+    @Column(name = "product_count")
+    private Integer productCount;
+
+    @Column(name = "product_unit")
+    private String productUnit;
 
     /**
-     * 分类状态
+     * 是否显示在导航栏：0->不显示；1->显示
      */
-    @Column(name = "category_status")
-    private Byte categoryStatus;
+    @Column(name = "nav_status")
+    private Integer navStatus;
 
     /**
-     * 最后修改时间
+     * 显示状态：0->不显示；1->显示
      */
-    @Column(name = "modified_time")
-    private Date modifiedTime;
+    @Column(name = "show_status")
+    private Integer showStatus;
+
+    private Integer sort;
 
     /**
-     * 获取分类ID
-     *
-     * @return category_id - 分类ID
+     * 图标
      */
-    public Short getCategoryId() {
-        return categoryId;
+    private String icon;
+
+    private String keywords;
+
+    /**
+     * 描述
+     */
+    private String description;
+
+    /**
+     * @return id
+     */
+    public Long getId() {
+        return id;
     }
 
     /**
-     * 设置分类ID
-     *
-     * @param categoryId 分类ID
+     * @param id
      */
-    public void setCategoryId(Short categoryId) {
-        this.categoryId = categoryId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     /**
-     * 获取分类名称
+     * 获取上机分类的编号：0表示一级分类
      *
-     * @return category_name - 分类名称
+     * @return parent_id - 上机分类的编号：0表示一级分类
      */
-    public String getCategoryName() {
-        return categoryName;
-    }
-
-    /**
-     * 设置分类名称
-     *
-     * @param categoryName 分类名称
-     */
-    public void setCategoryName(String categoryName) {
-        this.categoryName = categoryName == null ? null : categoryName.trim();
-    }
-
-    /**
-     * 获取分类编码
-     *
-     * @return category_code - 分类编码
-     */
-    public String getCategoryCode() {
-        return categoryCode;
-    }
-
-    /**
-     * 设置分类编码
-     *
-     * @param categoryCode 分类编码
-     */
-    public void setCategoryCode(String categoryCode) {
-        this.categoryCode = categoryCode == null ? null : categoryCode.trim();
-    }
-
-    /**
-     * 获取父分类ID
-     *
-     * @return parent_id - 父分类ID
-     */
-    public Short getParentId() {
+    public Long getParentId() {
         return parentId;
     }
 
     /**
-     * 设置父分类ID
+     * 设置上机分类的编号：0表示一级分类
      *
-     * @param parentId 父分类ID
+     * @param parentId 上机分类的编号：0表示一级分类
      */
-    public void setParentId(Short parentId) {
+    public void setParentId(Long parentId) {
         this.parentId = parentId;
     }
 
     /**
-     * 获取分类层级
-     *
-     * @return category_level - 分类层级
+     * @return name
      */
-    public Byte getCategoryLevel() {
-        return categoryLevel;
+    public String getName() {
+        return name;
     }
 
     /**
-     * 设置分类层级
-     *
-     * @param categoryLevel 分类层级
+     * @param name
      */
-    public void setCategoryLevel(Byte categoryLevel) {
-        this.categoryLevel = categoryLevel;
+    public void setName(String name) {
+        this.name = name == null ? null : name.trim();
     }
 
     /**
-     * 获取分类状态
+     * 获取分类级别：0->1级；1->2级
      *
-     * @return category_status - 分类状态
+     * @return level - 分类级别：0->1级；1->2级
      */
-    public Byte getCategoryStatus() {
-        return categoryStatus;
+    public Integer getLevel() {
+        return level;
     }
 
     /**
-     * 设置分类状态
+     * 设置分类级别：0->1级；1->2级
      *
-     * @param categoryStatus 分类状态
+     * @param level 分类级别：0->1级；1->2级
      */
-    public void setCategoryStatus(Byte categoryStatus) {
-        this.categoryStatus = categoryStatus;
+    public void setLevel(Integer level) {
+        this.level = level;
     }
 
     /**
-     * 获取最后修改时间
-     *
-     * @return modified_time - 最后修改时间
+     * @return product_count
      */
-    public Date getModifiedTime() {
-        return modifiedTime;
+    public Integer getProductCount() {
+        return productCount;
     }
 
     /**
-     * 设置最后修改时间
-     *
-     * @param modifiedTime 最后修改时间
+     * @param productCount
      */
-    public void setModifiedTime(Date modifiedTime) {
-        this.modifiedTime = modifiedTime;
+    public void setProductCount(Integer productCount) {
+        this.productCount = productCount;
+    }
+
+    /**
+     * @return product_unit
+     */
+    public String getProductUnit() {
+        return productUnit;
+    }
+
+    /**
+     * @param productUnit
+     */
+    public void setProductUnit(String productUnit) {
+        this.productUnit = productUnit == null ? null : productUnit.trim();
+    }
+
+    /**
+     * 获取是否显示在导航栏：0->不显示；1->显示
+     *
+     * @return nav_status - 是否显示在导航栏：0->不显示；1->显示
+     */
+    public Integer getNavStatus() {
+        return navStatus;
+    }
+
+    /**
+     * 设置是否显示在导航栏：0->不显示；1->显示
+     *
+     * @param navStatus 是否显示在导航栏：0->不显示；1->显示
+     */
+    public void setNavStatus(Integer navStatus) {
+        this.navStatus = navStatus;
+    }
+
+    /**
+     * 获取显示状态：0->不显示；1->显示
+     *
+     * @return show_status - 显示状态：0->不显示；1->显示
+     */
+    public Integer getShowStatus() {
+        return showStatus;
+    }
+
+    /**
+     * 设置显示状态：0->不显示；1->显示
+     *
+     * @param showStatus 显示状态：0->不显示；1->显示
+     */
+    public void setShowStatus(Integer showStatus) {
+        this.showStatus = showStatus;
+    }
+
+    /**
+     * @return sort
+     */
+    public Integer getSort() {
+        return sort;
+    }
+
+    /**
+     * @param sort
+     */
+    public void setSort(Integer sort) {
+        this.sort = sort;
+    }
+
+    /**
+     * 获取图标
+     *
+     * @return icon - 图标
+     */
+    public String getIcon() {
+        return icon;
+    }
+
+    /**
+     * 设置图标
+     *
+     * @param icon 图标
+     */
+    public void setIcon(String icon) {
+        this.icon = icon == null ? null : icon.trim();
+    }
+
+    /**
+     * @return keywords
+     */
+    public String getKeywords() {
+        return keywords;
+    }
+
+    /**
+     * @param keywords
+     */
+    public void setKeywords(String keywords) {
+        this.keywords = keywords == null ? null : keywords.trim();
+    }
+
+    /**
+     * 获取描述
+     *
+     * @return description - 描述
+     */
+    public String getDescription() {
+        return description;
+    }
+
+    /**
+     * 设置描述
+     *
+     * @param description 描述
+     */
+    public void setDescription(String description) {
+        this.description = description == null ? null : description.trim();
     }
 }

@@ -1,20 +1,24 @@
 package cn.gyw.platform.common.web.utils;
 
-import cn.gyw.platform.common.web.model.PageData;
+import java.util.List;
+
 import com.github.pagehelper.PageInfo;
+
+import cn.gyw.platform.common.web.model.PageData;
 
 public class PageHelperUtil {
 
     /**
      * 将PageHelper分页后的Page转为分页信息
      */
-    public static <T> PageData<T> resetPage(PageInfo<T> page) {
+    public static <T> PageData<T> resetPage(List<T> dataList) {
+    	PageInfo<T> pageInfo = new PageInfo<>(dataList);
         PageData<T> result = new PageData<>();
-        result.setPageNum(page.getPageNum());
-        result.setPageSize(page.getPageSize());
-        result.setTotalPage(page.getPages());
-        result.setTotal(page.getTotal());
-        result.setRecords(page.getList());
+        result.setPageNum(pageInfo.getPageNum());
+        result.setPageSize(pageInfo.getPageSize());
+        result.setTotalPage(pageInfo.getPages());
+        result.setTotal(pageInfo.getTotal());
+        result.setRecords(pageInfo.getList());
         return result;
     }
 

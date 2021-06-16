@@ -48,5 +48,4 @@ public class RootConfig {
         redisTemplate.setConnectionFactory(lettuceConnectionFactory);
         return redisTemplate;
     }
-	
 }

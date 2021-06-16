@@ -8,7 +8,6 @@ import org.springframework.boot.autoconfigure.freemarker.FreeMarkerAutoConfigura
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-
 import tk.mybatis.spring.annotation.MapperScan;
 
 @MapperScan(basePackages = "cn.gyw.community.product")

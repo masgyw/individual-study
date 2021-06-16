@@ -36,7 +36,7 @@
     mutationsName,
     getMutationType
   } from '@/store/mutation-types'
-  import apiTypes from '@/api/api-types'
+  import apiTypes from '@/api/base/api-types'
 
   export default {
     data() {

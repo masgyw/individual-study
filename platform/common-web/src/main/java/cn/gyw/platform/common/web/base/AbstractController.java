@@ -10,12 +10,12 @@ import org.springframework.web.context.request.WebRequest;
 
 public abstract class AbstractController {
 	
-	protected Map<String, String> fillVariablesMapWithIncomingRequestParameters(WebRequest webRequest) {
+	protected Map<String, Object> fillVariablesMapWithIncomingRequestParameters(WebRequest webRequest) {
 		return this.fillVariablesMapWithIncomingRequestParameters(webRequest.getParameterMap());
 	}
 
-	protected Map<String, String> fillVariablesMapWithIncomingRequestParameters(Map<String, String[]> requestParams) {
-		Map<String, String> variableMap = new HashMap<>();
+	protected Map<String, Object> fillVariablesMapWithIncomingRequestParameters(Map<String, String[]> requestParams) {
+		Map<String, Object> variableMap = new HashMap<>();
 		for (Map.Entry<String, String[]> entry : requestParams.entrySet()) {
 			if (!entry.getKey().startsWith("javax")) {
 				variableMap.put(entry.getKey(), entry.getValue()[0]);

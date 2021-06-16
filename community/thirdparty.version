@@ -42,6 +42,7 @@ spring_boot_starter_security="org.springframework.boot:spring-boot-starter-secur
 spring_security_oauth2="org.springframework.security.oauth:spring-security-oauth2:2.2.3.RELEASE"
 mybatis_spring_boot_starter='org.mybatis.spring.boot:mybatis-spring-boot-starter:2.0.1'
 mapper_spring_boot_starter="tk.mybatis:mapper-spring-boot-starter:2.0.4"
+pagehelper_spring_boot_starter='com.github.pagehelper:pagehelper-spring-boot-starter:1.2.10'
 
 // GraphQL
 // GraphQL Java Engine itself is only concerned with executing queries. It doesn’t deal with any HTTP or JSON related topics.

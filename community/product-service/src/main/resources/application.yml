@@ -53,3 +53,6 @@ logging:
     #default-fetch-size: 20
     #default-statement-timeout: 30
     #mapUnderscoreToCamelCase: true
+
+mybatis:
+  mapper-locations: classpath:mappers/*.xml

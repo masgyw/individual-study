@@ -15,7 +15,6 @@ import App from './App'
 import axios from 'axios'
 import store from './store'
 import router from './router'
-import * as apis from '@/api/common.js'
 
 import '@/icons' // icon
 import '@/permission' // permission control
@@ -43,7 +42,7 @@ Vue.use(VCharts)
 
 Vue.config.productionTip = false
 Vue.prototype.$axios = axios
-Vue.prototype.BASE_APIS = apis
+Vue.prototype.BASE_APIS = null
 
 function getServerConfig() {
   return new Promise((resolve, reject) => {

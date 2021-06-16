@@ -81,7 +81,7 @@
 <script>
 
   import { getComments } from '@/api/comment'
-  import apiTypes from '@/api/api-types'
+  import apiTypes from '@/api/base/api-types'
 
   export default {
     name: "CommentPlane",

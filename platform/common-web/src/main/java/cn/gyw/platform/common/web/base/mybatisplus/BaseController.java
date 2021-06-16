@@ -141,7 +141,7 @@ public abstract class BaseController<T, V> extends AbstractController {
      */
     @DeleteMapping
     public boolean delete(WebRequest webRequest) throws IllegalAccessException, InstantiationException {
-        Map<String, String> params = fillVariablesMapWithIncomingRequestParameters(webRequest);
+        Map<String, Object> params = fillVariablesMapWithIncomingRequestParameters(webRequest);
         String key = (String) FieldUtils.readField(entityClass.newInstance(), "UID");
         UpdateWrapper<T> wrapper = new UpdateWrapper<>();
         wrapper.eq(humpToUnderline(key), params.get(key));

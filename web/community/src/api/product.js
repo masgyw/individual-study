@@ -1,74 +1,81 @@
+import BaseApi from './base/BaseApi'
 import request from '@/utils/request'
-import apiTypes from './api-types'
+import apiTypes from './base/api-types'
+import LoggerFactory from "./base/logger";
 
-export function fetchList(params) {
-  return request({
-    url: apiTypes.PRODUCT + '/info/',
-    method:'get',
-    params:params
-  })
+class ProductApi extends BaseApi {
+
+  constructor() {
+    super(apiTypes.PRODUCT_INFO);
+  }
+
+  fetchSimpleList(params) {
+    return request({
+      url: '/simpleList',
+      method: 'get',
+      params: params
+    })
+  }
+
+  updateDeleteStatus(params) {
+    return request({
+      url: '/update/deleteStatus',
+      method: 'post',
+      params: params
+    })
+  }
+
+  updateNewStatus(params) {
+    return request({
+      url: '/update/newStatus',
+      method: 'post',
+      params: params
+    })
+  }
+
+  updateRecommendStatus(params) {
+    return request({
+      url: '/update/recommendStatus',
+      method: 'post',
+      params: params
+    })
+  }
+
+  updatePublishStatus(params) {
+    return request({
+      url: '/update/publishStatus',
+      method: 'post',
+      params: params
+    })
+  }
+
+  createProduct(data) {
+    return request({
+      url: '/create',
+      method: 'post',
+      data: data
+    })
+  }
+
+  updateProduct(id, data) {
+    return request({
+      url: '/update/' + id,
+      method: 'post',
+      data: data
+    })
+  }
+
+  getProduct(id) {
+    return request({
+      url: '/updateInfo/' + id,
+      method: 'get',
+    })
+  }
 }
 
-export function fetchSimpleList(params) {
-  return request({
-    url:'/product/simpleList',
-    method:'get',
-    params:params
-  })
-}
+let logger = LoggerFactory.getLogger(apiTypes.PRODUCT_INFO)
+let productApi = new ProductApi();
 
-export function updateDeleteStatus(params) {
-  return request({
-    url:'/product/update/deleteStatus',
-    method:'post',
-    params:params
-  })
+export {
+  productApi
 }
-
-export function updateNewStatus(params) {
-  return request({
-    url:'/product/update/newStatus',
-    method:'post',
-    params:params
-  })
-}
-
-export function updateRecommendStatus(params) {
-  return request({
-    url:'/product/update/recommendStatus',
-    method:'post',
-    params:params
-  })
-}
-
-export function updatePublishStatus(params) {
-  return request({
-    url:'/product/update/publishStatus',
-    method:'post',
-    params:params
-  })
-}
-
-export function createProduct(data) {
-  return request({
-    url:'/product/create',
-    method:'post',
-    data:data
-  })
-}
-
-export function updateProduct(id,data) {
-  return request({
-    url:'/product/update/'+id,
-    method:'post',
-    data:data
-  })
-}
-
-export function getProduct(id) {
-  return request({
-    url:'/product/updateInfo/'+id,
-    method:'get',
-  })
-}
-

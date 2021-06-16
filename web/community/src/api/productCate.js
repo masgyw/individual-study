@@ -1,60 +1,72 @@
 import request from '@/utils/request'
-export function fetchList(parentId,params) {
-  return request({
-    url:'/productCategory/list/'+parentId,
-    method:'get',
-    params:params
-  })
-}
-export function deleteProductCate(id) {
-  return request({
-    url:'/productCategory/delete/'+id,
-    method:'post'
-  })
+import apiTypes from './base/api-types'
+import LoggerFactory from "./base/logger"
+import BaseApi from './base/BaseApi'
+
+class ProductCateApi extends BaseApi {
+  constructor() {
+    super(apiTypes.PRODUCT_CATEGORY);
+  }
+
+  // deleteProductCate(id) {
+  //   return request({
+  //     url: '/delete/' + id,
+  //     method: 'post'
+  //   })
+  // }
+
+  // createProductCate(data) {
+  //   return request({
+  //     url: '/create',
+  //     method: 'post',
+  //     data: data
+  //   })
+  // }
+
+  // updateProductCate(id, data) {
+  //   return request({
+  //     url: '/update/' + id,
+  //     method: 'post',
+  //     data: data
+  //   })
+  // }
+
+  // getProductCate(id) {
+  //   return request({
+  //     url: '/' + id,
+  //     method: 'get',
+  //   })
+  // }
+
+  // updateShowStatus(data) {
+  //   return request({
+  //     url: '/update/showStatus',
+  //     method: 'post',
+  //     data: data
+  //   })
+  // }
+
+  // updateNavStatus(data) {
+  //   return request({
+  //     url: '/update/navStatus',
+  //     method: 'post',
+  //     data: data
+  //   })
+  // }
+
+  getWithChildren() {
+    return request({
+      url: this.src + '/children',
+      method: 'get'
+    })
+  }
+
 }
 
-export function createProductCate(data) {
-  return request({
-    url:'/productCategory/create',
-    method:'post',
-    data:data
-  })
+let logger = LoggerFactory.getLogger(apiTypes.PRODUCT_CATEGORY)
+let productCateApi = new ProductCateApi();
+
+export {
+  productCateApi
 }
 
-export function updateProductCate(id,data) {
-  return request({
-    url:'/productCategory/update/'+id,
-    method:'post',
-    data:data
-  })
-}
-
-export function getProductCate(id) {
-  return request({
-    url:'/productCategory/'+id,
-    method:'get',
-  })
-}
-
-export function updateShowStatus(data) {
-  return request({
-    url:'/productCategory/update/showStatus',
-    method:'post',
-    data:data
-  })
-}
-
-export function updateNavStatus(data) {
-  return request({
-    url:'/productCategory/update/navStatus',
-    method:'post',
-    data:data
-  })
-}
-
-export function fetchListWithChildren() {
-  return request({
-    url:'/productCategory/list/withChildren',
-    method:'get'
-  })
-}

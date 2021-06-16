@@ -35,7 +35,6 @@ public class RestResponseAdvice implements ResponseBodyAdvice<Object> {
                 || controllerClass.isAnnotationPresent(ResponseBody.class)
                 || returnType.getMethodAnnotation(ResponseBody.class) != null
                 || controllerClass.equals(GlobalExceptionHandler.class);
-        LOGGER.debug("{} is supported:{}", controllerClass.getSimpleName(), isSupported);
         return isSupported;
     }
 
@@ -45,7 +44,6 @@ public class RestResponseAdvice implements ResponseBodyAdvice<Object> {
                                   Class selectedConverterType, ServerHttpRequest request, ServerHttpResponse response) {
         Object resp = null;
         if (body != null) {
-            LOGGER.info("Return body class type: [{}]", body.getClass());
             resp = body;
         }
         if (request instanceof ServletServerHttpRequest) {
