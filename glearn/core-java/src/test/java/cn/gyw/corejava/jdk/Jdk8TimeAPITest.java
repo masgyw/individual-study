@@ -11,6 +11,7 @@ import java.time.LocalTime;
 import java.time.MonthDay;
 import java.time.Period;
 import java.time.ZoneId;
+import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoField;
 
@@ -161,5 +162,11 @@ public class Jdk8TimeAPITest extends AbstractTest {
         // 将字符串转换为日期
         LocalDate date = LocalDate.parse(nowStr2, formatter);
         System.out.printf("date string conver to date:%s", date);
+        System.out.println();
+        
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyyMMdd _HHmmss_SSS");
+        String result = LocalDateTime.now(ZoneOffset.UTC).format(dateFormatter);
+        System.out.println("UTC:" + result);
     }
+    
 }

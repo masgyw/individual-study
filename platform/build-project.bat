@@ -6,6 +6,7 @@ echo [2]: spring-plugins
 echo [3]: annotations
 echo [4]: common
 echo [5]: common-web
+echo [6]: mbg-gradle-plugin
 
 set /p PROJECT_INDEX=":"
 
@@ -40,3 +41,10 @@ if "%PROJECT_INDEX%" equ "5" (
 	call gradlew :common-web:build :common-web:jarToLocalMaven -x test --offline
 	exit;
 ) 
+
+if "%PROJECT_INDEX%" equ "6" (
+	echo start build mbg-gradle-plugin.jar
+	call gradlew :mbg-gradle-plugin:build :mbg-gradle-plugin:jarToLocalMaven -x test --offline
+) 
+
+exit

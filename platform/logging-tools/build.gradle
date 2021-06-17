@@ -30,11 +30,6 @@ jar {
 }
 
 task loggingTools(dependsOn: jar, type: Copy) {
-	println ">> ${jar.destinationDirectory}"
-	println ">> ${jar.archiveFile}"
-	println ">> ${jar.archiveFileName}"
-	println ">> ${rootDir}"
-	println ">> ${projectDir}"
 	from(jar.archiveFile)
 	into file("$rootDir/output")
 }

@@ -12,7 +12,7 @@ include 'configuration'
 // 网络爬虫
 include 'web-crawler'
 // MBG 源码修改
-include 'mybatis-generator-plus'
+include 'mbg-gradle-plugin'
 // 热插拔Spring 插件
 include 'spring-plugins'
 // 数据库自动创建工具

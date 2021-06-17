@@ -1,4 +1,4 @@
-// MGB 插件
+// MBG 插件
 buildscript {
 	repositories {
 		// maven 本地仓库
@@ -13,17 +13,18 @@ buildscript {
 		}
 	}
 	dependencies {
-		classpath "gradle.plugin.com.cuisongliu.plugin:mybatis-generator:0.9.6"
 		classpath tk_mybatis_mapper
 		classpath freemarker
+		classpath "cn.gyw.platform:mbg-gradle-plugin:1.0.0"
 	}
 }
 
 plugins {
     id 'java'
     id 'org.springframework.boot'
-	id "com.cuisongliu.plugin.mybatis-generator" version "0.9.6"
 }
+
+apply plugin: 'cn.gyw.platform.plugin.mbg'
 
 dependencies {
 	implementation platform_common_web
@@ -67,20 +68,20 @@ mbg {
 	overwrite = true
 	consoleable = true
 	generatorFile = "generatorConfig.xml"
-	tableNames = "sku_stock"
+	tableNames = "album,album_pic"
 	jdbc{
 		driver = "com.mysql.jdbc.Driver"
-		url    = "jdbc:mysql://192.168.1.181:3306/cs_product?useSSL=false"
+		url    = "jdbc:mysql://127.0.0.1:3306/cs_product?useSSL=false"
 		username = "root"
 		password = "root"
 	}
 	xml{
-		mapperPackage= "cn.gyw.community.product.sku.dao"
-		modelPackage = "cn.gyw.community.product.sku.entity"
+		mapperPackage= "cn.gyw.community.product.album.dao"
+		modelPackage = "cn.gyw.community.product.album.entity"
 		mapperMapper = "cn.gyw.platform.common.web.base.mgb.BaseDao"
 		xmlPackage =   "mappers"
-		tableName ="sku_stock"
-		objectName ="SkuStock"
+		tableName ="album"
+		objectName ="Album"
 		mapperSuffix ="Mapper"
 	}
 }

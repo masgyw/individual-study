@@ -50,6 +50,7 @@ mapper_spring_boot_starter="tk.mybatis:mapper-spring-boot-starter:2.0.4"
 // db
 mysql_connector_java='mysql:mysql-connector-java:5.1.47'
 pagehelper='com.github.pagehelper:pagehelper:5.1.11'
+alibaba_druid='com.alibaba:druid:1.2.6'
 
 // other
 jsoup='org.jsoup:jsoup:1.11.3'
