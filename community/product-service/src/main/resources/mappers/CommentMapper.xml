@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.gyw.community.product.dao.CommentMapper">
+  <resultMap id="BaseResultMap" type="cn.gyw.community.product.entity.Comment">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="product_id" jdbcType="BIGINT" property="productId" />
+    <result column="member_nick_name" jdbcType="VARCHAR" property="memberNickName" />
+    <result column="product_name" jdbcType="VARCHAR" property="productName" />
+    <result column="star" jdbcType="INTEGER" property="star" />
+    <result column="member_ip" jdbcType="VARCHAR" property="memberIp" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="show_status" jdbcType="INTEGER" property="showStatus" />
+    <result column="product_attribute" jdbcType="VARCHAR" property="productAttribute" />
+    <result column="collect_couont" jdbcType="INTEGER" property="collectCouont" />
+    <result column="read_count" jdbcType="INTEGER" property="readCount" />
+    <result column="pics" jdbcType="VARCHAR" property="pics" />
+    <result column="member_icon" jdbcType="VARCHAR" property="memberIcon" />
+    <result column="replay_count" jdbcType="INTEGER" property="replayCount" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="cn.gyw.community.product.entity.Comment">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <result column="content" jdbcType="LONGVARCHAR" property="content" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    id, product_id, member_nick_name, product_name, star, member_ip, create_time, show_status, 
+    product_attribute, collect_couont, read_count, pics, member_icon, replay_count
+  </sql>
+  <sql id="Blob_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    content
+  </sql>
+</mapper>

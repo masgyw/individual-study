@@ -9,6 +9,7 @@
 
 <script>
   import editorImage from './components/editorImage'
+  import '../../../static/tinymce-v5.8.1/tinymce.min.js'
   import '../../../static/tinymce-v5.8.1/langs/zh_CN'
 
   const plugins = [

@@ -13,17 +13,18 @@ buildscript {
 		}
 	}
 	dependencies {
-		classpath "gradle.plugin.com.cuisongliu.plugin:mybatis-generator:0.9.6"
 		classpath tk_mybatis_mapper
 		classpath freemarker
+		classpath "cn.gyw.platform:mbg-gradle-plugin:1.0.0"
 	}
 }
 
 plugins {
 	id 'java'
 	id 'org.springframework.boot'
-	id "com.cuisongliu.plugin.mybatis-generator" version "0.9.6"
 }
+
+apply plugin: 'cn.gyw.platform.plugin.mbg'
 
 // 不设置，使用默认值
 mbg {

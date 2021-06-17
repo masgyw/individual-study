@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.gyw.community.product.pic.dao.ProductPicInfoMapper">
-  <resultMap id="BaseResultMap" type="cn.gyw.community.product.pic.entity.ProductPicInfo">
+<mapper namespace="cn.gyw.community.product.dao.ProductPicInfoMapper">
+  <resultMap id="BaseResultMap" type="cn.gyw.community.product.entity.ProductPicInfo">
     <!--
       WARNING - @mbg.generated
     -->

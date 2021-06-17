@@ -98,6 +98,7 @@
 
 <script>
   import {fetchList,deleteProductCate,updateShowStatus,updateNavStatus} from '@/api/productCate'
+  import {productCateApi} from '@/api/productCate'
 
   export default {
     name: "productCateList",
@@ -137,7 +138,7 @@
       },
       getList() {
         this.listLoading = true;
-        fetchList(this.parentId, this.listQuery).then(response => {
+        productCateApi.fetchList(this.parentId, this.listQuery).then(response => {
           this.listLoading = false;
           this.list = response.data.list;
           this.total = response.data.total;

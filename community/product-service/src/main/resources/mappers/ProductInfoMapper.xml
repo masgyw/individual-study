@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.gyw.community.product.info.dao.ProductInfoMapper">
-  <resultMap id="BaseResultMap" type="cn.gyw.community.product.info.entity.ProductInfo">
+<mapper namespace="cn.gyw.community.product.dao.ProductInfoMapper">
+  <resultMap id="BaseResultMap" type="cn.gyw.community.product.entity.ProductInfo">
     <!--
       WARNING - @mbg.generated
     -->
@@ -44,7 +44,7 @@
     <result column="brand_name" jdbcType="VARCHAR" property="brandName" />
     <result column="product_category_name" jdbcType="VARCHAR" property="productCategoryName" />
   </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="cn.gyw.community.product.info.entity.ProductInfo">
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="cn.gyw.community.product.entity.ProductInfo">
     <!--
       WARNING - @mbg.generated
     -->
@@ -70,8 +70,8 @@
     -->
     description, detail_desc, detail_html, detail_mobile_html
   </sql>
-  <resultMap extends="BaseResultMap" id="ResultMapWithPic" type="cn.gyw.community.product.info.dto.ProductInfoDto">
-  	<association javaType="cn.gyw.community.product.pic.entity.ProductPicInfo" property="productPicInfo">
+  <resultMap extends="BaseResultMap" id="ResultMapWithPic" type="cn.gyw.community.product.dto.ProductInfoDto">
+  	<association javaType="cn.gyw.community.product.entity.ProductPicInfo" property="productPicInfo">
     	<id column="product_pic_id" jdbcType="INTEGER" property="productPicId" />
 	    <result column="pic_desc" jdbcType="VARCHAR" property="picDesc" />
 	    <result column="pic_url" jdbcType="VARCHAR" property="picUrl" />

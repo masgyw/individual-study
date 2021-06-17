@@ -63,9 +63,8 @@
 </template>
 
 <script>
-  import {fetchListWithChildren} from '@/api/productCate'
-  import {fetchList as fetchBrandList} from '@/api/brand'
-  import {getProduct} from '@/api/product';
+  import {productCateApi} from '@/api/productCate'
+  import {brandApi} from '@/api/brand'
 
   export default {
     name: "ProductInfoDetail",
@@ -133,7 +132,7 @@
         this.hasEditCreated=true;
       },
       getProductCateList() {
-        fetchListWithChildren().then(response => {
+        productCateApi.getWithChildren().then(response => {
           let list = response.data;
           this.productCateOptions = [];
           for (let i = 0; i < list.length; i++) {
@@ -148,9 +147,9 @@
         });
       },
       getBrandList() {
-        fetchBrandList({pageNum: 1, pageSize: 100}).then(response => {
+        brandApi.findByPage({pageNum: 1, pageSize: 100}).then(response => {
           this.brandOptions = [];
-          let brandList = response.data.list;
+          let brandList = response.data.records;
           for (let i = 0; i < brandList.length; i++) {
             this.brandOptions.push({label: brandList[i].name, value: brandList[i].id});
           }

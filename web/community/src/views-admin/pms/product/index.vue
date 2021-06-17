@@ -548,7 +548,7 @@ export default {
         cancelButtonText: '取消',
         type: 'warning',
       }).then(() => {
-        updateSkuStockList(
+        skuStockApi.updateSkuStockList(
           this.editSkuInfo.productId,
           this.editSkuInfo.stockList
         ).then((response) => {

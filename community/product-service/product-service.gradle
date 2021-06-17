@@ -68,7 +68,7 @@ mbg {
 	overwrite = true
 	consoleable = true
 	generatorFile = "generatorConfig.xml"
-	tableNames = "album,album_pic"
+	tableNames = "comment,comment_reply,feight_template,member_price"
 	jdbc{
 		driver = "com.mysql.jdbc.Driver"
 		url    = "jdbc:mysql://127.0.0.1:3306/cs_product?useSSL=false"
@@ -76,12 +76,12 @@ mbg {
 		password = "root"
 	}
 	xml{
-		mapperPackage= "cn.gyw.community.product.album.dao"
-		modelPackage = "cn.gyw.community.product.album.entity"
+		mapperPackage= "cn.gyw.community.product.dao"
+		modelPackage = "cn.gyw.community.product.entity"
 		mapperMapper = "cn.gyw.platform.common.web.base.mgb.BaseDao"
 		xmlPackage =   "mappers"
-		tableName ="album"
-		objectName ="Album"
+		tableName ="comment"
+		objectName ="Comment"
 		mapperSuffix ="Mapper"
 	}
 }
