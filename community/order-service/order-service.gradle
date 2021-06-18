@@ -1,7 +1,26 @@
+// MBG 插件
+buildscript {
+	repositories {
+		// maven 本地仓库
+		mavenLocal()
+		// 添加 Maven 仓库
+		maven { url 'https://maven.aliyun.com/nexus/content/groups/htm' }
+		maven { url 'https://maven.aliyun.com/nexus/content/repositories/jcenter' }
+		maven { url 'https://maven.aliyun.com/nexus/content/repositories/google' }
+		maven { url 'https://maven.aliyun.com/nexus/content/repositories/gradle-plugin' }
+		maven {
+			url "https://plugins.gradle.org/m2/"
+		}
+	}
+	dependencies {
+		classpath "cn.gyw.platform:mbg-gradle-plugin:1.0.0"
+	}
+}
 plugins {
 	id 'java'
 	id 'org.springframework.boot'
 }
+apply plugin: 'cn.gyw.platform.plugin.mbg'
 
 dependencies {
 	implementation platform_common_web
@@ -25,6 +44,26 @@ dependencies {
 	implementation mysql_connector_java
 	
 	implementation sl4j_api
+}
+
+mbg {
+	overwrite = true
+	consoleable = true
+	generatorFile = "generatorConfig.xml"
+	allTable = true
+	jdbc{
+		driver = "com.mysql.jdbc.Driver"
+		url    = "jdbc:mysql://127.0.0.1:3306/cs_order?useSSL=false"
+		username = "root"
+		password = "root"
+	}
+	xml{
+		mapperPackage= "cn.gyw.community.order.dao"
+		modelPackage = "cn.gyw.community.order.entity"
+		mapperMapper = "cn.gyw.platform.common.web.base.mgb.BaseDao"
+		xmlPackage =   "mappers"
+		mapperSuffix ="Mapper"
+	}
 }
 
 task buildTestPackage(type: Zip, dependsOn: bootJar) {

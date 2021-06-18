@@ -47,7 +47,11 @@ class MbgExtension {
 	 * <p>table</p>
 	 * <p>schema.table</p>
 	 * <p>catalog..table</p>
-	 * 等等。
 	 */
 	String tableNames = null
+	
+	/**
+	 * 是否为当前库里所有表code generation
+	 */
+	boolean allTable = false
 }

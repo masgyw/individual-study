@@ -1,6 +1,7 @@
 package cn.gyw.platform.plugin.mbg
 
 import java.sql.Connection
+import java.sql.ResultSet
 import java.sql.Statement
 
 import org.gradle.api.GradleException
@@ -22,9 +23,40 @@ class SqlScriptRunner {
 		this.sqlScript = sqlScript
 	}
 
+	def getAllTableName() {
+		DruidDataSource dataSource
+		Connection con
+		ResultSet rs
+		Set tableNames = []
+		try {
+			dataSource = new DruidDataSource()
+			dataSource.setUrl(url);
+			dataSource.setUsername(username)
+			dataSource.setPassword(password)
+			con = dataSource.getConnection()
+
+			def meta = con.getMetaData();
+			rs = meta.getTables(null, null, '%', null)
+			while (rs.next()) {
+				String tableName = rs.getString(3)
+				tableNames.add(tableName)
+			}
+			return tableNames
+		} catch (Exception e) {
+			throw new GradleException(e.getMessage());
+		} finally {
+			if (rs != null) {
+				rs.close()
+			}
+			if (dataSource != null) {
+				dataSource.close()
+			}
+		}
+	}
+
 	void execSqlScript() {
 		if (sqlScript == null) {
-			println("sqlScript未设置,执行Sql任务跳过.")
+			println("[sqlScript] is null, skip run custom sql")
 			return;
 		}
 		DruidDataSource dataSource
@@ -52,7 +84,6 @@ class SqlScriptRunner {
 				con.rollback()
 			throw new GradleException(e.getMessage());
 		} finally {
-
 			if (dataSource != null)
 				dataSource.close()
 		}

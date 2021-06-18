@@ -68,7 +68,7 @@ mbg {
 	overwrite = true
 	consoleable = true
 	generatorFile = "generatorConfig.xml"
-	tableNames = "comment,comment_reply,feight_template,member_price"
+	tableNames = "member_price"
 	jdbc{
 		driver = "com.mysql.jdbc.Driver"
 		url    = "jdbc:mysql://127.0.0.1:3306/cs_product?useSSL=false"
@@ -83,6 +83,13 @@ mbg {
 		tableName ="comment"
 		objectName ="Comment"
 		mapperSuffix ="Mapper"
+	}
+	ftl {
+		restControllerStyle = true
+		controllerPackage = "cn.gyw.community.product.controller"
+		superControllerClass = "cn.gyw.platform.common.web.base.mgb.BaseController"
+		servicePackage = "cn.gyw.community.product.service"
+		superServiceClass = "cn.gyw.platform.common.web.base.mgb.BaseService"
 	}
 }
 

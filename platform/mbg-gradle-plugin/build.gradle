@@ -10,6 +10,7 @@ dependencies {
 	implementation alibaba_druid
 	
 	implementation tk_mybatis_mapper
+	implementation freemarker
 	implementation mysql_connector_java
 	
 	testImplementation junit
