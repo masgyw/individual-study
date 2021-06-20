@@ -12,7 +12,7 @@ class ConfigBuilder {
 	
 	String superServiceClass
 	
-	Map<String, String> pathInfo
+	Collection<String> moduleLis
 	
 	
 }

@@ -55,7 +55,7 @@ class MbgTask extends DefaultTask {
 		Set<String> fullyQualifiedTables = setTableNamesValues(project)
 		// contexts 变量处理
 		Set<String> contextsToRun = setContextsValues(project)
-		def templateEngine = new FreemarkerTemplateEngine()
+//		def templateEngine = new FreemarkerTemplateEngine()
 		
 		for (def entry : tables) {
 			doMybatisGenerate(entry, fullyQualifiedTables, contextsToRun)
@@ -66,8 +66,10 @@ class MbgTask extends DefaultTask {
 		configBuilder.servicePackage = project.mbg.ftl.servicePackage
 		configBuilder.superControllerClass = project.mbg.ftl.superControllerClass
 		configBuilder.superServiceClass = project.mbg.ftl.superServiceClass
+		configBuilder.moduleLis = tables.values()
+		println ("ConfigBuilder :$configBuilder")
 		
-		templateEngine.init(tables.values()).mkdirs().batchOutput()
+//		templateEngine.init(configBuilder).mkdirs().batchOutput()
 	}
 
 	void doMybatisGenerate(Map.Entry<String, String> entry, def fullyQualifiedTables, def contextsToRun) {

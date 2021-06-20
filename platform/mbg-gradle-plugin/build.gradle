@@ -1,12 +1,14 @@
 apply plugin: 'groovy'
 
 dependencies {
+	//groovy sdk
+    compile localGroovy()
 	//gradle sdk
-    implementation gradleApi()
-    //groovy sdk
-    implementation localGroovy()
-	
+	compile gradleApi()
+
+
 	implementation mybatis_generator_core
+
 	implementation alibaba_druid
 	
 	implementation tk_mybatis_mapper

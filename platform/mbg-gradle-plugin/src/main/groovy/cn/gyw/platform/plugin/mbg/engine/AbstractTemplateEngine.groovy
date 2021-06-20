@@ -28,9 +28,10 @@ abstract class AbstractTemplateEngine {
 			objectMap.put("restControllerStyle", configBuilder.restControllerStyle)
 			objectMap.put("controllerPackage", configBuilder.controllerPackage)
 			objectMap.put("superControllerClassPackage", configBuilder.superControllerClassPackage)
-			objectMap.put("moduleName", configBuilder.moduleName)
+			objectMap.put("moduleName", module)
 			objectMap.put("controllerName", configBuilder.controllerName)
-			
+
+			writer(objectMap, "templates/controller.java.ftl", "")
 		}		
 	}
 
@@ -50,13 +51,13 @@ abstract class AbstractTemplateEngine {
 	 * 处理输出目录
 	 * </p>
 	 */
-	public AbstractTemplateEngine mkdirs() {
-		getConfigBuilder().pathInfo.each {key, value ->
-			File dir = new File(value);
+	AbstractTemplateEngine mkdirs() {
+		configBuilder.each {key ->
+			File dir = new File(key);
 			if (!dir.exists()) {
 				boolean result = dir.mkdirs();
 				if (result) {
-					println ("创建目录： [" + value + "]");
+					println ("创建目录： [" + key + "]");
 				}
 			}
 		}
