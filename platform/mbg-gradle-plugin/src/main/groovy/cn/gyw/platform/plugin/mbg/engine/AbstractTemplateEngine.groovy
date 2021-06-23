@@ -1,6 +1,9 @@
 package cn.gyw.platform.plugin.mbg.engine
 
 import cn.gyw.platform.plugin.mbg.config.ConfigBuilder
+import cn.gyw.platform.plugin.mbg.config.OutputFile
+
+import java.nio.file.Paths
 
 abstract class AbstractTemplateEngine {
 
@@ -16,23 +19,73 @@ abstract class AbstractTemplateEngine {
 	 */
 	AbstractTemplateEngine init(ConfigBuilder configBuilder) {
 		this.configBuilder = configBuilder
-		return this;
+		configBuilder.pathInfo[OutputFile.CONTROLLER]=configBuilder.controllerPackage.replace(".", "/")
+		configBuilder.pathInfo[OutputFile.SERVICE]=configBuilder.servicePackage.replace(".", "/")
+		return this
 	}
 	
 	/**
 	 * 生成文件
 	 */
 	void batchOutput() {
-		for (String module : moduleList) {
-			Map<String, Object> objectMap = new HashMap<>(16);
-			objectMap.put("restControllerStyle", configBuilder.restControllerStyle)
-			objectMap.put("controllerPackage", configBuilder.controllerPackage)
-			objectMap.put("superControllerClassPackage", configBuilder.superControllerClassPackage)
-			objectMap.put("moduleName", module)
-			objectMap.put("controllerName", configBuilder.controllerName)
+		configBuilder.moduleList.each { module ->
+			Map<String, Object> objectMap = this.getObjectMap(configBuilder, module)
+			// *Service.java
+//			outputService(objectMap)
+			// *Controller.java
+			outputController(objectMap)
+		}
+	}
 
-			writer(objectMap, "templates/controller.java.ftl", "")
-		}		
+	void outputService(Map<String, Object> objectMap) {
+		// MpController.java
+		String controllerPath = getPathInfo(OutputFile.SERVICE)
+		if (!controllerPath.endsWith("/")) {
+			controllerPath += "/"
+		}
+		String controllerFile = String.format(controllerPath + "%s.java", objectMap.get("serviceName"))
+		writer(objectMap, "service.java.ftl", controllerFile);
+	}
+
+	void outputController(Map<String, Object> objectMap) {
+		// MpController.java
+		String controllerPath = getPathInfo(OutputFile.CONTROLLER)
+		if (!controllerPath.endsWith("/")) {
+			controllerPath += "/"
+		}
+		String srcPath = configBuilder.javaProjectFile.getAbsolutePath()
+		String fileName = String.format(controllerPath + "%s.java", objectMap.get("controllerName"))
+		println "controllerFile :$srcPath/$fileName"
+		writer(objectMap, "controller.java.ftl", srcPath + "/" + fileName);
+	}
+
+	def getObjectMap(ConfigBuilder config, String module) {
+		Map<String, Object> objectMap = [:]
+		objectMap.put("restControllerStyle", configBuilder.restControllerStyle)
+		objectMap.put("controllerPackage", configBuilder.controllerPackage)
+		objectMap.put("superControllerClassPackage", configBuilder.superControllerClass)
+		def superControllerClass =
+				configBuilder.superControllerClass.substring(configBuilder.superControllerClass.lastIndexOf(".") + 1)
+		objectMap.put("superControllerClass", superControllerClass)
+		objectMap.put("moduleName", module)
+		objectMap.put("controllerName", String.format("%sController", module))
+		objectMap.put("serviceName", String.format("%sService", module))
+		objectMap.put("entityClassPackage", configBuilder.entityPackage + "." + module)
+		def dtoName = String.format("%sDto", module)
+		objectMap.put("entityDtoClassPackage", configBuilder.entityDtoPackage + "." + dtoName)
+		objectMap.put("entityName", module)
+		objectMap.put("entityDtoName", dtoName)
+		return objectMap
+	}
+
+	/**
+	 * 获取路径信息
+	 *
+	 * @param outputFile 输出文件
+	 * @return 路径信息
+	 */
+	protected String getPathInfo(OutputFile outputFile) {
+		return configBuilder.pathInfo.get(outputFile)
 	}
 
 	/**
@@ -52,15 +105,10 @@ abstract class AbstractTemplateEngine {
 	 * </p>
 	 */
 	AbstractTemplateEngine mkdirs() {
-		configBuilder.each {key ->
-			File dir = new File(key);
-			if (!dir.exists()) {
-				boolean result = dir.mkdirs();
-				if (result) {
-					println ("创建目录： [" + key + "]");
-				}
-			}
-		}
+		println "start mkdirs dirs"
+		def controllerDir = configBuilder.controllerPackage.replace(".", "/")
+		println "${Paths.get(controllerDir).toFile().getAbsolutePath()}"
+		def serviceDir = configBuilder.servicePackage.replace(".", "/")
 		return this;
 	}
 

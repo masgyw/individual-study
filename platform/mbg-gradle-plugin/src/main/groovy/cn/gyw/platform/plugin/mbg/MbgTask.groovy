@@ -1,5 +1,6 @@
 package cn.gyw.platform.plugin.mbg
 
+import cn.gyw.platform.plugin.mbg.engine.FreemarkerTemplateEngine
 import org.gradle.api.DefaultTask
 import org.gradle.api.GradleException
 import org.gradle.api.Project
@@ -10,14 +11,12 @@ import org.mybatis.generator.internal.DefaultShellCallback
 import org.mybatis.generator.internal.util.StringUtility
 
 import cn.gyw.platform.plugin.mbg.config.ConfigBuilder
-import cn.gyw.platform.plugin.mbg.engine.FreemarkerTemplateEngine
 
 class MbgTask extends DefaultTask {
 
 	def javaProjectFile
 	def resourcesProjectFile
 	def generatorFile
-
 	/**
 	 * 需要设置到xml中的配置map,临时变量.
 	 */
@@ -28,13 +27,15 @@ class MbgTask extends DefaultTask {
 	 */
 	@TaskAction
 	void generator() {
+		println "Start mbg for project [$project.name]"
 		if (project.mbg.skip) {
 			println("MyBatis generator is skipped.")
-			return;
+			return
 		}
 		// 设置generatorConfig.xml的位置
 		generatorFile = project.file(project.mbg.generatorFile)
 		javaProjectFile = project.file(project.mbg.xml.javaProject)
+		println "${javaProjectFile.getClass()}"
 		resourcesProjectFile = project.file(project.mbg.xml.resourcesProject)
 		// 验证参数
 		validationParam(project)
@@ -55,24 +56,26 @@ class MbgTask extends DefaultTask {
 		Set<String> fullyQualifiedTables = setTableNamesValues(project)
 		// contexts 变量处理
 		Set<String> contextsToRun = setContextsValues(project)
-//		def templateEngine = new FreemarkerTemplateEngine()
-		
+		def templateEngine = new FreemarkerTemplateEngine()
+
 		for (def entry : tables) {
 			doMybatisGenerate(entry, fullyQualifiedTables, contextsToRun)
 		}
 		ConfigBuilder configBuilder = new ConfigBuilder()
+		configBuilder.javaProjectFile = javaProjectFile
+		configBuilder.entityPackage = project.mbg.ftl.entityPackage
+		configBuilder.entityDtoPackage = project.mbg.ftl.entityDtoPackage
 		configBuilder.restControllerStyle = project.mbg.ftl.restControllerStyle
 		configBuilder.controllerPackage = project.mbg.ftl.controllerPackage
 		configBuilder.servicePackage = project.mbg.ftl.servicePackage
 		configBuilder.superControllerClass = project.mbg.ftl.superControllerClass
 		configBuilder.superServiceClass = project.mbg.ftl.superServiceClass
-		configBuilder.moduleLis = tables.values()
-		println ("ConfigBuilder :$configBuilder")
-		
-//		templateEngine.init(configBuilder).mkdirs().batchOutput()
+		configBuilder.moduleList[0] = tables.values()[0]
+
+		templateEngine.init(configBuilder).mkdirs().batchOutput()
 	}
 
-	void doMybatisGenerate(Map.Entry<String, String> entry, def fullyQualifiedTables, def contextsToRun) {
+	synchronized void doMybatisGenerate(Map.Entry<String, String> entry, def fullyQualifiedTables, def contextsToRun) {
 		println "MBG for table >>${entry.getKey()}"
 		List<String> warnings = new ArrayList<String>()
 		try {
@@ -81,10 +84,12 @@ class MbgTask extends DefaultTask {
 			extra.setProperty("xml.tableName", entry.getKey())
 			extra.setProperty("xml.objectName", entry.getValue())
 			extra.setProperty("xml.mapperName", entry.getValue() + project.mbg.xml.mapperSuffix)
-			def config = new ConfigurationParser(extra, warnings).parseConfiguration(generatorFile)
+			def config = new ConfigurationParser(extra, warnings)
+					.parseConfiguration(generatorFile)
 			MyBatisGenerator myBatisGenerator = new MyBatisGenerator(config,
-					new DefaultShellCallback(project.mbg.overwrite), warnings);
-			myBatisGenerator.generate(new GradleProgressCallback(project.mbg.consoleable), contextsToRun, fullyQualifiedTables);
+					new DefaultShellCallback(project.mbg.overwrite), warnings)
+			myBatisGenerator.generate(new GradleProgressCallback(project.mbg.consoleable),
+					contextsToRun, fullyQualifiedTables)
 		} catch (Exception e) {
 			e.printStackTrace()
 			throw new GradleException(e.getMessage(), e)

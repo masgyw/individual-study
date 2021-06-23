@@ -4,6 +4,8 @@ plugins {
 	id 'io.spring.dependency-management'
 }
 
+apply plugin: 'cn.gyw.platform.plugin.mbg'
+
 // 文件隔离
 sourceSets {
 
@@ -41,6 +43,40 @@ dependencies {
     implementation mysql_connector_java
     testImplementation(spring_boot_starter_test) {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+}
+
+// 不设置，使用默认值
+mbg {
+    // 是否覆盖已经生成的xml或者代码
+    overwrite = true
+    consoleable = true
+    generatorFile = "generatorConfig.xml"
+//    tableNames = "admin"
+    allTable = false
+    jdbc{
+        driver = "com.mysql.jdbc.Driver"
+        url    = "jdbc:mysql://192.168.1.181:3306/c_system?useSSL=false&allowPublicKeyRetrieval=true"
+        username = "root"
+        password = "root"
+    }
+    xml{
+        mapperPackage= "cn.gyw.community.system.dao"
+        modelPackage = "cn.gyw.community.system.entity"
+        mapperMapper = "cn.gyw.platform.common.web.base.mgb.BaseDao"
+        xmlPackage =   "mappers"
+        tableName ="admin"
+        objectName ="Admin"
+        mapperSuffix ="Mapper"
+    }
+    ftl {
+        restControllerStyle = true
+        entityPackage = "cn.gyw.community.system.entity"
+        entityDtoPackage = "cn.gyw.community.system.dto"
+        superServiceClass = "cn.gyw.platform.common.web.base.mgb.BaseService"
+        servicePackage = "cn.gyw.community.system.service"
+        superControllerClass = "cn.gyw.platform.common.web.base.mgb.BaseController"
+        controllerPackage = "cn.gyw.community.system.controller"
     }
 }
 

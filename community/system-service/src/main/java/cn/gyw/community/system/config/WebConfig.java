@@ -2,6 +2,7 @@ package cn.gyw.community.system.config;
 
 import java.util.List;
 
+import cn.gyw.platform.common.web.aop.AuthenticationInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.annotation.Bean;
@@ -14,9 +15,6 @@ import org.springframework.web.filter.CorsFilter;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
-
-import cn.gyw.platform.common.web.external.AuthenticationInterceptor;
-import cn.gyw.platform.common.web.log.GlobalApiLogInterceptor;
 
 @Configuration
 public class WebConfig extends WebMvcConfigurationSupport {
@@ -33,8 +31,6 @@ public class WebConfig extends WebMvcConfigurationSupport {
 
 	@Override
 	protected void addInterceptors(InterceptorRegistry registry) {
-		registry.addInterceptor(new GlobalApiLogInterceptor(applicationEventPublisher))
-				.excludePathPatterns("/log/**");
 		registry.addInterceptor(new AuthenticationInterceptor())
 			.addPathPatterns("/user/**");
 		super.addInterceptors(registry);

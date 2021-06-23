@@ -8,6 +8,12 @@ import org.springframework.web.bind.annotation.RestController;
 <#else>
 import org.springframework.stereotype.Controller;
 </#if>
+<#if entityClassPackage??>
+import ${entityClassPackage};
+</#if>
+<#if entityDtoClassPackage??>
+import ${entityDtoClassPackage};
+</#if>
 <#if superControllerClassPackage??>
 import ${superControllerClassPackage};
 </#if>
@@ -19,7 +25,7 @@ import ${superControllerClassPackage};
 </#if>
 @RequestMapping("<#if moduleName??>/${moduleName}</#if>")
 <#if superControllerClass??>
-public class ${controllerName} extends ${superControllerClass} {
+public class ${controllerName} extends ${superControllerClass}<${entityName},${entityDtoName}> {
 <#else>
 public class ${controllerName} {
 </#if>
