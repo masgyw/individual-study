@@ -7,9 +7,7 @@ import org.springframework.boot.autoconfigure.freemarker.FreeMarkerAutoConfigura
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import tk.mybatis.spring.annotation.MapperScan;
 
-@MapperScan("cn.gyw.community.system")
 @EnableWebMvc
 @EnableEurekaClient
 @EntityScan("cn.gyw.platform")

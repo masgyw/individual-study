@@ -1,6 +1,11 @@
 // 项目名称
 rootProject.name = 'community'
 
+// 组件
+// 安全组件
+include ':components:security'
+project(':components:security').projectDir = new File(rootDir, 'components/security')
+
 // RPC 接口
 include ':facade:system-service-api'
 project(':facade:system-service-api').projectDir = new File(rootDir, 'facade/system-service-api')
@@ -32,16 +37,11 @@ include 'order-service' // 订单服务
 
 rootProject.children.each {project ->
 	
-	if (project.name == 'components') {
-		return 
-	}
-	if (project.name == 'facade') {
+	if (project.name == 'facade' || project.name == 'components') {
 		project.children.each { subProject ->
 			subProject.buildFileName = "${subProject.name}.gradle"
-//			println "${subProject.name} -> ${subProject.buildFileName}"
 		}
 		return
 	}
 	project.buildFileName = "${project.name}.gradle"
-//	println "${project.name} -> ${project.buildFileName}"
 }

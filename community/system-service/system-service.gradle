@@ -13,7 +13,10 @@ sourceSets {
 
 dependencies {
     implementation project(':facade:system-service-api')
+    implementation project(':components:security')
+
     // 公共模块依赖
+    implementation platform_configuration
     implementation platform_common
 	implementation platform_common_web
 
@@ -35,13 +38,13 @@ dependencies {
     implementation 'org.mybatis:mybatis-typehandlers-jsr310:1.0.2'
 	// eurake 注册
 	implementation "org.springframework.cloud:spring-cloud-starter-netflix-eureka-client"
-    implementation platform_configuration
     // avoid NullPointerException
     implementation (javax_persistence) {
         force = true
     }
-
     implementation mysql_connector_java
+    implementation hutool_all
+
     testImplementation(spring_boot_starter_test) {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }

@@ -18,7 +18,9 @@ public enum CommonRespEnum implements CommonExceptionAssert {
 	PARAM_NULL(10002, "argument [{0}] is null"),
 	SERVER_ERROR(10003, "Server internal error"),
 	NO_DATA(10004, "No data"),
-	TOKEN_ILLEGAL(10005, "Token illegal")
+	TOKEN_ILLEGAL(10005, "Token illegal"),
+	UN_AUTHORIZED(10006, "unauthorized"),
+	ACCESS_FORBIDDEN(10007, "access forbidden"),
 	;
 
 	CommonRespEnum(int code, String message) {

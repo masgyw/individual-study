@@ -10,6 +10,7 @@ const apiTypes = {
   LOG: '/system/log',
   ROLE: '/system/role',
   FILE_INFO: '/system/fileInfo',
+  UMS_ADMIN: '/system/admin',
 
   // product about
   PRODUCT_INFO: '/product/info',

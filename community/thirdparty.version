@@ -90,6 +90,9 @@ quartz='org.quartz-scheduler:quartz:2.3.0'
 quartz_jobs='org.quartz-scheduler:quartz:2.3.0'
 netty_all='io.netty:netty-all:4.1.52.Final'
 jsoup='org.jsoup:jsoup:1.13.1'
+java_jwt='com.auth0:java-jwt:3.10.3'
+jjwt='io.jsonwebtoken:jjwt:0.9.1'
+hutool_all='cn.hutool:hutool-all:5.7.2'
 
 // DB
 mysql_connector_java='mysql:mysql-connector-java:5.1.47'

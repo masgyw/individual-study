@@ -152,7 +152,7 @@
   </div>
 </template>
 <script>
-  import {fetchList,createAdmin,updateAdmin,updateStatus,deleteAdmin,getRoleByAdmin,allocRole} from '@/api/login';
+  import {adminAPi} from '@/api/admin';
   import {fetchAllRoleList} from '@/api/role';
   import {formatDate} from '@/utils/date';
 
@@ -248,7 +248,7 @@
           cancelButtonText: '取消',
           type: 'warning'
         }).then(() => {
-          deleteAdmin(row.id).then(response => {
+          adminAPi.deleteAdmin(row.id).then(response => {
             this.$message({
               type: 'success',
               message: '删除成功!'
@@ -269,7 +269,7 @@
           type: 'warning'
         }).then(() => {
           if (this.isEdit) {
-            updateAdmin(this.admin.id,this.admin).then(response => {
+            adminAPi.updateAdmin(this.admin.id,this.admin).then(response => {
               this.$message({
                 message: '修改成功！',
                 type: 'success'
@@ -278,7 +278,7 @@
               this.getList();
             })
           } else {
-            createAdmin(this.admin).then(response => {
+            adminAPi.createAdmin(this.admin).then(response => {
               this.$message({
                 message: '添加成功！',
                 type: 'success'
@@ -298,7 +298,7 @@
           let params = new URLSearchParams();
           params.append("adminId", this.allocAdminId);
           params.append("roleIds", this.allocRoleIds);
-          allocRole(params).then(response => {
+          adminAPi.allocRole(params).then(response => {
             this.$message({
               message: '分配成功！',
               type: 'success'
@@ -314,7 +314,7 @@
       },
       getList() {
         this.listLoading = true;
-        fetchList(this.listQuery).then(response => {
+        adminAPi.fetchList(this.listQuery).then(response => {
           this.listLoading = false;
           this.list = response.data.list;
           this.total = response.data.total;

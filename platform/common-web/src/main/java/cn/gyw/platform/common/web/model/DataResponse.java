@@ -1,5 +1,6 @@
 package cn.gyw.platform.common.web.model;
 
+import cn.gyw.platform.common.web.IRespCode;
 import cn.gyw.platform.common.web.enums.CommonRespEnum;
 
 /**
@@ -15,6 +16,14 @@ public class DataResponse<T> extends BaseResponse {
         DataResponse<T> result = new DataResponse<>();
         result.setCode(CommonRespEnum.SUCCESS.getCode());
         result.setMessage(CommonRespEnum.SUCCESS.getMessage());
+        result.setData(data);
+        return result;
+    }
+
+    public static <T> DataResponse<T> error(IRespCode respCode, T data) {
+        DataResponse<T> result = new DataResponse<>();
+        result.setCode(respCode.getCode());
+        result.setMessage(respCode.getMessage());
         result.setData(data);
         return result;
     }
