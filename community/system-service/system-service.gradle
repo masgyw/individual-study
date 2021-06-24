@@ -19,6 +19,7 @@ dependencies {
 
     implementation spring_boot_starter
     implementation spring_boot_starter_web
+    implementation spring_boot_starter_security
     implementation spring_boot_starter_jdbc
     // 打包时使用provide
 //    providedRuntime spring_boot_starter_tomcat
@@ -48,6 +49,7 @@ dependencies {
 
 // 不设置，使用默认值
 mbg {
+    skip = true
     // 是否覆盖已经生成的xml或者代码
     overwrite = true
     consoleable = true
@@ -56,7 +58,8 @@ mbg {
     allTable = false
     jdbc{
         driver = "com.mysql.jdbc.Driver"
-        url    = "jdbc:mysql://192.168.1.181:3306/c_system?useSSL=false&allowPublicKeyRetrieval=true"
+        url    = "jdbc:mysql://127.0.0.1:3306/c_system?useSSL=false&allowPublicKeyRetrieval=true"
+//        url    = "jdbc:mysql://192.168.1.181:3306/c_system?useSSL=false&allowPublicKeyRetrieval=true"
         username = "root"
         password = "root"
     }

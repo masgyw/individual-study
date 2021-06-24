@@ -1,5 +1,7 @@
 package cn.gyw.platform.common.web.exceptions;
 
+import java.util.Arrays;
+
 import cn.gyw.platform.common.web.IRespCode;
 
 /**
@@ -22,7 +24,7 @@ public class BaseException extends RuntimeException {
     }
 
     public BaseException(IRespCode respCode, Object[] args, String message, Throwable t) {
-        super(message, t);
+        super(String.join(",", message, Arrays.toString(args)), t);
         this.respCode = respCode;
         this.args = args;
     }

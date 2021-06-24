@@ -5,6 +5,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.time.Duration;
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -167,6 +168,15 @@ public class Jdk8TimeAPITest extends AbstractTest {
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyyMMdd _HHmmss_SSS");
         String result = LocalDateTime.now(ZoneOffset.UTC).format(dateFormatter);
         System.out.println("UTC:" + result);
+    }
+    
+    /**
+     * 获取当前时间戳
+     */
+    @Test
+    public void currentTimestamp() {
+    	// 当前时间戳，单位秒
+    	System.out.println("当前时间戳(s)：" + Instant.now().getEpochSecond());
     }
     
 }

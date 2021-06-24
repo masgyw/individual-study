@@ -7,18 +7,17 @@ import org.springframework.boot.autoconfigure.freemarker.FreeMarkerAutoConfigura
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-
 import tk.mybatis.spring.annotation.MapperScan;
 
-@MapperScan("cn.gyw.community.system.mapper")
+@MapperScan("cn.gyw.community.system")
 @EnableWebMvc
 @EnableEurekaClient
 @EntityScan("cn.gyw.platform")
 @EnableJpaRepositories("cn.gyw.platform")
-@SpringBootApplication(scanBasePackages = { "cn.gyw" }, exclude = { FreeMarkerAutoConfiguration.class })
+@SpringBootApplication(scanBasePackages = {"cn.gyw.community", "cn.gyw.platform"}, exclude = {FreeMarkerAutoConfiguration.class})
 public class SystemApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(SystemApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(SystemApplication.class, args);
+    }
 }

@@ -11,7 +11,7 @@ abstract class AbstractTemplateEngine {
 	 * 配置信息
 	 */
 	ConfigBuilder configBuilder
-	
+
 	/**
 	 * <p>
 	 * 模板引擎初始化
@@ -19,32 +19,49 @@ abstract class AbstractTemplateEngine {
 	 */
 	AbstractTemplateEngine init(ConfigBuilder configBuilder) {
 		this.configBuilder = configBuilder
-		configBuilder.pathInfo[OutputFile.CONTROLLER]=configBuilder.controllerPackage.replace(".", "/")
+		configBuilder.pathInfo[OutputFile.DTO] = configBuilder.entityDtoPackage.replace(".", "/")
 		configBuilder.pathInfo[OutputFile.SERVICE]=configBuilder.servicePackage.replace(".", "/")
+		configBuilder.pathInfo[OutputFile.CONTROLLER]=configBuilder.controllerPackage.replace(".", "/")
 		return this
 	}
-	
+
 	/**
 	 * 生成文件
 	 */
 	void batchOutput() {
 		configBuilder.moduleList.each { module ->
 			Map<String, Object> objectMap = this.getObjectMap(configBuilder, module)
+			// *Dto.java
+			outputDto(objectMap)
 			// *Service.java
-//			outputService(objectMap)
+			outputService(objectMap)
 			// *Controller.java
 			outputController(objectMap)
 		}
 	}
+	
+	void outputDto(Map<String, Object> objectMap) {
+		// MpDto.java
+		String dtoPath = getPathInfo(OutputFile.DTO)
+		if (!dtoPath.endsWith("/")) {
+			dtoPath += "/"
+		}
+		String dtoFile = getBasePath() + String.format(dtoPath + "%s.java", objectMap.get("entityDtoName"))
+		if (checkOverwrite(dtoFile)) {
+			writer(objectMap, "dto.java.ftl", dtoFile)	
+		}
+	}
 
 	void outputService(Map<String, Object> objectMap) {
-		// MpController.java
-		String controllerPath = getPathInfo(OutputFile.SERVICE)
-		if (!controllerPath.endsWith("/")) {
-			controllerPath += "/"
+		// MpService.java
+		String servicePath = getPathInfo(OutputFile.SERVICE)
+		if (!servicePath.endsWith("/")) {
+			servicePath += "/"
 		}
-		String controllerFile = String.format(controllerPath + "%s.java", objectMap.get("serviceName"))
-		writer(objectMap, "service.java.ftl", controllerFile);
+		String serviceFile = getBasePath() + String.format(servicePath + "%s.java", objectMap.get("serviceName"))
+		if (checkOverwrite(serviceFile)) {
+			writer(objectMap, "service.java.ftl", serviceFile)
+		}
 	}
 
 	void outputController(Map<String, Object> objectMap) {
@@ -53,29 +70,44 @@ abstract class AbstractTemplateEngine {
 		if (!controllerPath.endsWith("/")) {
 			controllerPath += "/"
 		}
-		String srcPath = configBuilder.javaProjectFile.getAbsolutePath()
-		String fileName = String.format(controllerPath + "%s.java", objectMap.get("controllerName"))
-		println "controllerFile :$srcPath/$fileName"
-		writer(objectMap, "controller.java.ftl", srcPath + "/" + fileName);
+		String controllerFile = getBasePath() + String.format(controllerPath + "%s.java", objectMap.get("controllerName"))
+		if (checkOverwrite(controllerFile)) {
+			writer(objectMap, "controller.java.ftl", controllerFile)
+		}
 	}
 
 	def getObjectMap(ConfigBuilder config, String module) {
 		Map<String, Object> objectMap = [:]
-		objectMap.put("restControllerStyle", configBuilder.restControllerStyle)
-		objectMap.put("controllerPackage", configBuilder.controllerPackage)
-		objectMap.put("superControllerClassPackage", configBuilder.superControllerClass)
-		def superControllerClass =
+		def moduleLowerCamel = module[0].toLowerCase() + module[1..-1]
+		def mapperName = String.format("%sMapper", module)
+		def superControllerName =
 				configBuilder.superControllerClass.substring(configBuilder.superControllerClass.lastIndexOf(".") + 1)
-		objectMap.put("superControllerClass", superControllerClass)
-		objectMap.put("moduleName", module)
-		objectMap.put("controllerName", String.format("%sController", module))
-		objectMap.put("serviceName", String.format("%sService", module))
+		def superServiceName =
+				configBuilder.superServiceClass.substring(configBuilder.superServiceClass.lastIndexOf(".") + 1)
+
+		objectMap.put("restControllerStyle", configBuilder.restControllerStyle)
 		objectMap.put("entityClassPackage", configBuilder.entityPackage + "." + module)
-		def dtoName = String.format("%sDto", module)
-		objectMap.put("entityDtoClassPackage", configBuilder.entityDtoPackage + "." + dtoName)
+		objectMap.put("entityDtoPackage", configBuilder.entityDtoPackage)
+		objectMap.put("mapperClassPackage", configBuilder.xmlParams['xml.mapperPackage'] + "." + mapperName)
+		objectMap.put("superServiceClassPackage", configBuilder.superServiceClass)
+		objectMap.put("servicePackage", configBuilder.servicePackage)
+		objectMap.put("superControllerClassPackage", configBuilder.superControllerClass)
+		objectMap.put("controllerPackage", configBuilder.controllerPackage)
+		objectMap.put("superControllerName", superControllerName)
+		objectMap.put("superServiceName", superServiceName)
+		objectMap.put("serviceName", String.format("%sService", module))
+		objectMap.put("controllerName", String.format("%sController", module))
+		objectMap.put("mapperName", mapperName)
 		objectMap.put("entityName", module)
-		objectMap.put("entityDtoName", dtoName)
+		objectMap.put("entityDtoName", String.format("%sDto", module))
+		objectMap.put("moduleLower", moduleLowerCamel)
+		objectMap.put("fieldServiceName", String.format("%sService", moduleLowerCamel))
+		objectMap.put("fieldMapperName", String.format("%sMapper", moduleLowerCamel))
 		return objectMap
+	}
+	
+	private boolean checkOverwrite(String filePath) {
+		return !Paths.get(filePath).toFile().exists() || configBuilder.overwrite
 	}
 
 	/**
@@ -105,20 +137,21 @@ abstract class AbstractTemplateEngine {
 	 * </p>
 	 */
 	AbstractTemplateEngine mkdirs() {
-		println "start mkdirs dirs"
-		def controllerDir = configBuilder.controllerPackage.replace(".", "/")
-		println "${Paths.get(controllerDir).toFile().getAbsolutePath()}"
-		def serviceDir = configBuilder.servicePackage.replace(".", "/")
+		def controllerDir = getBasePath() + configBuilder.pathInfo[OutputFile.CONTROLLER]
+		def serviceDir = getBasePath() + configBuilder.pathInfo[OutputFile.SERVICE]
+		def dtoDir = getBasePath() + configBuilder.pathInfo[OutputFile.DTO]
+		Paths.get(dtoDir).toFile().mkdirs()
+		Paths.get(serviceDir).toFile().mkdirs()
+		Paths.get(controllerDir).toFile().mkdirs()
 		return this;
 	}
-
-	/**
-	 * <p>
-	 * 模板真实文件路径
-	 * </p>
-	 *
-	 * @param filePath 文件路径
-	 * @return
-	 */
-	public abstract String templateFilePath(String filePath);
+	
+	// 获取项目源码真实路径
+	private String getBasePath() {
+		String srcPath = configBuilder.javaProjectDir.getAbsolutePath()
+		if (!srcPath.endsWith("/")) {
+			srcPath += "/"
+		}
+		return srcPath
+	}
 }

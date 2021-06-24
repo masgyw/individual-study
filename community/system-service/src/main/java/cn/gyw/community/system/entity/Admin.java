@@ -5,6 +5,8 @@ import javax.persistence.*;
 
 @Table(name = "admin")
 public class Admin {
+    public static final String KEY_USERNAME = "username";
+
     @Id
     private Long id;
 

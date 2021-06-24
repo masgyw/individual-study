@@ -1,7 +1,7 @@
 package ${controllerPackage};
 
-
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.beans.factory.annotation.Autowired;
 
 <#if restControllerStyle>
 import org.springframework.web.bind.annotation.RestController;
@@ -11,8 +11,11 @@ import org.springframework.stereotype.Controller;
 <#if entityClassPackage??>
 import ${entityClassPackage};
 </#if>
-<#if entityDtoClassPackage??>
-import ${entityDtoClassPackage};
+<#if entityDtoPackage??>
+import ${entityDtoPackage}.${entityDtoName};
+</#if>
+<#if servicePackage??>
+import ${servicePackage}.${serviceName};
 </#if>
 <#if superControllerClassPackage??>
 import ${superControllerClassPackage};
@@ -23,11 +26,14 @@ import ${superControllerClassPackage};
 <#else>
 @Controller
 </#if>
-@RequestMapping("<#if moduleName??>/${moduleName}</#if>")
-<#if superControllerClass??>
-public class ${controllerName} extends ${superControllerClass}<${entityName},${entityDtoName}> {
+@RequestMapping("<#if moduleLower??>/${moduleLower}</#if>")
+<#if superControllerName??>
+public class ${controllerName} extends ${superControllerName}<${entityName},${entityDtoName}> {
 <#else>
 public class ${controllerName} {
 </#if>
 
+    @Autowired
+    private ${serviceName} ${fieldServiceName};
+	
 }

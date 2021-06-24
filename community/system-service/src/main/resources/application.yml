@@ -1,7 +1,7 @@
 # 全局配置
 server:
   servlet:
-    context-path: /system
+    context-path: /
   port: 8081
 
 # spring 配置

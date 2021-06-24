@@ -4,17 +4,21 @@ import cn.gyw.platform.common.web.exceptions.CommonExceptionAssert;
 
 /**
  * 通用返回
+ * 
+ * 说明：
+ * 1. 0 成功
+ * 2. 00|000 前两位区分系统，后三位异常码值
+ * 3. 通用异常固定前两位：10
  */
 public enum CommonRespEnum implements CommonExceptionAssert {
 
-	SUCCESS(20000, "Success"),
+	SUCCESS(0, "Success"),
 
-	PARAM_NOT_NULL(40001, "argument not null"),
-	PARAM_NULL(40002, "argument [{0}] is null"),
-
-	SERVER_ERROR(50001, "Server internal error"),
-	NO_DATA(50002, "No data"),
-	TOKEN_ILLEGAL(50003, "Token illegal")
+	PARAM_NOT_NULL(10001, "argument not null"),
+	PARAM_NULL(10002, "argument [{0}] is null"),
+	SERVER_ERROR(10003, "Server internal error"),
+	NO_DATA(10004, "No data"),
+	TOKEN_ILLEGAL(10005, "Token illegal")
 	;
 
 	CommonRespEnum(int code, String message) {

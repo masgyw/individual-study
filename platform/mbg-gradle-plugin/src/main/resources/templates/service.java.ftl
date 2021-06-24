@@ -1,20 +1,24 @@
-package ${package.Service};
+package ${servicePackage};
 
-import ${package.Entity}.${entity};
-import ${superServiceClassPackage};
-
-/**
- * <p>
- * ${table.comment!} 服务类
- * </p>
- *
- * @author ${author}
- * @since ${date}
- */
-<#if kotlin>
-interface ${table.serviceName} : ${superServiceClass}<${entity}>
-<#else>
-public interface ${table.serviceName} extends ${superServiceClass}<${entity}> {
-
-}
+<#if entityClassPackage??>
+import ${entityClassPackage};
 </#if>
+<#if mapperClassPackage??>
+import ${mapperClassPackage};
+</#if>
+<#if superServiceClassPackage??>
+import ${superServiceClassPackage};
+</#if>
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+<#if superServiceName??>
+public class ${serviceName} extends ${superServiceName}<${entityName}> {
+<#else>
+public class ${serviceName} {
+</#if>
+
+	@Autowired
+    private ${mapperName} ${fieldMapperName};
+}
