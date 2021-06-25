@@ -22,7 +22,6 @@ import org.springframework.web.context.request.WebRequest;
 import cn.gyw.platform.common.web.base.AbstractController;
 import cn.gyw.platform.common.web.enums.CommonRespEnum;
 import cn.gyw.platform.common.web.model.PageData;
-import cn.gyw.platform.common.web.utils.BeanMapUtil;
 import cn.gyw.platform.common.web.utils.PageHelperUtil;
 
 /**
@@ -56,6 +55,13 @@ public abstract class BaseController<T, DTO> extends AbstractController {
 		return null;
 	}
 
+	/**
+	 * 分页查询
+	 * 
+	 * keyword: 关键字查询，需要模糊查询的字段需要在T 中声明 KEYWORD=字段，暂时只支持一个字段模糊
+	 * @param webRequest
+	 * @return
+	 */
 	@GetMapping("/")
 	public PageData<T> queryByPage(WebRequest webRequest) {
 		Map<String, Object> params = fillVariablesMapWithIncomingRequestParameters(webRequest.getParameterMap());
@@ -64,16 +70,8 @@ public abstract class BaseController<T, DTO> extends AbstractController {
 		String pageSize = params.get("pageSize").toString();
 		CommonRespEnum.PARAM_NULL.assertNotNull(pageNum, "page");
 		CommonRespEnum.PARAM_NULL.assertNotNull(pageNum, "limit");
-		T condition;
-		try {
-			condition = BeanMapUtil.mapToBean(params, entityClass);
-			log.debug("query condition bean :{}", condition);
-			List<T> data = baseService.query(condition, Integer.parseInt(pageNum), Integer.parseInt(pageSize));
-			return PageHelperUtil.resetPage(data);
-		} catch (Exception e) {
-			log.error("Map to bean error :", e);
-		}
-		return null;
+		List<T> data = baseService.query(params, Integer.parseInt(pageNum), Integer.parseInt(pageSize));
+		return PageHelperUtil.resetPage(data);
 	}
 
 	/**
@@ -95,7 +93,7 @@ public abstract class BaseController<T, DTO> extends AbstractController {
 	 * @return
 	 */
 	@DeleteMapping
-	public int delete(@RequestBody DTO dto) throws IllegalAccessException, InstantiationException {
+	public int delete(DTO dto) throws IllegalAccessException, InstantiationException {
 		log.info("delete data：{}", dto);
 		T bean = entityClass.newInstance();
 		BeanUtils.copyProperties(dto, bean);

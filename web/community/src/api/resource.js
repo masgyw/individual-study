@@ -1,12 +1,23 @@
+import BaseApi from './base/BaseApi'
 import request from '@/utils/request'
+import apiTypes from './base/api-types'
+import LoggerFactory from "./base/logger";
 
-export function fetchList(params) {
-  return request({
-    url: '/resource/list',
-    method: 'get',
-    params: params
-  })
+class ResourceApi extends BaseApi {
+
+  constructor() {
+    super(apiTypes.UMS_RESOURCE);
+  }
+
 }
+
+let logger = LoggerFactory.getLogger(apiTypes.UMS_RESOURCE)
+let resourceApi = new ResourceApi();
+
+export {
+  resourceApi
+}
+
 
 export function createResource(data) {
   return request({

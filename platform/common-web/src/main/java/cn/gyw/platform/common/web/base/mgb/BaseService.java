@@ -1,8 +1,11 @@
 package cn.gyw.platform.common.web.base.mgb;
 
+import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 
@@ -12,6 +15,7 @@ import org.slf4j.LoggerFactory;
 
 import com.github.pagehelper.PageHelper;
 
+import cn.gyw.platform.common.web.utils.BeanMapUtil;
 import tk.mybatis.mapper.entity.Example;
 
 public abstract class BaseService<T> implements IBaseService<T> {
@@ -24,6 +28,7 @@ public abstract class BaseService<T> implements IBaseService<T> {
 
 	protected BaseDao<T> baseDao;
 	private static final String SUFFIX = "Mapper";
+	private static final String KEY_KEYWORD = "keyword";
 
 	/**
 	 * 初始化方法
@@ -57,11 +62,24 @@ public abstract class BaseService<T> implements IBaseService<T> {
 	}
 	
 	@Override
-	public List<T> query(T condition, Integer pageNum, Integer pageSize) {
+	public List<T> query(Map<String, Object> params, Integer pageNum, Integer pageSize) {
 		PageHelper.startPage(pageNum, pageSize);
-		Example example = new Example(entityClass);
-		example.createCriteria().andEqualTo(condition);
-		return baseDao.selectByExample(example);
+		T condition;
+		try {
+			condition = BeanMapUtil.mapToBean(params, entityClass);
+			log.debug("query condition bean :{}", condition);
+			Example example = new Example(entityClass);
+			Example.Criteria criteria = example.createCriteria();
+			criteria.andEqualTo(condition);
+			if (params.containsKey(KEY_KEYWORD)) {
+				String keywordProp = getFieldValue(KEY_KEYWORD.toUpperCase());
+				criteria.andLike(keywordProp, "%" + params.get(KEY_KEYWORD) + "%");
+			}
+			return baseDao.selectByExample(example);
+		} catch (Exception e) {
+			log.error("Map to bean error :", e);
+		}
+		return Collections.emptyList();
 	}
 
 	@Override
@@ -81,4 +99,16 @@ public abstract class BaseService<T> implements IBaseService<T> {
 		return baseDao.selectOne(record);
 	}
 
+	private String getFieldValue(String fieldName) {
+		try {
+			Field field = entityClass.getDeclaredField(fieldName);
+			field.setAccessible(true);
+			return field.get(entityClass).toString();
+		} catch (NoSuchFieldException e) {
+			log.debug("No field[keyword] , do not to search by like");
+		} catch (Exception e) {
+			log.error("", e);
+		}
+		return null;
+	}
 }

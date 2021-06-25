@@ -1,6 +1,7 @@
 package cn.gyw.platform.common.web.base.mgb;
 
 import java.util.List;
+import java.util.Map;
 
 public interface IBaseService<T> {
 
@@ -8,7 +9,7 @@ public interface IBaseService<T> {
 
 	List<T> query(T condition);
 	
-	List<T> query(T condition, Integer pageNum, Integer pageSize);
+	List<T> query(Map<String, Object> params, Integer pageNum, Integer pageSize);
 
 	int remove(T record);
 

@@ -2,9 +2,8 @@
   <el-card class="form-container" shadow="never">
     <div v-for="(cate,index) in allResourceCate" :class="index===0?'top-line':null" :key="'cate'+cate.id">
       <el-row class="table-layout" style="background: #F2F6FC;">
-        <el-checkbox v-model="cate.checked"
-                     :indeterminate="isIndeterminate(cate.id)"
-                     @change="handleCheckAllChange(cate)">
+        <el-checkbox v-model="cate.checked" :indeterminate="isIndeterminate(cate.id)"
+          @change="handleCheckAllChange(cate)">
           {{cate.name}}
         </el-checkbox>
       </el-row>
@@ -25,9 +24,9 @@
 </template>
 
 <script>
-  import {fetchAllResourceList} from '@/api/resource';
-  import {listAllCate} from '@/api/resourceCategory';
-  import {allocResource,listResourceByRole} from '@/api/role';
+  import { resourceApi } from '@/api/resource';
+  import { resouceCategoryApi } from '@/api/resourceCategory';
+  import { roleApi } from '@/api/role';
 
   export default {
     name: "allocResource",
@@ -44,7 +43,7 @@
     },
     methods: {
       getAllResourceList() {
-        fetchAllResourceList().then(response => {
+        resourceApi.find().then(response => {
           this.allResource = response.data;
           for (let i = 0; i < this.allResource.length; i++) {
             this.allResource[i].checked = false;
@@ -53,7 +52,7 @@
         });
       },
       getAllResourceCateList() {
-        listAllCate().then(response => {
+        resouceCategoryApi.find().then(response => {
           this.allResourceCate = response.data;
           for (let i = 0; i < this.allResourceCate.length; i++) {
             this.allResourceCate[i].checked = false;
@@ -72,22 +71,22 @@
         }
         return cateResource;
       },
-      getResourceByRole(roleId){
-        listResourceByRole(roleId).then(response=>{
+      getResourceByRole(roleId) {
+        roleApi.listResourceByRole(roleId).then(response => {
           let allocResource = response.data;
-          this.allResource.forEach(item=>{
-            item.checked = this.getResourceChecked(item.id,allocResource);
+          this.allResource.forEach(item => {
+            item.checked = this.getResourceChecked(item.id, allocResource);
           });
-          this.allResourceCate.forEach(item=>{
+          this.allResourceCate.forEach(item => {
             item.checked = this.isAllChecked(item.id);
           });
           this.$forceUpdate();
         });
       },
-      getResourceChecked(resourceId,allocResource){
-        if(allocResource==null||allocResource.length===0) return false;
-        for(let i=0;i<allocResource.length;i++){
-          if(allocResource[i].id===resourceId){
+      getResourceChecked(resourceId, allocResource) {
+        if (allocResource == null || allocResource.length === 0) return false;
+        for (let i = 0; i < allocResource.length; i++) {
+          if (allocResource[i].id === resourceId) {
             return true;
           }
         }
@@ -113,7 +112,7 @@
             checkedCount++;
           }
         }
-        if(checkedCount===0){
+        if (checkedCount === 0) {
           return false;
         }
         return checkedCount === cateResources.length;
@@ -135,7 +134,7 @@
           let params = new URLSearchParams();
           params.append("roleId", this.roleId);
           params.append("resourceIds", Array.from(checkedResourceIds));
-          allocResource(params).then(response => {
+          roleApi.allocResource(params).then(response => {
             this.$message({
               message: '分配成功',
               type: 'success',
@@ -162,8 +161,8 @@
         this.$forceUpdate();
       },
       handleCheckChange(resource) {
-        this.allResourceCate.forEach(item=>{
-          if(item.id===resource.categoryId){
+        this.allResourceCate.forEach(item => {
+          if (item.id === resource.categoryId) {
             item.checked = this.isAllChecked(resource.categoryId);
           }
         });

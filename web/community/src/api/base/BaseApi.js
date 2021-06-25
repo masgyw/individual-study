@@ -17,22 +17,19 @@ class BaseApi {
         })
     }
 
-    findByPage({ pageNum, pageSize }) {
+    findByPage(params) {
         logger.info("findByPage for " + this.src)
         return request({
             url: this.src + '/',
             method: 'GET',
-            params: {
-                pageNum: pageNum,
-                pageSize: pageSize
-            }
+            params: params
         })
     }
 
     remove(params) {
         logger.info("remove for " + this.src)
         return request({
-            url: src + "/",
+            url: this.src + "/",
             method: 'DELETE',
             params: params
         })
@@ -41,7 +38,7 @@ class BaseApi {
     offer(data) {
         logger.info("offer for " + this.src)
         return request({
-            url: src + "/",
+            url: this.src + "/",
             method: 'POST',
             data: data
         })
@@ -50,7 +47,7 @@ class BaseApi {
     patch(data) {
         logger.info("patch for " + this.src)
         return request({
-            url: src + "/",
+            url: this.src + "/",
             method: 'PUT',
             data: data
         });
