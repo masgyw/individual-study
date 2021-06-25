@@ -115,7 +115,7 @@
             this.loading = true
             this.$store.dispatch('user/login', this.loginForm).then(() => {
               console.log("login success", this.redirect)
-              this.$router.push({ path: this.redirect || '/' })
+              this.$router.push({ path: this.redirect || '/home' })
               this.loading = false
             }).catch(() => {
               this.loading = false

@@ -1,6 +1,7 @@
 package cn.gyw.platform.common.web.model;
 
 import cn.gyw.platform.common.web.IRespCode;
+import cn.gyw.platform.common.web.enums.CommonRespEnum;
 
 import java.io.Serializable;
 
@@ -11,8 +12,6 @@ public class BaseResponse implements Serializable {
 
     private static final long serialVersionUID = 2951887768275356440L;
     
-    // 错误编码
-    protected int errorCode;
     // 结果编码
     protected int code;
     // 结果信息
@@ -26,21 +25,28 @@ public class BaseResponse implements Serializable {
         this.message = message;
     }
     
+    public BaseResponse(IRespCode respCode) {
+        this.code = respCode.getCode();
+        this.message = respCode.getMessage();
+    }
+    
+    public static BaseResponse success() {
+    	return new BaseResponse(CommonRespEnum.SUCCESS);
+    }
+    
     public static BaseResponse error(int code, String message) {
         return new BaseResponse(code, message);
     }
 
     public static BaseResponse error(IRespCode respCode) {
-        return error(respCode.getCode(), respCode.getMessage());
+        return new BaseResponse(respCode);
     }
-
-    public int getErrorCode() {
-        return errorCode;
-    }
-
-    public void setErrorCode(int errorCode) {
-        this.errorCode = errorCode;
-    }
+    
+	public static BaseResponse error(IRespCode respCode, String message) {
+		BaseResponse result = error(respCode);
+		result.setMessage(message);
+		return result;
+	}
 
     public int getCode() {
         return code;

@@ -9,6 +9,7 @@ import cn.gyw.community.system.entity.Admin;
 import cn.gyw.community.system.dao.AdminMapper;
 import cn.gyw.community.system.entity.AdminLoginLog;
 import cn.gyw.community.system.entity.Resource;
+import cn.gyw.community.system.entity.Role;
 import cn.gyw.community.system.enums.SystemRespEnum;
 import cn.gyw.platform.common.web.base.mgb.BaseService;
 import cn.gyw.platform.common.web.utils.RequestUtil;
@@ -88,7 +89,7 @@ public class AdminService extends BaseService<Admin> {
         //密码需要客户端加密后传递
         try {
             UserDetails userDetails = loadUserByUsername(username);
-            SystemRespEnum.PASSWORD_ERROR.assertTrue(passwordEncoder.matches(password,userDetails.getPassword()));
+            SystemRespEnum.PASSWORD_ERROR.assertTrue(passwordEncoder.matches(password, userDetails.getPassword()));
             SystemRespEnum.USER_DISABLE.assertTrue(userDetails.isEnabled());
             UsernamePasswordAuthenticationToken authentication
                     = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
@@ -130,6 +131,10 @@ public class AdminService extends BaseService<Admin> {
 //            adminCacheService.setResourceList(adminId,resourceList);
         }
         return resourceList;
+    }
+
+    public List<Role> getRoleList(Long adminId) {
+        return adminRoleRelationMapper.getRoleList(adminId);
     }
 
     public UserDetails loadUserByUsername(String username){

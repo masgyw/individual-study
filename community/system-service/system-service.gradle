@@ -1,7 +1,7 @@
 plugins {
     id 'java'
     id 'org.springframework.boot'
-	id 'io.spring.dependency-management'
+    id 'io.spring.dependency-management'
 }
 
 apply plugin: 'cn.gyw.platform.plugin.mbg'
@@ -18,28 +18,31 @@ dependencies {
     // 公共模块依赖
     implementation platform_configuration
     implementation platform_common
-	implementation platform_common_web
+    implementation platform_common_web
 
     implementation spring_boot_starter
     implementation spring_boot_starter_web
     implementation spring_boot_starter_security
     implementation spring_boot_starter_jdbc
+    implementation spring_boot_starter_data_redis
     // 打包时使用provide
 //    providedRuntime spring_boot_starter_tomcat
     // 本地运行，否则异常：
-    implementation spring_boot_starter_tomcat
+//    implementation spring_boot_starter_tomcat
     implementation spring_boot_devtools
-    implementation spring_boot_starter_data_redis
-	implementation (mapper_spring_boot_starter) {
+    implementation(mapper_spring_boot_starter) {
         exclude group: 'javax.persistence', module: 'persistence-api'
     }
+//    implementation mapper_spring_boot_starter
+    implementation pagehelper_spring_boot_starter
+    implementation pagehelper
 
     // 时间插件：Mybatis对Java 8 time (JSR 310)支持
     implementation 'org.mybatis:mybatis-typehandlers-jsr310:1.0.2'
-	// eurake 注册
-	implementation "org.springframework.cloud:spring-cloud-starter-netflix-eureka-client"
+    // eurake 注册
+    implementation "org.springframework.cloud:spring-cloud-starter-netflix-eureka-client"
     // avoid NullPointerException
-    implementation (javax_persistence) {
+    implementation(javax_persistence) {
         force = true
     }
     implementation mysql_connector_java
@@ -59,21 +62,21 @@ mbg {
     generatorFile = "generatorConfig.xml"
 //    tableNames = "admin"
     allTable = false
-    jdbc{
+    jdbc {
         driver = "com.mysql.jdbc.Driver"
-        url    = "jdbc:mysql://127.0.0.1:3306/c_system?useSSL=false&allowPublicKeyRetrieval=true"
+        url = "jdbc:mysql://127.0.0.1:3306/c_system?useSSL=false&allowPublicKeyRetrieval=true"
 //        url    = "jdbc:mysql://192.168.1.181:3306/c_system?useSSL=false&allowPublicKeyRetrieval=true"
         username = "root"
         password = "root"
     }
-    xml{
-        mapperPackage= "cn.gyw.community.system.dao"
+    xml {
+        mapperPackage = "cn.gyw.community.system.dao"
         modelPackage = "cn.gyw.community.system.entity"
         mapperMapper = "cn.gyw.platform.common.web.base.mgb.BaseDao"
-        xmlPackage =   "mappers"
-        tableName ="admin"
-        objectName ="Admin"
-        mapperSuffix ="Mapper"
+        xmlPackage = "mappers"
+        tableName = "admin"
+        objectName = "Admin"
+        mapperSuffix = "Mapper"
     }
     ftl {
         restControllerStyle = true
@@ -87,14 +90,14 @@ mbg {
 }
 
 dependencyManagement {
-	imports {
-		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
-	}
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+    }
 }
 
 jar {
     manifest {
         attributes "Manifest-Version": 1.0,
-                'Main-Class': 'cn.gyw.community.system.SystemApiApplication'
+            'Main-Class': 'cn.gyw.community.system.SystemApiApplication'
     }
 }

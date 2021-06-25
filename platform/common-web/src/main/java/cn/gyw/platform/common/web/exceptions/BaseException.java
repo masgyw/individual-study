@@ -16,15 +16,15 @@ public class BaseException extends RuntimeException {
     private Object[] args;
 
     public BaseException(IRespCode respCode) {
-        this(respCode, null, null, null);
+        this(respCode, null, null);
     }
 
-    public BaseException(IRespCode respCode, Object[] args, String message) {
-        this(respCode, args, message, null);
+    public BaseException(IRespCode respCode, Object[] args) {
+        this(respCode, args, null);
     }
 
-    public BaseException(IRespCode respCode, Object[] args, String message, Throwable t) {
-        super(String.join(",", message, Arrays.toString(args)), t);
+    public BaseException(IRespCode respCode, Object[] args, Throwable t) {
+        super(String.join(",", respCode.getMessage(), Arrays.toString(args)), t);
         this.respCode = respCode;
         this.args = args;
     }

@@ -6,6 +6,6 @@ import tk.mybatis.spring.annotation.MapperScan;
 
 @Configuration
 @EnableTransactionManagement
-@MapperScan({"cn.gyw.community.system.mapper","cn.gyw.community.systems.dao"})
+@MapperScan({"cn.gyw.community.system.mapper","cn.gyw.community.system.dao"})
 public class MybatisConfig {
 }

@@ -18,7 +18,7 @@
       <el-menu-item index="shop">社区商店</el-menu-item>
       <el-menu-item index="md">学习手册</el-menu-item>
       <!--  -->
-      <el-menu-item v-show="role == 'admin'" index="admin" class="right-float">
+      <el-menu-item v-show="roles.indexOf('超级管理员') > -1" index="admin" class="right-float">
         <span>后台</span>
       </el-menu-item>
       <el-menu-item v-if="!name" index="register" class="right-float">
@@ -49,7 +49,9 @@
           </el-dropdown-menu>
         </el-dropdown>
       </el-menu-item>
-      <el-menu-item index="post" class="right-float">发帖</el-menu-item>
+      <el-menu-item index="post" class="right-float">
+        <span>留言</span>
+      </el-menu-item>
     </el-menu>
   </div>
 </template>
@@ -68,7 +70,7 @@
     data() {
       return {
         activeIndex: "",
-        role: this.$store.getters.role,
+        roles: this.$store.getters.roles,
         name: this.$store.getters.name,
         avatar: this.$store.getters.avatar,
         avatarUrl: ""

@@ -1,4 +1,4 @@
-import { login, logout, getInfo } from '@/api/user'
+import { adminApi } from '@/api/admin'
 import { getToken, setToken, removeToken } from '@/utils/auth'
 import { resetRouter } from '@/router'
 import {mutationsName} from '@/store/mutation-types'
@@ -7,7 +7,7 @@ const state = {
   token: getToken(),
   name: '',
   avatar: '',
-  role: null,
+  roles: [],
   currentUser: {}
 }
 
@@ -21,8 +21,8 @@ const mutations = {
   SET_AVATAR: (state, avatar) => {
     state.avatar = avatar
   },
-  SET_ROLE: (state, role) => {
-    state.role = role;
+  SET_ROLES: (state, roles) => {
+    state.roles = roles
   },
   [mutationsName.SET_USER_CURRENT.key]: (state, data) => {
     state.currentUser = data;
@@ -34,10 +34,11 @@ const actions = {
   login({ commit }, userInfo) {
     const { username, password } = userInfo
     return new Promise((resolve, reject) => {
-      login({ userName: username.trim(), password: password }).then(response => {
+      adminApi.login({ username: username.trim(), password: password }).then(response => {
         const { data } = response
-        commit('SET_TOKEN', data.token)
-        setToken(data.token)
+        const tokenStr = data.tokenHead + data.token
+        commit('SET_TOKEN', tokenStr)
+        setToken(tokenStr)
         resolve()
       }).catch(error => {
         reject(error)
@@ -48,17 +49,18 @@ const actions = {
   // get user info
   getInfo({ commit, state }) {
     return new Promise((resolve, reject) => {
-      getInfo(state.token).then(response => {
+      adminApi.getInfo(state.token).then(response => {
         const { data } = response
-
         if (!data) {
           reject('Verification failed, please Login again.')
         }
-        const { userName, avatar, role } = data
-
-        commit('SET_NAME', userName)
-        commit('SET_AVATAR', avatar)
-        commit('SET_ROLE', role.roleName)
+        commit('SET_NAME', data.username)
+        commit('SET_AVATAR', data.icon)
+        if (data.roles && data.roles.length > 0) { // 验证返回的roles是否是一个非空数组
+          commit('SET_ROLES', data.roles)
+        } else {
+          reject('getInfo: roles must be a non-null array !')
+        }
         commit(mutationsName.SET_USER_CURRENT.key, data)
         resolve(data)
       }).catch(error => {
@@ -70,10 +72,10 @@ const actions = {
   // user logout
   logout({ commit, state }) {
     return new Promise((resolve, reject) => {
-      logout(state.token).then(() => {
+      adminApi.logout(state.token).then(() => {
         commit('SET_TOKEN', '')
         commit('SET_NAME', '')
-        commit('SET_ROLE', null)
+        commit('SET_ROLES', [])
         removeToken()
         resetRouter()
         resolve()

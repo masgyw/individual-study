@@ -1,20 +1,16 @@
 package cn.gyw.platform.common.web.exceptions;
 
-import java.text.MessageFormat;
-
 import cn.gyw.platform.common.web.IRespCode;
 
 public interface CommonExceptionAssert extends IRespCode, IExceptionAssert {
 
 	@Override
 	default BaseException newException(Object... args) {
-		String message = MessageFormat.format(this.getMessage(), args);
-		return new CommonException(this, args, message);
+		return new CommonException(this, args);
 	}
 	
 	@Override
 	default BaseException newException(Throwable t, Object... args) {
-		String message = MessageFormat.format(this.getMessage(), args);
-		return new CommonException(this, args, message, t);
+		return new CommonException(this, args, t);
 	}
 }

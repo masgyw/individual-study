@@ -1,12 +1,24 @@
 package cn.gyw.community.system.utils;
 
 import org.junit.Test;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.util.DigestUtils;
 
 import java.io.UnsupportedEncodingException;
 import java.util.Base64;
 
 public class CodecTest {
+
+    @Test
+    public void byct() {
+        // $2a$10$zhIL0dElgj24Ebqhpy.JpercLl9vKSNVqQapTM8kMZ5dpLCa1kNZ.
+        String password = "123123";
+        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        System.out.println(passwordEncoder.encode(password));
+
+        System.out.println(passwordEncoder.matches(password, "$2a$10$zhIL0dElgj24Ebqhpy.JpercLl9vKSNVqQapTM8kMZ5dpLCa1kNZ."));
+    }
 
     @Test
     public void base64Test() throws UnsupportedEncodingException {

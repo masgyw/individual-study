@@ -9,7 +9,7 @@ class AdminApi extends BaseApi {
     super(apiTypes.UMS_ADMIN);
   }
 
-  login(username, password) {
+  login({ username, password }) {
     return request({
       url: this.src + '/login',
       method: 'post',
@@ -31,14 +31,6 @@ class AdminApi extends BaseApi {
     return request({
       url: this.src + '/logout',
       method: 'post'
-    })
-  }
-
-  fetchList(params) {
-    return request({
-      url: this.src + '/list',
-      method: 'get',
-      params: params
     })
   }
 

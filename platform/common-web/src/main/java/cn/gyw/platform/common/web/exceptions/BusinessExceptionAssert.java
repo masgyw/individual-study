@@ -9,11 +9,11 @@ public interface BusinessExceptionAssert extends IRespCode, IExceptionAssert {
 
     @Override
     default BaseException newException(Object... args) {
-        return new BusinessException(this, args, getMessage());
+        return new BusinessException(this, args);
     }
 
     @Override
     default BaseException newException(Throwable t, Object... args) {
-        return new BusinessException(this, args, getMessage(), t);
+        return new BusinessException(this, args, t);
     }
 }

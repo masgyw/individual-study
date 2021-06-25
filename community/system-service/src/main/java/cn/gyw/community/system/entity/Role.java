@@ -5,6 +5,9 @@ import javax.persistence.*;
 
 @Table(name = "role")
 public class Role {
+    // 模糊搜索关键词
+    private static final String KEYWORD = "name";
+
     @Id
     private Long id;
 

@@ -1,55 +1,63 @@
+import BaseApi from './base/BaseApi'
 import request from '@/utils/request'
+import apiTypes from './base/api-types'
+import LoggerFactory from "./base/logger";
 
-export function fetchList(parentId, params) {
-  return request({
-    url: '/menu/list/' + parentId,
-    method: 'get',
-    params: params
-  })
+class MenuApi extends BaseApi {
+
+  constructor() {
+    super(apiTypes.UMS_MENU);
+  }
+
+  fetchTreeList() {
+    return request({
+      url: this.src + '/treeList',
+      method: 'get'
+    })
+  }
+
+  deleteMenu(id) {
+    return request({
+      url: '/delete/' + id,
+      method: 'post'
+    })
+  }
+  
+  createMenu(data) {
+    return request({
+      url: '/create',
+      method: 'post',
+      data: data
+    })
+  }
+  
+  updateMenu(id, data) {
+    return request({
+      url: '/update/' + id,
+      method: 'post',
+      data: data
+    })
+  }
+  
+  getMenu(id) {
+    return request({
+      url: '/' + id,
+      method: 'get',
+    })
+  }
+  
+  updateHidden(id, params) {
+    return request({
+      url: '/updateHidden/' + id,
+      method: 'post',
+      params: params
+    })
+  }
 }
 
-export function deleteMenu(id) {
-  return request({
-    url: '/menu/delete/' + id,
-    method: 'post'
-  })
-}
+let logger = LoggerFactory.getLogger(apiTypes.UMS_MENU)
+let menuApi = new MenuApi();
 
-export function createMenu(data) {
-  return request({
-    url: '/menu/create',
-    method: 'post',
-    data: data
-  })
+export {
+  menuApi
 }
-
-export function updateMenu(id, data) {
-  return request({
-    url: '/menu/update/' + id,
-    method: 'post',
-    data: data
-  })
-}
-
-export function getMenu(id) {
-  return request({
-    url: '/menu/' + id,
-    method: 'get',
-  })
-}
-
-export function updateHidden(id, params) {
-  return request({
-    url: '/menu/updateHidden/' + id,
-    method: 'post',
-    params: params
-  })
-}
-
-export function fetchTreeList() {
-  return request({
-    url: '/menu/treeList',
-    method: 'get'
-  })
-}
-

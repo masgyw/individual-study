@@ -152,8 +152,8 @@
   </div>
 </template>
 <script>
-  import {adminAPi} from '@/api/admin';
-  import {fetchAllRoleList} from '@/api/role';
+  import {adminApi} from '@/api/admin';
+  import {roleApi} from '@/api/role';
   import {formatDate} from '@/utils/date';
 
   const defaultListQuery = {
@@ -248,7 +248,7 @@
           cancelButtonText: '取消',
           type: 'warning'
         }).then(() => {
-          adminAPi.deleteAdmin(row.id).then(response => {
+          adminApi.deleteAdmin(row.id).then(response => {
             this.$message({
               type: 'success',
               message: '删除成功!'
@@ -269,7 +269,7 @@
           type: 'warning'
         }).then(() => {
           if (this.isEdit) {
-            adminAPi.updateAdmin(this.admin.id,this.admin).then(response => {
+            adminApi.updateAdmin(this.admin.id,this.admin).then(response => {
               this.$message({
                 message: '修改成功！',
                 type: 'success'
@@ -278,7 +278,7 @@
               this.getList();
             })
           } else {
-            adminAPi.createAdmin(this.admin).then(response => {
+            adminApi.createAdmin(this.admin).then(response => {
               this.$message({
                 message: '添加成功！',
                 type: 'success'
@@ -298,7 +298,7 @@
           let params = new URLSearchParams();
           params.append("adminId", this.allocAdminId);
           params.append("roleIds", this.allocRoleIds);
-          adminAPi.allocRole(params).then(response => {
+          adminApi.allocRole(params).then(response => {
             this.$message({
               message: '分配成功！',
               type: 'success'
@@ -314,14 +314,14 @@
       },
       getList() {
         this.listLoading = true;
-        adminAPi.fetchList(this.listQuery).then(response => {
+        adminApi.findByPage(this.listQuery).then(response => {
           this.listLoading = false;
-          this.list = response.data.list;
+          this.list = response.data.records;
           this.total = response.data.total;
         });
       },
       getAllRoleList() {
-        fetchAllRoleList().then(response => {
+        roleApi.find().then(response => {
           this.allRoleList = response.data;
         });
       },

@@ -13,12 +13,12 @@ public class CommonException extends BaseException {
 		super(resp);
 	}
 
-	public CommonException(IRespCode resp, Object[] args, String message) {
-		super(resp, args, message);
+	public CommonException(IRespCode resp, Object[] args) {
+		super(resp, args);
 	}
 
-	public CommonException(IRespCode resp, Object[] args, String message, Throwable t) {
-		super(resp, args, message, t);
+	public CommonException(IRespCode resp, Object[] args, Throwable t) {
+		super(resp, args, t);
 	}
 
 }

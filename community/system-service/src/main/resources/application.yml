@@ -87,6 +87,25 @@ spring:
     # 模版后缀
     suffix: .htm
 
+secure:
+  ignored:
+    urls: #安全路径白名单
+      - /swagger-ui.html
+      - /swagger-resources/**
+      - /swagger/**
+      - /**/v2/api-docs
+      - /**/*.js
+      - /**/*.css
+      - /**/*.png
+      - /**/*.ico
+      - /webjars/springfox-swagger-ui/**
+      - /actuator/**
+      - /druid/**
+      - /admin/login
+      - /admin/register
+      - /admin/info
+      - /admin/logout
+
 # 分布式ID服务接口调用
 idserver:
   enable: false
@@ -100,16 +119,6 @@ idserver:
 logging:
   config: classpath:log/logback.xml
 
-# api日志管理
-apiLog:
-  tableName: apilog
-  daysToKeep: 1
-  datasource:
-    driverClass: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/community_system?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai&useSSL=false
-    user: root
-    password: root
-
 # 文件上传配置
 multipart:
   maxFileSize: 50Mb # 最大支持文件大小 即单个文件大小
@@ -117,7 +126,7 @@ multipart:
 
 # mybatis xml 配置
 mybatis:
-  mapper-locations: classpath:mappers/*.xml
+  mapper-locations: mappers/*.xml
 
 # eureka client config
 eureka:

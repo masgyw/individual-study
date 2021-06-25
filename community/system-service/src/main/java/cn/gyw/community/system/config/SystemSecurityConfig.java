@@ -8,12 +8,14 @@ import cn.gyw.community.system.service.ResourceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.security.access.ConfigAttribute;
 import org.springframework.security.access.SecurityConfig;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -28,6 +30,7 @@ public class SystemSecurityConfig extends BaseSecurityConfig {
     @Autowired
     private ResourceService resourceService;
 
+    @Override
     @Bean
     public UserDetailsService userDetailsService() {
         //获取登录用户信息
@@ -36,16 +39,13 @@ public class SystemSecurityConfig extends BaseSecurityConfig {
 
     @Bean
     public DynamicSecurityService dynamicSecurityService() {
-        return new DynamicSecurityService() {
-            @Override
-            public Map<String, ConfigAttribute> loadDataSource() {
-                Map<String, ConfigAttribute> map = new ConcurrentHashMap<>();
-                List<Resource> resourceList = resourceService.queryAll();
-                for (Resource resource : resourceList) {
-                    map.put(resource.getUrl(), new SecurityConfig(resource.getId() + ":" + resource.getName()));
-                }
-                return map;
+        return () -> {
+            Map<String, ConfigAttribute> map = new ConcurrentHashMap<>();
+            List<Resource> resourceList = resourceService.queryAll();
+            for (Resource resource : resourceList) {
+                map.put(resource.getUrl(), new SecurityConfig(resource.getId() + ":" + resource.getName()));
             }
+            return map;
         };
     }
 }

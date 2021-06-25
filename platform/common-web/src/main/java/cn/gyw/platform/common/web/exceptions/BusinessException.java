@@ -9,11 +9,11 @@ public class BusinessException extends BaseException {
 
     private static final long serialVersionUID = 1L;
 
-    public BusinessException(IRespCode resp, Object[] args, String message) {
-        super(resp, args, message);
+    public BusinessException(IRespCode resp, Object[] args) {
+        super(resp, args);
     }
 
-    public BusinessException(IRespCode resp, Object[] args, String message, Throwable t) {
-        super(resp, args, message, t);
+    public BusinessException(IRespCode resp, Object[] args, Throwable t) {
+        super(resp, args, t);
     }
 }

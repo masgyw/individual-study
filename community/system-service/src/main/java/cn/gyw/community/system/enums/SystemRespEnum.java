@@ -4,8 +4,9 @@ import cn.gyw.platform.common.web.exceptions.BusinessExceptionAssert;
 
 public enum SystemRespEnum implements BusinessExceptionAssert {
     REGISTER_FAILED(11001, "Register failed"),
-    PASSWORD_ERROR(11002, "密码不正确"),
+    LOGIN_FAILED(11002, "用户名或密码不正确"),
     USER_DISABLE(11003, "用户禁用"),
+    PASSWORD_ERROR(11004, "密码不正确"),
     ;
 
     private int code;
@@ -18,11 +19,11 @@ public enum SystemRespEnum implements BusinessExceptionAssert {
 
     @Override
     public int getCode() {
-        return 0;
+        return code;
     }
 
     @Override
     public String getMessage() {
-        return null;
+        return message;
     }
 }

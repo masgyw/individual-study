@@ -70,7 +70,10 @@ module.exports = {
       '/system': {
         target: 'http://localhost:8081',
         secure: false,
-        changeOrigin: true
+        changeOrigin: true,
+        pathRewrite: {
+          ['^/system']: ''
+        }
       },
       '/rest': {
         target: 'http://localhost:8082',
