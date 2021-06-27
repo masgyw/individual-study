@@ -83,15 +83,18 @@ public abstract class BaseService<T> implements IBaseService<T> {
 	}
 
 	@Override
-	public int remove(T record) {
-		Example example = new Example(entityClass);
-		example.createCriteria().andEqualTo(record);
-		return baseDao.deleteByExample(example);
+	public int remove(Object key) {
+		return baseDao.deleteByPrimaryKey(key);
 	}
 
 	@Override
 	public int save(T record) {
 		return baseDao.insertSelective(record);
+	}
+
+	@Override
+	public int update(T record) {
+		return baseDao.updateByPrimaryKeySelective(record);
 	}
 
 	@Override

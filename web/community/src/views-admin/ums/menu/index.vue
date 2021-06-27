@@ -85,7 +85,7 @@
 </template>
 
 <script>
-  import {fetchList,deleteMenu,updateMenu,updateHidden} from '@/api/menu'
+  import {menuApi} from '@/api/menu'
 
   export default {
     name: "menuList",
@@ -125,9 +125,10 @@
       },
       getList() {
         this.listLoading = true;
-        fetchList(this.parentId, this.listQuery).then(response => {
+        this.listQuery.parentId = this.parentId;
+        menuApi.findByPage(this.listQuery).then(response => {
           this.listLoading = false;
-          this.list = response.data.list;
+          this.list = response.data.records;
           this.total = response.data.total;
         });
       },
@@ -141,7 +142,7 @@
         this.getList();
       },
       handleHiddenChange(index, row) {
-        updateHidden(row.id,{hidden:row.hidden}).then(response=>{
+        menuApi.updateHidden(row.id,{hidden:row.hidden}).then(response=>{
           this.$message({
             message: '修改成功',
             type: 'success',
@@ -161,7 +162,7 @@
           cancelButtonText: '取消',
           type: 'warning'
         }).then(() => {
-          deleteMenu(row.id).then(response => {
+          menuApi.deleteMenu(row.id).then(response => {
             this.$message({
               message: '删除成功',
               type: 'success',

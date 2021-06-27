@@ -29,7 +29,7 @@ class BaseApi {
     remove(params) {
         logger.info("remove for " + this.src)
         return request({
-            url: this.src + "/",
+            url: this.src + "/" + params,
             method: 'DELETE',
             params: params
         })

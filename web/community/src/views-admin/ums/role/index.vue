@@ -184,11 +184,7 @@
           cancelButtonText: '取消',
           type: 'warning'
         }).then(() => {
-          let ids = [];
-          ids.push(row.id);
-          let params = new URLSearchParams();
-          params.append("ids", ids);
-          roleApi.remove(params).then(response => {
+          roleApi.remove(row.id).then(response => {
             this.$message({
               type: 'success',
               message: '删除成功!'

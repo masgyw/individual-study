@@ -11,10 +11,11 @@ public interface IBaseService<T> {
 	
 	List<T> query(Map<String, Object> params, Integer pageNum, Integer pageSize);
 
-	int remove(T record);
+	int remove(Object key);
 
 	int save(T record);
 
-	T selectOne(T record);
+	int update(T record);
 
+	T selectOne(T record);
 }

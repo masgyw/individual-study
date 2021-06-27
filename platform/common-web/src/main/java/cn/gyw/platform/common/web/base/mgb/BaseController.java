@@ -7,16 +7,14 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
+import javax.persistence.Id;
 
 import org.apache.commons.lang3.reflect.FieldUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
 
 import cn.gyw.platform.common.web.base.AbstractController;
@@ -76,8 +74,6 @@ public abstract class BaseController<T, DTO> extends AbstractController {
 
 	/**
 	 * 新增
-	 * 
-	 * @return
 	 */
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public int add(@RequestBody DTO dto) throws IllegalAccessException, InstantiationException {
@@ -88,16 +84,23 @@ public abstract class BaseController<T, DTO> extends AbstractController {
 	}
 
 	/**
-	 * 删除
-	 * 
-	 * @return
+	 * 修改
 	 */
-	@DeleteMapping
-	public int delete(DTO dto) throws IllegalAccessException, InstantiationException {
-		log.info("delete data：{}", dto);
+	@PutMapping(consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public int update(@RequestBody DTO dto) throws IllegalAccessException, InstantiationException {
+		log.info("update data：{}", dto);
 		T bean = entityClass.newInstance();
 		BeanUtils.copyProperties(dto, bean);
-		return baseService.remove(bean);
+		return baseService.update(bean);
+	}
+
+	/**
+	 * 删除
+	 */
+	@DeleteMapping("/{id}")
+	public int delete(@PathVariable Object id) throws IllegalAccessException, InstantiationException {
+		log.info("delete by id：{}", id);
+		return baseService.remove(id);
 	}
 
 	/**
