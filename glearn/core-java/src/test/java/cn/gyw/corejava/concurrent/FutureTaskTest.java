@@ -2,6 +2,8 @@ package cn.gyw.corejava.concurrent;
 
 import java.util.Objects;
 import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.FutureTask;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.Test;
@@ -10,6 +12,17 @@ import org.junit.Test;
  * FutureTask 学习
  */
 public class FutureTaskTest {
+
+	/**
+	 * FutureTask 运行原理
+	 */
+	@Test
+	public void futureTask() throws ExecutionException, InterruptedException {
+		FutureTask<String> futureTask = new FutureTask<>(()-> "123");
+		futureTask.run();
+		String ret = futureTask.get();
+		System.out.println("ret >>" + ret);
+	}
 
 	@Test
 	public void shouldRunWithCustomTask() throws Exception {
