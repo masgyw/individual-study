@@ -1,5 +1,7 @@
 package cn.gyw.community.system.controller;
 
+import cn.gyw.community.system.dto.RoleMenuRelationDto;
+import cn.gyw.community.system.dto.RoleResourceRelationDto;
 import cn.gyw.community.system.entity.Menu;
 import cn.gyw.community.system.entity.Resource;
 import cn.gyw.platform.common.web.model.BaseResponse;
@@ -43,8 +45,8 @@ public class RoleController extends BaseController<Role,RoleDto> {
      * 给角色分配菜单
      */
     @PostMapping(value = "/allocMenu")
-    public BaseResponse allocMenu(@RequestParam Long roleId, @RequestParam List<Long> menuIds) {
-        int count = roleService.allocMenu(roleId, menuIds);
+    public BaseResponse allocMenu(@RequestBody RoleMenuRelationDto roleMenuRelationDto) {
+        int count = roleService.allocMenu(roleMenuRelationDto.getId(), roleMenuRelationDto.getMenuIds());
         return DataResponse.success(count);
     }
 
@@ -52,8 +54,8 @@ public class RoleController extends BaseController<Role,RoleDto> {
      * 给角色分配资源
      */
     @PostMapping(value = "/allocResource")
-    public BaseResponse allocResource(@RequestParam Long roleId, @RequestParam List<Long> resourceIds) {
-        int count = roleService.allocResource(roleId, resourceIds);
+    public BaseResponse allocResource(@RequestBody RoleResourceRelationDto roleResourceRelationDto) {
+        int count = roleService.allocResource(roleResourceRelationDto.getId(), roleResourceRelationDto.getResourceIds());
         return DataResponse.success(count);
     }
 }

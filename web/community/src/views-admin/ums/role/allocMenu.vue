@@ -70,9 +70,10 @@
           cancelButtonText: '取消',
           type: 'warning'
         }).then(() => {
-          let params = new URLSearchParams();
-          params.append("roleId", this.roleId);
-          params.append("menuIds", Array.from(checkedMenuIds));
+          let params = {
+            "id": this.roleId,
+            "menuIds": Array.from(checkedMenuIds)
+          };
           roleApi.allocMenu(params).then(response => {
             this.$message({
               message: '分配成功',

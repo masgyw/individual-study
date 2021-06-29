@@ -248,7 +248,7 @@
           cancelButtonText: '取消',
           type: 'warning'
         }).then(() => {
-          adminApi.deleteAdmin(row.id).then(response => {
+          adminApi.remove(row.id).then(response => {
             this.$message({
               type: 'success',
               message: '删除成功!'
@@ -269,7 +269,7 @@
           type: 'warning'
         }).then(() => {
           if (this.isEdit) {
-            adminApi.updateAdmin(this.admin.id,this.admin).then(response => {
+            adminApi.patch(this.admin).then(response => {
               this.$message({
                 message: '修改成功！',
                 type: 'success'
@@ -278,7 +278,8 @@
               this.getList();
             })
           } else {
-            adminApi.createAdmin(this.admin).then(response => {
+            this.admin.createTime = new Date();
+            adminApi.offer(this.admin).then(response => {
               this.$message({
                 message: '添加成功！',
                 type: 'success'
@@ -295,9 +296,8 @@
           cancelButtonText: '取消',
           type: 'warning'
         }).then(() => {
-          let params = new URLSearchParams();
-          params.append("adminId", this.allocAdminId);
-          params.append("roleIds", this.allocRoleIds);
+          let params = {"id": this.allocAdminId,
+          "roleIds": this.allocRoleIds};
           adminApi.allocRole(params).then(response => {
             this.$message({
               message: '分配成功！',

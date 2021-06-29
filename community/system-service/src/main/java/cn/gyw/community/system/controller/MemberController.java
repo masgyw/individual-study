@@ -9,6 +9,9 @@ import cn.gyw.community.system.dto.MemberDto;
 import cn.gyw.community.system.service.MemberService;
 import cn.gyw.platform.common.web.base.mgb.BaseController;
 
+/**
+ * 会员登录注册管理
+ */
 @RestController
 @RequestMapping("/member")
 public class MemberController extends BaseController<Member,MemberDto> {

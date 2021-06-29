@@ -4,24 +4,21 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.junit.Test;
-import org.springframework.beans.BeanUtils;
 
 public class BeanUtilsTest {
 
 	@Test
-	public void map2Bean() {
-		Map<String, String> map = new HashMap<>();
+	public void map2Bean() throws Exception {
+		Map<String, Object> map = new HashMap<>();
 		map.put("productAttributeCategoryId", "0");
 		map.put("type", "1");
 
-		OneBean bean = new OneBean();
-
-		BeanUtils.copyProperties(map, bean);
+		OneBean bean = BeanMapUtil.mapToBean(map, OneBean.class);
 
 		System.out.println(bean);
 	}
 
-	class OneBean {
+	public static class OneBean {
 
 		private Long productAttributeCategoryId;
 		private Integer type;

@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
-import javax.persistence.Id;
 
 import org.apache.commons.lang3.reflect.FieldUtils;
 import org.slf4j.Logger;

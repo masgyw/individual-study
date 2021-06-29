@@ -34,6 +34,15 @@ class AdminApi extends BaseApi {
     })
   }
 
+  allocRole(data) {
+    return request({
+      url: this.src + '/allocRole',
+      method: 'post',
+      data: data
+    })
+  }
+
+  // ---old
   createAdmin(data) {
     return request({
       url: this.src + '/register',
@@ -72,13 +81,6 @@ class AdminApi extends BaseApi {
     })
   }
 
-  allocRole(data) {
-    return request({
-      url: this.src + '/role/update',
-      method: 'post',
-      data: data
-    })
-  }
 }
 
 let logger = LoggerFactory.getLogger(apiTypes.UMS_ADMIN)

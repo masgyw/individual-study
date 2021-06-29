@@ -19,6 +19,14 @@ public class NomalTest extends AbstractTest {
 
 	private static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("HHmmss");
 	
+	/**
+	 * 文件路径操作 Paths
+	 */
+	@Test
+	public void pathsGetMethod() {
+		System.out.println(Paths.get("D:\\", "1.txt").toFile().toString());
+	}
+	
 	@Test
 	public void findFileName() {
 		String rootDir = "D:\\Temp\\Output";

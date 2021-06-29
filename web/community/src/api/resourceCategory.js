@@ -3,7 +3,7 @@ import request from '@/utils/request'
 import apiTypes from './base/api-types'
 import LoggerFactory from "./base/logger";
 
-class ResouceCategoryApi extends BaseApi {
+class ResourceCategoryApi extends BaseApi {
 
   constructor() {
     super(apiTypes.UMS_RESOUCE_CATE);
@@ -12,8 +12,8 @@ class ResouceCategoryApi extends BaseApi {
 }
 
 let logger = LoggerFactory.getLogger(apiTypes.UMS_RESOUCE_CATE)
-let resouceCategoryApi = new ResouceCategoryApi();
+let resourceCategoryApi = new ResourceCategoryApi();
 
 export {
-  resouceCategoryApi
+  resourceCategoryApi
 }

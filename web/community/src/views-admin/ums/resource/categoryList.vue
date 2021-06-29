@@ -58,7 +58,7 @@
   </div>
 </template>
 <script>
-  import {listAllCate,createResourceCategory,updateResourceCategory,deleteResourceCategory} from '@/api/resourceCategory';
+  import {resourceCategoryApi} from '@/api/resourceCategory';
   import {formatDate} from '@/utils/date';
   const defaultResourceCategory={
     name:null,
@@ -104,7 +104,7 @@
           cancelButtonText: '取消',
           type: 'warning'
         }).then(() => {
-          deleteResourceCategory(row.id).then(response => {
+          resourceCategoryApi.remove(row.id).then(response => {
             this.$message({
               type: 'success',
               message: '删除成功!'
@@ -120,7 +120,7 @@
           type: 'warning'
         }).then(() => {
           if (this.isEdit) {
-            updateResourceCategory(this.resourceCategory.id,this.resourceCategory).then(response => {
+            resourceCategoryApi.patch(this.resourceCategory).then(response => {
               this.$message({
                 message: '修改成功！',
                 type: 'success'
@@ -129,7 +129,8 @@
               this.getList();
             })
           } else {
-            createResourceCategory(this.resourceCategory).then(response => {
+            this.resourceCategory.createTime = new Date()
+            resourceCategoryApi.offer(this.resourceCategory).then(response => {
               this.$message({
                 message: '添加成功！',
                 type: 'success'
@@ -142,7 +143,7 @@
       },
       getList() {
         this.listLoading = true;
-        listAllCate({}).then(response => {
+        resourceCategoryApi.find().then(response => {
           this.listLoading = false;
           this.list = response.data;
         });

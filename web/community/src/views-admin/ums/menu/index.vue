@@ -162,7 +162,7 @@
           cancelButtonText: '取消',
           type: 'warning'
         }).then(() => {
-          menuApi.deleteMenu(row.id).then(response => {
+          menuApi.remove(row.id).then(response => {
             this.$message({
               message: '删除成功',
               type: 'success',

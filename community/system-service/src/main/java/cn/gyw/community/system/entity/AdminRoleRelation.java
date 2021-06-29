@@ -4,6 +4,9 @@ import javax.persistence.*;
 
 @Table(name = "admin_role_relation")
 public class AdminRoleRelation {
+
+    public static final String KEY_ID = "id";
+
     @Id
     private Long id;
 

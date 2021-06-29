@@ -1,5 +1,6 @@
 package cn.gyw.community.system.controller;
 
+import cn.gyw.community.system.dto.AdminRoleRelationDto;
 import cn.gyw.community.system.dto.UserLoginParam;
 import cn.gyw.community.system.entity.Role;
 import cn.gyw.community.system.enums.SystemRespEnum;
@@ -83,5 +84,18 @@ public class AdminController extends BaseController<Admin,AdminDto> {
     @PostMapping("/logout")
     public BaseResponse logout() {
         return BaseResponse.success();
+    }
+
+    /**
+     * 分配角色
+     */
+    @PostMapping(value = "/allocRole")
+    public BaseResponse allocRole(@RequestBody AdminRoleRelationDto adminRoleRelationDto) {
+        log.info("/allocRole request :{}", adminRoleRelationDto);
+        int count = adminService.updateRole(adminRoleRelationDto.getId(), adminRoleRelationDto.getRoleIds());
+        if (count >= 0) {
+            return DataResponse.success(count);
+        }
+        return BaseResponse.error(SystemRespEnum.ALLOC_ROLE_FAILED);
     }
 }

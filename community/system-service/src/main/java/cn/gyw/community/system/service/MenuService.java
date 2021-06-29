@@ -1,5 +1,6 @@
 package cn.gyw.community.system.service;
 
+import cn.gyw.community.system.dto.MenuDto;
 import cn.gyw.community.system.dto.MenuNode;
 import cn.gyw.community.system.entity.Menu;
 import cn.gyw.community.system.dao.MenuMapper;
@@ -36,5 +37,30 @@ public class MenuService extends BaseService<Menu> {
                 .map(subMenu -> covertMenuNode(subMenu, menuList)).collect(Collectors.toList());
         node.setChildren(children);
         return node;
+    }
+
+    public int add(MenuDto menuDto) {
+        Menu menu = new Menu();
+        BeanUtils.copyProperties(menuDto, menu);
+        updateLevel(menu);
+        return menuMapper.insertSelective(menu);
+    }
+
+    /**
+     * 修改菜单层级
+     */
+    private void updateLevel(Menu umsMenu) {
+        if (umsMenu.getParentId() == 0) {
+            //没有父菜单时为一级菜单
+            umsMenu.setLevel(0);
+        } else {
+            //有父菜单时选择根据父菜单level设置
+            Menu parentMenu = menuMapper.selectByPrimaryKey(umsMenu.getParentId());
+            if (parentMenu != null) {
+                umsMenu.setLevel(parentMenu.getLevel() + 1);
+            } else {
+                umsMenu.setLevel(0);
+            }
+        }
     }
 }

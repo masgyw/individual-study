@@ -38,7 +38,7 @@ class BaseApi {
     offer(data) {
         logger.info("offer for " + this.src)
         return request({
-            url: this.src + "/",
+            url: this.src,
             method: 'POST',
             data: data
         })
@@ -47,7 +47,7 @@ class BaseApi {
     patch(data) {
         logger.info("patch for " + this.src)
         return request({
-            url: this.src + "/",
+            url: this.src,
             method: 'PUT',
             data: data
         });

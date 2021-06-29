@@ -5,11 +5,8 @@ import cn.gyw.community.system.bo.AdminUserDetails;
 import cn.gyw.community.system.dao.AdminLoginLogMapper;
 import cn.gyw.community.system.dao.AdminRoleRelationMapper;
 import cn.gyw.community.system.dto.AdminDto;
-import cn.gyw.community.system.entity.Admin;
+import cn.gyw.community.system.entity.*;
 import cn.gyw.community.system.dao.AdminMapper;
-import cn.gyw.community.system.entity.AdminLoginLog;
-import cn.gyw.community.system.entity.Resource;
-import cn.gyw.community.system.entity.Role;
 import cn.gyw.community.system.enums.SystemRespEnum;
 import cn.gyw.platform.common.web.base.mgb.BaseService;
 import cn.gyw.platform.common.web.utils.RequestUtil;
@@ -25,6 +22,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import tk.mybatis.mapper.entity.Example;
@@ -145,5 +143,26 @@ public class AdminService extends BaseService<Admin> {
             return new AdminUserDetails(admin,resourceList);
         }
         throw new UsernameNotFoundException("用户名或密码错误");
+    }
+
+    public int updateRole(Long id, List<Long> roleIds) {
+        int count = roleIds == null ? 0 : roleIds.size();
+        //先删除原来的关系
+        Example example = new Example(AdminRoleRelation.class);
+        example.createCriteria().andEqualTo(AdminRoleRelation.KEY_ID, id);
+        adminRoleRelationMapper.deleteByExample(example);
+        //建立新关系
+        if (!CollectionUtils.isEmpty(roleIds)) {
+            List<AdminRoleRelation> list = new ArrayList<>();
+            for (Long roleId : roleIds) {
+                AdminRoleRelation roleRelation = new AdminRoleRelation();
+                roleRelation.setAdminId(id);
+                roleRelation.setRoleId(roleId);
+                list.add(roleRelation);
+            }
+            adminRoleRelationMapper.insertList(list);
+        }
+        // adminCacheService.delResourceList(adminId);
+        return count;
     }
 }

@@ -21,10 +21,10 @@
       <div style="margin-top: 15px">
         <el-form :inline="true" :model="listQuery" size="small" label-width="140px">
           <el-form-item label="资源名称：">
-            <el-input v-model="listQuery.nameKeyword" class="input-width" placeholder="资源名称" clearable></el-input>
+            <el-input v-model="listQuery.keywordName" class="input-width" placeholder="资源名称" clearable></el-input>
           </el-form-item>
           <el-form-item label="资源路径：">
-            <el-input v-model="listQuery.urlKeyword" class="input-width" placeholder="资源路径" clearable></el-input>
+            <el-input v-model="listQuery.keywordUrl" class="input-width" placeholder="资源路径" clearable></el-input>
           </el-form-item>
           <el-form-item label="资源分类：">
             <el-select v-model="listQuery.categoryId" placeholder="全部" clearable class="input-width">
@@ -128,14 +128,14 @@
   </div>
 </template>
 <script>
-  import {fetchList,createResource,updateResource,deleteResource} from '@/api/resource';
-  import {listAllCate} from '@/api/resourceCategory';
+  import {resourceApi} from '@/api/resource';
+  import {resourceCategoryApi} from '@/api/resourceCategory';
   import {formatDate} from '@/utils/date';
 
   const defaultListQuery = {
     pageNum: 1,
     pageSize: 10,
-    nameKeyword: null,
+    keywordName: null,
     urlKeyword: null,
     categoryId:null
   };
@@ -203,7 +203,7 @@
           cancelButtonText: '取消',
           type: 'warning'
         }).then(() => {
-          deleteResource(row.id).then(response => {
+          resourceApi.remove(row.id).then(response => {
             this.$message({
               type: 'success',
               message: '删除成功!'
@@ -224,7 +224,7 @@
           type: 'warning'
         }).then(() => {
           if (this.isEdit) {
-            updateResource(this.resource.id,this.resource).then(response => {
+            resourceApi.patch(this.resource).then(response => {
               this.$message({
                 message: '修改成功！',
                 type: 'success'
@@ -233,7 +233,8 @@
               this.getList();
             })
           } else {
-            createResource(this.resource).then(response => {
+            this.resource.createTime = new Date()
+            resourceApi.offer(this.resource).then(response => {
               this.$message({
                 message: '添加成功！',
                 type: 'success'
@@ -249,14 +250,14 @@
       },
       getList() {
         this.listLoading = true;
-        fetchList(this.listQuery).then(response => {
+        resourceApi.findByPage(this.listQuery).then(response => {
           this.listLoading = false;
-          this.list = response.data.list;
+          this.list = response.data.records;
           this.total = response.data.total;
         });
       },
       getCateList(){
-        listAllCate().then(response=>{
+        resourceCategoryApi.find().then(response=>{
           let cateList = response.data;
           for(let i=0;i<cateList.length;i++){
             let cate = cateList[i];

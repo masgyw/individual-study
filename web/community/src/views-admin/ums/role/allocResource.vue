@@ -131,9 +131,10 @@
               }
             });
           }
-          let params = new URLSearchParams();
-          params.append("roleId", this.roleId);
-          params.append("resourceIds", Array.from(checkedResourceIds));
+          let params = {
+            "id": this.roleId,
+            "resourceIds": Array.from(checkedResourceIds)
+          };
           roleApi.allocResource(params).then(response => {
             this.$message({
               message: '分配成功',

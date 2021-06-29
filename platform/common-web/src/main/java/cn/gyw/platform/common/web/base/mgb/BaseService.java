@@ -1,6 +1,5 @@
 package cn.gyw.platform.common.web.base.mgb;
 
-import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.Collections;
@@ -60,7 +59,16 @@ public abstract class BaseService<T> implements IBaseService<T> {
 		example.createCriteria().andEqualTo(record);
 		return baseDao.selectByExample(example);
 	}
-	
+
+	@Override
+	public List<T> query(T condition, Integer pageNum, Integer pageSize) {
+		PageHelper.startPage(pageNum, pageSize);
+		Example example = new Example(entityClass);
+		Example.Criteria criteria = example.createCriteria();
+		criteria.andEqualTo(condition);
+		return baseDao.selectByExample(example);
+	}
+
 	@Override
 	public List<T> query(Map<String, Object> params, Integer pageNum, Integer pageSize) {
 		PageHelper.startPage(pageNum, pageSize);
@@ -71,10 +79,14 @@ public abstract class BaseService<T> implements IBaseService<T> {
 			Example example = new Example(entityClass);
 			Example.Criteria criteria = example.createCriteria();
 			criteria.andEqualTo(condition);
-			if (params.containsKey(KEY_KEYWORD)) {
-				String keywordProp = getFieldValue(KEY_KEYWORD.toUpperCase());
-				criteria.andLike(keywordProp, "%" + params.get(KEY_KEYWORD) + "%");
-			}
+			params.entrySet().forEach((entry) -> {
+				String key = entry.getKey();
+				if (key.startsWith(KEY_KEYWORD)) {
+					String propName = key.replaceFirst("^" + KEY_KEYWORD, "");
+					propName = toFirstLower(propName);
+					criteria.andLike(propName, "%" + entry.getValue() + "%");
+				}
+			});
 			return baseDao.selectByExample(example);
 		} catch (Exception e) {
 			log.error("Map to bean error :", e);
@@ -102,16 +114,12 @@ public abstract class BaseService<T> implements IBaseService<T> {
 		return baseDao.selectOne(record);
 	}
 
-	private String getFieldValue(String fieldName) {
-		try {
-			Field field = entityClass.getDeclaredField(fieldName);
-			field.setAccessible(true);
-			return field.get(entityClass).toString();
-		} catch (NoSuchFieldException e) {
-			log.debug("No field[keyword] , do not to search by like");
-		} catch (Exception e) {
-			log.error("", e);
+	private String toFirstLower(String name) {
+		char[] chars = name.toCharArray();
+		if (chars[0] > 96) { // 小写字母开头
+			return name;
 		}
-		return null;
+		chars[0] += 32;
+		return new String(chars);
 	}
 }

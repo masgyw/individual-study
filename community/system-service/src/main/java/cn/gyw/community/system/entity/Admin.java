@@ -6,6 +6,8 @@ import javax.persistence.*;
 @Table(name = "admin")
 public class Admin {
     public static final String KEY_USERNAME = "username";
+    // 模糊搜索关键词
+    private static final String KEYWORD = "username";
 
     @Id
     private Long id;

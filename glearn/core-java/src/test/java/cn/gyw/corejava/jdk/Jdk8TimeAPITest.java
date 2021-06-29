@@ -46,8 +46,9 @@ public class Jdk8TimeAPITest extends AbstractTest {
 		LocalDate date1 = LocalDate.parse("20210110", formatter);
 		LocalDate date2 = LocalDate.parse("20210115", formatter);
 		
-		System.out.println(Period.ofDays(10));
-		System.out.println(Period.between(date1, date2));
+		System.out.println("是否之前：" +Period.ofDays(10));
+		System.out.println("是否之前：" +Period.between(date1, date2));
+		System.out.println("是否之前：" + date1.isBefore(date2));
 		
 		DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("HHmmss");
 		LocalTime time1 = LocalTime.parse("052750", formatter2);

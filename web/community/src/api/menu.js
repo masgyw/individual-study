@@ -16,21 +16,15 @@ class MenuApi extends BaseApi {
     })
   }
 
-  deleteMenu(id) {
-    return request({
-      url: '/delete/' + id,
-      method: 'post'
-    })
-  }
-  
   createMenu(data) {
     return request({
-      url: '/create',
+      url: this.src + '/create',
       method: 'post',
       data: data
     })
   }
-  
+
+  // ---old
   updateMenu(id, data) {
     return request({
       url: '/update/' + id,

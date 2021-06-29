@@ -7,28 +7,17 @@
     <el-row>
       <el-col>
         <el-form :model="registryForm" :rules="rules" ref="registryForm" label-width="125px" class="registry-form">
-          <el-form-item label="用户名" prop="userName">
-            <el-input v-model="registryForm.userName"></el-input>
+          <el-form-item label="帐号：">
+            <el-input v-model="registryForm.userName" style="width: 250px"></el-input>
           </el-form-item>
-          <el-form-item label="中文名" prop="userNameCn">
-            <el-input v-model="registryForm.userNameCn"></el-input>
+          <el-form-item label="姓名：">
+            <el-input v-model="registryForm.userNameCn" style="width: 250px"></el-input>
           </el-form-item>
-          <el-form-item label="用户邮箱" prop="email">
-            <el-input v-model="registryForm.email"></el-input>
+          <el-form-item label="邮箱：">
+            <el-input v-model="registryForm.email" style="width: 250px"></el-input>
           </el-form-item>
-          <el-form-item label="年龄" prop="age">
-            <el-input v-model="registryForm.age"></el-input>
-          </el-form-item>
-          <el-form-item label="输入密码" prop="password">
-            <el-input type="password" v-model="registryForm.password"></el-input>
-          </el-form-item>
-          <el-form-item label="再次输入密码" prop="secPassword">
-            <el-input type="password" v-model="registryForm.secPassword"></el-input>
-          </el-form-item>
-          <el-form-item label="角色" prop="roleId">
-            <el-select v-model="registryForm.roleId" placeholder="请选择角色">
-              <el-option v-for="item in roleList" :key="item.roleId" :label="item.roleName" :value="item.roleId"></el-option>
-            </el-select>
+          <el-form-item label="密码：">
+            <el-input v-model="registryForm.password"  type="password" style="width: 250px"></el-input>
           </el-form-item>
 
           <el-form-item>
@@ -47,20 +36,18 @@
 
 <script>
   import apiTypes from '@/api/base/api-types'
-  import * as LoginRequest from "@/api/user.js";
+  import {adminApi} from "@/api/admin";
 
   export default {
     name: "Register",
     data() {
       return {
-        roleList: [],
         registryForm: {
           userName: "",
           userNameCn: "",
           password: "",
           secPassword: "",
-          age: "",
-          roleId: ""
+          age: ""
         },
         rules: {
           userName: [
@@ -77,7 +64,7 @@
       submitForm(formName) {
         this.$refs[formName].validate(valid => {
           if (valid) {
-            LoginRequest.register(this.registryForm).then(resp => {
+            adminApi.offer(this.registryForm).then(resp => {
               this.$router.push("/login");
             });
           } else {
@@ -89,15 +76,6 @@
       resetForm(formName) {
         this.$refs[formName].resetFields();
       },
-      getRoleOptions() {
-        this.BASE_APIS.findAll(apiTypes.ROLE)
-          .then(resp => {
-            this.roleList = resp.data;
-          });
-      },
-    },
-    created() {
-      this.getRoleOptions();
     }
   };
 </script>

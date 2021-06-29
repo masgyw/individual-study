@@ -9,6 +9,8 @@ public interface IBaseService<T> {
 
 	List<T> query(T condition);
 	
+	List<T> query(T condition, Integer pageNum, Integer pageSize);
+
 	List<T> query(Map<String, Object> params, Integer pageNum, Integer pageSize);
 
 	int remove(Object key);
