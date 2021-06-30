@@ -38,8 +38,8 @@ export default [
     url: '/user/login',
     type: 'post',
     response: config => {
-      const { userName } = config.body
-      const token = tokens[userName]
+      const { username } = config.body
+      const token = tokens[username]
 
       // mock error
       if (!token) {
@@ -50,7 +50,7 @@ export default [
       }
 
       return {
-        code: 20000,
+        code: 0,
         data: token
       }
     }
@@ -67,7 +67,7 @@ export default [
       records.push(mockdata.user);
 
       return {
-        code: 20000,
+        code: 0,
         data: {
           total: records.length,
           records: records
@@ -82,7 +82,7 @@ export default [
     type: 'get',
     response: config => {
       const { token } = config.query
-      const info = users[token]
+      const info = users['eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxMDAxIn0.mfd9Q4HRQMRr36aGHlIOn4wV6934_rU24gjRMRrSnTM']
 
       // mock error
       if (!info) {
@@ -93,7 +93,7 @@ export default [
       }
 
       return {
-        code: 20000,
+        code: 0,
         data: info
       }
     }
@@ -105,7 +105,7 @@ export default [
     type: 'post',
     response: _ => {
       return {
-        code: 20000,
+        code: 0,
         data: 'success'
       }
     }
@@ -122,7 +122,7 @@ export default [
       records.push(mockdata.role);
 
       return {
-        code: 20000,
+        code: 0,
         data: {
           total: records.length,
           records: records
@@ -142,7 +142,7 @@ export default [
       records.push(mockdata.log);
 
       return {
-        code: 20000,
+        code: 0,
         data: {
           total: records.length,
           records: records

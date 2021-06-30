@@ -9,6 +9,14 @@ class ProductApi extends BaseApi {
     super(apiTypes.PRODUCT_INFO);
   }
 
+  batchUpdate(params) {
+    return request({
+      url: this.src + '/batch',
+      method: 'post',
+      params: params
+    });
+  }
+
   fetchSimpleList(params) {
     return request({
       url: '/simpleList',
@@ -36,14 +44,6 @@ class ProductApi extends BaseApi {
   updateRecommendStatus(params) {
     return request({
       url: '/update/recommendStatus',
-      method: 'post',
-      params: params
-    })
-  }
-
-  updatePublishStatus(params) {
-    return request({
-      url: '/update/publishStatus',
       method: 'post',
       params: params
     })

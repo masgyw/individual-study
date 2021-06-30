@@ -31,15 +31,24 @@ include 'file-service' // 文件服务
 include 'id-generator-service' // 分布式ID生成服务
 include 'search-service' // 搜索服务
 include 'security-service' // 认证授权服务
-include 'product-service' // 产品服务
-include 'inventory-service' // 库存服务
-include 'order-service' // 订单服务
-include 'sale-service' // 营销服务
-include 'content-service' // 内容服务
+
+// 商城
+include ':shop:product-service' // 产品服务
+project(':shop:product-service').projectDir = new File(rootDir, 'shop/product-service')
+include ':shop:inventory-service' // 库存服务
+project(':shop:inventory-service').projectDir = new File(rootDir, 'shop/inventory-service')
+include ':shop:order-service' // 订单服务
+project(':shop:order-service').projectDir = new File(rootDir, 'shop/order-service')
+include ':shop:sale-service' // 营销服务
+project(':shop:sale-service').projectDir = new File(rootDir, 'shop/sale-service')
+include ':shop:content-service' // 内容服务
+project(':shop:content-service').projectDir = new File(rootDir, 'shop/content-service')
 
 rootProject.children.each {project ->
 	
-	if (project.name == 'facade' || project.name == 'components') {
+	if (project.name == 'facade'
+			|| project.name == 'components'
+			|| project.name == 'shop') {
 		project.children.each { subProject ->
 			subProject.buildFileName = "${subProject.name}.gradle"
 		}

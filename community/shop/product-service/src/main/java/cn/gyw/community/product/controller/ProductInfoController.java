@@ -2,6 +2,7 @@ package cn.gyw.community.product.controller;
 
 import java.util.List;
 
+import cn.gyw.community.product.dto.InfoBatchUpdateDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,11 +25,6 @@ public class ProductInfoController extends BaseController<ProductInfo, ProductIn
 	@Autowired
 	private ProductInfoService productInfoService;
 	
-//	@Get
-//	public List<Product> getProductWithPic() {
-//		
-//	}
-
 	/**
 	 * 热销商品列表
 	 * 
@@ -45,9 +41,14 @@ public class ProductInfoController extends BaseController<ProductInfo, ProductIn
 	 * 
 	 * @return
 	 */
-	@PostMapping(path = "/promo")
+	@PostMapping("/promo")
 	public List<ProductInfoDto> getPromoProduct(@RequestBody ProductInfoRequest piRequest) {
 		List<String> categoryNames = piRequest.getCategoryNameList();
 		return productInfoService.getProductWithPics(categoryNames);
+	}
+
+	@PostMapping("/batch")
+	public int batchUpdate(@RequestBody InfoBatchUpdateDto batchUpdateDto) {
+		return productInfoService.batchUpdate(batchUpdateDto);
 	}
 }

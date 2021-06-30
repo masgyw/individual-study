@@ -29,6 +29,6 @@ const apiTypes = {
 }
 
 // mock user api
-// apiTypes.USER = '/dev/user'
+apiTypes.UMS_ADMIN = '/dev/user'
 
 export default apiTypes;

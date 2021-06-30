@@ -548,17 +548,19 @@ export default {
         cancelButtonText: '取消',
         type: 'warning',
       }).then(() => {
-        skuStockApi.updateSkuStockList(
-          this.editSkuInfo.productId,
-          this.editSkuInfo.stockList
-        ).then((response) => {
-          this.$message({
-            message: '修改成功',
-            type: 'success',
-            duration: 1000,
+        skuStockApi
+          .updateSkuStockList(
+            this.editSkuInfo.productId,
+            this.editSkuInfo.stockList
+          )
+          .then((response) => {
+            this.$message({
+              message: '修改成功',
+              type: 'success',
+              duration: 1000,
+            })
+            this.editSkuInfo.dialogVisible = false
           })
-          this.editSkuInfo.dialogVisible = false
-        })
       })
     },
     handleSearchList() {
@@ -679,10 +681,8 @@ export default {
       console.log('handleShowLog', row)
     },
     updatePublishStatus(publishStatus, ids) {
-      let params = new URLSearchParams()
-      params.append('ids', ids)
-      params.append('publishStatus', publishStatus)
-      productApi.updatePublishStatus(params).then((response) => {
+      let params = { ids: ids, publishStatus: publishStatus }
+      productApi.patch(params).then((response) => {
         this.$message({
           message: '修改成功',
           type: 'success',

@@ -6,6 +6,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
+import cn.gyw.community.product.dto.InfoBatchUpdateDto;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -48,4 +50,11 @@ public class ProductInfoService extends BaseService<ProductInfo> {
 		return result;
 	}
 
+    public int batchUpdate(InfoBatchUpdateDto infoBatchUpdateDto) {
+		ProductInfo productInfo = new ProductInfo();
+		BeanUtils.copyProperties(infoBatchUpdateDto, productInfo);
+		Example example = new Example(ProductInfo.class);
+		example.createCriteria().andIn("id", infoBatchUpdateDto.getIds());
+		return productInfoMapper.updateByExampleSelective(productInfo, example);
+    }
 }

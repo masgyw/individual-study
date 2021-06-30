@@ -91,5 +91,5 @@
   	where one_category_id = #{_parameter, jdbcType=VARCHAR}
   	
   </select>
-  
+
 </mapper>
