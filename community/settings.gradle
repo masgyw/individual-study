@@ -34,6 +34,8 @@ include 'security-service' // 认证授权服务
 include 'product-service' // 产品服务
 include 'inventory-service' // 库存服务
 include 'order-service' // 订单服务
+include 'sale-service' // 营销服务
+include 'content-service' // 内容服务
 
 rootProject.children.each {project ->
 	
@@ -45,3 +47,5 @@ rootProject.children.each {project ->
 	}
 	project.buildFileName = "${project.name}.gradle"
 }
+include 'sale-service'
+
