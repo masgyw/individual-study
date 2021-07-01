@@ -36,8 +36,8 @@
 </template>
 
 <script>
-  import {fetchListAll as fetchSubjectList} from '@/api/subject'
-  import {fetchList as fetchPrefrenceAreaList} from '@/api/prefrenceArea'
+  import {subjectApi} from '@/api/subject'
+  import {prefrenceAreaApi} from '@/api/prefrenceArea'
 
   export default {
     name: "ProductRelationDetail",
@@ -109,7 +109,7 @@
         return item.label.indexOf(query) > -1;
       },
       getSubjectList() {
-        fetchSubjectList().then(response => {
+        subjectApi.find().then(response => {
           let list = response.data;
           for (let i = 0; i < list.length; i++) {
             this.subjectList.push({
@@ -120,7 +120,7 @@
         });
       },
       getPrefrenceAreaList() {
-        fetchPrefrenceAreaList().then(response=>{
+        prefrenceAreaApi.find().then(response=>{
           let list = response.data;
           for (let i = 0; i < list.length; i++) {
             this.prefrenceAreaList.push({

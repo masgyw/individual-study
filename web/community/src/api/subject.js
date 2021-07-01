@@ -1,15 +1,16 @@
+import BaseApi from './base/BaseApi'
 import request from '@/utils/request'
-export function fetchListAll() {
-  return request({
-    url:'/subject/listAll',
-    method:'get',
-  })
-}
+import apiTypes from './base/api-types'
+import LoggerFactory from "./base/logger";
 
-export function fetchList(params) {
-  return request({
-    url:'/subject/list',
-    method:'get',
-    params:params
-  })
+class SubjectApi extends BaseApi {
+  constructor() {
+    super(apiTypes.CMS_SUBJECT);
+  }
+}
+let logger = LoggerFactory.getLogger(apiTypes.CMS_SUBJECT)
+let subjectApi = new SubjectApi();
+
+export {
+  subjectApi
 }

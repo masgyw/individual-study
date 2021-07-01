@@ -59,20 +59,28 @@ module.exports = {
           ['^/api']: ''
         }
       },
-      '/product': {
-        target: 'http://localhost:9001',
-        secure: false,
-        changeOrigin: true,
-        pathRewrite: {
-          ['^/product']: ''
-        }
-      },
-      '/system': {
+      '/ums': {
         target: 'http://localhost:8081',
         secure: false,
         changeOrigin: true,
         pathRewrite: {
-          ['^/system']: ''
+          ['^/ums']: ''
+        }
+      },
+      '/pms': {
+        target: 'http://localhost:8091',
+        secure: false,
+        changeOrigin: true,
+        pathRewrite: {
+          ['^/pms']: ''
+        }
+      },
+      '/cms': {
+        target: 'http://localhost:8092',
+        secure: false,
+        changeOrigin: true,
+        pathRewrite: {
+          ['^/cms']: ''
         }
       },
       '/rest': {

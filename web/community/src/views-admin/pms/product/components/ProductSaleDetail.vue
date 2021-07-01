@@ -164,7 +164,7 @@
 </template>
 
 <script>
-  import {fetchList as fetchMemberLevelList} from '@/api/memberLevel'
+  import {memberLevelApi} from '@/api/memberLevel'
 
   export default {
     name: "ProductSaleDetail",
@@ -189,7 +189,7 @@
       if (this.isEdit) {
         // this.handleEditCreated();
       } else {
-        fetchMemberLevelList({defaultStatus: 0}).then(response => {
+        memberLevelApi.find({defaultStatus: 0}).then(response => {
           let memberPriceList = [];
           for (let i = 0; i < response.data.length; i++) {
             let item = response.data[i];

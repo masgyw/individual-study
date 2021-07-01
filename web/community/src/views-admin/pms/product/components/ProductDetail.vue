@@ -40,7 +40,7 @@
   import ProductSaleDetail from './ProductSaleDetail';
   import ProductAttrDetail from './ProductAttrDetail';
   import ProductRelationDetail from './ProductRelationDetail';
-  import {createProduct,getProduct,updateProduct} from '@/api/product';
+  import {productApi} from '@/api/product';
 
   const defaultProductParam = {
     albumPics: '',
@@ -121,8 +121,10 @@
     },
     created(){
       if(this.isEdit){
-        getProduct(this.$route.query.id).then(response=>{
-          this.productParam=response.data;
+        productApi.find(this.$route.query.id).then(response=>{
+          if (response.data[0]) {
+            this.productParam=response.data[0];
+          }
         });
       }
     },
@@ -153,7 +155,7 @@
           type: 'warning'
         }).then(() => {
           if(isEdit){
-            updateProduct(this.$route.query.id,this.productParam).then(response=>{
+            productApi.patch(this.$route.query.id,this.productParam).then(response=>{
               this.$message({
                 type: 'success',
                 message: '提交成功',
@@ -162,7 +164,7 @@
               this.$router.back();
             });
           }else{
-            createProduct(this.productParam).then(response=>{
+            productApi.offer(this.productParam).then(response=>{
               this.$message({
                 type: 'success',
                 message: '提交成功',

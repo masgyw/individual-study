@@ -8,7 +8,11 @@ public class InfoBatchUpdateDto {
 
     private Integer publishStatus;
 
-    private Integer recommandStatus;
+    private Integer recommendStatus;
+
+    private Integer newStatus;
+
+    private Integer deleteStatus;
 
     public List<Long> getIds() {
         return ids;
@@ -26,11 +30,27 @@ public class InfoBatchUpdateDto {
         this.publishStatus = publishStatus;
     }
 
-    public Integer getRecommandStatus() {
-        return recommandStatus;
+    public Integer getRecommendStatus() {
+        return recommendStatus;
     }
 
-    public void setRecommandStatus(Integer recommandStatus) {
-        this.recommandStatus = recommandStatus;
+    public void setRecommendStatus(Integer recommendStatus) {
+        this.recommendStatus = recommendStatus;
+    }
+
+    public Integer getNewStatus() {
+        return newStatus;
+    }
+
+    public void setNewStatus(Integer newStatus) {
+        this.newStatus = newStatus;
+    }
+
+    public Integer getDeleteStatus() {
+        return deleteStatus;
+    }
+
+    public void setDeleteStatus(Integer deleteStatus) {
+        this.deleteStatus = deleteStatus;
     }
 }

@@ -1,8 +1,17 @@
+import BaseApi from './base/BaseApi'
 import request from '@/utils/request'
-export function fetchList(params) {
-  return request({
-    url:'/memberLevel/list',
-    method:'get',
-    params:params
-  })
+import apiTypes from './base/api-types'
+import LoggerFactory from "./base/logger";
+
+class MemberLevelApi extends BaseApi {
+  constructor() {
+    super(apiTypes.UMS_MEMBER_LEVEL);
+  }
 }
+let logger = LoggerFactory.getLogger(apiTypes.UMS_MEMBER_LEVEL)
+let memberLevelApi = new MemberLevelApi();
+
+export {
+  memberLevelApi
+}
+

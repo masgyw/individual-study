@@ -60,6 +60,7 @@ logback_access="ch.qos.logback:logback-access:${logbackVersion}"
 slf4j_log4j12='org.slf4j:slf4j-log4j12:1.7.30'
 junit='junit:junit:4.12'
 javax_persistence='org.javassist:javassist:3.27.0-GA'
+persistence_api='javax.persistence:persistence-api:1.0'
 javax_mail_api='javax.mail:javax.mail-api:1.6.0'
 mail='javax.mail:mail:1.4.4'
 javax_servlet_api='javax.servlet:javax.servlet-api:4.0.0' // servlet

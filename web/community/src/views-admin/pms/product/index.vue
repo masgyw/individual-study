@@ -31,7 +31,7 @@
           <el-form-item label="输入搜索：">
             <el-input
               style="width: 203px"
-              v-model="listQuery.keyword"
+              v-model="listQuery.keywordName"
               placeholder="商品名称"
             ></el-input>
           </el-form-item>
@@ -682,7 +682,7 @@ export default {
     },
     updatePublishStatus(publishStatus, ids) {
       let params = { ids: ids, publishStatus: publishStatus }
-      productApi.patch(params).then((response) => {
+      productApi.batchUpdate(params).then((response) => {
         this.$message({
           message: '修改成功',
           type: 'success',
@@ -691,10 +691,8 @@ export default {
       })
     },
     updateNewStatus(newStatus, ids) {
-      let params = new URLSearchParams()
-      params.append('ids', ids)
-      params.append('newStatus', newStatus)
-      productApi.updateNewStatus(params).then((response) => {
+      let params = { ids: ids, newStatus: newStatus }
+      productApi.batchUpdate(params).then((response) => {
         this.$message({
           message: '修改成功',
           type: 'success',
@@ -703,10 +701,8 @@ export default {
       })
     },
     updateRecommendStatus(recommendStatus, ids) {
-      let params = new URLSearchParams()
-      params.append('ids', ids)
-      params.append('recommendStatus', recommendStatus)
-      productApi.updateRecommendStatus(params).then((response) => {
+      let params = { ids: ids, recommendStatus: recommendStatus }
+      productApi.batchUpdate(params).then((response) => {
         this.$message({
           message: '修改成功',
           type: 'success',
@@ -715,10 +711,8 @@ export default {
       })
     },
     updateDeleteStatus(deleteStatus, ids) {
-      let params = new URLSearchParams()
-      params.append('ids', ids)
-      params.append('deleteStatus', deleteStatus)
-      productApi.updateDeleteStatus(params).then((response) => {
+      let params = { ids: ids, deleteStatus: deleteStatus }
+      productApi.batchUpdate(params).then((response) => {
         this.$message({
           message: '删除成功',
           type: 'success',

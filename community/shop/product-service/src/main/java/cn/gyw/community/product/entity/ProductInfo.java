@@ -54,8 +54,8 @@ public class ProductInfo extends ToStringObject {
     /**
      * 推荐状态；0->不推荐；1->推荐
      */
-    @Column(name = "recommand_status")
-    private Integer recommandStatus;
+    @Column(name = "recommend_status")
+    private Integer recommendStatus;
 
     /**
      * 审核状态：0->未审核；1->审核通过
@@ -386,19 +386,19 @@ public class ProductInfo extends ToStringObject {
     /**
      * 获取推荐状态；0->不推荐；1->推荐
      *
-     * @return recommand_status - 推荐状态；0->不推荐；1->推荐
+     * @return recommend_status - 推荐状态；0->不推荐；1->推荐
      */
-    public Integer getRecommandStatus() {
-        return recommandStatus;
+    public Integer getRecommendStatus() {
+        return recommendStatus;
     }
 
     /**
      * 设置推荐状态；0->不推荐；1->推荐
      *
-     * @param recommandStatus 推荐状态；0->不推荐；1->推荐
+     * @param recommendStatus 推荐状态；0->不推荐；1->推荐
      */
-    public void setRecommandStatus(Integer recommandStatus) {
-        this.recommandStatus = recommandStatus;
+    public void setRecommendStatus(Integer recommendStatus) {
+        this.recommendStatus = recommendStatus;
     }
 
     /**

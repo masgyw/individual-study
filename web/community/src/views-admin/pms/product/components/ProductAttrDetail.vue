@@ -153,8 +153,8 @@
 </template>
 
 <script>
-  import {fetchList as fetchProductAttrCateList} from '@/api/productAttrCate'
-  import {fetchList as fetchProductAttrList} from '@/api/productAttr'
+  import {productAttrCateApi} from '@/api/productAttrCate'
+  import {productAttrApi} from '@/api/productAttr'
   import SingleUpload from '@/components/Upload/singleUpload'
   import MultiUpload from '@/components/Upload/multiUpload'
   import Tinymce from '@/components/Tinymce'
@@ -256,7 +256,7 @@
       },
       getProductAttrCateList() {
         let param = {pageNum: 1, pageSize: 100};
-        fetchProductAttrCateList(param).then(response => {
+        productAttrCateApi.findByPage(param).then(response => {
           this.productAttributeCategoryOptions = [];
           let list = response.data.list;
           for (let i = 0; i < list.length; i++) {
@@ -265,8 +265,8 @@
         });
       },
       getProductAttrList(type, cid) {
-        let param = {pageNum: 1, pageSize: 100, type: type};
-        fetchProductAttrList(cid, param).then(response => {
+        let param = {cid: cid, pageNum: 1, pageSize: 100, type: type};
+        productAttrApi.findByPage(param).then(response => {
           let list = response.data.list;
           if (type === 0) {
             this.selectProductAttr = [];

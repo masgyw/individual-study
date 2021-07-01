@@ -1,3 +1,69 @@
 plugins {
     id 'java'
+    id 'org.springframework.boot'
+    id 'io.spring.dependency-management'
+}
+
+apply plugin: 'cn.gyw.platform.plugin.mbg'
+
+dependencies {
+    implementation platform_common_web
+
+    implementation spring_boot_starter
+    implementation spring_boot_starter_web
+    implementation spring_boot_starter_security
+    implementation spring_boot_starter_jdbc
+    // 打包时使用provide
+//    providedRuntime spring_boot_starter_tomcat
+    // 本地运行，否则异常：
+//    implementation spring_boot_starter_tomcat
+    implementation spring_boot_devtools
+    implementation(mapper_spring_boot_starter) {
+        exclude group: 'javax.persistence', module: 'persistence-api'
+    }
+//    implementation mapper_spring_boot_starter
+    implementation pagehelper_spring_boot_starter
+    implementation pagehelper
+
+    // 时间插件：Mybatis对Java 8 time (JSR 310)支持
+    implementation 'org.mybatis:mybatis-typehandlers-jsr310:1.0.2'
+    implementation persistence_api
+    implementation mysql_connector_java
+    implementation hutool_all
+
+    testImplementation(spring_boot_starter_test) {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+}
+
+mbg {
+    // 是否覆盖已经生成的xml或者代码
+    overwrite = true
+    consoleable = true
+    generatorFile = "generatorConfig.xml"
+    tableNames = ""
+    jdbc{
+        driver = "com.mysql.jdbc.Driver"
+        url    = "jdbc:mysql://127.0.0.1:3306/cs_content?useSSL=false&allowPublicKeyRetrieval=true"
+        username = "root"
+        password = "root"
+    }
+    xml{
+        mapperPackage= "cn.gyw.community.content.dao"
+        modelPackage = "cn.gyw.community.content.entity"
+        mapperMapper = "cn.gyw.platform.common.web.base.mgb.BaseDao"
+        xmlPackage =   "mappers"
+        tableName ="prefrence_area"
+        objectName ="PrefrenceArea"
+        mapperSuffix ="Mapper"
+    }
+    ftl {
+        restControllerStyle = true
+        entityPackage = "cn.gyw.community.content.entity"
+        entityDtoPackage = "cn.gyw.community.content.dto"
+        superServiceClass = "cn.gyw.platform.common.web.base.mgb.BaseService"
+        servicePackage = "cn.gyw.community.content.service"
+        superControllerClass = "cn.gyw.platform.common.web.base.mgb.BaseController"
+        controllerPackage = "cn.gyw.community.content.controller"
+    }
 }

@@ -1,24 +1,45 @@
 package cn.gyw.corejava.concurrent;
 
-import org.junit.Test;
-
+import java.io.IOException;
 import java.math.BigInteger;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.TimeUnit;
 
+import cn.gyw.corejava.model.Blue;
+
 /**
  * 线程相关测试
  */
 public class ThreadTest {
-
-    public static void main(String[] args) {
+	
+    public static void main(String[] args) throws IOException {
         ThreadTest threadTest = new ThreadTest();
 
         // threadTest.joinTest();
-        threadTest.interruptTest();
-
-        System.out.println("main run over");
+//        threadTest.interruptTest();
+        threadTest.test();
+        
+        System.in.read();
+    }
+    
+    public void test() {
+    	final Blue blue = new Blue();
+    	blue.setName("AAAAA");
+    	new Thread(new Runnable() {
+			@Override
+			public void run() {
+				try {
+					TimeUnit.SECONDS.sleep(1L);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				System.out.println("sleep 1s>>" + blue.getName());
+				blue.setName("BBBBB");
+			}
+		}).start();
+    	blue.setName("CCCCCC");
+    	System.out.println(">>2" + blue.getName());
     }
 
     /**

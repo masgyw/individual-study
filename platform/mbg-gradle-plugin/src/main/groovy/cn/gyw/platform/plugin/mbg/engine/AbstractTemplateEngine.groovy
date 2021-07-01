@@ -143,6 +143,7 @@ abstract class AbstractTemplateEngine {
 		Paths.get(dtoDir).toFile().mkdirs()
 		Paths.get(serviceDir).toFile().mkdirs()
 		Paths.get(controllerDir).toFile().mkdirs()
+		println "mkdirs success:$controllerDir,$serviceDir,$dtoDir"
 		return this;
 	}
 	

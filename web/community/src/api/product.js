@@ -13,7 +13,7 @@ class ProductApi extends BaseApi {
     return request({
       url: this.src + '/batch',
       method: 'post',
-      params: params
+      data: params
     });
   }
 
@@ -22,53 +22,6 @@ class ProductApi extends BaseApi {
       url: '/simpleList',
       method: 'get',
       params: params
-    })
-  }
-
-  updateDeleteStatus(params) {
-    return request({
-      url: '/update/deleteStatus',
-      method: 'post',
-      params: params
-    })
-  }
-
-  updateNewStatus(params) {
-    return request({
-      url: '/update/newStatus',
-      method: 'post',
-      params: params
-    })
-  }
-
-  updateRecommendStatus(params) {
-    return request({
-      url: '/update/recommendStatus',
-      method: 'post',
-      params: params
-    })
-  }
-
-  createProduct(data) {
-    return request({
-      url: '/create',
-      method: 'post',
-      data: data
-    })
-  }
-
-  updateProduct(id, data) {
-    return request({
-      url: '/update/' + id,
-      method: 'post',
-      data: data
-    })
-  }
-
-  getProduct(id) {
-    return request({
-      url: '/updateInfo/' + id,
-      method: 'get',
     })
   }
 }

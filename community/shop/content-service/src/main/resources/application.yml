@@ -1,0 +1,24 @@
+server:
+  port: 8092
+
+spring:
+  profiles:
+    active: default
+  # 热部署
+  devtools:
+    restart:
+      enabled: true
+      exclude: application.yml
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/cs_content?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai&useSSL=false
+    username: root
+    password: root
+    dbcp2:
+      validation-query: select 1
+
+logging:
+  config: classpath:logback.xml
+
+mybatis:
+  mapper-locations: classpath:mappers/*.xml
