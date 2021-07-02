@@ -258,7 +258,7 @@
         let param = {pageNum: 1, pageSize: 100};
         productAttrCateApi.findByPage(param).then(response => {
           this.productAttributeCategoryOptions = [];
-          let list = response.data.list;
+          let list = response.data.records;
           for (let i = 0; i < list.length; i++) {
             this.productAttributeCategoryOptions.push({label: list[i].name, value: list[i].id});
           }

@@ -6,7 +6,7 @@ import LoggerFactory from "./base/logger";
 class ProductApi extends BaseApi {
 
   constructor() {
-    super(apiTypes.PRODUCT_INFO);
+    super(apiTypes.PMS_INFO);
   }
 
   batchUpdate(params) {
@@ -26,7 +26,7 @@ class ProductApi extends BaseApi {
   }
 }
 
-let logger = LoggerFactory.getLogger(apiTypes.PRODUCT_INFO)
+let logger = LoggerFactory.getLogger(apiTypes.PMS_INFO)
 let productApi = new ProductApi();
 
 export {

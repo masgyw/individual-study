@@ -5,6 +5,7 @@ import org.junit.Test;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
+import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
@@ -17,6 +18,7 @@ public class ReentrantLockTest extends BaseCondition {
     private int count = 0;
 
     private static Lock lock = new ReentrantLock();
+    private static Condition condition = lock.newCondition();
 
     private Map<String, Data> map = new TreeMap<>();
     private final ReentrantReadWriteLock rwlock = new ReentrantReadWriteLock();

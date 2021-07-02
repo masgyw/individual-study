@@ -20,6 +20,7 @@ const apiTypes = {
   // pms_*：商品模块相关
   PMS_INFO: '/pms/info',
   PMS_ATTR: '/pms/attr',
+  PMS_ATTR_CATE: '/pms/attrCate',
   PMS_CATEGORY: '/pms/category',
   PMS_BRAND: '/pms/brand',
   PMS_SKU: '/pms/sku',
@@ -32,6 +33,6 @@ const apiTypes = {
 }
 
 // mock user api
-apiTypes.UMS_ADMIN = '/dev/user'
+// apiTypes.UMS_ADMIN = '/dev/user'
 
 export default apiTypes;

@@ -68,10 +68,10 @@ mbg {
 	overwrite = true
 	consoleable = true
 	generatorFile = "generatorConfig.xml"
-	tableNames = "member_price"
+	tableNames = ""
 	jdbc{
 		driver = "com.mysql.jdbc.Driver"
-		url    = "jdbc:mysql://192.168.1.181:3306/cs_product?useSSL=false&allowPublicKeyRetrieval=true"
+		url    = "jdbc:mysql://127.0.0.1:3306/cs_product?useSSL=false&allowPublicKeyRetrieval=true"
 		username = "root"
 		password = "root"
 	}
@@ -80,16 +80,18 @@ mbg {
 		modelPackage = "cn.gyw.community.product.entity"
 		mapperMapper = "cn.gyw.platform.common.web.base.mgb.BaseDao"
 		xmlPackage =   "mappers"
-		tableName ="comment"
-		objectName ="Comment"
+		tableName ="product_attribute_category"
+		objectName ="ProductAttrCate"
 		mapperSuffix ="Mapper"
 	}
 	ftl {
 		restControllerStyle = true
-		controllerPackage = "cn.gyw.community.product.controller"
-		superControllerClass = "cn.gyw.platform.common.web.base.mgb.BaseController"
-		servicePackage = "cn.gyw.community.product.service"
+		entityPackage = "cn.gyw.community.product.entity"
+		entityDtoPackage = "cn.gyw.community.product.dto"
 		superServiceClass = "cn.gyw.platform.common.web.base.mgb.BaseService"
+		servicePackage = "cn.gyw.community.product.service"
+		superControllerClass = "cn.gyw.platform.common.web.base.mgb.BaseController"
+		controllerPackage = "cn.gyw.community.product.controller"
 	}
 }
 

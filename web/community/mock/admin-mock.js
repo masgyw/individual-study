@@ -11,7 +11,7 @@ const tokens = {
 
 const users = {
   'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxMDAxIn0.mfd9Q4HRQMRr36aGHlIOn4wV6934_rU24gjRMRrSnTM': {
-    roles: ['admin'],
+    roles: ['超级管理员'],
     introduction: 'I am a super administrator',
     avatar: '',
     name: 'Super Admin',

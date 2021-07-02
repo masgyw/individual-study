@@ -5,7 +5,7 @@ import BaseApi from './base/BaseApi'
 
 class ProductCateApi extends BaseApi {
   constructor() {
-    super(apiTypes.PRODUCT_CATEGORY);
+    super(apiTypes.PMS_CATEGORY);
   }
 
   // deleteProductCate(id) {
@@ -63,7 +63,7 @@ class ProductCateApi extends BaseApi {
 
 }
 
-let logger = LoggerFactory.getLogger(apiTypes.PRODUCT_CATEGORY)
+let logger = LoggerFactory.getLogger(apiTypes.PMS_CATEGORY)
 let productCateApi = new ProductCateApi();
 
 export {

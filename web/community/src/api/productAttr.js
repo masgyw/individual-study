@@ -6,7 +6,7 @@ import apiTypes from './base/api-types'
 class ProductAttrApi extends BaseApi {
 
   constructor() {
-    super(apiTypes.PRODUCT_ATTR);
+    super(apiTypes.PMS_ATTR);
   }
   
   deleteProductAttr(data) {

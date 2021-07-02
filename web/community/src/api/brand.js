@@ -6,7 +6,7 @@ import LoggerFactory from "./base/logger";
 class BrandApi extends BaseApi {
 
   constructor() {
-    super(apiTypes.PRODUCT_BRAND);
+    super(apiTypes.PMS_BRAND);
   }
 
   createBrand(data) {
@@ -55,7 +55,7 @@ class BrandApi extends BaseApi {
   }
 }
 
-let logger = LoggerFactory.getLogger(apiTypes.PRODUCT_BRAND)
+let logger = LoggerFactory.getLogger(apiTypes.PMS_BRAND)
 let brandApi = new BrandApi();
 
 export {

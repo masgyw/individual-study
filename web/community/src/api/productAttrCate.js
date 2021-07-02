@@ -1,4 +1,23 @@
+import BaseApi from './base/BaseApi'
 import request from '@/utils/request'
+import apiTypes from './base/api-types'
+import LoggerFactory from "./base/logger";
+
+class ProductAttrCateApi extends BaseApi {
+
+  constructor() {
+    super(apiTypes.PMS_ATTR_CATE);
+  }
+  
+}
+
+let logger = LoggerFactory.getLogger(apiTypes.PMS_ATTR_CATE)
+let productAttrCateApi = new ProductAttrCateApi();
+
+export {
+  productAttrCateApi
+}
+
 export function fetchList(params) {
   return request({
     url:'/productAttribute/category/list',
