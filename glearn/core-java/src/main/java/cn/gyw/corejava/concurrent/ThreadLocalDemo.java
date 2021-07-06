@@ -7,5 +7,18 @@ package cn.gyw.corejava.concurrent;
  */
 public class ThreadLocalDemo {
 
-//    private static ThreadLocal
+    private static ThreadLocal<String> strLocal = new ThreadLocal<>();
+    
+    public static void main(String[] args) {
+		
+    	new Thread(new Runnable() {
+			
+			@Override
+			public void run() {
+				strLocal.set("123");
+			}
+		}).start();
+    	
+    	
+	}
 }

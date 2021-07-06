@@ -32,6 +32,9 @@ dependencies {
 	implementation gson
 	implementation javax_mail_api
 	implementation mail
+	
+	implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+	
 	// logback log
 	implementation logback_classic
 	implementation logback_core
