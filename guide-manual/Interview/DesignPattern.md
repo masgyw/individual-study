@@ -31,3 +31,21 @@
 目的：一个行为下的多种状态变更更,比如我们最常见的一个网站的⻚面,在你登录与不登录
 下展示的内容是略有差异的( 不登录不能展示个人信息 ),而这种 登录 与 不登录 就是我们通过改变状态,
 而让整个行为发生了变化
+
+## Spring 使用了哪些设计模式
+1. 简单工厂 BeanFacotyr
+2. 工厂方法模式 FactoryBean 
+3. 单例模式 默认scope 为单例
+4. 模板方法模式 AbstractBeanFactory.refresh()
+5. 代理模式 AOP 实现，AdvisorSupport
+6. 装饰器模式 BeanWrapper/*Decorator
+7. 适配器模式 HandlerAdapter
+8. 策略模式 ResourceLoader
+9. 访问者模式 *Advistor
+
+## Mybatis 使用的设计模式
+1. 代理模式 MapperProxy
+2. 装饰器模式 CachingExecutor
+3. 工厂方法模式 SqlSessionFactory
+4. 建造者模式 SqlSessionFactoryBuilder
+5. 责任链模式 InterceptorChain,插件执行链
