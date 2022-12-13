@@ -1,0 +1,22 @@
+rootProject.name = 'platform'
+
+// 通用注解
+include 'annotations'
+// 通用类
+include 'common'
+// 配置工具类
+include 'configuration'
+// MBG 源码修改
+include 'mbg-gradle-plugin'
+// 热插拔Spring 插件
+include 'spring-plugins'
+// 自实现ORM框架
+include 'gorm'
+// 通知服务
+include 'notify-service'
+// 代码生成器
+include 'code-generator'
+
+rootProject.children.each { project ->
+    project.buildFileName = "${project.name}.gradle"
+}

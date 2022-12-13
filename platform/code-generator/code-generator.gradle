@@ -1,0 +1,12 @@
+plugins {
+    id 'java'
+    id 'maven-publish'
+}
+
+dependencies {
+    implementation google_auto_service
+    implementation javapoet
+    implementation mapstruct
+
+    annotationProcessor google_auto_service
+}

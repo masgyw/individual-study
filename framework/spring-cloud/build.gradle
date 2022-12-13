@@ -1,0 +1,56 @@
+allprojects {
+    group 'cn.gyw.frame.cloud'
+    version '1.0.0'
+}
+
+buildscript {
+    //定义版本号
+    ext {
+        springVersion = '5.1.2.RELEASE'
+        springBootVersion = '2.1.11.RELEASE'
+        // Finchley.SR4 -> [2.0.x]
+//		springCloudVersion = 'Finchley.SR4'
+        springCloudVersion = 'Greenwich.SR6'
+
+        lombokVersion = '1.18.6'
+        junitVersion = '4.12'
+        logbackVersion = '1.2.3'
+        camelVersion = '2.25.1'
+        jacksonVersion = '2.11.2'
+    }
+
+    repositories {
+        // maven本地仓库
+        mavenLocal()
+        mavenCentral()
+        // 添加 Maven 仓库
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+		maven { url 'https://maven.aliyun.com/nexus/content/repositories/gradle-plugin' }
+
+    }
+
+    dependencies {
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion"
+        classpath "gradle.plugin.ua.eshepelyuk:ManifestClasspath:1.0.0"
+    }
+}
+
+// 所有子项目的通用配置
+subprojects {
+    plugins.withType(JavaPlugin) {
+        // JVM 版本号要求
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
+
+        // 通用依赖
+        dependencies {
+            implementation sl4j_api
+
+            // 必须加入依赖，否则无法识别lombok
+            annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+            compile "org.projectlombok:lombok:${lombokVersion}"
+            testAnnotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+            testCompileOnly "org.projectlombok:lombok:${lombokVersion}"
+        }
+    }
+}

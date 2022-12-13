@@ -1,0 +1,17 @@
+plugins {
+    id 'java'
+	id 'groovy'
+}
+
+ext {
+	groovyVersion = '3.0.3'
+}
+
+dependencies {
+
+    // This dependency is used internally, and not exposed to consumers on their own compile classpath.
+    implementation guava
+	// groovy 语言包
+	implementation groovy_dateutil
+	implementation groovy_all
+}

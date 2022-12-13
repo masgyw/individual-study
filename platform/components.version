@@ -1,0 +1,4 @@
+platform_annotations='cn.gyw.platform:annotations:1.0.0'
+platform_common='cn.gyw.platform:common:1.0.0'
+platform_notify_service='cn.gyw.platform:notify-service:1.0.0'
+platform_code_generator='cn.gyw.platform:code-generator:1.0.0'

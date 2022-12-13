@@ -1,0 +1,62 @@
+allprojects {
+    group 'cn.gyw.platform'
+    version '1.0.0'
+}
+
+// 所有子项目的通用配置
+subprojects {
+    // java 插件配置
+    plugins.withType(JavaPlugin) {
+        // 通用依赖
+        dependencies {
+            implementation slf4j_api
+
+            // lombok
+            annotationProcessor lombok
+            implementation lombok
+            testAnnotationProcessor lombok
+            testCompileOnly lombok
+
+            testImplementation junit_jupiter_api
+            testImplementation junit_jupiter_engine
+            testImplementation(junit_platform_runner) {
+                exclude group: 'junit', module: 'junit'
+            }
+        }
+
+        test {
+            useJUnitPlatform()
+        }
+    }
+    // mavenPublish插件配置
+    plugins.withType(MavenPublishPlugin) {
+        // 发布配置
+        publishing {
+            // 配置maven-publishing插件的输出物
+            publications {
+                maven(MavenPublication) {
+                    //指定group/artifact/version信息，可以不填。默认使用项目group/name/version作为groupId/artifactId/version
+                    groupId project.group
+                    artifactId project.name
+                    version project.version
+                    // 如果是war包填写components.web，如果是jar包填写components.java
+                    from components.java
+                }
+            }
+            // 配置maven-publishing仓库的信息，即输出目的地
+            repositories {
+                maven {
+                    url = 'D:/'
+                }
+            }
+        }
+
+        // publishToMavenLocal是maven-publish插件自动创建的的一个任务，
+        task jarToLocalMaven(dependsOn: publishToMavenLocal) {
+            doLast {
+                println "publish jar to ${userHome}/.m2/repository"
+            }
+        }
+    }
+}
+

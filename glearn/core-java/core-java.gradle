@@ -1,0 +1,12 @@
+plugins {
+	id 'java'
+}
+
+dependencies {
+    implementation platform_annotations
+    implementation platform_configuration
+    implementation jol_core
+
+    testImplementation jmh_core
+    testAnnotationProcessor jmh_generator_annprocess
+}

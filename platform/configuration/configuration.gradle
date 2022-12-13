@@ -1,0 +1,14 @@
+plugins {
+    id 'java'
+    id 'java-library'
+    id 'maven-publish'
+}
+
+dependencies {
+    compileOnly spring_boot_starter_data_jpa
+
+    api commons_configuration2
+    api commons_lang3
+    api commons_beanutils
+    api snakeyaml
+}

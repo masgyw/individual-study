@@ -1,0 +1,10 @@
+plugins {
+    id 'java'
+}
+
+dependencies {
+    implementation platform_common
+    implementation platform_configuration
+
+    implementation rocketmq_client
+}

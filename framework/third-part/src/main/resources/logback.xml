@@ -1,0 +1,142 @@
+<!--
+scan: 当此属性设置为true时，配置文件如果发生改变，将会被重新加载，默认值为true。
+scanPeriod: 设置监测配置文件是否有修改的时间间隔，如果没有给出时间单位，默认单位是毫秒。当scan为true时，此属性生效。默认的时间间隔为1分钟。
+debug: 当此属性设置为true时，将打印出logback内部日志信息，实时查看logback运行状态。默认值为false。
+-->
+<configuration scan="true" scanPeriod="60 seconds" debug="false">
+    <!--
+    用来设置上下文名称，每个logger都关联到logger上下文，默认上下文名称为default
+    -->
+    <contextName>third-part</contextName>
+    <!--
+    用来定义变量值,使用方法：${}
+    -->
+    <property name="LOG_HOME" value="/data/logs"/>
+    <property name="APP_NAME" value="third-part"/>
+    <!--
+    获取时间戳字符串
+    key: 标识此<timestamp> 的名字；
+    datePattern: 设置将当前时间（解析配置文件的时间）转换为字符串的模式，遵循java.txt.SimpleDateFormat的格式
+    -->
+    <timestamp key="bySecond" datePattern="yyyyMMdd'T'HHmmss"/>
+
+    <property name="CONSOLE_LOG_PATTERN"
+              value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%-5level] [%15.15thread] %logger{39} [%method.%line] : %msg%n"/>
+
+    <!--
+    负责写日志的组件
+    name指定appender名称，class指定appender的全限定名
+    -->
+    <!-- ConsoleAppender类： 把日志输出到控制台 -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <!-- 对日志进行格式化 -->
+        <encoder>
+            <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符-->
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger - %msg%n</pattern>
+        </encoder>
+        <!-- 字符串 : System.out(默认)或者System.err -->
+        <!--<target>System.out</target>-->
+    </appender>
+
+    <appender name="OUTPUT_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_HOME}/${APP_NAME}/third-part.log</file>
+        <append>true</append>
+        <!--根据固定窗口算法重命名文件的滚动策略-->
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+            <fileNamePattern>third-part.%i.log.zip</fileNamePattern>
+            <minIndex>1</minIndex>
+            <maxIndex>3</maxIndex>
+        </rollingPolicy>
+        <!-- 基于文件大小滚动策略 -->
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <!-- 超过指定大小文件滚动 -->
+            <maxFileSize>10MB</maxFileSize>
+        </triggeringPolicy>
+        <encoder>
+            <pattern>%-4relative [%thread] %-5level %logger{35} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="MAIN_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_HOME}/${APP_NAME}/main.log</file>
+        <append>true</append>
+        <!-- 基于时间滚动策略 -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- 文件名及“%d”转换符 -->
+            <fileNamePattern>main.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <!-- 控制保留的归档文件的最大数量，超出数量就删除旧文件 -->
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%-4relative [%thread] %-5level %logger{35} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!--api接口日志-->
+    <appender name="api_appender" class="ch.qos.logback.classic.sift.SiftingAppender">
+        <discriminator>
+            <key>user_code</key>
+            <defaultValue>unknown</defaultValue>
+        </discriminator>
+        <sift>
+            <appender name="${user_code}" class="ch.qos.logback.core.rolling.RollingFileAppender">
+                <file>${LOG_HOME}/${APP_NAME}/biz-info-${user_code}.log</file>
+                <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                    <fileNamePattern>${LOG_HOME}/${APP_NAME}/biz-info-${user_code}.%d{yyyy-MM-dd}.log</fileNamePattern>
+                </rollingPolicy>
+                <encoder>
+                    <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger - %msg%n</pattern>
+                </encoder>
+            </appender>
+        </sift>
+    </appender>
+
+    <appender name="TASK_SIFT" class="ch.qos.logback.classic.sift.SiftingAppender">
+        <!--discriminator鉴别器，根据taskId这个key对应的value鉴别日志事件，然后委托给具体appender写日志-->
+        <discriminator>
+            <key>taskCode</key>
+            <defaultValue>unknown</defaultValue>
+        </discriminator>
+        <sift>
+            <!--具体的写日志appender，每一个taskId创建一个文件-->
+            <appender name="task-${taskCode}" class="ch.qos.logback.core.rolling.RollingFileAppender">
+                <file>${LOG_HOME}/${APP_NAME}/${taskCode}.log</file>
+                <encoder charset="UTF-8">
+                    <pattern>${CONSOLE_LOG_PATTERN}</pattern>
+                </encoder>
+                <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                    <fileNamePattern>${LOG_HOME}/${APP_NAME}/${taskCode}-%d{yyyyMMdd}.log</fileNamePattern>
+                </rollingPolicy>
+            </appender>
+        </sift>
+    </appender>
+
+    <logger name="logtest" level="debug">
+        <appender-ref ref="TASK_SIFT"/>
+    </logger>
+
+    <logger name="cn.gyw.frame.thirdpart.logback.parent.sub" level="debug" additivity="false">
+        <appender-ref ref="MAIN_FILE"/>
+    </logger>
+
+    <logger name="cn.gyw.frame.thirdpart.logback.parent" level="info" additivity="false">
+        <appender-ref ref="MAIN_FILE"/>
+    </logger>
+
+    <!-- 设置某一个包或具体的某一个类的日志打印级别 -->
+    <logger name="com.apache.ibatis" level="TRACE"/>
+    <logger name="java.sql.Connection" level="DEBUG"/>
+    <logger name="java.sql.Statement" level="DEBUG"/>
+    <logger name="java.sql.PreparedStatement" level="DEBUG"/>
+
+    <logger name="media.result" level="DEBUG">
+        <appender-ref ref="MAIN_FILE"/>
+    </logger>
+
+    <!-- 根loger,是所有<loger>的上级 -->
+    <root level="INFO">
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="OUTPUT_FILE"/>
+    </root>
+
+</configuration>

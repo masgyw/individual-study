@@ -1,0 +1,121 @@
+buildscript {
+    ext {
+        springBootVersion = '2.3.12.RELEASE'
+        lombokVersion = '1.18.6'
+        queryDslVersion = '4.2.1'
+    }
+
+    repositories {
+        // maven本地仓库
+        mavenLocal()
+        mavenCentral()
+        // 添加 Maven 仓库
+        maven {
+            allowInsecureProtocol = true
+            url 'http://maven.aliyun.com/nexus/content/groups/public/'
+        }
+        maven {
+            allowInsecureProtocol = true
+            url 'https://maven.aliyun.com/nexus/content/repositories/gradle-plugin'
+        }
+    }
+
+    dependencies {
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion"
+        classpath "gradle.plugin.ua.eshepelyuk:ManifestClasspath:1.0.0"
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'org.springframework.boot'
+
+dependencies {
+    // springboot
+    implementation "org.springframework.boot:spring-boot-starter:${springBootVersion}"
+    implementation "org.springframework.boot:spring-boot-starter-web:${springBootVersion}"
+    implementation "org.springframework.boot:spring-boot-starter-webflux:${springBootVersion}"
+    implementation "org.springframework.boot:spring-boot-starter-jdbc:${springBootVersion}"
+    implementation "org.springframework.boot:spring-boot-starter-data-jpa:${springBootVersion}"
+    // Web容器包：本地运行用
+    implementation "org.springframework.boot:spring-boot-starter-tomcat:${springBootVersion}"
+    // 打包时使用provide
+//	providedRuntime "org.springframework.boot:spring-boot-starter-tomcat:${springBootVersion}"
+    // 热部署工具
+    implementation "org.springframework.boot:spring-boot-devtools:${springBootVersion}"
+    // 系统监控
+    implementation "org.springframework.boot:spring-boot-starter-actuator:${springBootVersion}"
+    implementation "org.springframework.boot:spring-boot-starter-test:${springBootVersion}"
+    implementation "org.springframework.boot:spring-boot-starter-data-redis:${springBootVersion}"
+
+    // 引入SpringBoot内嵌Tomcat对jsp的解析依赖，不添加这个解析不了jsp
+    providedCompile "org.apache.tomcat.embed:tomcat-embed-jasper:9.0.24"
+    implementation "org.apache.tomcat:tomcat-jsp-api:9.0.24"
+
+    implementation graphql_java
+    implementation graphql_java_spring_boot_starter_webmvc
+    // 可视化调试工具 graphiql
+    implementation graphiql_spring_boot_starter
+    implementation springfox_swagger2
+    implementation springfox_swagger_ui
+
+    implementation commons_pool2
+    implementation commons_lang3
+    implementation commons_io
+    implementation guava
+    implementation mysql_connector_java
+    implementation freemarker
+    implementation jackson_databind
+    implementation jackson_core
+    implementation jackson_annotations
+
+    // lombok
+    compileOnly "org.projectlombok:lombok:${lombokVersion}"
+    annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+    implementation("org.projectlombok:lombok:${lombokVersion}")
+
+    // 测试类
+    testImplementation("org.springframework.boot:spring-boot-starter-test:${springBootVersion}") {
+        exclude group: "org.junit.vintage", module: "junit-vintage-engine"
+    }
+}
+
+bootJar.doFirst {
+    def file = new File("$projectDir/src/main/resources/application.yml")
+    //	TODO 可以考虑动态修改配置文件
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+// 打包可执行Jar
+jar {
+    manifest {
+        attributes "Manifest-Version": 1.0,
+                'Main-Class': 'cn.gyw.springboot.DemoBootApplication'
+    }
+}
+
+// 自定义打包，包含配置文件
+task buildTestPackage(type: Zip, dependsOn: bootJar) {
+    // println "rootDir >> $rootDir"
+    // println "projectDir >> $projectDir"
+    // println "jar path >> ${jar.archivePath}"
+    // println "bootJar path >> ${bootJar.archivePath}"
+    archiveFileName = 'springboot_' + new Date().format('yyyyMMddHHmm') + '.zip'
+    destinationDirectory = file("$projectDir/build/release")
+
+    from("$projectDir/src/main/resources/i18n") {
+        into "i18n"
+    }
+
+    from(bootJar.archiveFile, "$projectDir/runtime/")
+}
+
+// 编译跳过单元测试
+test {
+    enabled(false)
+}

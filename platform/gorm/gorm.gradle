@@ -1,0 +1,24 @@
+plugins {
+    id 'java'
+    id 'maven-publish'
+}
+
+dependencies {
+    // spring5
+    implementation spring_core
+    implementation spring_context
+    implementation spring_beans
+    implementation spring_jdbc
+
+    implementation alibaba_druid
+    implementation mysql_connector_java
+    implementation persistence_api
+    implementation commons_lang3
+
+    testImplementation spring_test
+}
+
+// junit5 config to avoid No tests found for given includes
+test {
+    useJUnitPlatform()
+}

@@ -1,0 +1,24 @@
+plugins {
+	id 'java'
+	id 'maven-publish'
+}
+
+dependencies {
+	implementation platform_annotations
+	
+	implementation httpclient
+	implementation httpmime
+	implementation commons_lang3
+	implementation commons_codec
+	implementation jackson_databind
+	implementation jackson_core
+	implementation jackson_annotations
+
+	compileOnly spring_context
+	compileOnly javax_servlet_api
+	compileOnly logback_classic
+	compileOnly logback_core
+	compileOnly logback_access
+
+	testImplementation junit
+}

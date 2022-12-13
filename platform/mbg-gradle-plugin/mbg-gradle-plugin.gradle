@@ -1,0 +1,24 @@
+plugins {
+    id 'idea'
+    id 'groovy'
+    id 'java'
+    id 'maven-publish'
+}
+
+dependencies {
+	implementation fileTree(dir: 'libs', include: ['*.jar'])
+	
+    //gradle sdk
+    implementation gradleApi()
+    //groovy sdk
+    implementation localGroovy()
+
+	implementation platform_common
+    implementation mybatis_generator_core
+    implementation alibaba_druid
+    implementation tk_mybatis_mapper
+    implementation freemarker
+    implementation mysql_connector_java
+
+    testImplementation junit
+}

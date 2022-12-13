@@ -1,0 +1,95 @@
+plugins {
+    id 'java'
+}
+
+dependencies {
+    implementation platform_common
+    implementation platform_configuration
+    implementation platform_code_generator
+
+    // DB
+    implementation mysql_connector_java
+//    implementation 'mysql:mysql-connector-java:8.0.20'
+//    implementation 'com.oracle:ojdbc14:10.2.0.4.0'
+    implementation mybatis
+    implementation mybatis_typehandlers_jsr310
+    implementation tk_mybatis_mapper
+
+    // common
+    implementation commons_cli
+    implementation commons_beanutils
+    implementation commons_lang3
+    implementation commons_text
+    implementation commons_net
+    implementation commons_collections
+    implementation commons_io
+    implementation jfreechart
+    implementation jcommon
+    implementation oshi
+    implementation joda_time
+    implementation dom4j
+    implementation jaxb_api
+    implementation freemarker
+    implementation gson
+    implementation javax_mail_api
+    implementation mail
+    implementation jackson_databind
+    implementation jackson_core
+    implementation jackson_annotations
+    // http client
+    implementation retrofit
+    implementation httpclient
+    implementation httpmime
+    // csv
+    implementation opencsv
+    implementation hutool_crypto
+    // netty
+    implementation netty_all
+    // lucence
+    implementation lucene_core
+    implementation lucene_analyzers_common
+    implementation lucene_analyzers_smartcn
+    implementation lucene_queryparser
+    implementation lucene_highlighter
+    implementation ikanalyzer
+    // poi
+    implementation poi
+    implementation poi_ooxml
+    implementation easypoi_base
+    implementation easypoi_annotation
+
+    implementation rxjava
+    implementation reactive_streams
+
+    implementation javapoet
+    implementation google_auto_service
+    implementation javax_annotation_api
+
+    // 注解驱动器
+    annotationProcessor google_auto_service
+    testAnnotationProcessor google_auto_service
+    annotationProcessor platform_code_generator
+    testAnnotationProcessor platform_code_generator
+
+    // log
+    implementation logback_classic
+    implementation logback_core
+    implementation logback_access
+
+    compileOnly javax_servlet_api
+    // junit5
+    testImplementation junit_jupiter_api
+    testImplementation junit_jupiter_engine
+    testImplementation(junit_platform_runner) {
+        exclude group: 'junit', module: 'junit'
+    }
+}
+
+test {
+    useJUnitPlatform()
+}
+
+//task localAnnotationProcessor() {
+//    println 'select processor local'
+//    compileJava.options.compilerArgs(['-processor', 'xxx.Processor'])
+//}

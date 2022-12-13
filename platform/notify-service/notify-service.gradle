@@ -1,0 +1,15 @@
+plugins {
+    id 'java'
+    id 'maven-publish'
+}
+
+dependencies {
+    implementation platform_common
+
+    compileOnly spring_context
+    compileOnly spring_web
+
+    implementation commons_lang3
+    implementation gson
+    implementation javax_annotation_api
+}

@@ -1,0 +1,18 @@
+plugins {
+	id 'java'
+}
+
+jar {
+	manifest {
+		attributes('Manifest-Version': '1.0.0',
+				   'Can-Redefine-Classes': true,
+				   'Can-Retransform-Classes': true,
+				   'Premain-Class': 'cn.gyw.glearn.javaagent.PreMainTraceAgent',
+				   'Agent-Class': 'cn.gyw.glearn.javaagent.MainRunAfterAgent'
+				   )
+	}
+}
+
+dependencies {
+	implementation platform_annotations
+}

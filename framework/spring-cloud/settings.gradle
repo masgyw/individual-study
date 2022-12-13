@@ -1,0 +1,14 @@
+rootProject.name = 'spring-cloud'
+
+include 'eureka-server'
+include 'zuul-server'
+include 'account'
+include 'business'
+include 'order'
+include 'storage'
+include 'provider'
+include 'consumer'
+
+rootProject.children.each {project ->
+    project.buildFileName = "${project.name}.gradle"
+}

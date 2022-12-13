@@ -1,0 +1,4 @@
+rootProject.name = 'handwritten-frame'
+
+include 'gbatis'
+include 'gspring'

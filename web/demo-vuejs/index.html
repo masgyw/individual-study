@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+	<title>VueJS SPA</title>
+	<meta charset="UTF-8">
+	<!-- 页面不缓存 -->
+	<meta http-equiv="Pragma" content="no-cache">
+	<meta http-equiv="Cache-Control" content="no-cache">
+	<meta http-equiv="Expires" content="0">
+	<!-- 样式 -->
+	<!-- <link rel="stylesheet" href="assets/css/element-plus-2.2.19.css"> -->
+	<!-- js -->
+	<!-- <script src="assets/js/vue.global-3.2.41.js" type="text/javascript"></script>
+	<script src="assets/js/vue-router.global-4.1.6.js" type="text/javascript"></script>
+	<script src="assets/js/vue3-sfc-loader.js" type="text/javascript"></script> -->
+	<script src="assets/js/vue-2.7.13.js" type="text/javascript"></script> 
+	<script src="assets/js/vue-router-3.1.5.js" type="text/javascript"></script> 
+	<script src="assets/js/httpVueLoader-1.4.2.js" type="text/javascript"></script> 
+
+	<!-- <script src="assets/js/element-plus-2.2.19.js" type="text/javascript"></script> -->
+</head>
+
+<body>
+	<h3>vue</h3>
+	<hr>
+	<p>
+		<!--使用 router-link 组件进行导航 -->
+		<!--通过传递 `to` 来指定链接 -->
+		<!--`<router-link>` 将呈现一个带有正确 `href` 属性的 `<a>` 标签-->
+		<router-link to="/">Go to Home</router-link>
+		<router-link to="/hello">Go to Hello</router-link>
+	</p>
+	<div id="app">
+		<!-- 显示不同的组件信息 -->
+		<router-view></router-view>
+
+		<my-component></my-component>
+	</div>
+</body>
+
+<script src="router/index.js" type="text/javascript"></script>
+<script src="main.js" type="text/javascript"></script>
+
+</html>

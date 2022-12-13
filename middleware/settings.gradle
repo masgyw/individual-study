@@ -1,0 +1,10 @@
+rootProject.name = 'middleware'
+
+include 'mq-active'
+include 'mq-kafka'
+include 'mq-rocketmq'
+include 'zookeeper'
+include 'nosql-redis'
+include 'sharding-sphere'
+include 'elasticsearch'
+include 'nacos'
