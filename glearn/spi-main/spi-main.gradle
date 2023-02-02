@@ -1,9 +1,0 @@
-plugins {
-	id 'java'
-}
-
-dependencies {
-	implementation project(':spi-api')
-//	implementation project(':spi-api-impla')
-	implementation project(':spi-api-implb')
-}

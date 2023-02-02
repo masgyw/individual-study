@@ -7,12 +7,6 @@ include 'design-pattern'
 include 'script-groovy'
 include 'javaagent'
 
-// spi spi jar
-include 'spi-api'
-include 'spi-main'
-include 'spi-api-impla'
-include 'spi-api-implb'
-
 rootProject.children.each {project ->
 	project.buildFileName = "${project.name}.gradle"
 }

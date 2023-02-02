@@ -17,5 +17,9 @@ public class JolMain {
         obj = new JolObject();
 
         System.out.println(ClassLayout.parseInstance(obj).toPrintable());
+
+        // jdk8 api
+        // ObjectSizeCalculator.getObjectSize(obj);
+
     }
 }
