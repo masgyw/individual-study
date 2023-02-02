@@ -16,26 +16,12 @@ spring_jdbc="org.springframework:spring-jdbc:${springVersion}"
 spring_tx="org.springframework:spring-tx:${springVersion}"
 spring_aspects="org.springframework:spring-aspects:${springVersion}"
 spring_web="org.springframework:spring-web:${springVersion}"
-aspectjweaver="org.aspectj:aspectjweaver:1.9.4"
+
 spring_webmvc="org.springframework:spring-webmvc:${springVersion}"
 spring_websocket="org.springframework:spring-websocket:${springVersion}"
 reactor_netty='io.projectreactor.netty:reactor-netty:0.8.14.RELEASE'
 spring_webflux="org.springframework:spring-webflux:${springVersion}"
 spring_test="org.springframework:spring-test:${springVersion}"
-
-// springboot
-spring_boot_starter= "org.springframework.boot:spring-boot-starter:${springBootVersion}"
-spring_boot_starter_web= "org.springframework.boot:spring-boot-starter-web:${springBootVersion}"
-spring_boot_starter_webflux="org.springframework.boot:spring-boot-starter-webflux:${springBootVersion}"
-spring_boot_starter_jdbc= "org.springframework.boot:spring-boot-starter-jdbc:${springBootVersion}"
-spring_boot_starter_jpa= "org.springframework.boot:spring-boot-starter-data-jpa:${springBootVersion}"
-spring_boot_starter_tomcat= "org.springframework.boot:spring-boot-starter-tomcat:${springBootVersion}"
-spring_boot_devtools= "org.springframework.boot:spring-boot-devtools:${springBootVersion}"
-spring_boot_starter_actuator= "org.springframework.boot:spring-boot-starter-actuator:${springBootVersion}"
-spring_boot_starter_test= "org.springframework.boot:spring-boot-starter-test:${springBootVersion}"
-spring_boot_starter_redis= "org.springframework.boot:spring-boot-starter-data-redis:${springBootVersion}"
-
-// springcloud
 
 // GraphQL
 // GraphQL Java Engine itself is only concerned with executing queries. It doesn’t deal with any HTTP or JSON related topics.
@@ -62,6 +48,7 @@ guava= 'com.google.guava:guava:29.0-jre'
 jackson_databind='com.fasterxml.jackson.core:jackson-databind:2.11.2'
 jackson_core='com.fasterxml.jackson.core:jackson-core:2.11.2'
 jackson_annotations='com.fasterxml.jackson.core:jackson-annotations:2.11.2'
+aspectjweaver="org.aspectj:aspectjweaver:1.9.4"
 
 // apache commons until
 commons_io='commons-io:commons-io:2.7'

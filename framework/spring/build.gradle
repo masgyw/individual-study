@@ -44,6 +44,7 @@ dependencies {
 	implementation quartz_jobs
 	
     // logback log
+    implementation sl4j_api
     implementation logback_classic
     implementation logback_core
     implementation logback_access
@@ -58,11 +59,6 @@ dependencies {
 	implementation 'org.mybatis:mybatis:3.4.5'
 	implementation 'org.mybatis:mybatis-typehandlers-jsr310:1.0.2'
 	implementation tk_mybatis_mapper
-
-    implementation sl4j_api
-    implementation logback_classic
-    implementation logback_core
-    implementation logback_access
 
     // lombok
     annotationProcessor lombok
