@@ -2,8 +2,7 @@ package cn.gyw.springboot.jpa;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "user_account")

@@ -27,7 +27,7 @@ buildscript {
 }
 
 apply plugin: 'java'
-apply plugin: 'war'
+//apply plugin: 'war'
 apply plugin: 'org.springframework.boot'
 
 dependencies {
@@ -48,8 +48,10 @@ dependencies {
     implementation "org.springframework.boot:spring-boot-starter-test:${springBootVersion}"
     implementation "org.springframework.boot:spring-boot-starter-data-redis:${springBootVersion}"
 
-    // 引入SpringBoot内嵌Tomcat对jsp的解析依赖，不添加这个解析不了jsp
-    providedCompile "org.apache.tomcat.embed:tomcat-embed-jasper:9.0.24"
+    implementation 'org.springframework.shell:spring-shell-starter:2.0.1.RELEASE'
+
+    // 引入SpringBoot内嵌Tomcat对jsp的解析依赖，不添加这个解析不了jsp war
+    implementation "org.apache.tomcat.embed:tomcat-embed-jasper:9.0.24"
     implementation "org.apache.tomcat:tomcat-jsp-api:9.0.24"
 
     implementation graphql_java
