@@ -1,9 +1,13 @@
 package cn.gyw.springboot.jpa;
 
+import cn.gyw.platform.configuration.interfaces.IConfiguration;
+import cn.gyw.platform.configuration.service.ConfigurationOnFileYaml;
 import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
-import org.springframework.context.annotation.*;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
@@ -17,7 +21,6 @@ import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
 @Configuration
-@PropertySource(value = "classpath:ds.properties")
 @EntityScan(basePackages = "cn.gyw.springboot.jpa")
 @EnableJpaRepositories(basePackages = {"cn.gyw.springboot.jpa"},
 repositoryImplementationPostfix = "Impl",
@@ -26,12 +29,12 @@ transactionManagerRef = "transactionManager")
 @EnableTransactionManagement
 public class JpaConfig {
 
+    private IConfiguration config = new ConfigurationOnFileYaml();
+
     @Value("${ds.url}")
     private String url;
     @Value("${ds.username}")
     private String userName;
-    @Value("${ds.password}")
-    private String password;
     @Value("${ds.driver-class-name}")
     private String driverClassName;
 
@@ -39,9 +42,9 @@ public class JpaConfig {
     @Primary
     public DataSource dataSource() {
         HikariDataSource dataSource = new HikariDataSource();
-        dataSource.setJdbcUrl(url);
+        dataSource.setJdbcUrl(String.format(url, config.getValue("hw-cloud", "datasource.host")));
         dataSource.setUsername(userName);
-        dataSource.setPassword(password);
+        dataSource.setPassword(config.getValue("hw-cloud", "datasource.password"));
         dataSource.setDriverClassName(driverClassName);
         return dataSource;
     }
@@ -71,7 +74,7 @@ public class JpaConfig {
         // 注入jpa厂商适配器
         emfb.setJpaVendorAdapter(jpaVendorAdapter);
         // 设置扫描基本包
-        emfb.setPackagesToScan("com.example.entity");
+        emfb.setPackagesToScan("cn.gyw.springboot.jpa");
         return emfb;
     }
 

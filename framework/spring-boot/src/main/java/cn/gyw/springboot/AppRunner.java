@@ -53,8 +53,8 @@ public class AppRunner implements ApplicationRunner, ApplicationContextAware {
         System.out.println("Swagger ui page : " + baseUrl + "/swagger-ui.html");
 
 		// 测试JPA
-		UserEntity userEntity = userService.findByUserName("12345");
-		System.out.println("userEntity = " + userEntity);
+		// UserEntity userEntity = userService.findByUserName("12345");
+		// System.out.println("userEntity = " + userEntity);
 	}
 
 	@Override

@@ -31,6 +31,8 @@ apply plugin: 'java'
 apply plugin: 'org.springframework.boot'
 
 dependencies {
+    implementation platform_configuration
+
     // springboot
     implementation "org.springframework.boot:spring-boot-starter:${springBootVersion}"
     implementation "org.springframework.boot:spring-boot-starter-web:${springBootVersion}"
@@ -48,11 +50,9 @@ dependencies {
     implementation "org.springframework.boot:spring-boot-starter-test:${springBootVersion}"
     implementation "org.springframework.boot:spring-boot-starter-data-redis:${springBootVersion}"
 
-    implementation 'org.springframework.shell:spring-shell-starter:2.0.1.RELEASE'
-
     // 引入SpringBoot内嵌Tomcat对jsp的解析依赖，不添加这个解析不了jsp war
-    implementation "org.apache.tomcat.embed:tomcat-embed-jasper:9.0.24"
-    implementation "org.apache.tomcat:tomcat-jsp-api:9.0.24"
+//    implementation "org.apache.tomcat.embed:tomcat-embed-jasper:9.0.24"
+//    implementation "org.apache.tomcat:tomcat-jsp-api:9.0.24"
 
     implementation graphql_java
     implementation graphql_java_spring_boot_starter_webmvc
