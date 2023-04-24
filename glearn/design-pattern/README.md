@@ -52,3 +52,4 @@
 
 ## 参考
 1. 重学设计模式
+2. https://java-design-patterns.com/patterns/
