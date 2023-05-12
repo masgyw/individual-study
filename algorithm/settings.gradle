@@ -1,6 +1,8 @@
 rootProject.name = 'glearn'
 
 include 'core-java'
+include 'algorithm'
+include 'design-pattern'
 // script language
 include 'script-groovy'
 include 'javaagent'

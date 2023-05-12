@@ -63,7 +63,7 @@ output/
 build/
 # 不忽略web目录下的build文件夹
 !web/**/build
-!build/
+#!build/
 
 # 忽略当前目录及其所有子目录下的文件
 /**/.gradle
