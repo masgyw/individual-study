@@ -125,3 +125,5 @@ reactive_streams='org.reactivestreams:reactive-streams:1.0.4'
 // easy poi
 easypoi_base='cn.afterturn:easypoi-base:4.4.0'
 easypoi_annotation='cn.afterturn:easypoi-annotation:4.4.0'
+
+lombok="org.projectlombok:lombok:${lombokVersion}"

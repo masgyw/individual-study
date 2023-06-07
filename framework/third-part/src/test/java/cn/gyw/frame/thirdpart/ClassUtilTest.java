@@ -9,7 +9,7 @@ public class ClassUtilTest {
 
     @Test
     public void shouldCreatePersonByClassName() throws Exception {
-        String className = "com.gtools.model.pojo.Person";
+        String className = "com.gtools.model.pojo.PoiObj";
         Class<?> cls = ClassUtil.loadClass(className);
         Person person = (Person) cls.newInstance();
         person.sayHello();
