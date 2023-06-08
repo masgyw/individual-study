@@ -47,52 +47,47 @@ public class WebConfig implements WebMvcConfigurer {
     /**
      * 配置请求视图映射
      */
-    @Bean
-    public ViewResolver defaultViewResolver() {
-        InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
-        //请求视图文件的前缀地址
-        viewResolver.setPrefix("/views/");
-        //请求视图文件的后缀
-        viewResolver.setSuffix(".jsp");
-        viewResolver.setCache(false);
-        return viewResolver;
-    }
+    // @Bean
+    // public ViewResolver defaultViewResolver() {
+    //     InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
+    //     //请求视图文件的前缀地址
+    //     viewResolver.setPrefix("/views/");
+    //     //请求视图文件的后缀
+    //     viewResolver.setSuffix(".jsp");
+    //     viewResolver.setCache(false);
+    //     return viewResolver;
+    // }
 
     /**
      * 视图配置
      *
      * @param registry
      */
-    @Override
-    public void configureViewResolvers(ViewResolverRegistry registry) {
-        registry.enableContentNegotiation(new MappingJackson2JsonView());
-        registry.viewResolver(defaultViewResolver());
-    }
-
-    @Override
-    public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/toLogin").setViewName("hello.htm");
-    }
+    // @Override
+    // public void configureViewResolvers(ViewResolverRegistry registry) {
+    //     registry.enableContentNegotiation(new MappingJackson2JsonView());
+    //     registry.viewResolver(defaultViewResolver());
+    // }
 
     /**
      * 内容协商配置
      *
      * @param configurer
      */
-    @Override
-    public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
-        /* 是否通过请求Url的扩展名来决定media type */
-        configurer.favorPathExtension(true)
-                /* 不检查Accept请求头 */
-                .ignoreAcceptHeader(true)
-                .parameterName("mediaType")
-                /* 设置默认的media_type */
-                .defaultContentType(MediaType.APPLICATION_JSON_UTF8)
-                /* 请求以.html结尾的会被当成MediaType.TEXT_HTML*/
-                .mediaType("html", MediaType.TEXT_HTML)
-                /* 请求以.json结尾的会被当成MediaType.APPLICATION_JSON*/
-                .mediaType("json", MediaType.APPLICATION_JSON);
-    }
+    // @Override
+    // public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
+    //     /* 是否通过请求Url的扩展名来决定media type */
+    //     configurer.favorPathExtension(true)
+    //             /* 不检查Accept请求头 */
+    //             .ignoreAcceptHeader(true)
+    //             .parameterName("mediaType")
+    //             /* 设置默认的media_type */
+    //             .defaultContentType(MediaType.APPLICATION_JSON_UTF8)
+    //             /* 请求以.html结尾的会被当成MediaType.TEXT_HTML*/
+    //             .mediaType("html", MediaType.TEXT_HTML)
+    //             /* 请求以.json结尾的会被当成MediaType.APPLICATION_JSON*/
+    //             .mediaType("json", MediaType.APPLICATION_JSON);
+    // }
 
     /**
      * Spring Boot<=1.3 无需定义，Spring Boot自动定义
@@ -157,8 +152,13 @@ public class WebConfig implements WebMvcConfigurer {
                 .addResourceLocations("classpath:/META-INF/resources/");
         registry.addResourceHandler("/webjars/**")
                 .addResourceLocations("classpath:/META-INF/resources/webjars/");
+    }
 
-        registry.addResourceHandler("/views/**")
-                .addResourceLocations("/views/");
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**")
+                .allowedOrigins("*")
+                .allowedMethods("GET", "POST", "PUT", "OPTIONS", "DELETE", "PATCH")
+                .allowCredentials(true).maxAge(3600);
     }
 }
