@@ -1,5 +1,7 @@
 package cn.gyw.springboot.webmvc.async;
 
+import cn.gyw.springboot.webmvc.model.UserBehaviorDataDTO;
+import cn.gyw.springboot.webmvc.service.UserService;
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import org.springframework.stereotype.Component;
 

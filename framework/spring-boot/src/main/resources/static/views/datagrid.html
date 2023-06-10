@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <title>Aligning Columns in DataGrid - jQuery EasyUI Demo</title>
@@ -7,39 +8,265 @@
     <link rel="stylesheet" type="text/css" href="../easyui/themes/icon.css">
     <link rel="stylesheet" type="text/css" href="../easyui/demo/demo.css">
 </head>
-<body>
-<h2>Aligning Columns in DataGrid</h2>
-<p>Use align and halign properties to set the alignment of the columns and their header.</p>
-<div style="margin:20px 0;"></div>
 
-<table id="dg" class="easyui-datagrid" title="Aligning Columns in DataGrid" style="width:700px;height:250px">
-    <thead>
-    <tr>
-        <th data-options="field:'itemid',width:80,halign:'center'">Item ID</th>
-        <th data-options="field:'productid',width:100,halign:'center'">Product</th>
-        <th data-options="field:'listprice',width:80,align:'right',halign:'center'">List Price</th>
-        <th data-options="field:'unitcost',width:80,align:'right',halign:'center'">Unit Cost</th>
-        <th data-options="field:'attr1',width:250,halign:'center'">Attribute</th>
-        <th data-options="field:'status',width:60,align:'center',halign:'center'">Status</th>
-    </tr>
-    </thead>
-</table>
+<body>
+    <h2>数据网格布局</h2>
+    <div>
+        <form id="queryForm">
+            <div>
+                <label for="name">客户名：</label>
+                <input class="easyui-validatebox" type="text" name="name" data-options="required:true" />
+            </div>
+            <div>
+                <label for="age">年龄：</label>
+                <input class="easyui-validatebox" type="text" name="age" data-options="required:true" />
+            </div>
+            <div>
+                <button id="queryBtn" class="easyui-linkbutton"
+                    data-options="iconCls:'icon-edit',plain:true">查询</button>
+            </div>
+        </form>
+    </div>
+    <div style="margin:20px 0;"></div>
+
+    <div style="height: 500px;">
+        <div id="tb">
+            <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-edit',plain:true">编辑</a>
+        </div>
+        <table id="dguser" class="easyui-datagrid" title="客户信息" style="width:700px;height:250px">
+        </table>
+    </div>
+
+    <hr />
+
+    <table id="dgbank" class="easyui-datagrid" title="银行卡信息" style="width:700px;height:250px">
+    </table>
+
+    <div id="detailDlg">
+        <table id="dgdetail"></table>
+    </div>
 
 </body>
 <script type="text/javascript" src="../easyui/jquery.min.js"></script>
 <script type="text/javascript" src="../easyui/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="../easyui/locale/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" src="../asset/js/api.js"></script>
 <script type="text/javascript">
     $(function () {
-
+        // 初始化监听事件
+        bindEvent();
+        // 初始化数据表格
         initDataGrid();
+        // 初始化对话框
+        initDialog();
     });
 
+    function bindEvent() {
+        $("#queryBtn").click(queryData);
+    }
+
+    function queryData() {
+        let frm = $("#queryForm");
+        console.log('queryData...', frm);
+        $("#dguser").datagrid('load', {
+            name: frm.name,
+            age: frm.age
+        })
+    }
+
+    function showdetail(name) {
+        console.log("查看详情，用户名：", name);
+        $("#dgdetail").datagrid('load', {name: name});
+        $("#detailDlg").dialog('open');
+    }
+
     function initDataGrid() {
-        $("#dg").datagrid({
-            fit:true
+        // datagrid 数据 rows 必须数组
+        $("#dguser").datagrid({
+            checkbox: true,
+            // 工具栏
+            toolbar: '#tb',
+            // 自适应父容器
+            fit: true,
+            url: USER_INFO_API,
+            columns: [[
+                {
+                    field: 'name', title: '姓名', width: 100, halign: 'center', align: 'left'
+                },
+                { field: 'age', title: '年龄', width: 100, halign: 'center', sortable: true },
+                {
+                    field: 'gender', title: '性别', width: 100, halign: 'center',
+                    // 字段值 行记录数据 行索引
+                    formatter: function (value, row, index) {
+                        if (value == '0') {
+                            return '男';
+                        } else {
+                            return '女';
+                        }
+                    }
+                },
+                { field: 'birthday', title: '生日', width: 100, halign: 'center' },
+                { field: 'createTime', title: '创建时间', width: 100, halign: 'center' },
+                {
+                    field: 'operType', title: '操作', width: 100, halign: 'center',
+                    formatter: function (value, row, index) {
+                        return '<a href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true" \
+                        onClick="showdetail(\'' + row.name + '\')">详情</a>';
+                    }
+                }
+            ]],
+            fitColumns: true,
+            // 自动行高设置
+            autoRowHeight: false,
+            // 斑马线效果
+            striped: true,
+            method: 'post',
+            // 是否同行显示数据
+            nowrap: true,
+            loadMsgd: '正在加载数据...',
+            // 分页插件
+            pagination: true,
+            // pagePosition: '',
+            // pageNumber: 
+            // pageSize: 
+            pageList: [10, 20],
+            // 行号列
+            rownumbers: true,
+            // 只允许选择一行
+            singleSelect: true,
+            // 查询参数
+            queryParams: {},
+            // 行样式
+            rowStyle: function (index, row) {
+                if (index % 2 == 0) {
+                    return 'background-color:red;';
+                }
+
+            },
+            // Ajax 调用操作
+            // loader: function (param, success, error) {
+
+            // },
+            loaderFilter: function (data) {
+                // 可以从返回值中移除属性
+                if (data == undefined) {
+                    return { 'total': 0, 'rows': [] }
+                } else {
+                    return data;
+                }
+            },
+            // 事件：数据加载完成后触发
+            onLoadSuccess: function (data) {
+
+            },
+            onLoadError: function () {
+
+            },
+            onBeforeLoad: function (param) {
+                // 参数校验，返回false终止载入
+                console.log('客户信息 param:', param);
+                // 阻止首次加载
+                var firstLoad = $(this).attr("firstLoad");
+                if (firstLoad == "false" || typeof (firstLoad) == "undefined") {
+                    $(this).attr("firstLoad", "true");
+                    return false;
+                }
+                return true;
+            },
+            onClickRow: function (index, row) {
+                // 加载完成后清除上次勾选的内容
+                $("#dguser").datagrid('clearSelections');
+            }
+
+        });
+
+        $("#dgbank").datagrid({
+            toolbar: [{
+                iconCls: 'icon-edit',
+                handler: function () { alert('编辑按钮') }
+            }, '-', {
+                iconCls: 'icon-help',
+                handler: function () { alert('帮助按钮') }
+            }],
+            // fit:true,
+            url: BANK_INFO_API,
+            columns: [[
+                { field: 'bankCode', title: '支行号', width: 100 },
+                { field: 'bankName', title: '银行名称', width: 100 },
+                { field: 'bankAcct', title: '卡号', width: 100 },
+                { field: 'createTime', title: '创建时间', width: 100 }
+            ]],
+            onBeforeLoad: function (param) {
+                // 参数校验，返回false终止载入
+                console.log('银行信息 param:', param);
+                // 阻止首次加载
+                var firstLoad = $(this).attr("firstLoad");
+                if (firstLoad == "false" || typeof (firstLoad) == "undefined") {
+                    $(this).attr("firstLoad", "true");
+                    return false;
+                }
+                return true;
+            }
+        });
+
+        $("#dgdetail").datagrid({
+            fit:true,
+            url: USER_DETAIL_API,
+            columns: [[
+                { field: 'nation', title: '国籍', width: 100 },
+                { field: 'vocation', title: '职业', width: 100 },
+                { field: 'address', title: '地址', width: 100 }
+            ]],
+            onBeforeLoad: function (param) {
+                // 参数校验，返回false终止载入
+                console.log('详情 param:', param);
+                // 阻止首次加载
+                var firstLoad = $(this).attr("firstLoad");
+                if (firstLoad == "false" || typeof (firstLoad) == "undefined") {
+                    $(this).attr("firstLoad", "true");
+                    return false;
+                }
+                return true;
+            },
+            loaderFilter: function (data) {
+                // 可以从返回值中移除属性
+                if (data == undefined) {
+                    return { 'total': 0, 'rows': [] }
+                } else {
+                    return data;
+                }
+            },
+            // 事件：数据加载完成后触发
+            onLoadSuccess: function (data) {
+                console.log('详情请求成功:', data);
+            },
         });
     }
 
+    function initDialog() {
+        $("#detailDlg").dialog({
+            title: "用户详情",
+            width: 600,
+            height: 300,
+            closed: false,
+            cache: false,
+            // href: '',
+            modal: true,
+            buttons: [{
+                text: '保存',
+                handler: function() {
+                    $.messager.alert("", "save");
+                }
+            },{
+                text: '取消',
+                handler: function() {
+                    $.messager.alert("", "cancel");
+                }
+            }]
+        });
+        $("#detailDlg").dialog('close');
+    }
+
 </script>
+
 </html>

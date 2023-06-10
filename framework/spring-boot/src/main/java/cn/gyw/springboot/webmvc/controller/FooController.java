@@ -1,4 +1,4 @@
-package cn.gyw.springboot.webmvc;
+package cn.gyw.springboot.webmvc.controller;
 
 import org.springframework.web.bind.annotation.*;
 

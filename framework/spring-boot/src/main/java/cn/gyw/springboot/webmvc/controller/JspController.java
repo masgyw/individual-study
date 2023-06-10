@@ -1,4 +1,4 @@
-package cn.gyw.springboot.webmvc;
+package cn.gyw.springboot.webmvc.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

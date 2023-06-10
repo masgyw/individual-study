@@ -1,4 +1,4 @@
-package cn.gyw.springboot.webmvc.async;
+package cn.gyw.springboot.webmvc.model;
 
 public class UserBehaviorDataDTO {
     private Long fansCount;

@@ -1,4 +1,4 @@
-package cn.gyw.springboot.webmvc;
+package cn.gyw.springboot.webmvc.controller;
 
 import java.util.concurrent.TimeUnit;
 

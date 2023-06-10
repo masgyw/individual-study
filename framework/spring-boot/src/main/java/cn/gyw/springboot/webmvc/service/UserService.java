@@ -1,4 +1,4 @@
-package cn.gyw.springboot.webmvc.async;
+package cn.gyw.springboot.webmvc.service;
 
 public interface UserService {
     long countFansCountByUserId(Long userId);

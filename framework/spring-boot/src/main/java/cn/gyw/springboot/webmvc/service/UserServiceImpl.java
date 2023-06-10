@@ -1,4 +1,4 @@
-package cn.gyw.springboot.webmvc.async;
+package cn.gyw.springboot.webmvc.service;
 
 import org.springframework.stereotype.Service;
 
