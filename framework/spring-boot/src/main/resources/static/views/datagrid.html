@@ -12,7 +12,7 @@
 <body>
     <h2>数据网格布局</h2>
     <div>
-        <form id="queryForm">
+        <form id="queryForm" action="#">
             <div>
                 <label for="name">客户名：</label>
                 <input class="easyui-validatebox" type="text" name="name" data-options="required:true" />
@@ -22,7 +22,11 @@
                 <input class="easyui-validatebox" type="text" name="age" data-options="required:true" />
             </div>
             <div>
-                <button id="queryBtn" class="easyui-linkbutton"
+                <label for="dt">查询日期：</label>
+                <input id="dd" type="text" class="easyui-datebox" required="required">
+            </div>
+            <div>
+                <button id="queryBtn" type="button" class="easyui-linkbutton"
                     data-options="iconCls:'icon-edit',plain:true">查询</button>
             </div>
         </form>
@@ -37,14 +41,18 @@
         </table>
     </div>
 
-    <hr />
+    <!-- <hr /> -->
 
-    <table id="dgbank" class="easyui-datagrid" title="银行卡信息" style="width:700px;height:250px">
-    </table>
+    <div style="height: 500px;">
+        <table id="dgbank" class="easyui-datagrid" title="银行卡信息" style="width:700px;height:250px">
+        </table>
+    </div>
 
     <div id="detailDlg">
         <table id="dgdetail"></table>
     </div>
+
+    <a href="#" id="tip" title="提示框消息" class="easyui-tooltip">hover me</a>
 
 </body>
 <script type="text/javascript" src="../easyui/jquery.min.js"></script>
@@ -68,6 +76,10 @@
     function queryData() {
         let frm = $("#queryForm");
         console.log('queryData...', frm);
+        // 参数设置方式1
+        let queryParams = $("#dguser").datagrid('options').queryParams;
+        queryParams.other = 'test123';
+        // 参数设置方式2
         $("#dguser").datagrid('load', {
             name: frm.name,
             age: frm.age
@@ -76,7 +88,7 @@
 
     function showdetail(name) {
         console.log("查看详情，用户名：", name);
-        $("#dgdetail").datagrid('load', {name: name});
+        $("#dgdetail").datagrid('load', { name: name });
         $("#detailDlg").dialog('open');
     }
 
@@ -158,6 +170,18 @@
             // 事件：数据加载完成后触发
             onLoadSuccess: function (data) {
 
+                $.messager.progress('close');
+
+                $("#tip").tooltip({
+                    position: 'right',
+                    content: '<span style="color:#fff">提示消息</span>',
+                    onShow: function () {
+                        $(this).tooltip('tip').css({
+                            backgroundColor: '#666',
+                            borderColor: '#666'
+                        })
+                    }
+                });
             },
             onLoadError: function () {
 
@@ -165,12 +189,16 @@
             onBeforeLoad: function (param) {
                 // 参数校验，返回false终止载入
                 console.log('客户信息 param:', param);
+
                 // 阻止首次加载
                 var firstLoad = $(this).attr("firstLoad");
                 if (firstLoad == "false" || typeof (firstLoad) == "undefined") {
                     $(this).attr("firstLoad", "true");
                     return false;
                 }
+                // 进度条
+                $.messager.progress();
+
                 return true;
             },
             onClickRow: function (index, row) {
@@ -181,6 +209,7 @@
         });
 
         $("#dgbank").datagrid({
+            fit: true,
             toolbar: [{
                 iconCls: 'icon-edit',
                 handler: function () { alert('编辑按钮') }
@@ -210,7 +239,7 @@
         });
 
         $("#dgdetail").datagrid({
-            fit:true,
+            fit: true,
             url: USER_DETAIL_API,
             columns: [[
                 { field: 'nation', title: '国籍', width: 100 },
@@ -254,12 +283,12 @@
             modal: true,
             buttons: [{
                 text: '保存',
-                handler: function() {
+                handler: function () {
                     $.messager.alert("", "save");
                 }
-            },{
+            }, {
                 text: '取消',
-                handler: function() {
+                handler: function () {
                     $.messager.alert("", "cancel");
                 }
             }]

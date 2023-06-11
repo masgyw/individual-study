@@ -12,12 +12,16 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.*;
+import org.springframework.web.servlet.view.InternalResourceView;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
+import org.springframework.web.servlet.view.UrlBasedViewResolver;
 import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
 import java.text.ParseException;
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 // @EnableWebMvc
 @Configuration
@@ -29,51 +33,65 @@ public class WebConfig implements WebMvcConfigurer {
      *
      * @param registry
      */
-    @Override
-    public void addFormatters(FormatterRegistry registry) {
-        registry.addFormatterForFieldType(LocalDate.class, new Formatter<Object>() {
-            @Override
-            public String print(Object o, Locale locale) {
-                return null;
-            }
-
-            @Override
-            public Object parse(String s, Locale locale) throws ParseException {
-                return null;
-            }
-        });
-    }
+    // @Override
+    // public void addFormatters(FormatterRegistry registry) {
+    //     registry.addFormatterForFieldType(LocalDate.class, new Formatter<Object>() {
+    //         @Override
+    //         public String print(Object o, Locale locale) {
+    //             return null;
+    //         }
+    //
+    //         @Override
+    //         public Object parse(String s, Locale locale) throws ParseException {
+    //             return null;
+    //         }
+    //     });
+    // }
 
     /**
      * 配置请求视图映射
      */
-    // @Bean
-    // public ViewResolver defaultViewResolver() {
-    //     InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
-    //     //请求视图文件的前缀地址
-    //     viewResolver.setPrefix("/views/");
-    //     //请求视图文件的后缀
-    //     viewResolver.setSuffix(".jsp");
-    //     viewResolver.setCache(false);
-    //     return viewResolver;
-    // }
+    @Bean
+    public ViewResolver defaultViewResolver() {
+        UrlBasedViewResolver viewResolver = new UrlBasedViewResolver();
+        viewResolver.setViewClass(InternalResourceView.class);
+        //请求视图文件的前缀地址
+        viewResolver.setPrefix("/WEB-INF/jsp/");
+        //请求视图文件的后缀
+        viewResolver.setSuffix(".jsp");
+        viewResolver.setCache(false);
+        return viewResolver;
+    }
 
     /**
      * 视图配置
      *
      * @param registry
      */
-    // @Override
-    // public void configureViewResolvers(ViewResolverRegistry registry) {
-    //     registry.enableContentNegotiation(new MappingJackson2JsonView());
-    //     registry.viewResolver(defaultViewResolver());
-    // }
+    @Override
+    public void configureViewResolvers(ViewResolverRegistry registry) {
+        registry.enableContentNegotiation(new MappingJackson2JsonView());
+        registry.viewResolver(defaultViewResolver());
+    }
 
     /**
      * 内容协商配置
      *
      * @param configurer
      */
+    // @Override
+    // public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
+    //     // 支持后缀匹配
+    //     configurer.favorPathExtension(true);
+    //     // 忽略accept-header
+    //     configurer.ignoreAcceptHeader(true);
+    //     // 默认类型匹配
+    //     configurer.defaultContentType(MediaType.TEXT_HTML, MediaType.APPLICATION_JSON);
+    //     Map<String, MediaType> mediaTypes = new HashMap<>();
+    //     mediaTypes.put("json", MediaType.APPLICATION_JSON);
+    //     configurer.mediaTypes(mediaTypes);
+    // }
+
     // @Override
     // public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
     //     /* 是否通过请求Url的扩展名来决定media type */
@@ -140,19 +158,19 @@ public class WebConfig implements WebMvcConfigurer {
     /**
      * 配置静态资源
      */
-    @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        // 静态资源
-        registry.addResourceHandler("hello.htm")
-                .addResourceLocations("/");
-        registry.addResourceHandler("/static/**")
-                .addResourceLocations("classpath:/static/");
-        // 解决Swagger-ui不显示的问题
-        registry.addResourceHandler("swagger-ui.html")
-                .addResourceLocations("classpath:/META-INF/resources/");
-        registry.addResourceHandler("/webjars/**")
-                .addResourceLocations("classpath:/META-INF/resources/webjars/");
-    }
+    // @Override
+    // public void addResourceHandlers(ResourceHandlerRegistry registry) {
+    //     // 静态资源
+    //     registry.addResourceHandler("hello.htm")
+    //             .addResourceLocations("/");
+    //     registry.addResourceHandler("/static/**")
+    //             .addResourceLocations("classpath:/static/");
+    //     // 解决Swagger-ui不显示的问题
+    //     registry.addResourceHandler("swagger-ui.html")
+    //             .addResourceLocations("classpath:/META-INF/resources/");
+    //     registry.addResourceHandler("/webjars/**")
+    //             .addResourceLocations("classpath:/META-INF/resources/webjars/");
+    // }
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
