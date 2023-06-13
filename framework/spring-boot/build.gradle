@@ -73,6 +73,7 @@ dependencies {
     implementation jackson_databind
     implementation jackson_core
     implementation jackson_annotations
+    implementation 'com.alibaba:fastjson:1.2.73'
 
     // lombok
     compileOnly "org.projectlombok:lombok:${lombokVersion}"

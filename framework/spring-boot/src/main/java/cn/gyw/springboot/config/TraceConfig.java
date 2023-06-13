@@ -7,31 +7,33 @@ import org.springframework.aop.interceptor.CustomizableTraceInterceptor;
 import org.springframework.aop.support.DefaultPointcutAdvisor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 /**
  * @author yuewu.guan
  * @date 2023/2/14
  */
 @Configuration
+@EnableAspectJAutoProxy(proxyTargetClass = true)
 public class TraceConfig {
 
-    @Pointcut("execution(* cn.gyw.springboot.*.*(..))")
-    private void pointCut() {
+    @Bean
+    public CustomizableTraceInterceptor interceptor() {
+
+        CustomizableTraceInterceptor interceptor = new CustomizableTraceInterceptor();
+        interceptor.setEnterMessage("Entering $[methodName]($[arguments]).");
+        interceptor.setExitMessage(
+                "Leaving $[methodName](..) with return value $[returnValue], took $[invocationTime]ms.");
+
+        return interceptor;
     }
 
-    /**
-     * 日志拦截器
-     */
     @Bean
     public Advisor traceAdvisor() {
-        CustomizableTraceInterceptor traceInterceptor = new CustomizableTraceInterceptor();
-        traceInterceptor.setEnterMessage("enter");
-        traceInterceptor.setExitMessage("exit");
-        traceInterceptor.setExceptionMessage("exception");
 
         AspectJExpressionPointcut pointcut = new AspectJExpressionPointcut();
-        pointcut.setExpression("execution(* cn.gyw.springboot..*.*(..))");
+        pointcut.setExpression("execution(public * cn.gyw.springboot.webmvc.controller.*+.*(..))");
 
-        return new DefaultPointcutAdvisor(pointcut, traceInterceptor);
+        return new DefaultPointcutAdvisor(pointcut, interceptor());
     }
 }

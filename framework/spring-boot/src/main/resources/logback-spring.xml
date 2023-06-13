@@ -27,9 +27,9 @@
 
     <logger name="org.hibernate" level="WARN"/>
     <!--打印spring web debug 日志-->
-    <logger name="org.springframework.web" level="TRACE"/>
+<!--    <logger name="org.springframework.web" level="TRACE"/>-->
     <!--打印spring 事务debug 日志-->
-    <logger name="org.springframework.transaction" level="debug"/>
+<!--    <logger name="org.springframework.transaction" level="debug"/>-->
 
     <logger name="cn.gyw" level="DEBUG"/>
 
