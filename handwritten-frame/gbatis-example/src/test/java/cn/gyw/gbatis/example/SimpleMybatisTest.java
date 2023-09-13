@@ -1,10 +1,10 @@
-package cn.gyw.gbatis;
+package cn.gyw.gbatis.example;
 
-import cn.gyw.gbatis.mapper.PersonMapper;
+import cn.gyw.gbatis.example.mapper.PersonMapper;
 import cn.gyw.gbatis.session.SqlSession;
 import cn.gyw.gbatis.session.SqlSessionFactory;
 
-import cn.gyw.gbatis.model.Person;
+import cn.gyw.gbatis.example.model.Person;
 
 import cn.gyw.gbatis.session.SqlSessionFactoryBuilder;
 

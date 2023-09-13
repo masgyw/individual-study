@@ -1,10 +1,10 @@
-package cn.gyw.gbatis.mapper;
+package cn.gyw.gbatis.example.mapper;
 
 import java.util.List;
 
+import cn.gyw.gbatis.example.model.Person;
 import cn.gyw.gbatis.annotations.Mapper;
 import cn.gyw.gbatis.annotations.Select;
-import cn.gyw.gbatis.model.Person;
 
 @Mapper
 public interface PersonMapper {

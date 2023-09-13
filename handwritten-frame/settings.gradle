@@ -1,4 +1,8 @@
 rootProject.name = 'handwritten-frame'
 
 include 'gbatis'
+include 'gbatis-example'
 include 'gspring'
+include 'gspring-example'
+
+//project(':').projectDir = "$rootDir/xxx/xxx" as File

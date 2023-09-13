@@ -22,17 +22,17 @@ public class ParameterHandler {
     public void setParameters(Object[] parameters) {
         try {
             for (int i = 0, len = parameters.length; i < len; i++) {
-                Object param = parameters[i + 1];
+                Object param = parameters[i];
                 if (param instanceof Integer) {
-                    ps.setInt(i, (Integer) param);
+                    ps.setInt(i + 1, (Integer) param);
                 } else if (param instanceof Long) {
-                    ps.setLong(i, (Long) param);
+                    ps.setLong(i + 1, (Long) param);
                 } else if (param instanceof String) {
-                    ps.setString(i, (String) param);
+                    ps.setString(i + 1, (String) param);
                 } else if (param instanceof Boolean) {
-                    ps.setBoolean(i, (Boolean) param);
+                    ps.setBoolean(i + 1, (Boolean) param);
                 } else {
-                    ps.setString(i, (String) param);
+                    ps.setString(i + 1, (String) param);
                 }
             }
         } catch (SQLException e) {

@@ -3,7 +3,6 @@ package cn.gyw.gbatis.session;
 import cn.gyw.gbatis.annotations.Mapper;
 import cn.gyw.gbatis.config.Configuration;
 import cn.gyw.gbatis.config.MappedStatement;
-import cn.gyw.gbatis.mapper.PersonMapper;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.Element;

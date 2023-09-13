@@ -6,6 +6,7 @@ import cn.gyw.spring.aop.aspect.TimeAspect;
 import cn.gyw.spring.plugins.DefaultSpringPluginFactory;
 import cn.gyw.spring.service.MathCalculator;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
@@ -164,6 +165,7 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
  * 					出现异常：前置通知-》目标方法-》后置通知-》异常通知
  */
 @Configuration
+@ComponentScan(basePackages = {"cn.gyw.spring.aop"})
 @EnableAspectJAutoProxy
 public class AopConfig {
 

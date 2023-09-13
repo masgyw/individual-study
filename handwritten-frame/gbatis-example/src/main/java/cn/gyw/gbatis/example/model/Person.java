@@ -1,4 +1,4 @@
-package cn.gyw.gbatis.model;
+package cn.gyw.gbatis.example.model;
 
 
 public class Person {
