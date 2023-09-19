@@ -3,6 +3,6 @@
 <mapper namespace="cn.gyw.gbatis.example.mapper.PersonMapper">
 
     <select id="queryAll" resultType="cn.gyw.gbatis.example.model.Person">
-        select * from t_person where id = ?
+        select * from t_person
     </select>
 </mapper>

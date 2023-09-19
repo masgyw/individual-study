@@ -18,10 +18,12 @@ public class ResultSetHandler {
             ResultSetMetaData metaData = resultSet.getMetaData();
             int colCount = metaData.getColumnCount();
             while (resultSet.next()) {
-                for (int i = 0; i < colCount; i++) {
+                for (int i = 1; i <= colCount; i++) {
                     String columnName = metaData.getColumnName(i);
                     Field field = type.getDeclaredField(columnName);
-                    field.set(result, resultSet.getObject(columnName));
+                    field.setAccessible(true);
+                    Object value = resultSet.getObject(columnName);
+                    field.set(result, value);
                 }
                 resultList.add(result);
             }

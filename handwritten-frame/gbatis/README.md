@@ -12,7 +12,7 @@ SqlSession -> Configuration -> Executor
 
 # 准备sql
 ```sql
-CREATE TABLE demo_2021.t_person (
+CREATE TABLE demo.t_person (
 	id INT auto_increment NOT NULL primary key,
 	name varchar(100) NULL,
 	age INT NULL

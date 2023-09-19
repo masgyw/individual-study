@@ -36,6 +36,7 @@ public class StatementHandler {
                     configuration.getUsername(), configuration.getPassword());
 
             PreparedStatement ps = connection.prepareStatement(mappedStatement.getSql());
+            System.out.println(mappedStatement.getSql().trim());
             // 参数处理
             new ParameterHandler(ps).setParameters(parameters);
             ResultSet resultSet = ps.executeQuery();

@@ -2,6 +2,7 @@ package cn.gyw.gbatis.parameter;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.Objects;
 
 /**
  * 参数处理器
@@ -23,6 +24,9 @@ public class ParameterHandler {
         try {
             for (int i = 0, len = parameters.length; i < len; i++) {
                 Object param = parameters[i];
+                if (Objects.isNull(param)) {
+                    continue;
+                }
                 if (param instanceof Integer) {
                     ps.setInt(i + 1, (Integer) param);
                 } else if (param instanceof Long) {
