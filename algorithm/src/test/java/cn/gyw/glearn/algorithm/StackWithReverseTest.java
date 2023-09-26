@@ -1,6 +1,6 @@
 package cn.gyw.glearn.algorithm;
 
-import org.junit.Before;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import cn.gyw.glearn.algorithm.stack.StackWithReverse;
@@ -22,7 +22,7 @@ public class StackWithReverseTest {
     /**
      * 数据准备
      */
-    @Before
+    @BeforeEach
     public void setUp() {
         dataStack = new Stack<>();
         dataStack.push(1);

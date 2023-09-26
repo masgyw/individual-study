@@ -1,12 +1,3 @@
-rootProject.name = 'glearn'
+rootProject.name = 'algorithm'
 
-include 'core-java'
-include 'algorithm'
-include 'design-pattern'
-// script language
-include 'script-groovy'
-include 'javaagent'
-
-rootProject.children.each {project ->
-	project.buildFileName = "${project.name}.gradle"
-}
+rootProject.buildFileName = "${rootProject.name}.gradle"

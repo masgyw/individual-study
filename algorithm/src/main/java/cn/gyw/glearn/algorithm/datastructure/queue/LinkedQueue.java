@@ -1,7 +1,5 @@
 package cn.gyw.glearn.algorithm.datastructure.queue;
 
-import cn.gyw.platform.annotations.ThreadSafe;
-
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -9,7 +7,6 @@ import java.util.concurrent.atomic.AtomicReference;
  * 非阻塞算法的链表
  * @param <E>
  */
-@ThreadSafe
 public class LinkedQueue<E> {
 
     private final Node<E> dummy = new Node<>(null, null);

@@ -1,13 +1,9 @@
 package cn.gyw.glearn.algorithm.arrays;
 
-import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import cn.gyw.glearn.algorithm.arrays.RemoveElements;
-
 import java.util.Arrays;
-
-import static org.junit.Assert.*;
 
 public class RemoveElementsTest {
 
@@ -17,9 +13,9 @@ public class RemoveElementsTest {
         System.out.println(">>" + Arrays.toString(data));
 
         int result = new RemoveElements().solution1(data, 0);
-        Assert.assertEquals(3, result);
+        Assertions.assertEquals(3, result);
 
         result = new RemoveElements().solution1(data, 1);
-        Assert.assertEquals(4, result);
+        Assertions.assertEquals(4, result);
     }
 }

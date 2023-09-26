@@ -1,15 +1,14 @@
 package cn.gyw.glearn.algorithm;
 
-import static org.junit.Assert.*;
-
 import cn.gyw.glearn.algorithm.model.Cat;
 import cn.gyw.glearn.algorithm.model.Dog;
 import cn.gyw.glearn.algorithm.queue.BookDogCatQueue;
 import cn.gyw.glearn.algorithm.queue.DogCatQueue;
 import cn.gyw.glearn.algorithm.queue.MyDogCatQueue;
-import org.junit.Assert;
-import org.junit.Before;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 
 /**
  * 猫狗队列问题
@@ -18,15 +17,15 @@ public class DogCatQueueTest {
 
     private DogCatQueue dogCatQueue;
 
-    @Before
+    @BeforeEach
     public void setUp() {
 //        dogCatQueue = new MyDogCatQueue();
         dogCatQueue = new BookDogCatQueue();
 
-        Assert.assertTrue(dogCatQueue.add(new Cat()));
-        Assert.assertTrue(dogCatQueue.add(new Cat()));
-        Assert.assertTrue(dogCatQueue.add(new Dog()));
-        Assert.assertTrue(dogCatQueue.add(new Cat()));
+        Assertions.assertTrue(dogCatQueue.add(new Cat()));
+        Assertions.assertTrue(dogCatQueue.add(new Cat()));
+        Assertions.assertTrue(dogCatQueue.add(new Dog()));
+        Assertions.assertTrue(dogCatQueue.add(new Cat()));
 
     }
     /**
@@ -35,7 +34,7 @@ public class DogCatQueueTest {
     @Test
     public void shouldAddPet() {
         dogCatQueue = new MyDogCatQueue();
-        Assert.assertTrue(dogCatQueue.add(new Cat()));
+        Assertions.assertTrue(dogCatQueue.add(new Cat()));
 
     }
 
@@ -59,7 +58,7 @@ public class DogCatQueueTest {
      */
     @Test
     public void shouldIsEmpty() {
-        Assert.assertFalse(dogCatQueue.isEmpty());
+        Assertions.assertFalse(dogCatQueue.isEmpty());
     }
 
     /**
@@ -68,7 +67,7 @@ public class DogCatQueueTest {
     @Test
     public void shouldIsDogEmpty() {
         dogCatQueue.pollDog();
-        Assert.assertTrue(dogCatQueue.isDogEmpty());
+        Assertions.assertTrue(dogCatQueue.isDogEmpty());
     }
 
     /**
@@ -76,6 +75,6 @@ public class DogCatQueueTest {
      */
     @Test
     public void shouldIsCatEmpty() {
-        Assert.assertFalse(dogCatQueue.isCatEmpty());
+        Assertions.assertFalse(dogCatQueue.isCatEmpty());
     }
 }

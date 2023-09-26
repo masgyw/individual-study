@@ -1,6 +1,6 @@
 package cn.gyw.glearn.algorithm.math;
 
-import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -19,7 +19,7 @@ public class MathTest {
 			mockArrayLength = (int) Math.pow(2, i);
 			// 假设数组的长度是2的倍数，验证HashMap 数组角标的算法
 			System.out.println("2^" + i + "=" + mockArrayLength);
-			Assert.assertEquals( 100 % mockArrayLength, 100 & (mockArrayLength - 1));
+			Assertions.assertEquals( 100 % mockArrayLength, 100 & (mockArrayLength - 1));
 		}
 	}
 }

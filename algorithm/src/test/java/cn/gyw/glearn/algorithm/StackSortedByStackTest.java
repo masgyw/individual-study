@@ -1,6 +1,6 @@
 package cn.gyw.glearn.algorithm;
 
-import org.junit.Before;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import cn.gyw.glearn.algorithm.stack.StackSortedByStack;
@@ -14,7 +14,7 @@ public class StackSortedByStackTest {
 
     private Stack<Integer> datas;
 
-    @Before
+    @BeforeEach
     public void before() {
         datas = new Stack<>();
         datas.push(5);

@@ -1,14 +1,12 @@
 package cn.gyw.glearn.algorithm.arrays;
 
-import org.junit.After;
-import org.junit.Before;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import cn.gyw.glearn.algorithm.arrays.MoveZeros;
 
 import java.util.Arrays;
-
-import static org.junit.Assert.*;
 
 public class MoveZerosTest {
 
@@ -30,14 +28,14 @@ public class MoveZerosTest {
         moveZeros.solution3(data);
     }
 
-    @Before
+    @BeforeEach
     public void before() {
         moveZeros = new MoveZeros();
         data = new int[] {0,1,0,3,12};
         System.out.println(">>" + Arrays.toString(data));
     }
 
-    @After
+    @AfterEach
     public void after() {
         System.out.println("<<" + Arrays.toString(data));
     }

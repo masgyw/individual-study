@@ -3,8 +3,6 @@ package cn.gyw.glearn.algorithm.search;
 import cn.gyw.glearn.algorithm.util.DataGenerator;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.*;
-
 public class BinarySearchTest {
 
     @Test

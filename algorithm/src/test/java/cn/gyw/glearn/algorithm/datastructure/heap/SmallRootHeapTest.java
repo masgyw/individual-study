@@ -1,14 +1,13 @@
 package cn.gyw.glearn.algorithm.datastructure.heap;
 
-import java.util.Arrays;
-import java.util.PriorityQueue;
-
-import org.junit.After;
-import org.junit.Before;
-import org.junit.BeforeClass;
+import cn.gyw.glearn.algorithm.util.DataGenerator;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import cn.gyw.glearn.algorithm.util.DataGenerator;
+import java.util.Arrays;
+import java.util.PriorityQueue;
 
 public class SmallRootHeapTest {
 
@@ -56,18 +55,18 @@ public class SmallRootHeapTest {
 		System.out.println();
 	}
 
-	@Before
+	@BeforeEach
 	public void before() {
 		System.out.println("*********Method start************");
 		System.out.println(">> data:" + Arrays.toString(data));
 	}
 	
-	@After
+	@AfterEach
 	public void after() {
 		System.out.println("*********Method end************");
 	}
 	
-	@BeforeClass
+	@BeforeAll
 	public static void initData() {
 		n = 10;
 		data = DataGenerator.generateRandomArray(n << 2, 0, 100);

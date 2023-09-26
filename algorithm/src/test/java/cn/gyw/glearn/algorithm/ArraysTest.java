@@ -2,7 +2,7 @@ package cn.gyw.glearn.algorithm;
 
 import java.util.Arrays;
 
-import org.junit.After;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
 import cn.gyw.glearn.algorithm.arrays.FindFirstNoRepeatElement;
@@ -40,7 +40,7 @@ public class ArraysTest {
 		result = mergeTwoSortedArray.solution(arr1, arr2);
 	}
 
-	@After
+	@AfterEach
 	public void printResult() {
 		if (result instanceof int[]) {
 			Arrays.asList(result).forEach(System.out::println);
