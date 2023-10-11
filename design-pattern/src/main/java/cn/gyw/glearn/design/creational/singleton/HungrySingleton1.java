@@ -1,11 +1,9 @@
 package cn.gyw.glearn.design.creational.singleton;
 
-import cn.gyw.platform.annotations.ThreadSafe;
 
 /**
  * 饿汉式单例：当类一加载就直接new一个静态实例。
  */
-@ThreadSafe
 public class HungrySingleton1 {
 
 	/*

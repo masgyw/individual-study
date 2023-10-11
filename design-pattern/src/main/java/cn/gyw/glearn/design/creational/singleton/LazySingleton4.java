@@ -1,11 +1,8 @@
 package cn.gyw.glearn.design.creational.singleton;
 
-import cn.gyw.platform.annotations.ThreadSafe;
-
 /**
  * 双重检查锁
  */
-@ThreadSafe
 public class LazySingleton4 {
 
     // volatile 禁止指令重排

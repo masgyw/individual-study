@@ -1,13 +1,10 @@
 package cn.gyw.glearn.design.creational.singleton;
 
-import cn.gyw.platform.annotations.ThreadSafe;
-
 import java.util.concurrent.atomic.AtomicStampedReference;
 
 /**
  * CAS 乐观锁实现
  */
-@ThreadSafe
 public class LazySingleton5 {
 
     // 避免ABA 问题

@@ -1,11 +1,8 @@
 package cn.gyw.glearn.design.creational.singleton;
 
-import cn.gyw.platform.annotations.ThreadSafe;
-
 /**
  * 静态内部类创建单例
  */
-@ThreadSafe
 public class LazySingleton3 {
 	 /* 私有构造方法，防止被实例化 */
 	private LazySingleton3() {

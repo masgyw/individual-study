@@ -1,12 +1,9 @@
 package cn.gyw.glearn.design.creational.singleton;
 
-import cn.gyw.platform.annotations.ThreadSafe;
-
 /**
  * 懒汉 方法同步
  *
  */
-@ThreadSafe
 public class LazySingleton2 {
 
 	private static LazySingleton2 instance;

@@ -3,8 +3,6 @@ plugins {
 }
 
 dependencies {
-    implementation platform_annotations
-
     implementation jaxb_api
     implementation jaxb_core
     implementation jaxb_impl
