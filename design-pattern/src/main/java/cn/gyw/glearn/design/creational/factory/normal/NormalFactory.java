@@ -1,4 +1,4 @@
-package cn.gyw.glearn.design.creational.factory.nomal;
+package cn.gyw.glearn.design.creational.factory.normal;
 
 import cn.gyw.glearn.design.creational.entities.MailSender;
 import cn.gyw.glearn.design.creational.entities.Sender;
@@ -10,7 +10,7 @@ import cn.gyw.glearn.design.creational.entities.ShortMessageSender;
  * @author guanyw
  *
  */
-public class NomalFactory {
+public class NormalFactory {
 
 	public Sender produceSender(String type) {
 		Sender sender = null;
